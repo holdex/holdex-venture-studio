@@ -2,9 +2,11 @@
 	"name": "holdex-venture-studio",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "vite dev",
+		"pre-dev": "npx vercel env pull",
+		"dev": "npm run pre-dev && vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"postinstall": "svelte-kit sync && sh ./apollo-client-patch.sh",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
@@ -33,5 +35,10 @@
 		"typescript": "^5.0.0",
 		"vite": "^4.2.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@apollo/client": "^3.7.10",
+		"dotenv": "^16.0.3",
+		"graphql": "^16.6.0"
+	}
 }
