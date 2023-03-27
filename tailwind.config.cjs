@@ -68,6 +68,50 @@ module.exports = {
       'rating-b': 'rgb(var(--rating-b) / <alpha-value>)',
       'rating-c': 'rgb(var(--rating-c) / <alpha-value>)'
     },
+    fontSize: {
+      "title-l": [
+        '56px',
+        {
+          lineHeight: '64px',
+          fontWeight: '900'
+        }
+      ],
+      "title-s": [
+        '48px',
+        {
+          lineHeight: '38px',
+          fontWeight: '900'
+        }
+      ],
+      "subtitle-l": [
+        '20px',
+        {
+          lineHeight: '32px',
+          fontWeight: '500'
+        }
+      ],
+      "subtitle-s": [
+        '18px',
+        {
+          lineHeight: '18px',
+          fontWeight: '500'
+        }
+      ],
+      cta: [
+        '14px',
+        {
+          lineHeight: '32px',
+          fontWeight: '700'
+        }
+      ],
+      footnote: [
+        '14px',
+        {
+          lineHeight: '20px',
+          fontWeight: '500'
+        }
+      ]
+    },
     extend: {
       spacing: {
         '1/12': `${(1 / 12) * 100}%`,

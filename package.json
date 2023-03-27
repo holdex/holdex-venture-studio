@@ -3,9 +3,10 @@
 	"version": "0.0.1",
 	"scripts": {
 		"pre-dev": "npx vercel env pull",
-		"dev": "npm run pre-dev && vite dev",
+		"dev": "npm run pre-dev && npm run generate && vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
+		"generate": "graphql-codegen --config codegen.yml -r dotenv/config",
 		"postinstall": "svelte-kit sync && sh ./apollo-client-patch.sh",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -13,6 +14,8 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@graphql-codegen/cli": "^3.2.2",
+		"@graphql-codegen/typescript-operations": "^3.0.2",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
@@ -38,7 +41,9 @@
 	"type": "module",
 	"dependencies": {
 		"@apollo/client": "^3.7.10",
+		"@editorjs/editorjs": "^2.26.5",
 		"dotenv": "^16.0.3",
+		"editorjs-html": "^3.4.2",
 		"graphql": "^16.6.0"
 	}
 }

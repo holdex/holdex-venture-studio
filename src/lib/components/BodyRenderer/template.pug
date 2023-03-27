@@ -1,0 +1,13 @@
++each('blocks as item, index')
+    +if("typeof item === 'object'")
+        Switch(condition="{item.type}")
+            Case(value="heading")
+                +if("item.level === 'h1'")
+                    svelte:element(this="p" class="text-title-l") {item.items}
+                    +else()
+                        svelte:element(this="{item.level}" id="{item.id}") {item.items}
+            Case(value="paragraph")
+                svelte:element(this="p") {item.items}
+
+        +else()
+            | { @html item}

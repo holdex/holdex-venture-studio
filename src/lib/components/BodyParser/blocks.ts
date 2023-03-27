@@ -1,0 +1,378 @@
+// @ts-ignore
+import HTMLParser from 'editorjs-html';
+import { bindTokens } from './tokens';
+import { escape, unescape } from './escaper';
+import { getEmbedUrl, getEmbedSource, regExp, getOptimizedUrl, uuidv4 } from './utils';
+
+type HeadingBlock = {
+    type: string,
+    id: string,
+    data: {
+        text: string,
+        level: number
+    }
+}
+
+type BlockquoteBlock = {
+    type: string,
+    data: {
+        text: string,
+        caption?: string,
+        alignment: "left" | "right"
+    }
+}
+
+type ImageBlock = {
+    type: string,
+    data: {
+        file: {
+            url: string
+        },
+        caption?: string,
+        withBorder: boolean,
+        withBackground: boolean,
+        stretched: boolean
+    }
+}
+
+type ListBlock = {
+    type: "list",
+    data: {
+        style: string,
+        items: string[]
+    }
+}
+
+type NestedListBlock = {
+    type: "nestedList",
+    data: {
+        style: string,
+        items: ListItem[]
+    }
+}
+
+type ListItem = {
+    content: string,
+    items: ListItem[]
+}
+
+type ParagraphBlock = {
+    type: string,
+    data: {
+        text: string
+    }
+}
+
+type TableBlock = {
+    type: string,
+    data: {
+        content: Array<Array<string>>
+    }
+}
+
+type EmbedBlock = {
+    type: string,
+    data: {
+        service: string,
+        source: string,
+        embed: string,
+        width: number,
+        height: number,
+        caption: string
+    }
+}
+
+type CodeBlock = {
+    type: string,
+    data: {
+        code: string
+    }
+}
+
+type LinkToolBlock = {
+    type: string,
+    data: {
+        url: string,
+        embed: string
+    }
+}
+
+let videoRegExp = new RegExp(regExp.video, "gmi");
+export let linkExp = new RegExp(/^<a\s+(?:[^>]*?\s+)?href=(["'\\])(.*?)\1[^>]*>(.*?)<\/a>$/, "ui");
+let inlineLinkExp = new RegExp(regExp.link, "ui");
+let inlineCodeExp = new RegExp(/^<(?:code|span) class=[\\]?"inline-code[\\]?"[^>]*>(.*)<\/(?:code|span)>$/, "ui");
+let hashtagExp = new RegExp(/^<span class=[\\]?"cdx-hashtag[\\]?"[^>]*>(.*?)<\/span>$/, "ui");
+let tickerExp = new RegExp(/^<span class=[\\]?"cdx-price-ticker[\\]?"[^>]*>\$(.*?)<\/span>$/, "ui");
+let mentionExp = new RegExp(/^<span class=[\\]?"cdx-mention[\\]?"[^>]*>(.*?)<\/span>$/, "ui");
+let boldExp = new RegExp(/^<b[^>]*>(.*?)<\/b>$/, "ui");
+let strongExp = new RegExp(/^<strong[^>]*>(.*?)<\/strong>$/, "ui");
+let italicExp = new RegExp(/^<i[^>]*>(.*?)<\/i>$/, "ui");
+let emExp = new RegExp(/^<em[^>]*>(.*?)<\/em>$/, "ui");
+let underlineExp = new RegExp(/^<u[^>]*>(.*?)<\/u>$/, "ui");
+
+let tokeniseInlineEls = (inlineBlocks: string[]) => {
+    let tokens = [];
+
+    inlineBlocks.forEach(b => {
+        if (linkExp.test(b)) {
+            let match = b.match(linkExp);
+            tokens.push({
+                type: "link",
+                text: match[3],
+                href: match[2]
+            });
+        } else if (inlineLinkExp.test(b)) {
+            if (videoRegExp.test(b)) {
+                let match = b.match(videoRegExp);
+                tokens.push({
+                    type: "video",
+                    url: getEmbedUrl(match[0]),
+                    source: getEmbedSource(match[0]),
+                })
+            } else {
+                let match = b.match(inlineLinkExp);
+                tokens.push({
+                    type: "link",
+                    text: "",
+                    href: match[0]
+                });
+            }
+        } else if (inlineCodeExp.test(b)) {
+            let match = b.match(inlineCodeExp);
+            tokens.push({
+                type: "code",
+                text: match[1].replace(/ <br>/g, ''),
+            });
+        } else if (hashtagExp.test(b)) {
+            let match = b.match(hashtagExp);
+            tokens.push({
+                type: "hashtag",
+                text: match[1],
+            });
+        } else if (tickerExp.test(b)) {
+            let match = b.match(tickerExp);
+            tokens.push({
+                type: "price-ticker",
+                text: match[1],
+            });
+        } else if (mentionExp.test(b)) {
+            let match = b.match(mentionExp);
+            tokens.push({
+                type: "mention",
+                text: match[1],
+            });
+        } else if (boldExp.test(b)) {
+            let match = b.match(boldExp);
+            tokens.push({
+                type: "inline",
+                text: `<b>${match[1]}</b>`
+            })
+        } else if (strongExp.test(b)) {
+            let match = b.match(strongExp);
+            tokens.push({
+                type: "inline",
+                text: `<strong>${match[1]}</strong>`
+            })
+        } else if (italicExp.test(b)) {
+            let match = b.match(italicExp);
+            tokens.push({
+                type: "inline",
+                text: `<i>${match[1]}</i>`
+            })
+        } else if (emExp.test(b)) {
+            let match = b.match(emExp);
+            tokens.push({
+                type: "inline",
+                text: `<em>${match[1]}</em>`
+            })
+        } else if (underlineExp.test(b)) {
+            let match = b.match(underlineExp);
+            tokens.push({
+                type: "inline",
+                text: `<b>${match[1]}</b>`
+            })
+        } else if (b !== undefined) {
+            let textTokens = bindTokens(unescape(replaceSymbols(b)), false, true);
+            if (textTokens) {
+                tokens.push(...textTokens);
+            } else {
+                tokens.push({ type: "text", text: replaceSymbols(b) })
+            }
+        }
+    });
+    return tokens;
+}
+
+let replaceSymbols = (text: string) => {
+    return text
+        .replace(/<br>/g, '')
+        .replace(/&nbsp;/g, ' ');
+}
+
+export let parseInlineEls = (text: string) => {
+    let exp = new RegExp(/(?:(<(?:code|span) class="inline-code"[^>]*>.*?<\/(?:code|span)>)|(?:(<b[^>]*>.*?<\/b>))|(?:(<u[^>]*>.*?<\/u>))|(?:(<i[^>]*>.*?<\/i>))|(?:(<strong[^>]*>.*?<\/strong>))|(?:(<em[^>]*>.*?<\/em>))|(?:(<span class="cdx-hashtag"[^>]*>.*?<\/span>))|(?:(<span class="cdx-price-ticker"[^>]*>.*?<\/span>))|(?:(<span class="cdx-mention"[^>]*>.*?<\/span>))|(?:(<a[^>]*>.*?<\/a>)))/, "gmiu");
+    return text.split(exp);
+}
+
+let parseParagraph = (block: ParagraphBlock) => {
+    let inlineBlocks = parseInlineEls(block.data.text);
+    let tokens = tokeniseInlineEls(inlineBlocks);
+
+    return {
+        type: "paragraph",
+        items: tokens
+    };
+}
+
+let parseHeading = (block: HeadingBlock) => {
+    let inlineBlocks = parseInlineEls(block.data.text);
+    let tokens = tokeniseInlineEls(inlineBlocks);
+
+    let cleanRef: string;
+    if (linkExp.test(block.data.text)) {
+        cleanRef = block.data.text.match(linkExp)[3];
+    } else {
+        cleanRef = block.data.text;
+    }
+
+    return {
+        type: "heading",
+        level: `h${block.data.level}`,
+        id: block?.id || uuidv4(),
+        raw: block.data.text,
+        cleanRef,
+        items: tokens
+    };
+}
+
+let parseList = (block: ListBlock) => {
+    let tokens: any[] = [];
+    block.data.items.forEach(item => {
+        let inlineBlocks = parseInlineEls(item);
+        let inlineTokens = tokeniseInlineEls(inlineBlocks);
+        return tokens.push(inlineTokens);
+    });
+    return {
+        type: "list",
+        style: block.data.style,
+        items: tokens
+    };
+}
+
+let parseNestedList = (block: NestedListBlock) => {
+    let items = parseNestedListItem(block.data.items);
+
+    return {
+        type: "nestedList",
+        style: block.data.style,
+        items
+    };
+}
+
+function parseNestedListItem(items: ListItem[]) {
+    let list: any[] = [];
+    for (const item of items) {
+        if (item.items.length > 0) {
+            let children = parseNestedListItem(item.items);
+            list.push({
+                content: parseListItem(item.content),
+                items: children
+            })
+        } else {
+            list.push({
+                content: parseListItem(item.content),
+                items: []
+            });
+        }
+    }
+    return list;
+}
+
+let parseListItem = (item: string) => {
+    let inlineBlocks = parseInlineEls(item);
+    let inlineTokens = tokeniseInlineEls(inlineBlocks);
+    return inlineTokens;
+}
+
+let parseQuote = (block: BlockquoteBlock) => {
+    let inlineBlocks = parseInlineEls(block.data.text);
+    let tokens = tokeniseInlineEls(inlineBlocks);
+
+    return {
+        type: "quote",
+        text: block.data?.caption,
+        items: tokens
+    };
+}
+
+let parseImage = (block: ImageBlock) => {
+    return {
+        type: "image",
+        src: getOptimizedUrl(block.data.file.url, '_750x750'),
+        title: block.data?.caption,
+        alt: block.data?.caption,
+        loading: "lazy"
+    }
+}
+
+let parseTable = (block: TableBlock) => {
+    return {
+        type: "table",
+        cells: block.data.content
+    }
+}
+
+export let parseTableCell = (cell: string) => {
+    let inlineBlocks = parseInlineEls(cell);
+    let tokens = tokeniseInlineEls(inlineBlocks);
+
+    return tokens;
+}
+
+let parseEmbed = (block: EmbedBlock) => {
+    return {
+        type: "embed",
+        service: block.data.service,
+        source: block.data?.source,
+        embed: block.data?.embed,
+        caption: block.data?.caption,
+    }
+}
+
+let parseCode = (block: CodeBlock) => {
+    return {
+        type: "code",
+        data: {
+            code: escape(block.data.code)
+        }
+    }
+}
+
+let parseLinkTool = (block: LinkToolBlock) => {
+    return {
+        type: "linkTool",
+        data: block.data
+    }
+}
+
+let htmlParser = HTMLParser({
+    header: parseHeading,
+    quote: parseQuote,
+    image: parseImage,
+    list: parseList,
+    nestedList: parseNestedList,
+    paragraph: parseParagraph,
+    table: parseTable,
+    embed: parseEmbed,
+    twitter: parseEmbed,
+    code: parseCode,
+    linkTool: parseLinkTool,
+    subtitle: b => b,
+    source: b => b
+});
+
+function parseBlocks(blocks: any[]) {
+    return htmlParser.parse({ blocks });
+}
+
+export default parseBlocks;

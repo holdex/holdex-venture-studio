@@ -1,1 +1,0 @@
-import { query, readQuery } from '$components/ApolloClient';
