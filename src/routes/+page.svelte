@@ -1,5 +1,6 @@
 <svelte:head>
 	<title>Home</title>
+	<!-- /TODO: add home page UI -->
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
