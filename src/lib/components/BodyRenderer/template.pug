@@ -25,7 +25,7 @@
                     TextWrapper(text="{item.data.text}")
             Case(value="list")
                 svelte:element(
-                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-5"
+                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
                    +each("item.items as liItem")
                         li(class="text-paragraph-l")
@@ -33,7 +33,7 @@
                                 InlineBlock(item="{lItem}") 
             Case(value="nestedList")
                 svelte:element(
-                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-5"
+                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
                    +each("item.items as liItem")
                         NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
