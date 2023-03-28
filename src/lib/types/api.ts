@@ -631,7 +631,7 @@ export type Message = Node & Votable & Watchable & {
 
 
 export type MessageRepliesArgs = {
-  input: MessageRepliesConnectionInput;
+  input?: InputMaybe<MessageRepliesConnectionInput>;
 };
 
 
@@ -1311,7 +1311,7 @@ export type UserActivityArgs = {
 
 
 export type UserPostedMessagesArgs = {
-  input: UserPostedMessagesConnectionInput;
+  input?: InputMaybe<UserPostedMessagesConnectionInput>;
 };
 
 

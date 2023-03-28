@@ -3,11 +3,41 @@
         Switch(condition="{item.type}")
             Case(value="heading")
                 +if("item.level === 'h1'")
-                    svelte:element(this="p" class="text-title-l") {item.items}
+                    svelte:element(
+                        this="p" 
+                        class="text-h1-l font-satoshi" 
+                        id="{item.id}")
+                        +each("item.items as hItem")
+                            InlineBlock(item="{hItem}")
                     +else()
-                        svelte:element(this="{item.level}" id="{item.id}") {item.items}
+                        svelte:element(
+                            this="{item.level}" 
+                            class="{bindHeading(item.level)} py-4" 
+                            id="{item.id}")
+                            +each("item.items as hItem")
+                                InlineBlock(item="{hItem}")
             Case(value="paragraph")
-                svelte:element(this="p") {item.items}
+                svelte:element(this="p" class="text-paragraph-l")
+                    +each("item.items as pItem")
+                        InlineBlock(item="{pItem}")
+            Case(value="subtitle")
+                svelte:element(this="p" class="text-subtitle-l")
+                    TextWrapper(text="{item.data.text}")
+            Case(value="list")
+                svelte:element(
+                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-5"
+                    this="{item.style === 'unordered' ? 'ul' : 'ol'}")
+                   +each("item.items as liItem")
+                        li(class="text-paragraph-l")
+                            +each("liItem as lItem")
+                                InlineBlock(item="{lItem}") 
+            Case(value="nestedList")
+                svelte:element(
+                    class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-5"
+                    this="{item.style === 'unordered' ? 'ul' : 'ol'}")
+                   +each("item.items as liItem")
+                        NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
+                            InlineBlock(item="{lItem}") 
 
         +else()
-            | { @html item}
+            TextWrapper(text="{item}")

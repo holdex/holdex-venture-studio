@@ -1,6 +1,8 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{html,js,svelte,ts}'],
+  content: ['./src/**/*.{html,svelte,ts,sass,scss,pug}'],
   theme: {
     borderRadius: {
       'base-radius': '20px'
@@ -79,7 +81,7 @@ module.exports = {
       "title-s": [
         '48px',
         {
-          lineHeight: '38px',
+          lineHeight: '48px',
           fontWeight: '900'
         }
       ],
@@ -93,29 +95,144 @@ module.exports = {
       "subtitle-s": [
         '18px',
         {
-          lineHeight: '18px',
+          lineHeight: '32px',
           fontWeight: '500'
         }
       ],
-      cta: [
+      "h1-l": [
+        '48px',
+        {
+          lineHeight: '64px',
+          fontWeight: '900'
+        }
+      ],
+      "h1-s": [
+        '42px',
+        {
+          lineHeight: '48px',
+          fontWeight: '900'
+        }
+      ],
+      "h2-l": [
+        '32px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h2-s": [
+        '28px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h3-l": [
+        '28px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h3-s": [
+        '24px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h4-l": [
+        '24px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h4-s": [
+        '20px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h5-l": [
+        '20px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h5-s": [
+        '18px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h6-l": [
+        '18px',
+        {
+          lineHeight: '32px',
+          fontWeight: '900'
+        }
+      ],
+      "h6-s": [
+        '16px',
+        {
+          lineHeight: '16px',
+          fontWeight: '900'
+        }
+      ],
+      "paragraph-l": [
+        '18px',
+        {
+          lineHeight: '32px',
+          fontWeight: '500'
+        }
+      ],
+      "paragraph-s": [
+        '16px',
+        {
+          lineHeight: '32px',
+          fontWeight: '500'
+        }
+      ],
+      "cta": [
         '14px',
         {
           lineHeight: '32px',
           fontWeight: '700'
         }
       ],
-      footnote: [
+      "footnote": [
         '14px',
         {
           lineHeight: '20px',
           fontWeight: '500'
         }
-      ]
+      ],
+      "caption": [
+        '12px',
+        {
+          lineHeight: '16px',
+          fontWeight: '500'
+        }
+      ],
+      "code": [
+        '14px',
+        {
+          lineHeight: '32px',
+          fontWeight: '600'
+        }
+      ],
+    },
+    fontFamily: {
+      'inter': ['"Inter"'],
+      'satoshi': ['"Satoshi"']
     },
     extend: {
-      spacing: {
-        '1/12': `${(1 / 12) * 100}%`,
-        '2/12': `${(2 / 12) * 100}%`
+      fontFamily: {
+        'sans': ['Inter', ...defaultTheme.fontFamily.sans]
       },
       zIndex: {
         1: '1'

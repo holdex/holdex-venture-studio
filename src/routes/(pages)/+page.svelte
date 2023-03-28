@@ -8,7 +8,6 @@
 
 	$: ({ store } = data);
 	$: ({ data: storeData } = $store);
-
 	$: message = Parser.parse(storeData?.message as Message);
 </script>
 
