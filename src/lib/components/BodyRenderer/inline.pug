@@ -16,13 +16,14 @@ Switch(condition="{item.type}")
         )
             TextWrapper(text="{item.text}")
     Case(value="code")
-        s handle code 
+        code(class="rounded-lg bg-l2 py-0 px-2 text-code font-mono")
+            TextWrapper(text="{item.text}") 
     Case(value="price-ticker")
         s handle price ticker
     Case(value="mention")
         s handle mention
     Case(value="image")
-        s handle image
+        Image(item="{item}")
     Case(value="text")
         TextWrapper(text!="{escape(item.text)}")
     Case(value="inline")

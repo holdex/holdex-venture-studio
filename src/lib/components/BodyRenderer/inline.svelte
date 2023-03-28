@@ -2,6 +2,7 @@
 	import { escape } from '$components/BodyParser/escaper';
 	import { Switch, Case } from '$components/Switch';
 	import TextWrapper from './Blocks/textWrapper.svelte';
+	import Image from './Blocks/image.svelte';
 
 	type Item = {
 		type: string;

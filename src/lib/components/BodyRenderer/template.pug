@@ -20,9 +20,6 @@
                 svelte:element(this="p" class="text-paragraph-l")
                     +each("item.items as pItem")
                         InlineBlock(item="{pItem}")
-            Case(value="subtitle")
-                svelte:element(this="p" class="text-subtitle-l")
-                    TextWrapper(text="{item.data.text}")
             Case(value="list")
                 svelte:element(
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
@@ -38,6 +35,22 @@
                    +each("item.items as liItem")
                         NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
                             InlineBlock(item="{lItem}") 
-
+            //- Case(value="linkTool")
+            Case(value="quote")
+                .blockquote(
+                    title="{item.text}" 
+                    class="bg-l2 overflow-clip rounded-xl border border-solid border-l4 p-4 pl-5.5 text-paragraph-l italic before:content-none before:w-1.5 before:h-full before:bg-accent1-default")
+                    +each("item.items as QItem")
+                        InlineBlock(item="{QItem}") 
+            Case(value="embed")
+                s handle embed
+            Case(value="code")
+                pre(class="bg-l2 border border-solid border-l4 rounded-xl py-4 px-6")
+                    code(class="text-code")
+                        TextWrapper(text="{item.data.code}")
+            Case(value="table")
+                s handle table
+            Case(value="image")
+                Image(item="{item}" index="{index}")
         +else()
             TextWrapper(text="{item}")

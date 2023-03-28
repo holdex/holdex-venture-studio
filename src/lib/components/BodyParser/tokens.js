@@ -1,3 +1,5 @@
+import { regExp } from './utils'
+
 export let rules = {
     code: /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/,
     text: /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*]|\b_|$)|[^ ](?= {2,}\n)))/,
@@ -5,6 +7,9 @@ export let rules = {
     mention: /\B([@][\w]+)/,
     link: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/,
     hashtag: /\B([#][\p{L}0-9]+)/,
+    image: /.*\.(gif|jpe?g|bmp|png)$/,
+    holdexLink: /^(http:\/\/|https:\/\/)(holdex\.io)/,
+    video: regExp.video
 }
 
 const unescapeTest = /&(#(?:\d+)|(?:#x[0-9A-Fa-f]+)|(?:\w+));?/ig;
@@ -98,8 +103,8 @@ export let bindTokens = (text, isRootText, useLinkMatch) => {
             break;
         }
         case textLink(text).match !== null && useLinkMatch: {
-            let { match, exp } = textLink(text);
-            tokens = linkMatching(text.split(exp), match);
+            let { match, exp, videoExp, imageExp } = textLink(text);
+            tokens = linkMatching(text.split(exp), videoExp, imageExp, match);
             break;
         }
         default:
@@ -135,18 +140,30 @@ let tickersMatching = (stringArray, matches) => {
 
 export let textLink = (text) => {
     let exp = new RegExp(rules.link, "gmi");
+    let imageExp = new RegExp(rules.image, "gmi");
+    let videoExp = new RegExp(rules.video, "gmi");
     let match = text.match(exp);
     let test = exp.test(text);
 
-    return { match, exp, test };
+    return { match, exp, test, imageExp, videoExp };
 }
 
-let linkMatching = (stringArray, matches) => {
+let linkMatching = (stringArray, videoExp, imageExp, matches) => {
     let list = [];
     stringArray.forEach(function (token) {
         if (token !== undefined && token.length) {
             if (matches.includes(token)) {
-                list.push({ type: 'link', href: token });
+                switch (true) {
+                    case imageExp.test(token):
+                        list.push({ type: 'image', src: token })
+                        break;
+                    case videoExp.test(token):
+                        list.push({ type: 'video', url: getEmbedUrl(href) })
+                        break;
+                    default:
+                        list.push({ type: 'link', href: token });
+                        break;
+                }
             } else {
                 list.push(...bindTokens(token));
             }

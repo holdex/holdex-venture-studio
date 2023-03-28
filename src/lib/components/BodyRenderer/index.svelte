@@ -3,6 +3,7 @@
 	import InlineBlock from './inline.svelte';
 	import TextWrapper from './Blocks/textWrapper.svelte';
 	import NestedList from './Blocks/nestedList.svelte';
+	import Image from './Blocks/image.svelte';
 
 	export let blocks: any[];
 

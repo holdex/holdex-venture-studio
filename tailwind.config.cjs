@@ -5,6 +5,7 @@ module.exports = {
   content: ['./src/**/*.{html,svelte,ts,sass,scss,pug}'],
   theme: {
     borderRadius: {
+      ...defaultTheme.borderRadius,
       'base-radius': '20px'
     },
     screens: {
@@ -228,9 +229,13 @@ module.exports = {
     },
     fontFamily: {
       'inter': ['"Inter"'],
-      'satoshi': ['"Satoshi"']
+      'satoshi': ['"Satoshi"'],
+      'mono': ['"JetBrains Mono"']
     },
     extend: {
+      spacing: {
+        '5.5': '1.375rem'
+      },
       fontFamily: {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans]
       },
