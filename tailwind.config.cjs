@@ -50,6 +50,9 @@ module.exports = {
       }
     },
     colors: {
+      inherit: "inherit",
+      current: "currentColor",
+      transparent: "transparent",
       l1: 'rgb(var(--l1) / <alpha-value>)',
       l2: 'rgb(var(--l2) / <alpha-value>)',
       l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -235,6 +238,7 @@ module.exports = {
     },
     extend: {
       spacing: {
+        '2.25': '0.5625rem',
         '5.5': '1.375rem'
       },
       fontFamily: {
@@ -242,6 +246,12 @@ module.exports = {
       },
       zIndex: {
         1: '1'
+      },
+      boxShadow: {
+        ...defaultTheme.boxShadow,
+        'input': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
+        'button': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+        'button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)'
       }
     }
   },

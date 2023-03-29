@@ -145,8 +145,6 @@ export let textLink = (text) => {
     let match = text.match(exp);
     let test = exp.test(text);
 
-    console.log('text link', text);
-
     return { match, exp, test, imageExp, videoExp };
 }
 
