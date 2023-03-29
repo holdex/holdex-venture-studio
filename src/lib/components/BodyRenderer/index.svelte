@@ -1,9 +1,12 @@
 <script lang="ts">
 	import { Switch, Case } from '$components/Switch';
+	import { parseTableCell } from '$components/BodyParser/blocks';
+
 	import InlineBlock from './inline.svelte';
 	import TextWrapper from './Blocks/textWrapper.svelte';
 	import NestedList from './Blocks/nestedList.svelte';
 	import Image from './Blocks/image.svelte';
+	import Embed from './Blocks/embed.svelte';
 
 	export let blocks: any[];
 
@@ -28,3 +31,13 @@
 <template lang="pug" src="./template.pug">
 
 </template>
+
+<style lang="sass">
+	:global(p + ol), 
+	:global(p + ul), 
+	:global(.heading + ol), 
+	:global(.heading + ul),
+	:global(.heading + .video-player),
+	:global(.heading + p)
+		@apply -mt-8
+</style>

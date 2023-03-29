@@ -98,6 +98,7 @@ type LinkToolBlock = {
 }
 
 let videoRegExp = new RegExp(regExp.video, "gmi");
+let imageRegExp = new RegExp(regExp.image, "gmi");
 export let linkExp = new RegExp(/^<a\s+(?:[^>]*?\s+)?href=(["'\\])(.*?)\1[^>]*>(.*?)<\/a>$/, "ui");
 let inlineLinkExp = new RegExp(regExp.link, "ui");
 let inlineCodeExp = new RegExp(/^<(?:code|span) class=[\\]?"inline-code[\\]?"[^>]*>(.*)<\/(?:code|span)>$/, "ui");
@@ -111,82 +112,117 @@ let emExp = new RegExp(/^<em[^>]*>(.*?)<\/em>$/, "ui");
 let underlineExp = new RegExp(/^<u[^>]*>(.*?)<\/u>$/, "ui");
 
 let tokeniseInlineEls = (inlineBlocks: string[]) => {
-    let tokens = [];
+    let tokens: any[] = [];
 
     inlineBlocks.forEach(b => {
         if (linkExp.test(b)) {
-            let match = b.match(linkExp);
-            tokens.push({
-                type: "link",
-                text: match[3],
-                href: match[2]
-            });
+            switch (true) {
+                case videoRegExp.test(b): {
+                    let match = (b.match(videoRegExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "video",
+                        url: getEmbedUrl(match[0]),
+                        source: getEmbedSource(match[0]),
+                    })
+                    break;
+                }
+                case imageRegExp.test(b): {
+                    let match = (b.match(imageRegExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "image",
+                        src: match[0],
+                    })
+                    break;
+                }
+                default: {
+                    let match = (b.match(linkExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "link",
+                        text: match[3],
+                        href: match[2]
+                    });
+                    break;
+                }
+            }
         } else if (inlineLinkExp.test(b)) {
-            if (videoRegExp.test(b)) {
-                let match = b.match(videoRegExp);
-                tokens.push({
-                    type: "video",
-                    url: getEmbedUrl(match[0]),
-                    source: getEmbedSource(match[0]),
-                })
-            } else {
-                let match = b.match(inlineLinkExp);
-                tokens.push({
-                    type: "link",
-                    text: "",
-                    href: match[0]
-                });
+            switch (true) {
+                case videoRegExp.test(b): {
+                    let match = (b.match(videoRegExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "video",
+                        url: getEmbedUrl(match[0]),
+                        source: getEmbedSource(match[0]),
+                    })
+                    break;
+                }
+                case imageRegExp.test(b): {
+                    let match = (b.match(imageRegExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "image",
+                        src: match[0],
+                    })
+                    break;
+                }
+                default: {
+                    let match = (b.match(inlineLinkExp) as RegExpExecArray);
+                    tokens.push({
+                        type: "link",
+                        text: "",
+                        href: match[0]
+                    });
+                    break;
+                }
             }
         } else if (inlineCodeExp.test(b)) {
-            let match = b.match(inlineCodeExp);
+            let match = (b.match(inlineCodeExp) as RegExpExecArray);
             tokens.push({
                 type: "code",
                 text: match[1].replace(/ <br>/g, ''),
             });
         } else if (hashtagExp.test(b)) {
-            let match = b.match(hashtagExp);
+            let match = (b.match(hashtagExp) as RegExpExecArray);
             tokens.push({
                 type: "hashtag",
                 text: match[1],
             });
         } else if (tickerExp.test(b)) {
-            let match = b.match(tickerExp);
+            let match = (b.match(tickerExp) as RegExpExecArray);
             tokens.push({
                 type: "price-ticker",
                 text: match[1],
             });
         } else if (mentionExp.test(b)) {
-            let match = b.match(mentionExp);
+            let match = (b.match(mentionExp) as RegExpExecArray);
             tokens.push({
                 type: "mention",
                 text: match[1],
             });
         } else if (boldExp.test(b)) {
-            let match = b.match(boldExp);
+            let match = (b.match(boldExp) as RegExpExecArray);
             tokens.push({
                 type: "inline",
                 text: `<b>${match[1]}</b>`
             })
         } else if (strongExp.test(b)) {
-            let match = b.match(strongExp);
+            let match = (b.match(strongExp) as RegExpExecArray);
             tokens.push({
                 type: "inline",
                 text: `<strong>${match[1]}</strong>`
             })
         } else if (italicExp.test(b)) {
-            let match = b.match(italicExp);
+            let match = (b.match(italicExp) as RegExpExecArray);
             tokens.push({
                 type: "inline",
                 text: `<i>${match[1]}</i>`
             })
         } else if (emExp.test(b)) {
-            let match = b.match(emExp);
+            let match = (b.match(emExp) as RegExpExecArray);
             tokens.push({
                 type: "inline",
                 text: `<em>${match[1]}</em>`
             })
         } else if (underlineExp.test(b)) {
-            let match = b.match(underlineExp);
+            let match = (b.match(underlineExp) as RegExpExecArray);
             tokens.push({
                 type: "inline",
                 text: `<b>${match[1]}</b>`
@@ -215,12 +251,17 @@ export let parseInlineEls = (text: string) => {
 }
 
 let parseParagraph = (block: ParagraphBlock) => {
-    let inlineBlocks = parseInlineEls(block.data.text);
-    let tokens = tokeniseInlineEls(inlineBlocks);
+    if (block.data.text.length > 0) {
+        let inlineBlocks = parseInlineEls(block.data.text);
+        let tokens = tokeniseInlineEls(inlineBlocks);
 
+        return {
+            type: "paragraph",
+            items: tokens
+        };
+    }
     return {
-        type: "paragraph",
-        items: tokens
+        type: 'space'
     };
 }
 
@@ -230,7 +271,7 @@ let parseHeading = (block: HeadingBlock) => {
 
     let cleanRef: string;
     if (linkExp.test(block.data.text)) {
-        cleanRef = block.data.text.match(linkExp)[3];
+        cleanRef = (block.data.text.match(linkExp) as RegExpExecArray)[3];
     } else {
         cleanRef = block.data.text;
     }
@@ -323,7 +364,8 @@ let parseTable = (block: TableBlock) => {
 }
 
 export let parseTableCell = (cell: string) => {
-    let inlineBlocks = parseInlineEls(cell);
+    const strippedCell = unescape(cell);
+    let inlineBlocks = parseInlineEls(strippedCell);
     let tokens = tokeniseInlineEls(inlineBlocks);
 
     return tokens;

@@ -7,8 +7,8 @@ export let rules = {
     mention: /\B([@][\w]+)/,
     link: /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/,
     hashtag: /\B([#][\p{L}0-9]+)/,
-    image: /.*\.(gif|jpe?g|bmp|png)$/,
-    holdexLink: /^(http:\/\/|https:\/\/)(holdex\.io)/,
+    image: regExp.image,
+    holdexLink: regExp.holdexLink,
     video: regExp.video
 }
 
@@ -144,6 +144,8 @@ export let textLink = (text) => {
     let videoExp = new RegExp(rules.video, "gmi");
     let match = text.match(exp);
     let test = exp.test(text);
+
+    console.log('text link', text);
 
     return { match, exp, test, imageExp, videoExp };
 }

@@ -2,8 +2,8 @@ import { error } from '@sveltejs/kit';
 import { hydrateApolloClient, query, readQuery } from '$components/ApolloClient';
 import type { ApolloClient } from '@apollo/client/core';
 
-import { getMessageById } from './query';
-import type { Message } from '$lib/types/api';
+import { getMessageById, getMessageByCategorySlug } from './query';
+import type { Community, Message } from '$lib/types/api';
 
 
 const loadMessage = async (client: ApolloClient<any>, id: string) => {
@@ -13,17 +13,34 @@ const loadMessage = async (client: ApolloClient<any>, id: string) => {
             id
         }
     }
-    let result = await query<{ message: Message }>(client, options);
-
+    const result = await query<Message>(client, options, true);
     if (result.error || (result && result.data === null)) {
         throw error(404, "not_found");
     }
     return options;
 }
 
-const getMessage = async (apollo: any, options: any) => {
-    const client = hydrateApolloClient(apollo);
-    return readQuery<{ message: Message }>(client, options, { message: {} as Message });
+const loadMessageFromCategory = async (client: ApolloClient<any>, category: string, messageSlug: string) => {
+    const options = {
+        query: getMessageByCategorySlug,
+        variables: {
+            category,
+            messageSlug
+        },
+        context: {
+            uri: "https://api.holdex.io/graphql"
+        }
+    }
+    const result = await query<Community>(client, options, true);
+    if (result.error || (result && (!result.data || result.data.postedThread === null || !result.data.published))) {
+        throw error(404, "not_found");
+    }
+    return options;
 }
 
-export { loadMessage, getMessage }
+const getMessage = async <T>(apollo: any, options: any, fallback?: T) => {
+    const client = hydrateApolloClient(apollo, options.context);
+    return readQuery<T>(client, options, fallback);
+}
+
+export { loadMessage, getMessage, loadMessageFromCategory }

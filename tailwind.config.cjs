@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     borderRadius: {
       ...defaultTheme.borderRadius,
-      'base-radius': '20px'
+      'base-radius': '20px',
+      'table-cell': '11px'
     },
     screens: {
       xl: {

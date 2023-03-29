@@ -11,8 +11,24 @@ const messageFragment = gql`
         title
         body
         hashtags
+        votesCount {
+            up
+            down
+        }
     }
 `;
+
+const messageViewerFragment = gql`
+    fragment MessageViewerFragment on Message {
+        viewerVote {
+            voteType
+        }
+        viewerWatches {
+            watchOption
+            watchesSince
+        }
+    }
+`
 
 export const getMessageById = gql`
     query getMessageById($id: ID!) {
@@ -21,5 +37,33 @@ export const getMessageById = gql`
         }
     },
     ${messageFragment}
+`;
+
+export const getMessageByCategorySlug = gql`
+    query getMessageByCategorySlug($category: String!, $messageSlug: String!) {
+        community(slug: $category) {
+            id
+            slug
+            name
+            published
+            postedThread(slug: $messageSlug) {
+                node {
+                    ...MessageFragment
+                    ...MessageViewerFragment
+                }
+                messageSlug
+                viewsCount
+                allReplies(input: {
+                    pageInfo: {first: 1}
+                    sortBy: CREATED_AT
+                    sortDesc: true
+                }) {
+                    totalCount 
+                }
+            }
+        }
+    },
+    ${messageFragment},
+    ${messageViewerFragment}
 `;
 

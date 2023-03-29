@@ -1,20 +1,25 @@
 import parseBlocks from "./blocks";
-// import { getVideoCover } from "components/Form/validator";
-import type { Message } from "$lib/types/api";
+import { getVideoCover } from "./utils";
+import type { Community, CommunityPostedThreadConnectionEdge, Message as DefaultMessage, ThreadAllRepliesConnection, Maybe } from "$lib/types/api";
+
+type Message = DefaultMessage & {
+    messageSlug: string,
+    communitySlug: string,
+    viewsCount?: number,
+    allReplies?: Maybe<ThreadAllRepliesConnection>
+}
 
 type ParsedMessage = Partial<Message> & {
     subtitle: string,
     blocks: any[],
     parsedBody: Record<string, any>,
     tocs: any[],
-    cover: string
+    cover?: string
     isGoogleDoc: string
 }
 
 class Parser {
     static parse(message: Message): ParsedMessage {
-
-
         let parsedBody = Parser.parseBody(message);
         let [parsedBlocks, subtitle, isGoogleDoc] = Parser.parseSubtitle(parsedBody?.blocks);
         let blocks = Parser.parseBlocks(parsedBlocks);
@@ -33,8 +38,17 @@ class Parser {
         }
     }
 
-    static parseFromDefaultMessage(message: Message, communitySlug?: string): ParsedMessage {
-        return Parser.parse(message);
+    static parseFromCategory(category: Community, communitySlug?: string): ParsedMessage {
+        let { postedThread, ...rest } = category;
+        let newMessage = {
+            ...(postedThread as CommunityPostedThreadConnectionEdge).node as DefaultMessage,
+            messageSlug: (postedThread as CommunityPostedThreadConnectionEdge).messageSlug,
+            communitySlug: communitySlug || rest.slug,
+            viewsCount: (postedThread as CommunityPostedThreadConnectionEdge).viewsCount || 0,
+            allReplies: (postedThread as CommunityPostedThreadConnectionEdge).allReplies,
+        }
+
+        return Parser.parse(newMessage);
     }
 
     private static parseBody(message: Message): Record<string, any> {
@@ -83,7 +97,7 @@ class Parser {
         return [blocks, "", ""];
     }
 
-    private static parseThreadCover(blocks: any[]): string {
+    private static parseThreadCover(blocks: any[]): string | undefined {
         let block = blocks.find(b => b.type === "image" || b.type === "embed");
         if (block) {
             if (block.type === "image") {
@@ -94,7 +108,7 @@ class Parser {
                 return getVideoCover(block.source);
             }
         }
-        return null;
+        return undefined;
     }
 }
 
