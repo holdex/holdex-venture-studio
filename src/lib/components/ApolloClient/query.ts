@@ -33,8 +33,8 @@ export function readQuery<TData>(
     observable,
     initialValue !== undefined
       ? ({
-          data: initialValue,
-        } as Data<TData>)
+        data: initialValue,
+      } as Data<TData>)
       : undefined,
   )
 

@@ -2,7 +2,6 @@ mixin crumbItemLink(href, name)
     a(class="text-paragraph-l text-t3 transition-colors hover:text-accent1-default" href=href title=name): span= name
 
 
-
 section.main(class="flex flex-col items-center pt-16 xs:pt-8")
     .header-wrapper(
         class="flex items-center flex-col justify-center smDown:items-start gap-8 xs:gap-4 max-w-[1028px] mb-8 tb:max-w-[794px] sm:max-w-[604px] xs:px-4 w-full")
@@ -12,9 +11,8 @@ section.main(class="flex flex-col items-center pt-16 xs:pt-8")
                 li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
                 li: +crumbItemLink("/c", "Accelerator")
                 li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
-                li: +crumbItemLink("/c/{storeData.community.slug}", "{storeData.community.name}")
-        h1(class="text-title-l text-center smDown:text-left xs:text-h1-s" id="{message.id}") {message.title}
-        +if('message.subtitle')
-            p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full") {message.subtitle}
+                li: span(class="text-paragraph-l text-t3") {community.name}
+        h1(class="text-title-l text-center smDown:text-left xs:text-h1-s" id="{community.id}") {community.name}
+        +if('community.tagline')
+            p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full") {community.tagline}
     .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")
-        BodyRenderer(blocks="{message.blocks}")

@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client/core'
 
-const messageFragment = gql`
+export const messageFragment = gql`
     fragment MessageFragment on Message  {
         id
         draft
@@ -18,7 +18,7 @@ const messageFragment = gql`
     }
 `;
 
-const messageViewerFragment = gql`
+export const messageViewerFragment = gql`
     fragment MessageViewerFragment on Message {
         viewerVote {
             voteType

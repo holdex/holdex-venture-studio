@@ -1,4 +1,4 @@
-import { loadMessage } from '$lib/models/thread'
+import { loadMessage } from '$lib/models/message'
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types'
 

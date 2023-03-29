@@ -1,4 +1,4 @@
-import { getMessage } from '$lib/models/thread'
+import { getMessage } from '$lib/models/message'
 import type { Message } from '$lib/types/api';
 import type { PageLoad } from './$types'
 
