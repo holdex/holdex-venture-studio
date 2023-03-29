@@ -9,10 +9,10 @@ mixin link(href, title)
 					a(class="relative flex w-7 h-7" href="/"): img(alt="Home" src="/logo-w-o-text.svg")
 				ul(class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 py-4" role="navigation")
 					+link("/about", "About")(class="{isActive(path,'/about', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-					+link("/portfolio", "Portfolio")(class="{isActive(path,'/portfolio', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-					+link("/c", "For Startups")(class="{isActive(path,'/c', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+					+link("/", "Portfolio")(class="{isActive(path,'/portfolio', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+					+link("/", "For Startups")(class="{isActive(path,'/c', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 					+link("/c/jobs", "Jobs")(class="{isActive(path,'/c/jobs', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-					+link("/c/partners", "Partners")(class="{isActive(path,'/c/partners', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+					+link("/", "Partners")(class="{isActive(path,'/c/partners', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 				button(type="button" on:click="{handleClick}" class="relative z-1 bg-accent1-default text-t4 text-cta shadow-button flex items-center justify-center py-1 px-4 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active hover:shadow-button-hover"): span Partner With Us
 	main: slot
 	footer(class="mt-16 flex flex-col items-center w-full")
