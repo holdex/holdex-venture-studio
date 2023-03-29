@@ -51,6 +51,19 @@ class Parser {
         return Parser.parse(newMessage);
     }
 
+    static parseViaCategory(message: DefaultMessage, communitySlug?: string): ParsedMessage {
+        let { postedIn, ...rest } = message;
+        let newMessage = {
+            ...rest,
+            messageSlug: (postedIn as CommunityPostedThreadConnectionEdge).messageSlug,
+            communitySlug: communitySlug || '',
+            viewsCount: (postedIn as CommunityPostedThreadConnectionEdge).viewsCount || 0,
+            allReplies: (postedIn as CommunityPostedThreadConnectionEdge).allReplies,
+        }
+
+        return Parser.parse(newMessage);
+    }
+
     private static parseBody(message: Message): Record<string, any> {
         let body = {};
         if (message && message.body) {
