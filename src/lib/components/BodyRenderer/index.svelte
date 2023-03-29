@@ -39,5 +39,5 @@
 	:global(.heading + ul),
 	:global(.heading + .video-player),
 	:global(.heading + p)
-		@apply -mt-8
+		@apply -mt-8 xs:-mt-4
 </style>

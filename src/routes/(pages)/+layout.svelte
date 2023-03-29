@@ -20,11 +20,15 @@
 			behavior: 'smooth'
 		});
 	};
+
+	let scrollY: any;
 </script>
 
 <template lang="pug" src="./layout.pug">
 
 </template>
+
+<svelte:window bind:scrollY />
 
 <svelte:head>
 	<style lang="scss" src="./layout.scss"></style>
