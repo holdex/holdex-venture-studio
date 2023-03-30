@@ -19,6 +19,9 @@ body {
     -webkit-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
 
+    font-feature-settings: 'pnum';
+    font-variant-numeric: proportional-nums;
+
     *:focus {
         outline: 0;
     }

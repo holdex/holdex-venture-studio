@@ -17,3 +17,10 @@
 <template lang="pug" src="./inline.pug">
 
 </template>
+
+<style lang="sass">
+	:global(b),
+	:global(em),
+	:global(strong)
+		@apply text-t1
+</style>

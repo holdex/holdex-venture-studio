@@ -12,12 +12,12 @@
                     +else()
                         svelte:element(
                             this="{item.level}" 
-                            class="heading {bindHeading(item.level)} py-4" 
+                            class="heading font-satoshi {bindHeading(item.level)} py-4" 
                             id="{item.id}")
                             +each("item.items as hItem")
                                 InlineBlock(item="{hItem}")
             Case(value="paragraph")
-                svelte:element(this="p" class="text-paragraph-l")
+                svelte:element(this="p" class="text-paragraph-l text-t2")
                     +each("item.items as pItem")
                         InlineBlock(item="{pItem}")
             Case(value="list")
@@ -25,7 +25,7 @@
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
                    +each("item.items as liItem")
-                        li(class="text-paragraph-l")
+                        li(class="text-paragraph-l text-t2")
                             +each("liItem as lItem")
                                 InlineBlock(item="{lItem}") 
             Case(value="nestedList")
