@@ -15,6 +15,11 @@
 		return currentUrl.startsWith(path);
 	};
 
+	let isFilterActive = (currentUrl: URL, path: string, filter: string) => {
+		const f = currentUrl.searchParams.get('filter');
+		return currentUrl.pathname === path && filter === f;
+	};
+
 	let handleClick = () => {
 		return document.querySelector('#contact-form')?.scrollIntoView({
 			behavior: 'smooth'

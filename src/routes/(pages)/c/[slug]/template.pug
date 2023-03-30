@@ -60,7 +60,7 @@ mixin feed
                 li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/c/announcements/why-apply")
                     Icon(icon="{InformationCircle}" width="{20}" height="{20}" colorInherit)
                     span Why Apply
-                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/c/guides")
+                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/c/learn")
                     Icon(icon="{BookOpen}" width="{20}" height="{20}" colorInherit)
                     span Guides
                 li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/about")
@@ -82,10 +82,10 @@ mixin feed
                             class="inline-flex relative justify-center cursor-pointer rounded-xl bg-l2 text-cta text-t3 shadow-tag transition-all px-3 hover:text-t1 hover:bg-l3 before:content-[''] before:absolute before:border before:border-solid before:border-l4 before:w-full before:h-full before:rounded-xl before:left-0 before:top-0 {isHashtagActive(pageFilter, tag.node.id)}") {'#'}{tag.node.id}
             +if('isSearchMode')
                 +if('totalCount > 0')
-                    p(class="text-paragraph-l") #[span(class="text-t3") Showing results for] {pageQ || '#' + pageFilter}
+                    p(class="text-paragraph-l") #[span(class="text-t3 font-bold") Showing results for] {pageQ || '#' + pageFilter}
                     +feed()
                     +else()
-                        p(class="text-paragraph-l text-t3 w-full text-center") No articles found.
+                        p(class="text-paragraph-l text-t3 w-full text-center") #[span(class="text-t3 font-bold") No articles found for] {pageQ || '#' + pageFilter}.
                 +else()
                     +feed()
 
