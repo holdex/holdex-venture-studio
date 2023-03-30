@@ -1,9 +1,9 @@
 import { loadCategory } from '$lib/models/category'
-import type { CommunityPostedMessagesConnectionInput, MessagesSortBy } from '$lib/types/api';
+import type { CommunityPostedMessagesConnectionInput } from '$lib/types/api';
 import type { PageServerLoad } from './$types'
+import { parseQueryFilter } from './util';
 
 export const load: PageServerLoad = async ({ locals, params, url }) => {
-
     const filter = url.searchParams.get('filter');
     const q = url.searchParams.get('q');
 
@@ -25,23 +25,3 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
         apollo: locals.apolloClient.extract()
     }
 }
-
-const parseQueryFilter = (filter: any | MessagesSortBy) => {
-    switch (filter) {
-        case "CREATED_AT":
-        case "NET_UP_VOTES":
-            return {
-                sortBy: filter,
-            };
-        case undefined:
-        case null:
-            return {
-                sortBy: "CREATED_AT" as MessagesSortBy,
-            };
-        default:
-            return {
-                sortBy: "CREATED_AT" as MessagesSortBy,
-                filterByHashtags: [filter],
-            };
-    }
-};

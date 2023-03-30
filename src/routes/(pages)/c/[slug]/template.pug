@@ -4,7 +4,7 @@ mixin crumbItemLink(href, name)
 mixin feed
         +if('totalCount > 0')
             .feed-articles(class="relative block w-full")
-                +each('edges as messageNode, index')
+                +each('edges as messageNode, index (messageNode.node.id)')
                     +const('message = parseMessage(messageNode.node)')
                     a(href="/c/{community.slug}/{message.messageSlug}" class!="transition-colors text-t1 hover:text-accent1-default block {index === 0 ? '' : 'mt-8'}")
                         article(class="flex items-center gap-4")
@@ -57,13 +57,13 @@ mixin feed
             ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
                 li.option-item(
                     on:click!="{() => handleSort($page.url, 'CREATED_AT')}"
-                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 border-r border-solid border-l4 rounded-l-underbase {!pageFilter || pageFilter === 'CREATED_AT' ? '!bg-l3 !text-accent1-default' : ''}") By Time
+                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}") By Time
                 li.option-item(
                     on:click!="{() => handleSort($page.url, 'NET_UP_VOTES')}"
-                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? '!bg-l3 !text-accent-default' : ''}") By Rating
+                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}") By Rating
             +if('community.hashtags && community.hashtags.totalCount > 0')
                 ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
-                    +each('sortHashtags(community.hashtags.edges) as tag')
+                    +each('sortHashtags(community.hashtags.edges) as tag (tag.node.id)')
                         li(
                             on:click!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
                             class="inline-flex relative justify-center cursor-pointer rounded-xl bg-l2 text-cta text-t3 shadow-tag transition-all px-3 hover:text-t1 hover:bg-l3 before:content-[''] before:absolute before:border before:border-solid before:border-l4 before:w-full before:h-full before:rounded-xl before:left-0 before:top-0 {isHashtagActive(pageFilter, tag.node.id)}") {'#'}{tag.node.id}

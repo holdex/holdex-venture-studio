@@ -7,6 +7,7 @@
 
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
 	import { formatNumber } from '$components/NumbersManager';
+	import { parseQueryFilter } from './util';
 
 	import type { Hashtag, HashtagsConnectionEdge, Message } from '$lib/types/api';
 	import type { PageData } from './$types';
@@ -71,7 +72,7 @@
 
 		newUrl.searchParams.delete('q');
 		newUrl.searchParams.set('filter', filter);
-		return goto(newUrl);
+		return goto(newUrl, { invalidateAll: true });
 	};
 
 	let isRefetching: boolean = false;
