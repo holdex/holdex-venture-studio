@@ -6,13 +6,18 @@ import type { ApolloClient } from '@apollo/client/core';
 import type { Community, CommunityPostedMessagesConnectionInput } from '$lib/types/api';
 
 
+export type CommunityQuery = {
+    category: string,
+    feedInput: CommunityPostedMessagesConnectionInput
+}
+
 const loadCategory = async (client: ApolloClient<any>, category: string, feedInput: CommunityPostedMessagesConnectionInput) => {
     const options = {
         query: getCategoryBySlug,
         variables: {
             category,
             feedInput
-        },
+        } as CommunityQuery,
         context: {
             uri: "https://api.holdex.io/graphql"
         }

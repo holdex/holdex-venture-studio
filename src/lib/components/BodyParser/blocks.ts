@@ -120,7 +120,7 @@ let tokeniseInlineEls = (inlineBlocks: string[]) => {
                 case videoRegExp.test(b): {
                     let match = (b.match(videoRegExp) as RegExpExecArray);
                     tokens.push({
-                        type: "video",
+                        type: "embed",
                         url: getEmbedUrl(match[0]),
                         source: getEmbedSource(match[0]),
                     })
@@ -149,7 +149,7 @@ let tokeniseInlineEls = (inlineBlocks: string[]) => {
                 case videoRegExp.test(b): {
                     let match = (b.match(videoRegExp) as RegExpExecArray);
                     tokens.push({
-                        type: "video",
+                        type: "embed",
                         url: getEmbedUrl(match[0]),
                         source: getEmbedSource(match[0]),
                     })
@@ -255,10 +255,14 @@ let parseParagraph = (block: ParagraphBlock) => {
         let inlineBlocks = parseInlineEls(block.data.text);
         let tokens = tokeniseInlineEls(inlineBlocks);
 
-        return {
-            type: "paragraph",
-            items: tokens
-        };
+        if (tokens.length == 1 && ["image", "embed"].includes(tokens[0].type)) {
+            return tokens[0];
+        } else {
+            return {
+                type: "paragraph",
+                items: tokens
+            };
+        }
     }
     return {
         type: 'space'

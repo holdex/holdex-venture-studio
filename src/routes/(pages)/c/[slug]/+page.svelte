@@ -1,20 +1,101 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import Parser from '$components/BodyParser';
-	import type {  Message } from '$lib/types/api';
+	import { feedEmptyIcon, HandThumbUp, ChatBubbleLeftEllipsis } from '$components/Icons';
+	import Icon from '$components/Icons/index.svelte';
+
+	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
+	import { formatNumber } from '$components/NumbersManager';
+
+	import type { Hashtag, HashtagsConnectionEdge, Message } from '$lib/types/api';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
-	$: ({ store } = data);
+	$: ({ store, options: queryOptions } = data);
 	$: ({ data: storeData } = $store);
 	$: community = storeData?.community;
-
+	$: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
+		edges: [],
+		totalCount: 0,
+		pageInfo: null
+	});
+	$: pageFilter = getPageFilter($page.url);
+	$: pageQ = getPageQ($page.url);
+	$: isSearchMode = checkSearchMode($page.url);
 
 	let parseMessage = (message: Message, category: string) => {
-		return Parser.parseViaCategory(message, category)
-	}
+		return Parser.parseViaCategory(message, category);
+	};
+
+	let getPageFilter = (url: URL) => {
+		const filter = url.searchParams.get('filter');
+		return filter;
+	};
+
+	let getPageQ = (url: URL) => {
+		const q = url.searchParams.get('q');
+		return q;
+	};
+
+	let checkSearchMode = (url: URL) => {
+		const q = url.searchParams.get('q');
+		const filter = url.searchParams.get('filter');
+
+		return q || (filter && !['CREATED_AT', 'NET_UP_VOTES'].includes(filter));
+	};
+
+	let sortHashtags = (s: HashtagsConnectionEdge[]) => {
+		let values = s
+			.filter((a) => (a.node as Hashtag).postedMessagesTotalCount > 1)
+			.slice(0)
+			.sort(
+				(a, b) =>
+					(b.node as Hashtag).postedMessagesTotalCount -
+					(a.node as Hashtag).postedMessagesTotalCount
+			);
+
+		return values;
+	};
+
+	let isHashtagActive = (filter: string, tag: string) => {
+		if (!filter) return '';
+		return filter.toLowerCase() === tag.toLowerCase()
+			? '!text-t1 !bg-l3 before:!border-accent1-default !shadow-tag-active'
+			: '';
+	};
+
+	let handleSort = (url: URL, filter: string) => {
+		const newUrl = url;
+
+		newUrl.searchParams.delete('q');
+		newUrl.searchParams.set('filter', filter);
+		return goto(newUrl);
+	};
+
+	let isRefetching: boolean = false;
+	let loadMore = async (afterCursor?: string) => {
+		isRefetching = true;
+		await store.fetchMore({
+			variables: {
+				feedInput: {
+					...queryOptions.feedInput,
+					pageInfo: {
+						...queryOptions.feedInput.pageInfo,
+						afterCursor
+					}
+				}
+			}
+		});
+		isRefetching = false;
+	};
 </script>
 
 <template lang="pug" src="./template.pug">
 
 </template>
+
+<style lang="sass" src="./style.sass">
+
+</style>

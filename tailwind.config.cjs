@@ -7,7 +7,7 @@ module.exports = {
     borderRadius: {
       ...defaultTheme.borderRadius,
       'base-radius': '20px',
-      'table-cell': '11px'
+      'underbase': '11px'
     },
     screens: {
       xl: {
@@ -238,8 +238,14 @@ module.exports = {
     },
     extend: {
       spacing: {
+        '0.75': '0.1875rem',
         '2.25': '0.5625rem',
-        '5.5': '1.375rem'
+        '2.75': '0.6875rem',
+        '5.5': '1.375rem',
+        '1/2': '50%'
+      },
+      opacity: {
+        '15': '0.15'
       },
       fontFamily: {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans]
@@ -253,8 +259,11 @@ module.exports = {
       boxShadow: {
         ...defaultTheme.boxShadow,
         'input': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
+        'tag': '0px 4px 8px rgba(0, 0, 0, 0.16)',
+        'tag-active': ' 0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
         'button': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
-        'button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)'
+        'button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+        'button-active': '0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)'
       }
     }
   },

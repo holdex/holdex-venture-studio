@@ -1,17 +1,15 @@
 Switch(condition="{item.type}")
     Case(value="link")
         a(
-            class="relative underline underline-offset-4 pb-1 bg-accent1-default/20 text-accent1-default text-paragraph-l transition-colors hover:bg-opacity-25"
+            class="relative underline underline-offset-4 pb-1 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25"
             href="{item.href}"
             title!="{item.title ? item.title : ''}"
         )
             TextWrapper(text="{item.text || item.href}")
                 slot
-    Case(value="video")
-        Embed(item="{item}")
     Case(value="hashtag")
         a(
-            class="relative underline underline-offset-4 pb-1 bg-accent1-default/20 text-accent1-default text-paragraph-l transition-colors hover:bg-opacity-25"
+            class="relative underline underline-offset-4 pb-1 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25"
             href="/c?q={encodeURIComponent(item.text.toLowerCase().slice(1))}"
         )
             TextWrapper(text="{item.text}")
@@ -22,7 +20,8 @@ Switch(condition="{item.type}")
     //-     s handle price ticker
     //- Case(value="mention")
     //-     s handle mention
-    Case(value="image")
+    //- possible removal of image
+    Case(value="image") 
         Image(item="{item}")
     Case(value="text")
         TextWrapper(text!="{escape(item.text)}")

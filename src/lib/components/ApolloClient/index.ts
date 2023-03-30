@@ -3,6 +3,7 @@ import { HttpLink } from '@apollo/client/link/http'
 import config, { isDev } from '$lib/config'
 
 import { readQuery, subscribeQuery, query, mutation } from './query'
+import cacheConfig from './cache';
 
 /**
  * Initialize new Client instance
@@ -15,7 +16,7 @@ function createServerClient() {
       uri: config.apiUrl
     }),
     ssrMode: true,
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache(cacheConfig),
   })
 }
 
@@ -26,7 +27,7 @@ function createBrowserClient() {
     link: new HttpLink({
       uri: config.apiUrl
     }),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache(cacheConfig),
     ssrForceFetchDelay: 100,
     connectToDevTools: isDev,
   })
@@ -34,7 +35,6 @@ function createBrowserClient() {
 
 function hydrateApolloClient(client: any, context?: Record<string, string>) {
   browserClient.restore(client as any)
-
   if (context) {
     browserClient.setLink(
       new HttpLink({

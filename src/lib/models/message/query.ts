@@ -52,7 +52,7 @@ export const getMessageByCategorySlug = gql`
                     ...MessageViewerFragment
                 }
                 messageSlug
-                viewsCount
+                #viewsCount
                 allReplies(input: {
                     pageInfo: {first: 1}
                     sortBy: CREATED_AT
