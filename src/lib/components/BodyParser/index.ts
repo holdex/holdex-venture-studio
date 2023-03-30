@@ -1,6 +1,6 @@
 import parseBlocks from "./blocks";
 import { getVideoCover } from "./utils";
-import type { Community, CommunityPostedThreadConnectionEdge, Message as DefaultMessage, ThreadAllRepliesConnection, Maybe } from "$lib/types/api";
+import type { Community, CommunityPostedThreadConnectionEdge, Message as DefaultMessage, ThreadAllRepliesConnection, Maybe, MessagePostedInCommunityConnectionEdge } from "$lib/types/api";
 
 type Message = DefaultMessage & {
     messageSlug: string,
@@ -55,10 +55,10 @@ class Parser {
         let { postedIn, ...rest } = message;
         let newMessage = {
             ...rest,
-            messageSlug: (postedIn as CommunityPostedThreadConnectionEdge).messageSlug,
-            communitySlug: communitySlug || '',
-            viewsCount: (postedIn as CommunityPostedThreadConnectionEdge).viewsCount || 0,
-            allReplies: (postedIn as CommunityPostedThreadConnectionEdge).allReplies,
+            messageSlug: (postedIn as MessagePostedInCommunityConnectionEdge).messageSlug,
+            communitySlug: communitySlug || (postedIn as MessagePostedInCommunityConnectionEdge).node?.slug || '',
+            viewsCount: (postedIn as MessagePostedInCommunityConnectionEdge).viewsCount || 0,
+            allReplies: (postedIn as MessagePostedInCommunityConnectionEdge).allReplies,
         }
 
         return Parser.parse(newMessage);

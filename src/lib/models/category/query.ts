@@ -28,6 +28,10 @@ export const getCategoryBySlug = gql`
                     node {
                         ...MessageFragment
                         postedIn {
+                            node {
+                                id
+                                slug
+                            }
                             messageSlug
                             allReplies(input: {
                                 pageInfo: {first: 1}

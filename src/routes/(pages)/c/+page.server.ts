@@ -1,13 +1,13 @@
-import { loadCategory } from '$lib/models/category'
-import type { CommunityPostedMessagesConnectionInput } from '$lib/types/api';
+import { loadFeed } from '$lib/models/feed'
+import type { PostedMessagesConnectionInput } from '$lib/types/api';
 import type { PageServerLoad } from './$types'
-import { parseQueryFilter } from '../util';
+import { parseQueryFilter } from './util';
 
-export const load: PageServerLoad = async ({ locals, params, url }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
     const filter = url.searchParams.get('filter');
     const q = url.searchParams.get('q');
 
-    const feedInput: CommunityPostedMessagesConnectionInput = {
+    const feedInput: PostedMessagesConnectionInput = {
         includeReplies: false,
         sortDesc: true,
         filterByVotesStartingFrom: 0,
@@ -18,8 +18,7 @@ export const load: PageServerLoad = async ({ locals, params, url }) => {
         }
     }
 
-    const options = await loadCategory(locals.apolloClient, params.slug, feedInput);
-
+    const options = await loadFeed(locals.apolloClient, feedInput);
     return {
         queryOptions: JSON.stringify(options),
         apollo: locals.apolloClient.extract()

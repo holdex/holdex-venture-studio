@@ -17,14 +17,14 @@
                             +each("item.items as hItem")
                                 InlineBlock(item="{hItem}")
             Case(value="paragraph")
-                svelte:element(this="p" class="text-paragraph-l text-t2")
+                svelte:element(this="p" class="p-el text-paragraph-l text-t2")
                     +each("item.items as pItem")
                         InlineBlock(item="{pItem}")
             Case(value="list")
                 svelte:element(
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
-                   +each("item.items as liItem")
+                    +each("item.items as liItem")
                         li(class="text-paragraph-l text-t2")
                             +each("liItem as lItem")
                                 InlineBlock(item="{lItem}") 
@@ -32,7 +32,7 @@
                 svelte:element(
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
-                   +each("item.items as liItem")
+                    +each("item.items as liItem")
                         NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
                             InlineBlock(item="{lItem}") 
             //- Case(value="linkTool")

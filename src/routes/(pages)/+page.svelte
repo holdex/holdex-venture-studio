@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Parser from '$components/BodyParser';
 	import BodyRenderer from '$components/BodyRenderer/index.svelte';
+	import { signature } from '$components/Icons';
 	import type { Message } from '$lib/types/api';
 	import type { PageData } from './$types';
 

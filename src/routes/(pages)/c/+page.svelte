@@ -15,17 +15,16 @@
 
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
 	import { formatNumber } from '$components/NumbersManager';
-	import { parseQueryFilter } from '../util';
+	import { parseQueryFilter } from './util';
 
-	import type { Hashtag, HashtagsConnectionEdge, Message } from '$lib/types/api';
+	import type { Message } from '$lib/types/api';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	$: ({ store, options: queryOptions } = data);
 	$: ({ data: storeData } = $store);
-	$: community = storeData?.community;
-	$: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
+	$: ({ edges, totalCount, pageInfo } = storeData?.postedMessages || {
 		edges: [],
 		totalCount: 0,
 		pageInfo: null
@@ -53,26 +52,6 @@
 		const filter = url.searchParams.get('filter');
 
 		return q || (filter && !['CREATED_AT', 'NET_UP_VOTES'].includes(filter));
-	};
-
-	let sortHashtags = (s: HashtagsConnectionEdge[]) => {
-		let values = s
-			.filter((a) => (a.node as Hashtag).postedMessagesTotalCount > 1)
-			.slice(0)
-			.sort(
-				(a, b) =>
-					(b.node as Hashtag).postedMessagesTotalCount -
-					(a.node as Hashtag).postedMessagesTotalCount
-			);
-
-		return values;
-	};
-
-	let isHashtagActive = (filter: string, tag: string) => {
-		if (!filter) return '';
-		return filter.toLowerCase() === tag.toLowerCase()
-			? '!text-t1 !bg-l3 before:!border-accent1-default !shadow-tag-active'
-			: '';
 	};
 
 	let handleSort = (url: URL, filter: string) => {
@@ -105,6 +84,6 @@
 
 </template>
 
-<style lang="sass" src="../style.sass">
+<style lang="sass" src="./style.sass">
 
 </style>

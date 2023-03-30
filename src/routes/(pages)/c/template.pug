@@ -6,7 +6,7 @@ mixin feed
         .feed-articles(class="relative block w-full")
             +each('edges as messageNode, index (messageNode.node.id)')
                 +const('message = parseMessage(messageNode.node)')
-                a(href="/c/{community.slug}/{message.messageSlug}" class!="transition-colors text-t1 hover:text-accent1-default block {index === 0 ? '' : 'mt-8 xs:mt-4'}")
+                a(href="/c/{message.communitySlug}/{message.messageSlug}" class!="transition-colors text-t1 hover:text-accent1-default block {index === 0 ? '' : 'mt-8 xs:mt-4'}")
                     article(class="flex items-center gap-4")
                         .feed-icon(class="relative block w-32 h-24 xs:w-24 border border-solid border-l4 rounded-xl bg-l2")
                             +if('message.cover')
@@ -16,7 +16,7 @@ mixin feed
                         .feed-content(class="flex items-start justify-center flex-col")
                             h2(class="relative w-full text-paragraph-l font-bold text-inherit block whitespace-nowrap overflow-hidden text-ellipsis") {message.title}
                             +if('message.subtitle')
-                                p(class="relative w-full text-paragraph-l text-t2 block whitespace-nowrap overflow-hidden text-ellipsis") {message.subtitle}
+                                p(class="relative xs:hidden w-full text-paragraph-l text-t2 block whitespace-nowrap overflow-hidden text-ellipsis") {message.subtitle}
                             p(class="text-paragraph-l text-t3 flex gap-2") 
                                 time(
                                     datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
@@ -34,7 +34,7 @@ mixin feed
                 button(
                     on:click!="{() => loadMore(pageInfo.endCursor)}" 
                     disabled="{isRefetching}"
-                    class="relative max-w-xs mobile:w-full z-1 bg-accent1-default text-t4 text-cta shadow-button flex items-center justify-center py-1 px-4 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active hover:shadow-button-hover disabled:bg-l3 disabled:shadow-button disabled:text-t3"): span Load more
+                    class="relative z-1 max-w-xs mobile:w-full bg-accent1-default text-t4 text-cta shadow-button flex items-center justify-center py-1 px-4 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active hover:shadow-button-hover disabled:bg-l3 disabled:shadow-button disabled:text-t3"): span Load more
         +else()
             p(class="text-paragraph-l text-t3 w-full text-center") No articles found.
 
@@ -47,12 +47,9 @@ mixin feed
                 ul(class="flex items-center gap-3")
                     li: +crumbItemLink("/", "Home")
                     li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
-                    li: +crumbItemLink("/c", "Accelerator")
-                    li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
-                    li: span(class="text-paragraph-l text-t3") {community.name}
-            h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s" id="{community.id}") {community.name}
-            +if('community.tagline')
-                p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full") {community.tagline}
+                    li: span(class="text-paragraph-l text-t3") Accelerator
+            h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s") Accelerator
+            p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full") Holdex accelerator helps Web3 startups to overcome early-stage obstacles and grow big
             ul.short-links(class="flex items-center justify-center gap-x-5 w-full max-w-[604px] smDown:justify-start smDown:flex-wrap")
                 li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/apply")
                     Icon(icon="{Bolt}" width="{20}" height="{20}" colorInherit)
@@ -65,7 +62,7 @@ mixin feed
                     span Guides
                 li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/about")
                     Icon(icon="{UserGroup}" width="{20}" height="{20}" colorInherit)
-                    span About
+                    span About us
         .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")
             ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
                 li.option-item(
@@ -74,12 +71,6 @@ mixin feed
                 li.option-item(
                     on:click!="{() => handleSort($page.url, 'NET_UP_VOTES')}"
                     class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}") By Rating
-            +if('community.hashtags && community.hashtags.totalCount > 0')
-                ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
-                    +each('sortHashtags(community.hashtags.edges) as tag (tag.node.id)')
-                        li(
-                            on:click!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
-                            class="inline-flex relative justify-center cursor-pointer rounded-xl bg-l2 text-cta text-t3 shadow-tag transition-all px-3 hover:text-t1 hover:bg-l3 before:content-[''] before:absolute before:border before:border-solid before:border-l4 before:w-full before:h-full before:rounded-xl before:left-0 before:top-0 {isHashtagActive(pageFilter, tag.node.id)}") {'#'}{tag.node.id}
             +if('isSearchMode')
                 +if('totalCount > 0')
                     p(class="text-paragraph-l") #[span(class="text-t3") Showing results for] {pageQ || '#' + pageFilter}
