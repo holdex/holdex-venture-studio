@@ -5,7 +5,7 @@
                 +if("item.level === 'h1'")
                     svelte:element(
                         this="p" 
-                        class="heading text-h1-l font-satoshi" 
+                        class="heading font-satoshi {bindHeading(item.level)}" 
                         id="{item.id}")
                         +each("item.items as hItem")
                             InlineBlock(item="{hItem}")

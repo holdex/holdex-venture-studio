@@ -1,6 +1,8 @@
-section.main(class="flex flex-col items-center pt-16 xs:pt-8")
-    .header-wrapper(class="flex items-center justify-center smDown:items-start gap-1 max-w-[1028px] mb-8 tb:max-w-[794px] sm:max-w-[604px] xs:px-4 w-full")
+include ./common-mixins
+
++main-section
+    +header-wrapper()()
         h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s" id="{message.id}") {message.title}
-    .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")
+    +content-wrapper
         BodyRenderer(blocks="{message.blocks}")
         p(class="text-t1") {@html signature}

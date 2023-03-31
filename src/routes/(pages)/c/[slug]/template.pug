@@ -1,91 +1,25 @@
-mixin crumbItemLink(href, name)
-    a(class="text-paragraph-l text-t3 transition-colors hover:text-accent1-default" href=href title=name): span= name
-
-mixin feed
-    +if('totalCount > 0')
-        .feed-articles(class="relative block w-full")
-            +each('edges as messageNode, index (messageNode.node.id)')
-                +const('message = parseMessage(messageNode.node)')
-                a(href="/c/{community.slug}/{message.messageSlug}" class!="transition-colors text-t1 hover:text-accent1-default block {index === 0 ? '' : 'mt-8 xs:mt-4'}")
-                    article(class="flex items-center gap-4")
-                        .feed-icon(class="relative block w-32 h-24 xs:w-24 border border-solid border-l4 rounded-xl bg-l2")
-                            +if('message.cover')
-                                img(class="relative block w-full h-full object-center rounded-xl object-fill" alt="{message.title}" src="{message.cover}")
-                                +else()
-                                    span(role="img" class="relative block w-10 h-12 mx-auto mt-6") {@html feedEmptyIcon}
-                        .feed-content(class="flex items-start justify-center flex-col")
-                            h2(class="relative w-full text-paragraph-l font-bold text-inherit block whitespace-nowrap overflow-hidden text-ellipsis") {message.title}
-                            +if('message.subtitle')
-                                p(class="relative w-full xs:hidden text-paragraph-l text-t2 block whitespace-nowrap overflow-hidden text-ellipsis") {message.subtitle}
-                            p(class="text-paragraph-l text-t3 flex gap-2") 
-                                time(
-                                    datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
-                                    title="{extendedTimeFormat(message.createdAt)}"
-                                ) {timeFormat(message.createdAt)}
-                                span(class="opacity-50 xs:hidden") • 
-                                span(class="inline-flex items-center gap-1 xs:hidden")
-                                    Icon(icon="{HandThumbUp}" width="{20}" height="{20}" colorInherit)
-                                    span {formatNumber(message.votesCount.up - message.votesCount.down, '0,0a')}
-                                span(class="inline-flex items-center gap-1 xs:hidden") 
-                                    Icon(icon="{ChatBubbleLeftEllipsis}" width="{20}" height="{20}" colorInherit)
-                                    span {formatNumber(message.allReplies.totalCount, '0,0a')}
-        +if('pageInfo && pageInfo.hasNextPage')
-            .btn-wrapper(class="flex justify-center w-full py-3")
-                button(
-                    on:click!="{() => loadMore(pageInfo.endCursor)}" 
-                    disabled="{isRefetching}"
-                    class="relative max-w-xs mobile:w-full z-1 bg-accent1-default text-t4 text-cta shadow-button flex items-center justify-center py-1 px-4 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active hover:shadow-button-hover disabled:bg-l3 disabled:shadow-button disabled:text-t3"): span Load more
-        +else()
-            p(class="text-paragraph-l text-t3 w-full text-center") No articles found.
-
+include ../../common-mixins
+include ../mixins
 
 +if('storeData')
-    section.main(class="flex flex-col items-center pt-16 xs:pt-8")
-        .header-wrapper(
-            class="flex items-center flex-col justify-center smDown:items-start gap-8 xs:gap-4 max-w-[1028px] mb-8 tb:max-w-[794px] sm:max-w-[604px] xs:px-4 w-full")
-            nav.crumbs
-                ul(class="flex items-center gap-3")
-                    li: +crumbItemLink("/", "Home")
-                    li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
-                    li: +crumbItemLink("/c", "Accelerator")
-                    li(class="crumb-delimiter text-paragraph-l text-t3/50") / 
-                    li: span(class="text-paragraph-l text-t3") {community.name}
-            h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s" id="{community.id}") {community.name}
-            +if('community.tagline')
-                p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full") {community.tagline}
-            ul.short-links(class="flex items-center justify-center gap-x-5 w-full max-w-[604px] smDown:justify-start smDown:flex-wrap")
-                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/apply")
-                    Icon(class="text-t3" icon="{Bolt}" width="{20}" height="{20}")
-                    span Apply Now
-                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/c/announcements/why-apply")
-                    Icon(class="text-t3" icon="{InformationCircle}" width="{20}" height="{20}")
-                    span Why Apply
-                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/c/learn")
-                    Icon(class="text-t3" icon="{BookOpen}" width="{20}" height="{20}")
-                    span Guides
-                li: a.short-link(class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default" href="/about")
-                    Icon(class="text-t3" icon="{UserGroup}" width="{20}" height="{20}")
-                    span About
-        .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")
-            ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
-                li.option-item(
-                    on:click!="{() => handleSort($page.url, 'CREATED_AT')}"
-                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}") By Time
-                li.option-item(
-                    on:click!="{() => handleSort($page.url, 'NET_UP_VOTES')}"
-                    class!="flex items-center justify-center cursor-pointer bg-l2 transition-colors text-cta text-t3 hover:text-t1 py-0.75 px-2.75 rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}") By Rating
+    +main-section
+        +header-wrapper()(class="flex-col gap-8 xs:gap-4")
+            +nav-crumbs
+                +crumbItemLink("/", "Home")
+                +crumbDelimiter
+                +crumbItemLink("/c", "Accelerator")
+                +crumbDelimiter
+                +crumbItemText("{community.name}")
+            +messageHeader("{community.name}", "{community.tagline}", "{community.tagline}")(id="{community.id}")
+            +short-links
+                li: +short-link("/apply", "{Bolt}", "Apply Now")
+                li: +short-link("/c/announcements/why-apply", "{InformationCircle}", "Why Apply")
+                li: +short-link("/c/learn", "{BookOpen}", "Guides")
+                li: +short-link("/about", "{UserGroup}", "About")
+        +content-wrapper
+            +filter-options
             +if('community.hashtags && community.hashtags.totalCount > 0')
                 ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
                     +each('sortHashtags(community.hashtags.edges) as tag (tag.node.id)')
-                        li(
-                            on:click!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
-                            class="inline-flex relative justify-center cursor-pointer rounded-xl bg-l2 text-cta text-t3 shadow-tag transition-all px-3 hover:text-t1 hover:bg-l3 before:content-[''] before:absolute before:border before:border-solid before:border-l4 before:w-full before:h-full before:rounded-xl before:left-0 before:top-0 {isHashtagActive(pageFilter, tag.node.id)}") {'#'}{tag.node.id}
-            +if('isSearchMode')
-                +if('totalCount > 0')
-                    p(class="text-paragraph-l") #[span(class="text-t3 font-bold") Showing results for] {pageQ || '#' + pageFilter}
-                    +feed()
-                    +else()
-                        p(class="text-paragraph-l text-t3 w-full text-center") #[span(class="text-t3 font-bold") No articles found for] {pageQ || '#' + pageFilter}.
-                +else()
-                    +feed()
-
+                        +hashtag("{'#'}{tag.node.id}")(class="{isHashtagActive(pageFilter, tag.node.id)}" on:click!="{() => handleSort($page.url, tag.node.id.toLowerCase())}")
+            +feedRenderer
