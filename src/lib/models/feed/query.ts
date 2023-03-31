@@ -37,3 +37,36 @@ export const getFeedMessages = gql`
     },
     ${messageFragment}
 `;
+
+export const getFeedMessagesForSitemapCursor = gql`
+    query getFeedMessagesForSitemapCursor($feedInput: PostedMessagesConnectionInput!) {
+        postedMessages(input: $feedInput) {
+            pageInfo {
+                hasPreviousPage
+                hasNextPage
+                startCursor
+                endCursor
+
+            }
+            totalCount
+        }
+    }
+`;
+
+export const getFeedMessagesForSitemapLink = gql`
+    query getFeedMessagesForSitemapLink($feedInput: PostedMessagesConnectionInput!) {
+        postedMessages(input: $feedInput) {
+            edges {
+                node {
+                    updatedAt
+                    postedIn {
+                        node {
+                            slug
+                        }  
+                        messageSlug    
+                    }
+                }
+            }
+        }
+    }
+`;

@@ -32,9 +32,15 @@ const mergePostedMessages = (existing: any, incoming: any, typenameName: string)
     let pageInfo = existing ? existing.pageInfo : {};
 
     if (incoming) {
-        edges.push(...incoming.edges);
-        totalCount = incoming.totalCount;
-        pageInfo = incoming.pageInfo;
+        if (incoming.edges) {
+            edges.push(...incoming.edges);
+        }
+        if (incoming.totalCount) {
+            totalCount = incoming.totalCount;
+        }
+        if (incoming.pageInfo) {
+            pageInfo = incoming.pageInfo;
+        }
     }
     return {
         __typename: typenameName,

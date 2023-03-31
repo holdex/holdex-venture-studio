@@ -17,10 +17,7 @@ const loadCategory = async (client: ApolloClient<any>, category: string, feedInp
         variables: {
             category,
             feedInput
-        } as CommunityQuery,
-        context: {
-            uri: "https://api.holdex.io/graphql"
-        }
+        } as CommunityQuery
     }
     const result = await query<Community>(client, options, true);
     if (result.error || (!result || result.data === null || !result.data?.published)) {

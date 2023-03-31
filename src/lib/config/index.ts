@@ -1,4 +1,4 @@
-import { PUB_API_URL } from '$env/static/public'
+import { PUB_API_URL, PUB_VERCEL_ENV } from '$env/static/public'
 import { dev, browser } from '$app/environment'
 
 type Config = {
@@ -7,7 +7,7 @@ type Config = {
 }
 
 let config: Config = {
-    env: "development",
+    env: PUB_VERCEL_ENV,
     apiUrl: PUB_API_URL
 }
 

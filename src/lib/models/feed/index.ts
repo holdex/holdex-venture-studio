@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { hydrateApolloClient, query, readQuery } from '$components/ApolloClient';
-import { getFeedMessages } from './query';
+import { getFeedMessages, getFeedMessagesForSitemapCursor, getFeedMessagesForSitemapLink } from './query';
 
 import type { ApolloClient } from '@apollo/client/core';
 import type { PostedMessagesConnection, PostedMessagesConnectionInput } from '$lib/types/api';
@@ -15,10 +15,7 @@ const loadFeed = async (client: ApolloClient<any>, feedInput: PostedMessagesConn
         query: getFeedMessages,
         variables: {
             feedInput
-        } as FeedQuery,
-        context: {
-            uri: "https://api.holdex.io/graphql"
-        }
+        } as FeedQuery
     }
     const result = await query<PostedMessagesConnection>(client, options, true);
     if (result.error || (!result || result.data === null)) {
@@ -27,9 +24,35 @@ const loadFeed = async (client: ApolloClient<any>, feedInput: PostedMessagesConn
     return options;
 }
 
+const loadFeedForSitemapCursor = async (client: ApolloClient<any>, headers: Record<string, any>, feedInput: PostedMessagesConnectionInput) => {
+    const options = {
+        query: getFeedMessagesForSitemapCursor,
+        variables: {
+            feedInput
+        },
+        context: {
+            headers
+        }
+    }
+    return query<PostedMessagesConnection>(client, options, true);
+}
+
+const loadFeedForSitemapLink = async (client: ApolloClient<any>, headers: Record<string, any>, feedInput: PostedMessagesConnectionInput) => {
+    const options = {
+        query: getFeedMessagesForSitemapLink,
+        variables: {
+            feedInput
+        },
+        context: {
+            headers
+        }
+    }
+    return query<PostedMessagesConnection>(client, options, true);
+}
+
 const getFeed = async <T>(apollo: any, options: any, fallback?: T) => {
     const client = hydrateApolloClient(apollo, options.context);
     return readQuery<T>(client, options, fallback);
 }
 
-export { loadFeed, getFeed }
+export { loadFeed, loadFeedForSitemapCursor, loadFeedForSitemapLink, getFeed }

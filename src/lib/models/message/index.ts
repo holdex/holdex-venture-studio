@@ -26,9 +26,6 @@ const loadMessageFromCategory = async (client: ApolloClient<any>, category: stri
         variables: {
             category,
             messageSlug
-        },
-        context: {
-            uri: "https://api.holdex.io/graphql"
         }
     }
     const result = await query<Community>(client, options, true);
