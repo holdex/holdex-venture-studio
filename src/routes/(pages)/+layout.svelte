@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	import { socialIcons } from '$components/Icons';
+	import { socialIcons, Bars3, XMark } from '$components/Icons';
+	import Icon from '$components/Icons/index.svelte';
 	import { regExp } from '$components/BodyParser/utils';
 	import { deserialize, applyAction } from '$app/forms';
 
@@ -9,19 +10,20 @@
 
 	$: path = $page.url.pathname;
 	$: form = $page.form;
-	let isActive = (currentUrl: string, path: string, deepEqual: boolean = false) => {
+	const isActive = (currentUrl: string, path: string, deepEqual: boolean = false) => {
 		if (deepEqual) {
 			return currentUrl === path;
 		}
 		return currentUrl.startsWith(path);
 	};
 
-	let isFilterActive = (currentUrl: URL, path: string, filter: string) => {
+	const isFilterActive = (currentUrl: URL, path: string, filter: string) => {
 		const f = currentUrl.searchParams.get('filter');
 		return currentUrl.pathname === path && filter === f;
 	};
 
-	let handleClick = () => {
+	const handleClick = (clbk?: any) => {
+		clbk && clbk();
 		return document.querySelector('#contact-form')?.scrollIntoView({
 			behavior: 'smooth'
 		});
@@ -43,6 +45,21 @@
 	}
 
 	let scrollY: any;
+
+	let isBurgerDropdownShown: boolean = false;
+
+	const toggleBurger = (newStatus: boolean = false) => {
+		isBurgerDropdownShown = newStatus;
+		setBodyClass(newStatus);
+	};
+
+	const setBodyClass = (state: boolean) => {
+		if (state) {
+			document?.body?.classList.add('menu-opened');
+		} else {
+			document?.body?.classList.remove('menu-opened');
+		}
+	};
 </script>
 
 <template lang="pug" src="./layout.pug">

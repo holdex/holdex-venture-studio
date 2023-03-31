@@ -241,10 +241,15 @@ module.exports = {
       spacing: {
         '0.75': '0.1875rem',
         '1.25': '0.3125rem',
+        '1.75': '0.4375rem',
         '2.25': '0.5625rem',
         '2.75': '0.6875rem',
         '5.5': '1.375rem',
-        '1/2': '50%'
+        '6.5': '1.625rem',
+        '1/2': '50%',
+        '19': '4.75rem',
+        '25': '6.25rem',
+        '30': '7.5rem'
       },
       opacity: {
         '15': '0.15'
@@ -253,7 +258,8 @@ module.exports = {
         'sans': ['Inter', ...defaultTheme.fontFamily.sans]
       },
       zIndex: {
-        1: '1'
+        1: '1',
+        9: '9'
       },
       backdropBlur: {
         overlay: '5px',
