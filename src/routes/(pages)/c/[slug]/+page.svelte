@@ -7,6 +7,7 @@
 		HandThumbUp,
 		ChatBubbleLeftEllipsis,
 		Bolt,
+		XMark,
 		InformationCircle,
 		BookOpen,
 		UserGroup

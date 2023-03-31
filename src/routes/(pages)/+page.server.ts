@@ -31,6 +31,7 @@ export const actions: Actions = {
             return fail(400, { email, name, message, missing: { message: true } })
         }
 
+        console.log('response', email, name, message);
         return { success: true }
     }
 }

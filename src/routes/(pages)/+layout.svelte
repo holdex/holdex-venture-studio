@@ -3,6 +3,7 @@
 
 	import { socialIcons } from '$components/Icons';
 	import { regExp } from '$components/BodyParser/utils';
+	import { deserialize, applyAction } from '$app/forms';
 
 	const pageTheme = 'dark';
 
@@ -25,6 +26,21 @@
 			behavior: 'smooth'
 		});
 	};
+
+	async function onContactFormSumbit(event: any) {
+		const data = new FormData(this);
+		const response = await fetch(this.action, {
+			method: 'POST',
+			body: data,
+			headers: {
+				'x-sveltekit-action': 'true'
+			}
+		});
+
+		const result = deserialize(await response.text());
+		event.target.reset();
+		applyAction(result);
+	}
 
 	let scrollY: any;
 </script>
