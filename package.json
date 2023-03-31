@@ -4,8 +4,8 @@
 	"scripts": {
 		"pre-dev": "npx vercel env pull",
 		"dev": "npm run pre-dev && npm run generate && vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
+		"build": "npm run generate && vite build",
+		"preview": "npm run generate  && vite preview",
 		"generate": "graphql-codegen --config codegen.yml -r dotenv/config",
 		"postinstall": "svelte-kit sync && sh ./apollo-client-patch.sh",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
