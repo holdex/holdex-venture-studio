@@ -78,7 +78,7 @@ class Parser {
         return parseBlocks(blocks || []);
     }
 
-    private static parseTocs(blocks: any[], allowedDepth: number[] = [2, 3, 4]): any[] {
+    private static parseTocs(blocks: any[], allowedDepth: string[] = ["h2", "h3", "h4"]): any[] {
         let tocs = [];
         for (let block of blocks) {
             if (block.type === 'heading' && allowedDepth.includes(block.level)) {

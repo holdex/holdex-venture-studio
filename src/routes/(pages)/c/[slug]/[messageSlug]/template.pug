@@ -11,4 +11,25 @@ include ../../mixins
             +crumbItemLink("/c/{storeData.community.slug}","{storeData.community.name}")
         +messageHeader("{message.title}", "{message.subtitle}", "{message.subtitle}")(id="{message.id}")
     +content-wrapper
+        +if('message.tocs && message.tocs.length > 0')
+            details(
+                open="false"
+                on:click|preventDefault="{toggleToc}"
+                class:active="{tocOpen}" 
+                class="flex w-full cursor-pointer flex-col items-start bg-l2 rounded-xl border border-solid border-l4")
+                summary(class="flex items-center justify-between p-3.75")
+                    p(class="text-paragraph-l pointer-events-none xs:text-paragraph-s") Table of Contents
+                    +button-icon-small()(class="pointer-events-none")
+                        +if('tocOpen')
+                            Icon(icon="{BarsArrowUp}" width="{20}" height="{20}" colorInherit)
+                            +else()
+                                Icon(icon="{BarsArrowDown}" width="{20}" height="{20}" colorInherit)
+                +if('tocOpen')
+                    .details-content(transition:slide|local class="relative p-3.75 border-t border-solid border-l4")
+                        ul.toc-block
+                            +each('message.tocs as item')
+                                li(
+                                    on:click!="{() => gotoTag($page.url, item.id)}"
+                                    class!="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-t1 {renderTocPadding(item.level)}"
+                                ) ⏤ {@html item.cleanRef}
         BodyRenderer(blocks="{message.blocks}")

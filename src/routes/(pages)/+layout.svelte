@@ -5,6 +5,7 @@
 	import Icon from '$components/Icons/index.svelte';
 	import { regExp } from '$components/BodyParser/utils';
 	import { deserialize, applyAction } from '$app/forms';
+	import { scrollToElement } from '$lib/utils';
 
 	const pageTheme = 'dark';
 
@@ -24,9 +25,7 @@
 
 	const handleClick = (clbk?: any) => {
 		clbk && clbk();
-		return document.querySelector('#contact-form')?.scrollIntoView({
-			behavior: 'smooth'
-		});
+		return scrollToElement('contact-form', 64);
 	};
 
 	async function onContactFormSumbit(event: any) {

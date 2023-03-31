@@ -29,7 +29,7 @@ mixin mobile-nav
 							+else()
 								img(alt="Home" src="/logo-w-o-text.svg")
 				+main-nav()(class="smDown:hidden")
-				+primary-button("Partner With Us")(class="smDown:hidden" type="button" on:click="{handleClick}")
+				+primary-button("Partner With Us")(class="smDown:hidden" type="button" on:click!="{() => handleClick(undefined)}")
 				+button-icon-default()(class="hidden smDown:flex z-10" on:click!="{() => toggleBurger(!isBurgerDropdownShown)}")
 					+if('isBurgerDropdownShown')
 						Icon(icon="{XMark}" width="{24}" height="{24}" colorInherit)
