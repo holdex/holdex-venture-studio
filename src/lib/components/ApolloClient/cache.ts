@@ -7,25 +7,40 @@ const cacheConfig: InMemoryCacheConfig = {
                 postedMessages: {
                     keyArgs: [],
                     merge(existing, incoming) {
-                        let edges = existing ? existing.edges.slice(0) : [];
-                        let totalCount = existing ? existing.totalCount : 0;
-                        let pageInfo = existing ? existing.pageInfo : {};
-
-                        if (incoming) {
-                            edges.push(...incoming.edges);
-                            totalCount = incoming.totalCount;
-                            pageInfo = incoming.pageInfo;
-                        }
-                        return {
-                            __typename: "CommunityPostedMessagesConnection",
-                            edges: edges,
-                            totalCount: totalCount,
-                            pageInfo: pageInfo,
-                        }
+                        return mergePostedMessages(existing, incoming, "CommunityPostedMessagesConnection");
+                    }
+                }
+            }
+        },
+        Query: {
+            fields: {
+                postedMessages: {
+                    keyArgs: [],
+                    merge(existing, incoming) {
+                        return mergePostedMessages(existing, incoming, "PostedMessagesConnection");
                     }
                 }
             }
         }
+    }
+}
+
+
+const mergePostedMessages = (existing: any, incoming: any, typenameName: string) => {
+    let edges = existing ? existing.edges.slice(0) : [];
+    let totalCount = existing ? existing.totalCount : 0;
+    let pageInfo = existing ? existing.pageInfo : {};
+
+    if (incoming) {
+        edges.push(...incoming.edges);
+        totalCount = incoming.totalCount;
+        pageInfo = incoming.pageInfo;
+    }
+    return {
+        __typename: typenameName,
+        edges: edges,
+        totalCount: totalCount,
+        pageInfo: pageInfo,
     }
 }
 
