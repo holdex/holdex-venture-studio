@@ -9,7 +9,7 @@ include ../../mixins
             +crumbItemLink("/c", "Accelerator")
             +crumbDelimiter
             +crumbItemLink("/c/{storeData.community.slug}","{storeData.community.name}")
-        +messageHeader("{message.title}", "{message.subtitle}", "{message.subtitle}")(id="{message.id}")
+        +messageHeader("{message.title}", "{message.subtitle}")(id="{message.id}")
     +content-wrapper
         +if('message.tocs && message.tocs.length > 0')
             details(
