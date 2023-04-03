@@ -1,4 +1,5 @@
 import { loadMessage } from '$lib/models/message'
+import config from '$lib/server/config';
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types'
 
@@ -12,7 +13,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 }
 
 export const actions: Actions = {
-    default: async ({ request }) => {
+    default: async ({ request, fetch }) => {
         const data = await request.formData();
 
         const email = data.get('email');
@@ -31,7 +32,15 @@ export const actions: Actions = {
             return fail(400, { email, name, message, missing: { message: true } })
         }
 
-        console.log('response', email, name, message);
-        return { success: true }
+        let response = await fetch(config.contactFormSubmitUrl, {
+            method: "POST",
+            body: JSON.stringify({ email, name, message })
+        });
+        if (response.ok) {
+            return { success: true }
+        } else {
+            return fail(400, { email, name, message });
+        }
+
     }
 }
