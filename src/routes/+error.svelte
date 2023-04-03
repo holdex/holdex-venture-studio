@@ -1,5 +1,17 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { Switch, Case } from '$components/Switch';
+	import { isDev } from '$lib/config';
 
-	console.log('page', $page);
+	$: ({ error } = $page);
+	console.log('page', error);
 </script>
+
+<template lang="pug" src="./error.pug">
+
+</template>
+
+<svelte:head>
+	<style lang="scss" src="./error.scss"></style>
+</svelte:head>
