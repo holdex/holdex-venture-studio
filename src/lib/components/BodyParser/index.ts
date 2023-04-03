@@ -127,8 +127,8 @@ class Parser {
 
             let docAuthors = blocks.find(b => b.type === "author");
             if (docAuthors) {
-                blocks = blocks.find(b => b.type !== "author")
-                docAuthors = docAuthors.data;
+                blocks = blocks.filter(b => b.type !== "author")
+                authors = docAuthors.items;
             }
             return [blocks, subtitle, authors, isGoogleDoc];
         } catch (error) { }

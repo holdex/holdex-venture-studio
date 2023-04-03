@@ -6,10 +6,9 @@ mixin author
     +if('message.docAuthors.length > 0')
         +each('message.docAuthors as author, i')
             +if('i !== 0')
-                |, 
+                span.mr-1 , 
             +inline-link("{author.url}",'{author.name}')(target="_blank" rel="noreferrer")
-        +else()
-            | {message._author.name}
+        +else(): | {message._author.name}
 
 +main-section
     +header-wrapper()(class="flex-col gap-8 xs:gap-4")
@@ -28,8 +27,7 @@ mixin author
                         datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
                         title="{extendedTimeFormat(message.createdAt)}"
                     ) {timeFormat(message.createdAt)} { message.updatedAt ? '| Updated ' + timeFormat(message.updatedAt) : ''}
-                p(class="text-paragraph-l text-t3 flex gap-3 xs:text-paragraph-s")
-                    | By #[+author()]
+                p(class="text-paragraph-l text-t3 flex flex-wrap xs:text-paragraph-s") #[span.mr-1 By ] #[+author()]
                 p(class="text-paragraph-l text-t3 flex gap-3 xs:text-paragraph-s")
                     span(class="inline-flex items-center gap-1 xs:hidden")
                         Icon(icon="{Eye}" width="{20}" height="{20}" colorInherit)

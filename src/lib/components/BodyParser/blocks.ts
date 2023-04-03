@@ -412,7 +412,6 @@ let parseLinkTool = (block: LinkToolBlock) => {
 }
 
 let parseAuthor = (block: AuthorBlock) => {
-    console.log('block', block);
     return {
         type: "author",
         data: block.items
