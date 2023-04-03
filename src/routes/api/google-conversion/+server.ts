@@ -6,12 +6,7 @@ import { getEmbedUrl, getEmbedSource, regExp } from '$components/BodyParser/util
 
 import type { Schema$Document, Schema$List, Schema$Paragraph, Schema$ParagraphElement, Schema$RichLinkProperties, Schema$StructuralElement, Schema$TableCell, Schema$TextRun, Schema$TextStyle } from '$lib/types/googleDoc';
 import type { RequestHandler } from "./$types";
-
-type Author = {
-    name: string,
-    url: string;
-}
-
+import type { Author } from "$components/BodyParser/blocks";
 
 export const POST: RequestHandler = async ({ request }) => {
     const { data, updatedAt } = await request.json();

@@ -14,6 +14,6 @@ export function handleError({ error, event }) {
     return {
         code: error.code ?? '500',
         message: error.message,
-        error
+        error: JSON.stringify(error)
     }
 }

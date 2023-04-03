@@ -97,6 +97,16 @@ type LinkToolBlock = {
     }
 }
 
+type AuthorBlock = {
+    type: string,
+    items: Author[]
+}
+
+export type Author = {
+    name: string,
+    url: string;
+}
+
 let videoRegExp = new RegExp(regExp.video, "gmi");
 let imageRegExp = new RegExp(regExp.image, "gmi");
 export let linkExp = new RegExp(/^<a\s+(?:[^>]*?\s+)?href=(["'\\])(.*?)\1[^>]*>(.*?)<\/a>$/, "ui");
@@ -401,6 +411,14 @@ let parseLinkTool = (block: LinkToolBlock) => {
     }
 }
 
+let parseAuthor = (block: AuthorBlock) => {
+    console.log('block', block);
+    return {
+        type: "author",
+        data: block.items
+    }
+}
+
 let htmlParser = HTMLParser({
     header: parseHeading,
     quote: parseQuote,
@@ -413,8 +431,9 @@ let htmlParser = HTMLParser({
     twitter: parseEmbed,
     code: parseCode,
     linkTool: parseLinkTool,
-    subtitle: b => b,
-    source: b => b
+    subtitle: (b: any) => b,
+    source: (b: any) => b,
+    author: parseAuthor
 });
 
 function parseBlocks(blocks: any[]) {

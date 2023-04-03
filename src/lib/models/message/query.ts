@@ -30,6 +30,24 @@ export const messageViewerFragment = gql`
     }
 `
 
+export const messageAuthorFragment = gql`
+    fragment MessageAuthorFragment on Message {
+        authorIsCommunity {
+            id
+            slug
+            name
+            tagline
+            logoUrl
+        }
+        author {
+            id
+            slug
+            name
+            avatarUrl
+        }
+    }
+`;
+
 export const getMessageById = gql`
     query getMessageById($id: ID!) {
         message(id: $id) {
@@ -50,9 +68,10 @@ export const getMessageByCategorySlug = gql`
                 node {
                     ...MessageFragment
                     ...MessageViewerFragment
+                    ...MessageAuthorFragment
                 }
                 messageSlug
-                #viewsCount
+                viewsCount
                 allReplies(input: {
                     pageInfo: {first: 1}
                     sortBy: CREATED_AT
@@ -64,6 +83,7 @@ export const getMessageByCategorySlug = gql`
         }
     },
     ${messageFragment},
-    ${messageViewerFragment}
+    ${messageViewerFragment},
+    ${messageAuthorFragment}
 `;
 

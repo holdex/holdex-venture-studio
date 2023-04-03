@@ -1,6 +1,10 @@
-import parseBlocks from "./blocks";
+import parseBlocks, { type Author } from "./blocks";
 import { getVideoCover } from "./utils";
-import type { Community, CommunityPostedThreadConnectionEdge, Message as DefaultMessage, ThreadAllRepliesConnection, Maybe, MessagePostedInCommunityConnectionEdge } from "$lib/types/api";
+import type { Community, CommunityPostedThreadConnectionEdge, Message as DefaultMessage, ThreadAllRepliesConnection, Maybe, MessagePostedInCommunityConnectionEdge, User } from "$lib/types/api";
+
+type MessageAuthor = (Community | User) & {
+    isCommunity?: boolean;
+};
 
 type Message = DefaultMessage & {
     messageSlug: string,
@@ -12,6 +16,8 @@ type Message = DefaultMessage & {
 type ParsedMessage = Partial<Message> & {
     subtitle: string,
     blocks: any[],
+    _author: MessageAuthor,
+    docAuthors: Author[],
     parsedBody: Record<string, any>,
     tocs: any[],
     cover?: string
@@ -21,14 +27,16 @@ type ParsedMessage = Partial<Message> & {
 class Parser {
     static parse(message: Message): ParsedMessage {
         let parsedBody = Parser.parseBody(message);
-        let [parsedBlocks, subtitle, isGoogleDoc] = Parser.parseSubtitle(parsedBody?.blocks);
+        let parsedMAuthor = Parser.parseMessageAuthor(message);
+        let [parsedBlocks, subtitle, parsedDAuthors, isGoogleDoc] = Parser.parseSubtitle(parsedBody?.blocks);
         let blocks = Parser.parseBlocks(parsedBlocks);
         let tocs = Parser.parseTocs(blocks);
-
         let cover = Parser.parseThreadCover(blocks);
 
         return {
             ...message,
+            _author: parsedMAuthor,
+            docAuthors: parsedDAuthors,
             isGoogleDoc,
             blocks,
             parsedBody,
@@ -78,6 +86,16 @@ class Parser {
         return parseBlocks(blocks || []);
     }
 
+    private static parseMessageAuthor(message: Message): MessageAuthor {
+        if (message?.authorIsCommunity) {
+            return {
+                isCommunity: true,
+                ...message?.author as MessageAuthor
+            };
+        }
+        return message?.author || {} as MessageAuthor;
+    }
+
     private static parseTocs(blocks: any[], allowedDepth: string[] = ["h2", "h3", "h4"]): any[] {
         let tocs = [];
         for (let block of blocks) {
@@ -88,12 +106,13 @@ class Parser {
         return tocs;
     }
 
-    private static parseSubtitle(blocks: any[]): [any[], string, string] {
+    private static parseSubtitle(blocks: any[]): [any[], string, Author[], string] {
         try {
             let firstBlock = blocks[0];
 
             let subtitle = "";
             let isGoogleDoc = "";
+            let authors: Author[] = [];
 
             if (firstBlock && firstBlock.type === 'subtitle') {
                 blocks = blocks.slice(1);
@@ -105,9 +124,15 @@ class Parser {
                 blocks = blocks.filter(b => b.type !== "source");
                 isGoogleDoc = isSourceBlock.url;
             }
-            return [blocks, subtitle, isGoogleDoc];
+
+            let docAuthors = blocks.find(b => b.type === "author");
+            if (docAuthors) {
+                blocks = blocks.find(b => b.type !== "author")
+                docAuthors = docAuthors.data;
+            }
+            return [blocks, subtitle, authors, isGoogleDoc];
         } catch (error) { }
-        return [blocks, "", ""];
+        return [blocks, "", [] as Author[], ""];
     }
 
     private static parseThreadCover(blocks: any[]): string | undefined {

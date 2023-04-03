@@ -5,7 +5,9 @@
 	import Parser from '$components/BodyParser';
 	import BodyRenderer from '$components/BodyRenderer/index.svelte';
 	import Icon from '$components/Icons/index.svelte';
-	import { BarsArrowDown, BarsArrowUp } from '$components/Icons';
+	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
+	import { formatNumber } from '$components/NumbersManager';
+	import { BarsArrowDown, BarsArrowUp, Eye, ChatBubbleLeftEllipsis } from '$components/Icons';
 	import { scrollToElement } from '$lib/utils';
 	import type { Community } from '$lib/types/api';
 	import type { PageData } from './$types';

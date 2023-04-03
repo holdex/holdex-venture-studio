@@ -28,9 +28,17 @@ mixin short-link(href, icon, title)
         Icon(icon=icon width="{20}" height="{20}" colorInherit)
         span= title
 
+mixin inline-link(href, title)
+    a.short-link(class="relative underline underline-offset-4 pb-1 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25" href=href)&attributes(attributes)
+        span= title
+
+mixin button-secondary-small(label)
+    button(type="button" class="relative inline-flex z-1 bg-l3 text-t1 text-cta border border-solid border-l3 shadow-secondary-button items-center justify-center p-1.75 px-3.75 rounded-xl transition-all focus:border-accent1-default hover:border-accent1-active hover:shadow-secondary-button-hover")&attributes(attributes)
+        span= label
+
 //- Button Icon components
 mixin button-icon-small(icon)
-    button(type="button" class="relative inline-flex z-1 bg-l3 text-t3 border border-solid border-l3 shadow-secondary-button items-center justify-center p-1.25 rounded-2lg transition-all focus:border-accent1-default hover:text-t1 hover:border-accent1-active hover:shadow-secondary-button-hover")&attributes(attributes)
+    button(type="button" class="relative inline-flex z-1 bg-l3 text-t1 border border-solid border-l3 shadow-secondary-button items-center justify-center p-1.25 rounded-2lg transition-all focus:border-accent1-default hover:text-t1 hover:border-accent1-active hover:shadow-secondary-button-hover")&attributes(attributes)
         if block
             block
         else
