@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { routes } from '$lib/config';
 	import Parser from '$components/BodyParser';
 	import {
 		feedEmptyIcon,
@@ -12,6 +13,7 @@
 		BookOpen,
 		UserGroup
 	} from '$components/Icons';
+	import MetaTags from '$components/MetaTags/index.svelte';
 	import Icon from '$components/Icons/index.svelte';
 
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
@@ -80,6 +82,8 @@
 		isRefetching = false;
 	};
 </script>
+
+<MetaTags title="Studio" description="" path={routes.studio} imagePath="" />
 
 <template lang="pug" src="./template.pug">
 

@@ -5,10 +5,12 @@
 	import Parser from '$components/BodyParser';
 	import BodyRenderer from '$components/BodyRenderer/index.svelte';
 	import Icon from '$components/Icons/index.svelte';
+	import MetaTags from '$components/MetaTags/index.svelte';
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
 	import { formatNumber } from '$components/NumbersManager';
 	import { BarsArrowDown, BarsArrowUp, Eye, ChatBubbleLeftEllipsis } from '$components/Icons';
-	import { scrollToElement } from '$lib/utils';
+	import { routes } from '$lib/config';
+	import { parseCommunityCoverImage, scrollToElement } from '$lib/utils';
 	import type { Community } from '$lib/types/api';
 	import type { PageData } from './$types';
 
@@ -16,7 +18,9 @@
 
 	$: ({ store } = data);
 	$: ({ data: storeData } = $store);
-	$: message = Parser.parseFromCategory(storeData?.community as Community);
+	$: community = storeData?.community as Community;
+	$: communityCover = parseCommunityCoverImage(community);
+	$: message = Parser.parseFromCategory(community);
 
 	let tocOpen: boolean = false;
 
@@ -48,6 +52,15 @@
 		// return goto(currentUrl);
 	};
 </script>
+
+<MetaTags
+	title={message.communitySlug === 'holdex'
+		? message.title
+		: `${community.name} - ${message.title}`}
+	description={message.subtitle ? message.subtitle : ''}
+	path={routes.message(message.communitySlug, message.messageSlug)}
+	imagePath={message.cover ? message.cover : communityCover}
+/>
 
 <template lang="pug" src="./template.pug">
 

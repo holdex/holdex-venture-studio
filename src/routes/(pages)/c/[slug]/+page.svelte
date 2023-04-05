@@ -12,20 +12,24 @@
 		BookOpen,
 		UserGroup
 	} from '$components/Icons';
+	import MetaTags from '$components/MetaTags/index.svelte';
 	import Icon from '$components/Icons/index.svelte';
 
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
 	import { formatNumber } from '$components/NumbersManager';
+	import { routes } from '$lib/config';
 	import { parseQueryFilter } from '../util';
+	import { parseCommunityCoverImage, sanitizeHtml } from '$lib/utils';
 
-	import type { Hashtag, HashtagsConnectionEdge, Message } from '$lib/types/api';
+	import type { Community, Hashtag, HashtagsConnectionEdge, Message } from '$lib/types/api';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	$: ({ store, options: queryOptions } = data);
 	$: ({ data: storeData } = $store);
-	$: community = storeData?.community;
+	$: community = storeData?.community as Community;
+	$: communityCover = parseCommunityCoverImage(community);
 	$: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
 		edges: [],
 		totalCount: 0,
@@ -101,6 +105,14 @@
 		isRefetching = false;
 	};
 </script>
+
+<MetaTags
+	title="{community.name} - {community.tagline} | Holdex"
+	description={sanitizeHtml(community.tagline)}
+	path={routes.category(community.slug)}
+	imagePath={communityCover}
+	pageName={community.name}
+/>
 
 <template lang="pug" src="./template.pug">
 

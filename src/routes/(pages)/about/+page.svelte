@@ -1,7 +1,8 @@
 <script lang="ts">
-	import Parser from '$components/BodyParser';
+	import MetaTags from '$components/MetaTags/index.svelte';
+	import Parser, { type Message } from '$components/BodyParser';
 	import BodyRenderer from '$components/BodyRenderer/index.svelte';
-	import type { Message } from '$lib/types/api';
+	import { routes } from '$lib/config';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -10,6 +11,8 @@
 	$: ({ data: storeData } = $store);
 	$: message = Parser.parse(storeData?.message as Message);
 </script>
+
+<MetaTags title="About" description="" path={routes.about} imagePath="" />
 
 <template lang="pug" src="./template.pug">
 

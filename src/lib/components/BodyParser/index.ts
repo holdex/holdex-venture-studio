@@ -14,6 +14,7 @@ type Message = DefaultMessage & {
 }
 
 type ParsedMessage = Partial<Message> & {
+    title: string,
     subtitle: string,
     blocks: any[],
     _author: MessageAuthor,
@@ -150,5 +151,5 @@ class Parser {
     }
 }
 
-export type { ParsedMessage };
+export type { ParsedMessage, Message };
 export default Parser;
