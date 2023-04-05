@@ -96,6 +96,6 @@ mixin feedRenderer
                 +button-icon-small("{XMark}")(on:click!="{() => handleSort($page.url, 'CREATED_AT')}")
             +feed()
             +else()
-                p(class="text-paragraph-l text-t3 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
+                p(class="text-paragraph-l text-t1 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
         +else()
             +feed()

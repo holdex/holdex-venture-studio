@@ -8,10 +8,10 @@ mixin social-link(href, content)
 
 mixin main-nav
 	ul(class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 py-4" role="navigation")&attributes(attributes)
-		+link("/about", "About")(class!="{isActive(path,'/about', true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+		+link("{routes.about}", "About")(class!="{isActive(path,routes.about, true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("/c?filter=portfolio", "Portfolio")(class!="{isFilterActive($page.url,'/c', 'portfolio') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-		+link("/?filter=startups", "For Startups")(class!="{isFilterActive($page.url,'/c', 'startups') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-		+link("/c/jobs", "Jobs")(class!="{isActive(path,'/c/jobs') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+		+link("/c?filter=startups", "For Startups")(class!="{isFilterActive($page.url,'/c', 'startups') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+		+link("{routes.jobs}", "Jobs")(class!="{isActive(path, routes.jobs) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 
 mixin mobile-nav
@@ -23,7 +23,7 @@ mixin mobile-nav
 		.header-wrapper(class="flex px-4 py-3 justify-center items-center w-full")
 			.container(class="max-w-[1240px] flex items-center justify-between")
 				.logo-wrapper(class="z-10 relative")
-					a(class="relative flex w-6.5 h-6.5  {isBurgerDropdownShown ? '!w-25' : ''}" href="/")
+					a(class="relative flex w-6.5 h-6.5  {isBurgerDropdownShown ? '!w-25' : ''}" href="{routes.index}")
 						+if('isBurgerDropdownShown')
 							img(alt="Home" src="/logo-white-w-text.svg")
 							+else()
@@ -70,7 +70,7 @@ mixin mobile-nav
 				+primary-button("Submit")(class="mobile:w-full" type="submit")
 		.footer-nav(class="flex items-center justify-between tbDown:flex-col tbDown:items-start tbDown:py-6 tbDown:gap-6 py-4 px-4 max-w-[1240px] w-full")
 			.logo-wrapper(class="z-1 relative")
-				a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8" href="/"): img(alt="Home" src="/logo-white-w-text.svg")
+				a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): img(alt="Home" src="/logo-white-w-text.svg")
 			ul(class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 tbDown:relative tbDown:gap-4 tbDown:left-0 tbDown:transform-none" role="navigation")
 				+link("https://policies.holdex.io/#/terms", "Terms of Use")(target="_blank" rel="noreferrer")
 				+link("https://policies.holdex.io/#/privacy", "Privacy Policy")(target="_blank" rel="noreferrer")

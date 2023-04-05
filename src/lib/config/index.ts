@@ -4,19 +4,21 @@ import { dev, browser } from '$app/environment'
 type Config = {
     env: string
     apiUrl: string
-    appUrl: string
+    appUrl: string,
+    rollbarAccessToken: string,
 }
 
 let baseConfig: Config = {
     env: PUB_VERCEL_ENV,
     apiUrl: PUB_API_URL,
-    appUrl: "https://holdex.io"
+    appUrl: "https://holdex.io",
+    rollbarAccessToken: "3c668e61d7e54c9482f81cbafe6615c7",
 }
 
 let mockConfig: Config = {
+    ...baseConfig,
     env: "development",
     apiUrl: "https://stellate.holdex.io",
-    appUrl: "https://holdex.io"
 };
 
 const previewMock: boolean = false;
@@ -27,6 +29,7 @@ export const routes = {
     index: '/',
     about: '/about',
     studio: '/c',
+    jobs: '/c/jobs',
     category: (category: string | undefined) => `/c/${category}`,
     message: (category: string | undefined, message: string | undefined) => `/c/${category}/${message}`
 }

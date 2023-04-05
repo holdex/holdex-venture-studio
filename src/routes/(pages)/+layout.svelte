@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { routes } from '$lib/config';
 
 	import { socialIcons, Bars3, XMark } from '$components/Icons';
 	import Icon from '$components/Icons/index.svelte';
