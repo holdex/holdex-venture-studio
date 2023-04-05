@@ -47,8 +47,8 @@
                     Embed(item="{item}")
                     //- +else(): twitter
             Case(value="code")
-                pre(class="bg-l2 border border-solid border-l4 rounded-xl py-4 px-6")
-                    code(class="text-code")
+                pre(class="bg-l2 border border-solid border-l4 rounded-xl py-4 px-6 w-full overflow-auto")
+                    code(class="text-code font-mono")
                         TextWrapper(text="{item.data.code}")
             Case(value="table")
                 table(class="block w-full border-separate border-spacing-0 bg-l1 overflow-auto")

@@ -6,10 +6,18 @@ type Config = {
     apiUrl: string
 }
 
-let config: Config = {
+let baseConfig: Config = {
     env: PUB_VERCEL_ENV,
     apiUrl: PUB_API_URL
 }
+
+let mockConfig: Config = {
+    env: "development",
+    apiUrl: "https://stellate.holdex.io"
+};
+
+const previewMock: boolean = false;
+let config = previewMock ? mockConfig : baseConfig;
 
 export let isDev = dev;
 export let isBrowser = browser;

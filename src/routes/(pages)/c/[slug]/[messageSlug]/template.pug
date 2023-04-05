@@ -20,26 +20,25 @@ mixin author
             +crumbItemLink("/c/{storeData.community.slug}","{storeData.community.name}")
         +messageHeader("{message.title}", "{message.subtitle}")(id="{message.id}")
     +content-wrapper
-        .author-block(class="flex flex-col bg-l2 border border-solid border-l4 rounded-xl w-full")
-            .text-content(class!="flex flex-col items-start p-3.75 {message.isGoogleDoc ? 'pb-4' : ''}")
-                p(class="text-paragraph-l text-t3 xs:text-paragraph-s")
-                    time(
-                        datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
-                        title="{extendedTimeFormat(message.createdAt)}"
-                    ) {timeFormat(message.createdAt)} { message.updatedAt ? '| Updated ' + timeFormat(message.updatedAt) : ''}
-                p(class="text-paragraph-l text-t3 flex flex-wrap xs:text-paragraph-s") #[span.mr-1 By ] #[+author()]
-                p(class="text-paragraph-l text-t3 flex gap-3 xs:text-paragraph-s")
-                    span(class="inline-flex items-center gap-1 xs:hidden")
-                        Icon(icon="{Eye}" width="{20}" height="{20}" colorInherit)
-                        span {formatNumber(message.viewsCount, '0,0a')}
-                    span(class="inline-flex items-center gap-1 xs:hidden") 
-                        Icon(icon="{ChatBubbleLeftEllipsis}" width="{20}" height="{20}" colorInherit)
-                        span {formatNumber(message.allReplies.totalCount, '0,0a')}
-            +if('message.isGoogleDoc')
-                .edit-wrapper(class="flex items-center justify-between gap-4 border-t border-solid border-l4 p-3.75")
-                    p(class="text-paragraph-l text-t3 flex xs:text-paragraph-s") Have a suggestion?
-                    +button-secondary-small('Edit Article')(on:click!="{() => goto(message.isGoogleDoc)}" target="_blank" rel="noreferrer")
-
+        //- .author-block(class="flex flex-col bg-l2 border border-solid border-l4 rounded-xl w-full")
+        //-     .text-content(class!="flex flex-col items-start p-3.75 {message.isGoogleDoc ? 'pb-4' : ''}")
+        //-         p(class="text-paragraph-l text-t3 xs:text-paragraph-s")
+        //-             time(
+        //-                 datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
+        //-                 title="{extendedTimeFormat(message.createdAt)}"
+        //-             ) {timeFormat(message.createdAt)} { message.updatedAt ? '| Updated ' + timeFormat(message.updatedAt) : ''}
+        //-         p(class="text-paragraph-l text-t3 flex flex-wrap xs:text-paragraph-s") #[span.mr-1 By ] #[+author()]
+        //-         p(class="text-paragraph-l text-t3 flex gap-3 xs:text-paragraph-s")
+        //-             span(class="inline-flex items-center gap-1 xs:hidden")
+        //-                 Icon(icon="{Eye}" width="{20}" height="{20}" colorInherit)
+        //-                 span {formatNumber(message.viewsCount, '0,0a')}
+        //-             span(class="inline-flex items-center gap-1 xs:hidden") 
+        //-                 Icon(icon="{ChatBubbleLeftEllipsis}" width="{20}" height="{20}" colorInherit)
+        //-                 span {formatNumber(message.allReplies.totalCount, '0,0a')}
+        //-     +if('message.isGoogleDoc')
+        //-         .edit-wrapper(class="flex items-center justify-between gap-4 border-t border-solid border-l4 p-3.75")
+        //-             p(class="text-paragraph-l text-t3 flex xs:text-paragraph-s") Have a suggestion?
+        //-             +button-secondary-small('Edit Article')(on:click!="{() => goto(message.isGoogleDoc)}" target="_blank" rel="noreferrer")
         +if('message.tocs && message.tocs.length > 0')
             details(
                 open="false"
