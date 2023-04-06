@@ -15,7 +15,7 @@
 	{#if item.items.length > 0}
 		<svelte:element
 			this={type === 'unordered' ? 'ul' : 'ol'}
-			class="{type === 'unordered' ? 'list-disc' : 'list-decimal'} list-inside pl-3"
+			class="{type === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"
 		>
 			{#each item.items as inlineItem}
 				<svelte:self item={inlineItem} {type} let:item={inlineItem}>
