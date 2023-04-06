@@ -5,7 +5,7 @@ import viteRollbar from './src/builder/rollbar';
 
 const rollbarConfig = {
 	accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
-	version: '1.0',
+	version: process.env.VERCEL_GIT_COMMIT_SHA,
 	baseUrl: process.env.PUB_APP_URL,
 	ignoreUploadErrors: true,
 	silent: true
