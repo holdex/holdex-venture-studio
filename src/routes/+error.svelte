@@ -3,9 +3,6 @@
 	import { goto } from '$app/navigation';
 	import { Switch, Case } from '$components/Switch';
 	import { isDev } from '$lib/config';
-
-	$: ({ error } = $page);
-	console.log('page', error);
 </script>
 
 <template lang="pug" src="./error.pug">
