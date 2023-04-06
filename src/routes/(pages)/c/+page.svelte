@@ -83,7 +83,12 @@
 	};
 </script>
 
-<MetaTags title="Studio" description="" path={routes.studio} imagePath="" />
+<MetaTags
+	title="Holdex | Web3 based startup studio"
+	description="We empower the next web3 innovators to build and accelerate blockchain adoption."
+	path={routes.studio}
+	imagePath="/og/index.png"
+/>
 
 <template lang="pug" src="./template.pug">
 

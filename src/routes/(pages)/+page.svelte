@@ -13,7 +13,12 @@
 	$: message = Parser.parse(storeData?.message as Message);
 </script>
 
-<MetaTags title="Home" description="" path={routes.index} imagePath="" />
+<MetaTags
+	title="Holdex | Web3 based startup studio"
+	description="We empower the next web3 innovators to build and accelerate blockchain adoption."
+	path={routes.index}
+	imagePath="/og/index.png"
+/>
 
 <template lang="pug" src="./template.pug">
 

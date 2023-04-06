@@ -12,7 +12,7 @@ mixin main-nav
 		+link("/c?filter=portfolio", "Portfolio")(class!="{isFilterActive($page.url,'/c', 'portfolio') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("/c?filter=startups", "For Startups")(class!="{isFilterActive($page.url,'/c', 'startups') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("{routes.jobs}", "Jobs")(class!="{isActive(path, routes.jobs) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-		+link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+		//- +link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 
 mixin mobile-nav
 	+main-nav(class="relative flex-col")
