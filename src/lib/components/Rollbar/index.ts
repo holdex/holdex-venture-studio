@@ -3,7 +3,7 @@ import Rollbar, { type Configuration } from "rollbar";
 
 const rollbar = new Rollbar({
     accessToken: config.rollbarAccessToken,
-    enabled: isDev,
+    enabled: !isDev,
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {
