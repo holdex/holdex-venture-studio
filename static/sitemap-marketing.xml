@@ -3,6 +3,10 @@
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     <url>
+        <loc>https://holdex.io/</loc>
+	    <lastmod>2023-04-01</lastmod>
+    </url>
+    <url>
         <loc>https://holdex.io/about</loc>
 	    <lastmod>2023-04-01</lastmod>
     </url>
