@@ -58,6 +58,7 @@
 		? message.title
 		: `${community.name} - ${message.title}`}
 	description={message.subtitle ? message.subtitle : ''}
+	pageType="article"
 	path={routes.message(message.communitySlug, message.messageSlug)}
 	imagePath={message.cover ? message.cover : communityCover}
 />
