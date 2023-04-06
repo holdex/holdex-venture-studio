@@ -1,0 +1,18 @@
+include ../common-mixins
+include ../c/mixins
+
++if('storeData')
+    +main-section
+        +header-wrapper()(class="flex-col gap-8 xs:gap-4")
+            +nav-crumbs
+                +crumbItemLink("/", "Home")
+                +crumbDelimiter
+                +crumbItemText("Portfolio")
+            +messageHeader("Portfolio", "Meet the companies that are driving the innovation and adoption of disruptive technologies.")()
+            +short-links
+                li: +short-link("/apply", "{Bolt}", "Apply Now")
+                li: +short-link("/c/announcements/why-apply", "{InformationCircle}", "Why Apply")
+                li: +short-link("/c/learn", "{BookOpen}", "Guides")
+                li: +short-link("/about", "{UserGroup}", "About")
+        +content-wrapper
+            +feedRenderer
