@@ -9,11 +9,12 @@ import cacheConfig from './cache';
  * Initialize new Client instance
  * @returns Apollo Client
  */
-function createServerClient() {
+function createServerClient(fetch: any) {
   return new ApolloClient({
     credentials: 'include',
     link: new HttpLink({
-      uri: config.apiUrl
+      uri: config.apiUrl,
+      fetch
     }),
     ssrMode: true,
     cache: new InMemoryCache(cacheConfig),
@@ -38,7 +39,7 @@ function hydrateApolloClient(client: any, context?: Record<string, string>) {
   if (context) {
     browserClient.setLink(
       new HttpLink({
-        uri: context.uri,
+        uri: context.uri
       }),
     )
   }

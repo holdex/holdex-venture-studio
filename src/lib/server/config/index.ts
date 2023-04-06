@@ -1,4 +1,4 @@
-import { VERCEL_ENV, SITEMAP_AUTHORIZATION_KEY, CONTACT_FORM_SUBMIT_URL } from '$env/static/private'
+import { VERCEL_ENV, SITEMAP_AUTHORIZATION_KEY, CONTACT_FORM_SUBMIT_URL, ROLLBAR_ACCESS_TOKEN } from '$env/static/private'
 import { dev } from '$app/environment'
 
 type Config = {
@@ -10,7 +10,7 @@ type Config = {
 let config: Config = {
     sitemapAuthKey: SITEMAP_AUTHORIZATION_KEY,
     contactFormSubmitUrl: CONTACT_FORM_SUBMIT_URL,
-    rollbarAccessToken: "620a039a017846b9a02cc1705c740459"
+    rollbarAccessToken: ROLLBAR_ACCESS_TOKEN
 }
 
 export let isDev = dev;

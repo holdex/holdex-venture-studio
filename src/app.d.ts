@@ -14,9 +14,5 @@ declare global {
 		// interface Platform {}
 	}
 }
-declare module 'insane' {
-	import insane from 'insane/insane.js';
-	export default insane;
-}
 
 export { };

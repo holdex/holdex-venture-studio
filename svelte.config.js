@@ -7,9 +7,12 @@ const config = {
 	// for more information about preprocessors
 	preprocess: preprocess({
 		pug: true,
-		postcss: true
+		postcss: true,
+		sourceMap: true,
 	}),
-
+	compilerOptions: {
+		enableSourcemap: true,
+	},
 	kit: {
 		env: {
 			publicPrefix: 'PUB_',
