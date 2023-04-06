@@ -21,6 +21,7 @@
 		"@sveltejs/kit": "^1.5.0",
 		"@types/lodash-es": "^4.17.7",
 		"@types/numeral": "^2.0.2",
+		"@types/rimraf": "^4.0.5",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
@@ -52,6 +53,7 @@
 		"lodash-es": "^4.17.21",
 		"moment": "^2.29.4",
 		"numeral": "^2.0.6",
+		"rimraf": "^4.4.1",
 		"rollbar": "^2.26.1"
 	}
 }

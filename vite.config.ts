@@ -1,3 +1,4 @@
+import rimraf from 'rimraf'
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import viteRollbar from './src/builder/rollbar';
@@ -13,7 +14,18 @@ const rollbarConfig = {
 export default defineConfig({
 	plugins: [
 		sveltekit(),
-		viteRollbar(rollbarConfig)
+		viteRollbar(rollbarConfig),
+		{
+			name: 'sourcemap-cleanup',
+			apply: 'build',
+			enforce: 'post',
+			async closeBundle() {
+				console.log('sourcemap-cleanup: deleting all .map files')
+				rimraf('./.svelte-kit/**/*.map').catch((err: any) => {
+					if (err) console.error(err)
+				})
+			},
+		},
 	],
 	server: {
 		port: 3000
