@@ -6,7 +6,7 @@ export const handleError = async ({ error, event }) => {
     event.request.headers.forEach((v, k) => (headers[k] = v));
 
     rollbar.error({
-        message: error.message || "Server error",
+        message: error.message || "Client error",
         stack: error?.networkError || error?.graphQLErrors || error
     }, {
         headers: headers,
