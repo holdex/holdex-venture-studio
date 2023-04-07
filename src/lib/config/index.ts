@@ -34,6 +34,7 @@ let config = previewMock ? mockConfig : baseConfig;
 export const routes = {
     index: '/',
     about: '/about',
+    apply: '/apply',
     portfolio: '/portfolio',
     studio: '/c',
     jobs: '/c/jobs',
