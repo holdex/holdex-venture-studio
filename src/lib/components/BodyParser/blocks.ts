@@ -109,6 +109,7 @@ export type Author = {
 
 let videoRegExp = new RegExp(regExp.video, "gmi");
 let imageRegExp = new RegExp(regExp.image, "gmi");
+let tallyLinkExp = new RegExp(regExp.tallyLink, "mi");
 export let linkExp = new RegExp(/^<a\s+(?:[^>]*?\s+)?href=(["'\\])(.*?)\1[^>]*>(.*?)<\/a>$/, "ui");
 let inlineLinkExp = new RegExp(regExp.link, "ui");
 let inlineCodeExp = new RegExp(/^<(?:code|span) class=[\\]?"inline-code[\\]?"[^>]*>(.*)<\/(?:code|span)>$/, "ui");
@@ -120,6 +121,7 @@ let strongExp = new RegExp(/^<strong[^>]*>(.*?)<\/strong>$/, "ui");
 let italicExp = new RegExp(/^<i[^>]*>(.*?)<\/i>$/, "ui");
 let emExp = new RegExp(/^<em[^>]*>(.*?)<\/em>$/, "ui");
 let underlineExp = new RegExp(/^<u[^>]*>(.*?)<\/u>$/, "ui");
+
 
 let tokeniseInlineEls = (inlineBlocks: string[]) => {
     let tokens: any[] = [];
@@ -405,9 +407,18 @@ let parseCode = (block: CodeBlock) => {
 }
 
 let parseLinkTool = (block: LinkToolBlock) => {
-    return {
-        type: "linkTool",
-        data: block.data
+    if (tallyLinkExp.test(block.data.url)) {
+        let match = block.data.url.match(tallyLinkExp) as RegExpMatchArray;
+        return {
+            type: "tally",
+            url: block.data.url,
+            id: match[1]
+        }
+    } else {
+        return {
+            type: "linkTool",
+            data: block.data
+        }
     }
 }
 

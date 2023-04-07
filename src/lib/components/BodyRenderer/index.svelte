@@ -7,6 +7,7 @@
 	import NestedList from './Blocks/nestedList.svelte';
 	import Image from './Blocks/image.svelte';
 	import Embed from './Blocks/embed.svelte';
+	import TallyButton from './Blocks/tallyButton.svelte';
 
 	export let blocks: any[];
 

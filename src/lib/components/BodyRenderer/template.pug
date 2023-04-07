@@ -67,5 +67,7 @@
                                                     InlineBlock(item="{cellItem}")
             Case(value="image")
                 Image(item="{item}" index="{index}")
+            Case(value="tally")
+                TallyButton(item="{item}")
         +else()
             TextWrapper(text="{item}")
