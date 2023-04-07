@@ -14,7 +14,10 @@
         Button(
         label="Apply Now" 
             size="large" 
-            data-tally-open="{item.id}" 
+            data-tally-open="{item.id}"
+            data-tally-emoji-animation="wave"
+            data-tally-layout="modal"
+            data-tally-overlay="true"
         )
 </template>
 
