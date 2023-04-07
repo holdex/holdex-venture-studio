@@ -103,7 +103,7 @@ function convertToHoldexJson(document: Schema$Document) {
 
 
                     if (paragraph?.elements?.length === 2 && isLink(paragraph.elements)) {
-                        let { textStyle } = paragraph.elements[0].textRun as Schema$TextRun;
+                        let { textStyle, content } = paragraph.elements[0].textRun as Schema$TextRun;
 
                         if (textStyle?.link?.url) {
                             const link = textStyle?.link?.url as string;
@@ -149,6 +149,7 @@ function convertToHoldexJson(document: Schema$Document) {
                                         type: "linkTool",
                                         data: {
                                             url: link,
+                                            title: content,
                                             embed: `api/link.json?url=${link}`,
                                         }
                                     })

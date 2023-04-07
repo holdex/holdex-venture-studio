@@ -93,6 +93,7 @@ type LinkToolBlock = {
     type: string,
     data: {
         url: string,
+        title?: string,
         embed: string
     }
 }
@@ -412,6 +413,7 @@ let parseLinkTool = (block: LinkToolBlock) => {
         return {
             type: "tally",
             url: block.data.url,
+            title: block.data.title,
             id: match[1]
         }
     } else {

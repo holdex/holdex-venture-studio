@@ -5,6 +5,7 @@
 		type: string;
 		url: string;
 		id: string;
+		title?: string;
 	};
 	export let item: Item;
 </script>
@@ -12,7 +13,7 @@
 <template lang="pug">
     .btn-wrapper(class="flex flex-col items-start py-2")
         Button(
-        label="Apply Now" 
+            label!="{item.title ? item.title : 'Apply Now'}" 
             size="large" 
             data-tally-open="{item.id}"
             data-tally-emoji-animation="wave"
