@@ -8,7 +8,7 @@ import fetch from 'node-fetch'
 const ROLLBAR_ENDPOINT = 'https://api.rollbar.com/api/1/sourcemap'
 
 
-async function uploadSourcemap(form, { filename, rollbarEndpoint, silent }) {
+async function uploadSourcemap(form, { filename, rollbarEndpoint, silent, baseUrl }) {
     const errMessage = `Failed to upload ${filename} to Rollbar`
 
     let res
@@ -38,7 +38,7 @@ async function uploadSourcemap(form, { filename, rollbarEndpoint, silent }) {
 
     // Success
     if (!silent) {
-        console.info(`Uploaded ${filename} to Rollbar`)
+        console.info(`Uploaded ${filename} to Rollbar for ${baseUrl} domain`)
     }
 }
 
@@ -108,7 +108,8 @@ export default function rollbarSourcemaps({
                         return uploadSourcemap(form, {
                             filename: asset.original_file,
                             rollbarEndpoint,
-                            silent
+                            silent,
+                            baseUrl
                         })
                     })
                 )
