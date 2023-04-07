@@ -11,11 +11,6 @@ include ../mixins
                 +crumbDelimiter
                 +crumbItemText("{community.name}")
             +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
-            +short-links
-                li: +short-link("/apply", "{Bolt}", "Apply Now")
-                li: +short-link("/c/announcements/why-apply", "{InformationCircle}", "Why Apply")
-                li: +short-link("/c/learn", "{BookOpen}", "Guides")
-                li: +short-link("/about", "{UserGroup}", "About")
         +content-wrapper
             +filter-options
             +if('community.hashtags && community.hashtags.totalCount > 0')
