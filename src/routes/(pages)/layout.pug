@@ -10,7 +10,7 @@ mixin main-nav
 	ul(class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 py-4" role="navigation")&attributes(attributes)
 		+link("{routes.about}", "About")(class!="{isActive(path,routes.about, true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("{routes.portfolio}", "Portfolio")(class!="{isActive(path,routes.portfolio, true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
-		+link("/c?filter=startups", "For Startups")(class!="{isFilterActive($page.url,'/c', 'startups') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
+		+link("{routes.forStartups}", "For Startups")(class!="{isActive(path, routes.forStartups, true) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		+link("{routes.jobs}", "Jobs")(class!="{isActive(path, routes.jobs) ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 		//- +link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 

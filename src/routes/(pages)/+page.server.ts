@@ -1,10 +1,11 @@
 import { loadMessage } from '$lib/models/message'
 import config from '$lib/server/config';
+import { default as clientConfig } from '$lib/config';
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types'
 
 export const load: PageServerLoad = async ({ locals }) => {
-    const options = await loadMessage(locals.apolloClient, "69d4ab8971234f1db97cab8333a60419");
+    const options = await loadMessage(locals.apolloClient, clientConfig.articles.home);
 
     return {
         queryOptions: JSON.stringify(options),
