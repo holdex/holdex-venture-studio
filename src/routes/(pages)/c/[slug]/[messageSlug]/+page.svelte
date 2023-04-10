@@ -60,7 +60,7 @@
 	description={message.subtitle ? message.subtitle : ''}
 	pageType="article"
 	path={routes.message(message.communitySlug, message.messageSlug)}
-	imagePath={message.cover ? message.cover : communityCover}
+	imageUrl={message.cover ? message.cover : communityCover}
 />
 
 <template lang="pug" src="./template.pug">

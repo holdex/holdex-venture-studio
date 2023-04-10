@@ -4,7 +4,8 @@
 	export let title: string;
 	export let description: string;
 	export let path: string = '';
-	export let imagePath: string;
+	export let imagePath: string = '';
+	export let imageUrl: string | undefined = undefined;
 	export let pageType: string | undefined = undefined;
 	export let pageName: string | undefined = undefined;
 
@@ -17,7 +18,11 @@
 	<meta name="og:url" content="{deploymentUrl}{path}" />
 	<meta name="og:title" content={title} />
 	<meta name="og:description" content={description} />
-	<meta name="og:image" content="{deploymentUrl}{imagePath}" />
+	{#if imageUrl}
+		<meta name="og:image" content={imageUrl} />
+	{:else}
+		<meta name="og:image" content="{deploymentUrl}{imagePath}" />
+	{/if}
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="{deploymentUrl}{imagePath}" />
