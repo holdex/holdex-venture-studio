@@ -6,7 +6,7 @@ Switch(condition="{item.type}")
     Case(value="hashtag")
         a(
             class="relative underline underline-offset-4 pb-1 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25"
-            href="/c?q={encodeURIComponent(item.text.toLowerCase().slice(1))}"
+            href="/c?filter={encodeURIComponent(item.text.toLowerCase().slice(1))}"
         )
             TextWrapper(text="{item.text}")
     Case(value="code")

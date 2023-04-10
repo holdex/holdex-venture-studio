@@ -62,7 +62,7 @@ mixin feed
                     article(class="flex items-center gap-4")
                         .feed-icon(class="relative block w-32 h-24 xs:w-24 border border-solid border-l4 rounded-xl bg-l2")
                             +if('message.cover')
-                                img(class="relative block w-full h-full object-center rounded-xl object-fill" alt="{message.title}" src="{message.cover}")
+                                img(class="relative block w-full h-full object-center rounded-xl object-cover" alt="{message.title}" src="{message.cover}")
                                 +else()
                                     span(role="img" class="relative block w-10 h-12 mx-auto mt-6") {@html feedEmptyIcon}
                         .feed-content(class="flex items-start justify-center flex-col")
