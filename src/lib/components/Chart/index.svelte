@@ -15,7 +15,7 @@
 	$: options = generateOptions(prices, isLoading);
 
 	$: {
-		if (isBrowser) {
+		if (isBrowser && prices) {
 			initComponent(options);
 		}
 	}

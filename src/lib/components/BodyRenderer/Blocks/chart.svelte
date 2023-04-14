@@ -9,7 +9,6 @@
 	export let item: Item;
 
 	let handleChartData = async (url: string) => {
-		await new Promise((res, rej) => setTimeout(res, 1000));
 		return fetch(`/api/market-info?url=${url}`).then((res) => res.json());
 	};
 </script>
