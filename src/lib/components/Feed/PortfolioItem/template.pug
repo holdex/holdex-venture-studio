@@ -1,0 +1,15 @@
+a(href="/c/{message.communitySlug}/{message.messageSlug}" class!="transition-colors text-t1 hover:text-accent1-default block {className}")
+    article(class="relative flex items-start gap-4 flex-col p-5.75 border border-solid border-l4 rounded-xl h-96 xs:p-3.75 xs:h-80")
+        span.feed-icon(class="absolute block w-full h-full left-0 top-0 rounded-xl")
+            +if('message.cover')
+                img(class="relative block w-full h-full object-center rounded-xl object-cover" alt="{message.title}" src="{message.cover}")
+                +else()
+                    span(role="img" class="relative block w-10 h-12 mx-auto mt-6") {@html feedEmptyIcon}
+        +if('message.hashtags && message.hashtags.length > 0')
+            ul.feed-body-tags(class="relative z-1 flex items-start gap-3 flex-wrap w-full mb-4")
+                +each('message.hashtags as tag')
+                    Hashtag(element="li" tag="{'#'}{tag}")
+        .feed-body(class="flex flex-col justify-end relative z-1 flex-grow")
+            h2(class="relative w-full text-h2-l xs:text-h2-s font-satoshi text-inherit block whitespace-nowrap overflow-hidden text-ellipsis mb-4") {message.title}
+            +if('message.subtitle')
+                p(class="relative w-full text-paragraph-l text-t1 block") {message.subtitle}

@@ -1,0 +1,17 @@
+<script lang="ts">
+	import Icon from '$components/Icons/index.svelte';
+	import Hashtag from '$components/Hashtag/index.svelte';
+	import { ChatBubbleLeftEllipsis, HandThumbUp, feedEmptyIcon } from '$components/Icons';
+	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
+	import { formatNumber } from '$components/NumbersManager';
+	import type { ParsedMessage } from '$components/BodyParser';
+
+	export let message: ParsedMessage;
+
+	let className: string = '';
+	export { className as class };
+</script>
+
+<template lang="pug" src="./template.pug">
+
+</template>
