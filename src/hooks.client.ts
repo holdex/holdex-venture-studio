@@ -5,7 +5,7 @@ import type { HandleClientError } from '@sveltejs/kit';
 
 export const handleError: HandleClientError = async ({ error, event }) => {
     const { code, message, stack, error: _error } = transformError(error);
-    if (Number(code) !== 404) {
+    if (!(message).includes('Not found') || !(message).includes('not_found')) {
         rollbar.configure({
             payload: {
                 environment: config.env,

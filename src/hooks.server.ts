@@ -11,12 +11,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 }
 
 export const handleError: HandleServerError = ({ error, event }) => {
-    console.error('err', error);
     const headers: Record<string, any> = {};
     event.request.headers.forEach((v, k) => (headers[k] = v));
     const { code, message, stack, error: _error } = transformError(error);
 
-    if (Number(code) !== 404) {
+    if (!(message).includes('Not found') || !(message).includes('not_found')) {
         rollbar.configure({ accessToken: config.rollbarAccessToken }).error({
             message: message,
             stack: stack
