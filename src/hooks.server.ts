@@ -11,6 +11,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 }
 
 export const handleError: HandleServerError = ({ error, event }) => {
+    console.error('err', error);
     const headers: Record<string, any> = {};
     event.request.headers.forEach((v, k) => (headers[k] = v));
     const { code, message, stack, error: _error } = transformError(error);
