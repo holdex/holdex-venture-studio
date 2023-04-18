@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Icon from '$components/Icons/index.svelte';
-	import { ChatBubbleLeftEllipsis, HandThumbUp, feedEmptyIcon } from '$components/Icons';
+	import TextParagraph from '$components/TextParagraph/index.svelte';
+
+	import { ChatBubbleLeftEllipsis, HandThumbUp } from '$components/Icons';
 	import { timeFormat, extendedTimeFormat } from '$components/DateManager';
 	import { formatNumber } from '$components/NumbersManager';
 	import type { ParsedMessage } from '$components/BodyParser';

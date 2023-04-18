@@ -49,9 +49,6 @@ mixin messageHeader(title, subtitle)
     if subtitle
         p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s max-w-[604px] w-full")=subtitle
 
-mixin hashtag(tag)
-    li(class="inline-flex relative justify-center cursor-pointer rounded-xl bg-l2 text-cta text-t3 shadow-tag transition-all px-3 hover:text-t1 hover:bg-l3 before:content-[''] before:absolute before:border before:border-solid before:border-l4 before:w-full before:h-full before:rounded-xl before:left-0 before:top-0")&attributes(attributes)= tag
-
 mixin feedRenderer
     +if('isSearchMode')
         +if('totalCount > 0')
