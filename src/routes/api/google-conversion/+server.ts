@@ -32,6 +32,7 @@ function convertToHoldexJson(document: Schema$Document) {
     };
 
     if (headers) {
+        //TODO: Parse authors
         Object.values(headers).forEach(({ content }) => {
             (content as Schema$StructuralElement[]).forEach(({ table }, i) => {
                 if (table && Array.isArray(table.tableRows) && table.tableRows.length > 0) {
