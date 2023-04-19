@@ -4,6 +4,8 @@ import { type ApolloError, isApolloError } from '@apollo/client/core';
 import type { HandleClientError } from '@sveltejs/kit';
 
 export const handleError: HandleClientError = async ({ error, event }) => {
+    console.log('here client', typeof error);
+
     const { code, message, stack, error: _error } = transformError(error);
     if (!message.includes('Not found') && !message.includes('not_found')) {
         rollbar.configure({
@@ -34,6 +36,14 @@ let transformError = (error: unknown) => {
             message: _error.message,
             error: _error,
             stack: _error?.networkError || _error?.graphQLErrors || _error
+        }
+    } else if (error instanceof TypeError) {
+        const _error = JSON.stringify(error as any);
+        return {
+            code: (error as any)?.code ?? '500',
+            message: (error as any)?.message ?? 'Client error',
+            error: _error,
+            stack: _error
         }
     } else if (typeof error === "object") {
         const _error = JSON.stringify(error as any);

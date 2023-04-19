@@ -13,6 +13,9 @@ export const handle: Handle = async ({ event, resolve }) => {
 export const handleError: HandleServerError = ({ error, event }) => {
     const headers: Record<string, any> = {};
     event.request.headers.forEach((v, k) => (headers[k] = v));
+
+    console.log('here', error);
+
     const { code, message, stack, error: _error } = transformError(error);
 
     if (!message.includes('Not found') && !message.includes('not_found')) {
@@ -37,6 +40,14 @@ let transformError = (error: unknown) => {
             message: _error.message,
             error: _error,
             stack: _error?.networkError || _error?.graphQLErrors || _error
+        }
+    } else if (error instanceof TypeError) {
+        const _error = JSON.stringify(error as any);
+        return {
+            code: '500',
+            message: (error as any)?.message ?? 'Server error',
+            error: _error,
+            stack: _error
         }
     } else if (typeof error === "object") {
         const _error = JSON.stringify(error as any);
