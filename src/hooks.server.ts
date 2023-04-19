@@ -1,7 +1,7 @@
 import { createServerClient } from '$components/ApolloClient'
 import config from '$lib/server/config'
 import rollbar from '$components/Rollbar'
-import { ApolloError, isApolloError } from '@apollo/client/core'
+import transformError from '$lib/utils/errorTransformer';
 import type { Handle, HandleServerError } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -14,9 +14,7 @@ export const handleError: HandleServerError = ({ error, event }) => {
     const headers: Record<string, any> = {};
     event.request.headers.forEach((v, k) => (headers[k] = v));
 
-    console.log('here', error);
-
-    const { code, message, stack, error: _error } = transformError(error);
+    const { code, message, stack, error: _error } = transformError(error, 'Server error');
 
     if (!message.includes('Not found') && !message.includes('not_found')) {
         rollbar.configure({ accessToken: config.rollbarAccessToken }).error([message, stack], {
@@ -29,41 +27,5 @@ export const handleError: HandleServerError = ({ error, event }) => {
         code: code,
         message: message,
         error: _error
-    }
-}
-
-let transformError = (error: unknown) => {
-    if (isApolloError(error as any)) {
-        const _error = error as ApolloError;
-        return {
-            code: '500',
-            message: _error.message,
-            error: _error,
-            stack: _error?.networkError || _error?.graphQLErrors || _error
-        }
-    } else if (error instanceof TypeError) {
-        const _error = JSON.stringify(error as any);
-        return {
-            code: '500',
-            message: (error as any)?.message ?? 'Server error',
-            error: _error,
-            stack: _error
-        }
-    } else if (typeof error === "object") {
-        const _error = JSON.stringify(error as any);
-        return {
-            code: (error as any)?.code ?? '500',
-            message: (error as any)?.message ?? 'Server error',
-            error: _error,
-            stack: _error
-        }
-    } else {
-        const _error = JSON.stringify(error as any);
-        return {
-            code: '500',
-            message: 'Server error',
-            error: _error,
-            stack: _error
-        }
     }
 }

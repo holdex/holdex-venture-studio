@@ -8,6 +8,8 @@
 	};
 	export let item: Item;
 
+	$: console.log('item', item);
+
 	let addAdditionalParams = (url: string, service: string) => {
 		let _url = new URL(url);
 		if (service === 'tally') {
