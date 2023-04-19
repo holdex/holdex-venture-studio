@@ -7,6 +7,7 @@ export const handleError: HandleClientError = async ({ error, event }) => {
     const { code, message, stack, error: _error } = transformError(error, 'Client error');
     if (!message.includes('Not found') && !message.includes('not_found')) {
         rollbar.configure({
+            autoInstrument: true,
             payload: {
                 environment: config.env,
                 client: {
@@ -16,7 +17,11 @@ export const handleError: HandleClientError = async ({ error, event }) => {
                     }
                 }
             }
-        }).error([message, stack], { url: event.url });
+        }).error(message, {
+            stack,
+            url: event.url,
+            route: event.route
+        });
     }
 
     return {

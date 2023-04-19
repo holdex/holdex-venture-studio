@@ -1,20 +1,24 @@
 import { ApolloError, isApolloError } from "@apollo/client/core";
 
 const transformError = (error: unknown, fallbackMessage: string) => {
-
-    console.log('error', error, fallbackMessage);
+    let result: {
+        code: string,
+        message: string,
+        error: any,
+        stack: any
+    } = {} as any;
 
     if (isApolloError(error as any)) {
         const _error = error as ApolloError;
-        return {
+        result = {
             code: '500',
             message: _error.message,
             error: _error,
             stack: _error?.networkError || _error?.graphQLErrors || _error
         }
-    } else if (error instanceof TypeError) {
+    } else if (error instanceof TypeError || error instanceof ReferenceError || error instanceof SyntaxError) {
         const _error = JSON.stringify(error as any);
-        return {
+        result = {
             code: '500',
             message: (error as any)?.message ?? fallbackMessage,
             error: _error,
@@ -22,7 +26,7 @@ const transformError = (error: unknown, fallbackMessage: string) => {
         }
     } else if (typeof error === "object") {
         const _error = JSON.stringify(error as any);
-        return {
+        result = {
             code: (error as any)?.code ?? '500',
             message: (error as any)?.message ?? fallbackMessage,
             error: _error,
@@ -30,13 +34,14 @@ const transformError = (error: unknown, fallbackMessage: string) => {
         }
     } else {
         const _error = JSON.stringify(error as any);
-        return {
+        result = {
             code: '500',
-            message: 'Client error',
+            message: fallbackMessage,
             error: _error,
             stack: _error
         }
     }
+    return result;
 }
 
 export default transformError;
