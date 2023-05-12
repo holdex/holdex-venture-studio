@@ -6,6 +6,6 @@ include ../c/mixins
 			+crumbItemLink("/", "Holdex")
 			+crumbDelimiter
 			+crumbItemText("For Startups")
-		h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s gap-3" id="{message.id}") {message.title}
+		h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s" id="{message.id}") {message.title}
 	+content-wrapper
 		BodyRenderer(blocks="{message.blocks}")
