@@ -23,6 +23,7 @@
 		}
 		return currentUrl.startsWith(path);
 	};
+
 	
 	const isFilterActive = (currentUrl: URL, path: string, filter: string) => {
 		const f = currentUrl.searchParams.get('filter');
@@ -69,6 +70,10 @@
 			document?.body?.classList.remove('menu-opened');
 		}
 	};
+
+	const validateEmail =(email: string) => {
+		return regExp.email.test(email);
+	}
 </script>
 
 <template lang="pug" src="./layout.pug">
