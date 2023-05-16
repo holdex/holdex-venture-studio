@@ -68,8 +68,10 @@ mixin mobile-nav
 						on:blur="{displayError(email)}"
 						class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l2 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3" 
 						placeholder="Your email address")
-				p#error-message(class="hidden text-error-a text-footnote font-inter flex items-center mb-9 mt-8 xs:my-6")="{@html exclamationTriangle}" 
+
+				p#error-message(class="text-error-a text-footnote font-inter flex items-center mb-9 mt-8 xs:my-6 {isError ? 'flex' : 'hidden'}")="{@html exclamationTriangle}" 
 					span(class="ml-2.5") Invalid email address
+
 				+primary-button("Submit")(class="mobile:w-full" disabled="{message == '' || name == '' || email == '' || !validateEmail(email)  ? true : false}" type="submit")
 		.footer-nav(class="flex items-center justify-between tbDown:flex-col tbDown:items-start tbDown:py-6 tbDown:gap-6 py-4 px-4 max-w-[1240px] w-full")
 			.logo-wrapper(class="z-1 relative")
