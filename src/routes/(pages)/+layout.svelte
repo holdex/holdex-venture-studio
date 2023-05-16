@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { routes } from '$lib/config';
 
-	import { socialIcons, Bars3, XMark } from '$components/Icons';
+	import { socialIcons, Bars3, XMark, exclamationTriangle } from '$components/Icons';
 	import Icon from '$components/Icons/index.svelte';
 	import { regExp } from '$components/BodyParser/utils';
 	import { deserialize, applyAction } from '$app/forms';
@@ -73,6 +73,15 @@
 
 	const validateEmail =(email: string) => {
 		return regExp.email.test(email);
+	}
+
+	const displayError = (email: string) => {
+		if(!validateEmail(email)) {
+			window.document.getElementById("error-message")!.style.display = "flex"
+		} else {
+			window.document.getElementById("error-message")!.style.display = "none"
+		}
+
 	}
 </script>
 
