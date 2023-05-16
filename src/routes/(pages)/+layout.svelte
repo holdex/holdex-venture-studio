@@ -2,7 +2,7 @@
 	import { page } from '$app/stores';
 	import { routes } from '$lib/config';
 
-	import { socialIcons, Bars3, XMark, exclamationTriangle } from '$components/Icons';
+	import { socialIcons, Bars3, XMark, ExclamationTriangle } from '$components/Icons';
 	import Icon from '$components/Icons/index.svelte';
 	import { regExp } from '$components/BodyParser/utils';
 	import { deserialize, applyAction } from '$app/forms';
