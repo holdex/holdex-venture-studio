@@ -76,7 +76,6 @@ module.exports = {
       'rating-a': 'rgb(var(--rating-a) / <alpha-value>)',
       'rating-b': 'rgb(var(--rating-b) / <alpha-value>)',
       'rating-c': 'rgb(var(--rating-c) / <alpha-value>)',
-	  
     },
     fontSize: {
       "title-l": [
