@@ -76,7 +76,7 @@ module.exports = {
       'rating-a': 'rgb(var(--rating-a) / <alpha-value>)',
       'rating-b': 'rgb(var(--rating-b) / <alpha-value>)',
       'rating-c': 'rgb(var(--rating-c) / <alpha-value>)',
-	  'error-a': 'rgb(var(--error-a) / <alpha-value>)'
+	 
     },
     fontSize: {
       "title-l": [
@@ -257,7 +257,8 @@ module.exports = {
         '30': '7.5rem',
         '31': '7.75rem',
         '54': '13.5rem',
-        '61': '15.25rem'
+        '61': '15.25rem',
+
       },
       opacity: {
         '15': '0.15'
@@ -283,7 +284,7 @@ module.exports = {
         'secondary-button': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
         'secondary-button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
         'secondary-button-active': '0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
-		'button-disabled': '0px 4px 8px rgba(0, 0, 0, 0.16)'
+		
       }
     }
   },
