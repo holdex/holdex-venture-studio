@@ -69,7 +69,7 @@ mixin mobile-nav
 						class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l2 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3" 
 						placeholder="Your email address")
 
-				p#error-message(class="text-rating-c text-footnote font-inter flex items-center mb-9 mt-8 xs:my-6 {isError ? 'flex' : 'hidden'}")
+				p#error-message(class="text-rating-c text-footnote font-inter flex items-center mb-6 xs:mb-4  {isError ? 'flex' : 'hidden'}")
 					Icon(icon="{ExclamationTriangle}" width="{17.26}" height="{15.62}" colorInherit)
 					span(class="ml-2.5") Invalid email address
 				Button(label="Submit" class="mobile:!w-full" disabled="{message == '' || name == '' || email == '' || !validateEmail(email)  ? true : false}" isSubmitBtn="true")
