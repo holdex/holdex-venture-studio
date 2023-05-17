@@ -78,8 +78,7 @@
 	}
 
 	const displayError = (email: string) => {
-		return !validateEmail(email) ? isError = true : isError = false
-
+		return !validateEmail(email) && email.length > 0 ? isError = true : isError = false
 	}
 </script>
 
