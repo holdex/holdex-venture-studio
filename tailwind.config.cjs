@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -7,9 +7,9 @@ module.exports = {
 		borderRadius: {
 			...defaultTheme.borderRadius,
 			'2sm': '4px',
-			"2lg": "10px",
+			'2lg': '10px',
 			'base-radius': '20px',
-			'underbase': '11px'
+			underbase: '11px'
 		},
 		screens: {
 			xl: {
@@ -52,9 +52,9 @@ module.exports = {
 			}
 		},
 		colors: {
-			inherit: "inherit",
-			current: "currentColor",
-			transparent: "transparent",
+			inherit: 'inherit',
+			current: 'currentColor',
+			transparent: 'transparent',
 			l1: 'rgb(var(--l1) / <alpha-value>)',
 			l2: 'rgb(var(--l2) / <alpha-value>)',
 			l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -75,220 +75,226 @@ module.exports = {
 
 			'rating-a': 'rgb(var(--rating-a) / <alpha-value>)',
 			'rating-b': 'rgb(var(--rating-b) / <alpha-value>)',
-			'rating-c': 'rgb(var(--rating-c) / <alpha-value>)',
+			'rating-c': 'rgb(var(--rating-c) / <alpha-value>)'
 		},
 		fontSize: {
-			"title-l": [
+			'title-l': [
 				'56px',
 				{
 					lineHeight: '64px',
 					fontWeight: '900'
 				}
 			],
-			"title-s": [
+			'title-s': [
 				'48px',
 				{
 					lineHeight: '48px',
 					fontWeight: '900'
 				}
 			],
-			"subtitle-l": [
+			'subtitle-l': [
 				'20px',
 				{
 					lineHeight: '32px',
 					fontWeight: '500'
 				}
 			],
-			"subtitle-s": [
+			'subtitle-s': [
 				'18px',
 				{
 					lineHeight: '32px',
 					fontWeight: '500'
 				}
 			],
-			"h1-l": [
+			'h1-l': [
 				'48px',
 				{
 					lineHeight: '64px',
 					fontWeight: '900'
 				}
 			],
-			"h1-s": [
+			'h1-s': [
 				'42px',
 				{
 					lineHeight: '48px',
 					fontWeight: '900'
 				}
 			],
-			"h2-l": [
+			'h2-l': [
 				'32px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h2-s": [
+			'h2-s': [
 				'28px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h3-l": [
+			'h3-l': [
 				'28px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h3-s": [
+			'h3-s': [
 				'24px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h4-l": [
+			'h4-l': [
 				'24px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h4-s": [
+			'h4-s': [
 				'20px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h5-l": [
+			'h5-l': [
 				'20px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h5-s": [
+			'h5-s': [
 				'18px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h6-l": [
+			'h6-l': [
 				'18px',
 				{
 					lineHeight: '32px',
 					fontWeight: '900'
 				}
 			],
-			"h6-s": [
+			'h6-s': [
 				'16px',
 				{
 					lineHeight: '16px',
 					fontWeight: '900'
 				}
 			],
-			"paragraph-l": [
+			'paragraph-l': [
 				'18px',
 				{
 					lineHeight: '32px',
 					fontWeight: '400'
 				}
 			],
-			"paragraph-s": [
+			'paragraph-s': [
 				'16px',
 				{
 					lineHeight: '32px',
 					fontWeight: '400'
 				}
 			],
-			"cta": [
+			cta: [
 				'14px',
 				{
 					lineHeight: '32px',
 					fontWeight: '700'
 				}
 			],
-			"footnote": [
+			footnote: [
 				'14px',
 				{
 					lineHeight: '20px',
 					fontWeight: '500'
 				}
 			],
-			"caption": [
+			caption: [
 				'12px',
 				{
 					lineHeight: '16px',
 					fontWeight: '500'
 				}
 			],
-			"code": [
+			code: [
 				'14px',
 				{
 					lineHeight: '32px',
 					fontWeight: '600'
 				}
-			],
+			]
 		},
 		fontFamily: {
-			'inter': ['"Inter"'],
-			'satoshi': ['"Satoshi"'],
-			'mono': ['"JetBrains Mono"']
+			inter: ['"Inter"'],
+			satoshi: ['"Satoshi"'],
+			mono: ['"JetBrains Mono"']
 		},
 		extend: {
 			spacing: {
-				'0.75': '0.1875rem',
-				'1.25': '0.3125rem',
-				'1.75': '0.4375rem',
-				'2.25': '0.5625rem',
-				'2.75': '0.6875rem',
-				'3.75': '0.9375rem',
-				'5.5': '1.375rem',
-				'5.75': '1.4375rem',
-				'6.5': '1.625rem',
+				0.75: '0.1875rem',
+				1.25: '0.3125rem',
+				1.75: '0.4375rem',
+				2.25: '0.5625rem',
+				2.75: '0.6875rem',
+				3.75: '0.9375rem',
+				5.5: '1.375rem',
+				5.75: '1.4375rem',
+				6.5: '1.625rem',
 				'1/2': '50%',
-				'19': '4.75rem',
-				'21': '5.438rem',
-				'23': '5.75rem',
-				'25': '6.25rem',
-				'30': '7.5rem',
-				'31': '7.75rem',
-				'37': '8.563rem',
-				'41': '10.563rem',
-				'54': '13.5rem',
-				'61': '15.25rem',
-				'578': '36.125rem',
-				'636': '39.75rem',
+				19: '4.75rem',
+				21: '5.438rem',
+				23: '5.75rem',
+				25: '6.25rem',
+				30: '7.5rem',
+				31: '7.75rem',
+				37: '8.563rem',
+				41: '10.563rem',
+				54: '13.5rem',
+				61: '15.25rem',
+				578: '36.125rem',
+				636: '39.75rem'
 			},
 			opacity: {
-				'15': '0.15'
+				15: '0.15'
 			},
 			fontFamily: {
-				'sans': ['Inter', ...defaultTheme.fontFamily.sans]
+				sans: ['Inter', ...defaultTheme.fontFamily.sans]
 			},
 			zIndex: {
 				1: '1',
 				9: '9'
 			},
 			backdropBlur: {
-				overlay: '5px',
+				overlay: '5px'
 			},
 			boxShadow: {
 				...defaultTheme.boxShadow,
-				'input': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
-				'tag': '0px 4px 8px rgba(0, 0, 0, 0.16)',
+				input: '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
+				tag: '0px 4px 8px rgba(0, 0, 0, 0.16)',
 				'tag-active': ' 0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16)',
-				'button': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
-				'button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
-				'button-active': '0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
-				'secondary-button': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
-				'secondary-button-hover': '0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
-				'secondary-button-active': '0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+				button:
+					'0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+				'button-hover':
+					'0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+				'button-active':
+					'0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+				'secondary-button':
+					'0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 8px rgba(0, 0, 0, 0.16), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+				'secondary-button-hover':
+					'0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+				'secondary-button-active':
+					'0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)'
 			}
 		}
 	},
 	plugins: []
-}
+};
