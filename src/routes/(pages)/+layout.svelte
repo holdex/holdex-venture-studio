@@ -89,7 +89,11 @@
 		return !validateEmail(email) && email.length > 0 ? isError = true : isError = false
 	}
 </script>
-
+<style>
+.succ {
+	color:white;
+	}
+</style>
 <template lang="pug" src="./layout.pug">
 
 </template>
