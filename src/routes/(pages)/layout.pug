@@ -75,7 +75,7 @@ mixin mobile-nav
 				Button(label="Submit" class="mobile:!w-full" disabled="{message == '' || name == '' || email == '' || !validateEmail(email)  ? true : false}" isSubmitBtn="true")
 				.feedback-toast(class="absolute top-96 left-636 xs:top-578 xs:left-20 z-10 w-41 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2 py-3 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'flex' : 'hidden'}")
 					Icon(icon="{CheckCircle}" width="{19.5}" height="{19.5}" colorInherit)
-					span.succ(class="text-cta" ) Message sent!
+					span.succ(class="text-t1 text-cta" ) Message sent!
 		.footer-nav(class="flex items-center justify-between tbDown:flex-col tbDown:items-start tbDown:py-6 tbDown:gap-6 py-4 px-4 max-w-[1240px] w-full")
 			.logo-wrapper(class="z-1 relative")
 				a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): img(alt="Home" src="/logo-white-w-text.svg")
