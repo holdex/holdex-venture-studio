@@ -73,7 +73,7 @@ mixin mobile-nav
 					Icon(icon="{ExclamationTriangle}" width="{17.26}" height="{15.62}" colorInherit)
 					span() Invalid email address
 				Button(label="Submit" class="mobile:!w-full" disabled="{message == '' || name == '' || email == '' || !validateEmail(email)  ? true : false}" isSubmitBtn="true")
-				.feedback-toast(class="absolute top-96 xs:top-578 left-11/25 xs:left-1/4 z-10 w-41 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2 py-3 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'block' : 'flex'}")
+				.feedback-toast(class="absolute top-96 xs:top-578 left-11/25 xs:left-1/4 z-10 w-41 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2 py-3 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'flex' : 'hidden'}")
 					Icon(icon="{CheckCircle}" width="{19.5}" height="{19.5}" colorInherit)
 					span.succ(class="text-t1 text-cta" ) Message sent!
 		.footer-nav(class="flex items-center justify-between tbDown:flex-col tbDown:items-start tbDown:py-6 tbDown:gap-6 py-4 px-4 max-w-[1240px] w-full")
