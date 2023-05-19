@@ -37,9 +37,10 @@
                             InlineBlock(item="{lItem}") 
             //- Case(value="linkTool")
             Case(value="quote")
-                .blockquote(
-                    title="{item.text}" 
+                svelte:element(
+                    this="blockquote" 
                     class="relative bg-l2 overflow-clip rounded-xl border border-solid border-l4 p-4 pl-5.5 text-paragraph-s text-t1 before:absolute before:content-[''] before:w-1.5 before:h-full before:left-0 before:top-0 before:bg-accent1-default")
+                    title="{item.text}" 
                     +each("item.items as QItem")
                         InlineBlock(item="{QItem}") 
             Case(value="embed")
