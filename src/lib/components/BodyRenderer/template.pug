@@ -17,9 +17,14 @@
                             +each("item.items as hItem")
                                 InlineBlock(item="{hItem}")
             Case(value="paragraph")
-                svelte:element(this="p" class="p-el text-paragraph-l text-t2")
-                    +each("item.items as pItem")
-                        InlineBlock(item="{pItem}")
+                +if("blocks[index +1].type == 'nestedList'")
+                    svelte:element(this="p" class="p-el text-paragraph-l text-t2 mb-8 sm:mb-4")
+                        +each("item.items as pItem")
+                            InlineBlock(item="{pItem}")
+                    +else()
+                        svelte:element(this="p" class="p-el text-paragraph-l text-t2")
+                            +each("item.items as pItem")
+                                InlineBlock(item="{pItem}")
             Case(value="list")
                 svelte:element(
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"
@@ -31,6 +36,7 @@
             Case(value="nestedList")
                 svelte:element(
                     class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"
+                    style="margin-left: 16px;"
                     this="{item.style === 'unordered' ? 'ul' : 'ol'}")
                     +each("item.items as liItem")
                         NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
