@@ -11,12 +11,11 @@
 	let id = source.split('/').pop();
 
 	let loadTweet = async (tweetId: string | undefined) => {
-		//@ts-ignore
 		if (browser) {
 			const url =
 				'https://corsproxy.io/?' +
-				encodeURIComponent(`https://old.holdex.io/api/tweets.json?id=${id}`);
-				
+				encodeURIComponent(`https://old.holdex.io/api/tweets.json?id=${tweetId}`);
+
 			try {
 				const response = await fetch(url, { method: 'GET' });
 
@@ -25,8 +24,8 @@
 					return data.data;
 				}
 			} catch (error) {
-				console.log('err', error);
-				return [];
+				console.log('error fetching tweet: ', error);
+				return null;
 			}
 		}
 	};
