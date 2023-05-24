@@ -1,0 +1,78 @@
+@use "sass:math"
+@import "../../common"
+
+.embed-link
+    position: relative
+    display: inline-block
+    width: 100%
+    text-decoration: none!important
+    border-radius: 16px
+    line-height: 1
+    z-index: 1
+    margin-top: 12px
+    transition: background-color .3s ease-in-out, border-color .3s ease-in-out
+    background-color: map-get($light, tweet-bg-color)
+    border: map-get($light, tweet-border)
+
+    &.dark
+        background-color: map-get($dark, tweet-bg-color)
+        border: map-get($dark, tweet-border)
+
+    &__image
+        position: relative
+        display: inline-block
+        width: 100%
+        padding-bottom: math.div(9,16)
+        vertical-align: top
+        border-radius: 16px 16px 0 0
+        background-color: map-get($light, tweet-bg-color)
+        border-bottom: map-get($light, tweet-border)
+
+        img
+            position: absolute
+            width: 100%
+            height: 100%
+            border-radius: 15px 15px 0 0
+            object-fit: cover
+
+        &.relative
+            padding-bottom: 0
+
+            img
+                position: relative
+
+    &.dark .embed-link__image
+        background-color: map-get($dark, tweet-bg-color)
+        border-bottom: map-get($dark, tweet-border)
+
+    &__content
+        position: relative
+        width: 100%
+        display: block
+        padding: 12px
+        font-size: 15px
+        line-height: 20px
+        white-space: normal
+
+    &__name
+        position: relative
+        display: block
+        margin-bottom: 2px
+        color: map-get($dark, accents-5)
+        @include truncate()
+
+    &__title
+        position: relative
+        display: block
+        margin-bottom: 2px
+        color: map-get($dark, tweet-bg-color)
+        @include truncate()
+
+    &__description
+        position: relative
+        display: block
+        -webkit-line-clamp: 2
+        color: map-get($dark, accents-5)
+
+    &.dark .embed-link__title
+        color: map-get($light, tweet-bg-color)
