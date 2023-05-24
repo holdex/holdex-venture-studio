@@ -15,26 +15,19 @@
 		if (browser) {
 			const url =
 				'https://corsproxy.io/?' +
-				encodeURIComponent(
-					`https://old.holdex.io/api/tweets.json?id=https://twitter.com/Variety/status/${id}`
-				);
-			return fetch(url, {
-				method: 'GET',
-				headers: {
-					Accept: 'application/json'
+				encodeURIComponent(`https://old.holdex.io/api/tweets.json?id=${id}`);
+				
+			try {
+				const response = await fetch(url, { method: 'GET' });
+
+				if (response.ok) {
+					let data = await response.json();
+					return data.data;
 				}
-			})
-				.then(async (res: any) => {
-					if (res.ok) {
-						let data = await res.json();
-						console.log("🚀 ~ file: twitterEmbed.svelte:30 ~ .then ~ data:", data.data);
-                        return data.data;
-					}
-				})
-				.catch((error: any) => {
-					console.log('err', error);
-					return [];
-				});
+			} catch (error) {
+				console.log('err', error);
+				return [];
+			}
 		}
 	};
 
