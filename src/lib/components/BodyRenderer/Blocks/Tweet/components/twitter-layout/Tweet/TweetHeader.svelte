@@ -13,74 +13,74 @@
 	const twitterSrc = 'https://storage.googleapis.com/stage-holdex-public/assets/twitter.png';
 </script>
 
-<div class="flex">
-	<a
-		href={url}
-		class="avatar h-9 w-9 mr-2.5 exclude {$theme}"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
+<div class="header">
+	<a href={url} class="avatar exclude {$theme}" target="_blank" rel="noopener noreferrer">
 		<img src={authorInfo.profile_image_url} alt={authorInfo.name} width={36} height={36} />
 	</a>
-	<a
-		href={url}
-		class="author no-underline text-inherit transition-[color] duration-[0.3s] ease-[ease-in-out] exclude {$theme}"
-		target="_blank"
-		rel="noopener noreferrer"
-	>
-		<span class="name font-bold" title={authorInfo.name}>
+	<a href={url} class="author exclude {$theme}" target="_blank" rel="noopener noreferrer">
+		<span class="name" title={authorInfo.name}>
 			{authorInfo.name}
 		</span>
-		<div class="flex">
-			<span
-				class="text-sm table leading-[1.2] text-ellipsis whitespace-nowrap overflow-hidden {$theme}"
-				title={`@${authorInfo.username}`}
-			>
-				@{authorInfo.username}
-			</span>
-			<a
-				class="not-italic font-bold text-sm leading-5 ml-[15px] -mt-0.5 before:absolute before:mt-[-3px] before:content-['.'] before:font-medium before:text-sm before:leading-5 before:-ml-2.5;"
-				href={url}>Follow</a
-			>
-		</div>
+		<span class="username {$theme}" title={`@${authorInfo.username}`}>
+			@{authorInfo.username}
+		</span>
 	</a>
-	<a href={url} class="brand ml-auto exclude" target="_blank" rel="noopener noreferrer">
-		<img
-			class="icon w-[1.25em] h-[1.25em] object-contain saturate-[0%]"
-			title="View on Twitter"
-			alt="twitter"
-			src={twitterSrc}
-		/>
+	<a href={url} class="brand exclude" target="_blank" rel="noopener noreferrer">
+		<img class="icon twitterIcon" title="View on Twitter" alt="twitter" src={twitterSrc} />
 	</a>
 </div>
 
 <style lang="sass">
-@import "../../../../../../../styles/theme"
+    @import "../../common"
+    .header
+        display: flex
 
-.avatar
-    & > img
-        border: map-get($tw-light, tweet-avatar-border)
-        @apply rounded-[50%]
+    .avatar
+        height: 36px
+        width: 36px
+        margin-right: 0.625rem
 
-    &.dark > img
-        border: map-get($tw-dark, tweet-avatar-border)
+        & > img
+            border: map-get($light, tweet-avatar-border)
+            border-radius: 50%
 
-.author
-    &:hover
-        color: map-get($tw-light, tweet-link-color-hover)
+        &.dark > img
+            border: map-get($dark, tweet-avatar-border)
 
-    &.dark:hover
-        color: map-get($tw-dark, tweet-link-color-hover)
-		
-.username
-    color: map-get($tw-light, tweet-color-gray)
+    .author
+        text-decoration: none
+        color: inherit
+        transition: color 0.3s ease-in-out
 
-    &.dark
-        color: map-get($tw-dark, tweet-color-gray)
+        &:hover
+            color: map-get($light, tweet-link-color-hover)
 
-.follow 
-    color: map-get($tw-light, tweet-link-color-hover)
-    &:before 
-        color: map-get($tw-dark, tweet-color-gray)      
+        &.dark:hover
+            color: map-get($dark, tweet-link-color-hover)
 
+    .name,
+    .username
+        display: table
+        line-height: 1.2
+        text-overflow: ellipsis
+        white-space: nowrap
+        overflow: hidden
+
+    .name
+        font-weight: 700
+
+    .username
+        color: map-get($light, tweet-color-gray)
+        font-size: 0.875rem
+
+        &.dark
+            color: map-get($dark, tweet-color-gray)
+
+    .brand
+        margin-left: auto
+
+    .twitterIcon
+        width: 1.25em
+        height: 1.25em
+        object-fit: contain
 </style>
