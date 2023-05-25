@@ -4,7 +4,9 @@ Switch(condition="{item.type}")
             TextWrapper(text="{text}")
                 slot
     Case(value="hashtag")
-        Hashtag(item="{item}")
+        Hashtag(item="{item}" link="{item.href=`/c?filter=${encodeURIComponent(item.text.toLowerCase().slice(1))}`}")
+            TextWrapper(text="{item.text}")
+                slot
     Case(value="code")
         code(class="rounded-lg bg-l2 py-0 px-2 text-code font-mono")
             TextWrapper(text="{item.text}") 

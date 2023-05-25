@@ -5,9 +5,8 @@
 	import TextWrapper from './Blocks/textWrapper.svelte';
 	import Image from './Blocks/image.svelte';
 	import Link from './Blocks/link.svelte';
-	import { setContext } from 'svelte';
-
 	import Hashtag from './Blocks/hashtag.svelte';
+	import { setContext } from 'svelte';
 
 	type Item = {
 		type: string;

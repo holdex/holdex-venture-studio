@@ -38,7 +38,7 @@
 
 >
 	<slot {text} />
-	{#if !isHoldexLink && item.type != "hashtag"}
+	{#if !isHoldexLink}
 		<Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
 	{/if}
 </a>
