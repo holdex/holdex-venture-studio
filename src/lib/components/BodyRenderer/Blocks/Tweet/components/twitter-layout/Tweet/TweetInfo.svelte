@@ -1,52 +1,27 @@
 <script>
-    import format from "date-fns/format";
-    import { getContext } from "svelte";
-    import { formatNumber } from "../../lib/utils";
+	import format from 'date-fns/format';
+	import { getContext } from 'svelte';
+	import { formatNumber } from '../../lib/utils';
 
-    export let tweet;
-    const theme = getContext("theme");
+	export let tweet;
+	const theme = getContext('theme');
 
-    $: ({ author_id, id, users, created_at, public_metrics } = tweet);
+	$: ({ author_id, id, users, created_at, public_metrics } = tweet);
 
-    $: authorInfo = users.find((u) => u.id === author_id);
-    $: likeUrl = `https://twitter.com/intent/like?tweet_id=${id}`;
-    $: tweetUrl = `https://twitter.com/${authorInfo.username}/status/${id}`;
-    $: createdAt = new Date(created_at);
+	$: authorInfo = users.find((u) => u.id === author_id);
 
-    let heartSrc =
-        "https://storage.googleapis.com/stage-holdex-public/assets/heart.png?v=1";
+	$: tweetUrl = `https://twitter.com/${authorInfo.username}/status/${id}`;
+	$: createdAt = new Date(created_at);
 </script>
 
 <div class="info">
-    <a
-        class="like exclude {$theme}"
-        href={likeUrl}
-        title="Like"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <span class="heart">
-            <img class="icon icon-heart" alt="heart" src={heartSrc} />
-        </span>
-        {#if public_metrics.like_count > 0}
-            <span class="likes">{formatNumber(public_metrics.like_count)}</span>
-        {/if}
-    </a>
-    {#if createdAt}
-        <a
-            class="time exclude {$theme}"
-            href={tweetUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            <time
-                title={`Time Posted: ${createdAt.toUTCString()}`}
-                dateTime={createdAt.toISOString()}
-            >
-                {format(createdAt, "h:mm a - MMM d, y")}
-            </time>
-        </a>
-    {/if}
+	{#if createdAt}
+		<a class="time exclude {$theme}" href={tweetUrl} target="_blank" rel="noopener noreferrer">
+			<time title={`Time Posted: ${createdAt.toUTCString()}`} dateTime={createdAt.toISOString()}>
+				{format(createdAt, 'h:mm a - MMM d, y')}
+			</time>
+		</a>
+	{/if}
 </div>
 
 <style lang="sass">
@@ -100,6 +75,11 @@
 
     .time
         color: map-get($light, tweet-color-gray)
+        font-family: $tweet-font
+        font-style: normal
+        font-weight: 500
+        font-size: 14px
+        line-height: 20px        
 
         &:hover,
         &:focus

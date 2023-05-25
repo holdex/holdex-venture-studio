@@ -1,21 +1,21 @@
 <script>
-    import TweetHeader from "./TweetHeader.svelte";
-    import TweetInfo from "./TweetInfo.svelte";
-    import TweetAction from "./TweetAction.svelte";
-    import { getContext } from "svelte";
+	import TweetHeader from './TweetHeader.svelte';
+	import TweetInfo from './TweetInfo.svelte';
+	import TweetAction from './TweetAction.svelte';
+	import { getContext } from 'svelte';
 
-    const { data, className } = $$props;
+	const { data, className } = $$props;
 
-    let theme = getContext("theme");
+	let theme = getContext('theme');
 </script>
 
 <div class="tweet {className} {$theme}">
-    <blockquote>
-        <TweetHeader tweet={data} />
-        <slot />
-        <TweetInfo tweet={data} />
-    </blockquote>
-    <TweetAction tweet={data} />
+	<blockquote>
+		<TweetHeader tweet={data} />
+		<slot />
+		<TweetInfo tweet={data} />
+	</blockquote>
+	<TweetAction tweet={data} />
 </div>
 
 <style lang="sass">

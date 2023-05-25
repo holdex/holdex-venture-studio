@@ -1,59 +1,36 @@
 <script>
-    import { getContext } from "svelte";
+	import { getContext } from 'svelte';
 
-    export let tweet;
+	export let tweet;
 
-    const theme = getContext("theme");
+	const theme = getContext('theme');
 
-    $: ({ author_id, users } = tweet);
+	$: ({ author_id, users } = tweet);
 
-    $: authorInfo = users.find((u) => u.id === author_id);
-    $: url = `https://twitter.com/${authorInfo.username}`;
+	$: authorInfo = users.find((u) => u.id === author_id);
+	$: url = `https://twitter.com/${authorInfo.username}`;
 
-    const twitterSrc =
-        "https://storage.googleapis.com/stage-holdex-public/assets/twitter.png";
+	const twitterSrc = 'https://storage.googleapis.com/stage-holdex-public/assets/twitter.png';
 </script>
 
 <div class="header">
-    <a
-        href={url}
-        class="avatar exclude {$theme}"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img
-            src={authorInfo.profile_image_url}
-            alt={authorInfo.name}
-            width={36}
-            height={36}
-        />
-    </a>
-    <a
-        href={url}
-        class="author exclude {$theme}"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <span class="name" title={authorInfo.name}>
-            {authorInfo.name}
-        </span>
-        <span class="username {$theme}" title={`@${authorInfo.username}`}>
-            @{authorInfo.username}
-        </span>
-    </a>
-    <a
-        href={url}
-        class="brand exclude"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        <img
-            class="icon twitterIcon"
-            title="View on Twitter"
-            alt="twitter"
-            src={twitterSrc}
-        />
-    </a>
+	<a href={url} class="avatar exclude {$theme}" target="_blank" rel="noopener noreferrer">
+		<img src={authorInfo.profile_image_url} alt={authorInfo.name} width={36} height={36} />
+	</a>
+	<a href={url} class="author exclude {$theme}" target="_blank" rel="noopener noreferrer">
+		<span class="name" title={authorInfo.name}>
+			{authorInfo.name}
+		</span>
+		<div class="userDetails">
+			<span class="username {$theme}" title={`@${authorInfo.username}`}>
+				@{authorInfo.username}
+			</span>
+			<a class="follow" href={url}>Follow</a>
+		</div>
+	</a>
+	<a href={url} class="brand exclude" target="_blank" rel="noopener noreferrer">
+		<img class="icon twitterIcon" title="View on Twitter" alt="twitter" src={twitterSrc} />
+	</a>
 </div>
 
 <style lang="sass">
@@ -102,6 +79,28 @@
         &.dark
             color: map-get($dark, tweet-color-gray)
 
+    .userDetails
+        display: flex
+
+    .follow 
+        font-style: normal
+        font-weight: 700
+        font-size: 14px
+        line-height: 20px
+        margin-left: 15px
+        margin-top: -2px
+        color: map-get($light, tweet-link-color-hover)
+        &:before 
+            position: absolute
+            margin-left: -10px
+            margin-top: -3px
+            content: "."
+            color: map-get($dark, tweet-color-gray)      
+            font-weight: 500
+            font-size: 14px
+            line-height: 20px              
+
+
     .brand
         margin-left: auto
 
@@ -109,4 +108,5 @@
         width: 1.25em
         height: 1.25em
         object-fit: contain
+        filter: saturate(0%)
 </style>
