@@ -4,9 +4,7 @@ Switch(condition="{item.type}")
             TextWrapper(text="{text}")
                 slot
     Case(value="hashtag")
-        Link(item="{item}" let:text)
-            TextWrapper(text="{item.text}")
-                slot
+        Hashtag(tag="{item.text}" type="link" inline=true)
     Case(value="code")
         code(class="rounded-lg bg-l2 py-0 px-2 text-code font-mono")
             TextWrapper(text="{item.text}") 
