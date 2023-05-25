@@ -10,8 +10,7 @@
 	import Embed from './Blocks/embed.svelte';
 	import TallyButton from './Blocks/tallyButton.svelte';
 	import Chart from './Blocks/chart.svelte';
-
-
+	import Hashtag from '$components/Hashtag/index.svelte';
 
 	export let blocks: any[];
 

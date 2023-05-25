@@ -6,7 +6,8 @@
 	import Image from './Blocks/image.svelte';
 	import Link from './Blocks/link.svelte';
 	import { setContext } from 'svelte';
-	import Hashtag from '$components/Hashtag/index.svelte';
+
+	import Hashtag from './Blocks/hashtag.svelte';
 
 	type Item = {
 		type: string;

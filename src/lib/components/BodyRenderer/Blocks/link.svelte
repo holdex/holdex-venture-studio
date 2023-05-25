@@ -13,12 +13,6 @@
 
 	export let item: Item;
 
-	const isHashTag = item.type === "hashtag";
-
-	if(isHashTag){
-		item.href=`/c?filter=${encodeURIComponent(item.text.toLowerCase().slice(1))}`
-	}
-
 	let parentWrapper = getContext('wrapper');
 
 	let classes =
@@ -39,7 +33,7 @@
 	title={item.title ? item.title : ''}
 	href={item.href}
 	class={classes}
-	target={isHoldexLink || isHashTag ? '_self' : '_blank'}
+	target={isHoldexLink ? '_self' : '_blank'}
 	rel="noreferrer"
 
 >
