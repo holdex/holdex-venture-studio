@@ -37,7 +37,7 @@
     div.actions 
         div.info 
             a(class="like exclude {$theme}" 
-                href="likeUrl" 
+                href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
@@ -47,7 +47,7 @@
                         span.likes 
                             p {likeCount}
             a(class=" exclude {$theme}" 
-                href="likeUrl" 
+                href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
