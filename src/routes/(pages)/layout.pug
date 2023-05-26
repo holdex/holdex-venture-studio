@@ -1,7 +1,7 @@
 include ./common-mixins
 
 mixin link(href, title)
-	li(class="flex relative items-center text-cta text-t1 transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 before:-bottom-3.5 before:w-full before:bg-transparent before:h-0.5")&attributes(attributes): a(class="text-inherit" href=href on:click!="{() => toggleBurger(false)}")= title
+	li(class="flex relative items-center text-cta text-t1 transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 before:-bottom-4 before:w-full before:bg-transparent before:h-0.5")&attributes(attributes): a(class="text-inherit" href=href on:click!="{() => toggleBurger(false)}")= title
 
 mixin social-link(href, content)
 	a(class="flex flex-col items-center justify-center w-8 h-8 p-1 text-t1 transition-colors hover:text-accent1-default" href=href target="_blank" rel="noopener noreferrer")=content
