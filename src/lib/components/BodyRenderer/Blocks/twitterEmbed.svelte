@@ -11,23 +11,7 @@
 	let id = source.split('/').pop();
 
 	let loadTweet = async (tweetId: string | undefined) => {
-		if (browser) {
-			const url =
-				'https://corsproxy.io/?' +
-				encodeURIComponent(`https://old.holdex.io/api/tweets.json?id=${tweetId}`);
-
-			try {
-				const response = await fetch(url, { method: 'GET' });
-
-				if (response.ok) {
-					let data = await response.json();
-					return data.data;
-				}
-			} catch (error) {
-				console.log('error fetching tweet: ', error);
-				return null;
-			}
-		}
+		return fetch(`/api/tweets?id=${tweetId}`).then((res) => res.json());
 	};
 
 	let promise = loadTweet(id);

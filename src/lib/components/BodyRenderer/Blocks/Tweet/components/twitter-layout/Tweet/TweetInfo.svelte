@@ -1,7 +1,7 @@
 <script>
-	import format from 'date-fns/format';
+	import { timeFormat } from '$components/DateManager';
+
 	import { getContext } from 'svelte';
-	import { formatNumber } from '../../lib/utils';
 
 	export let tweet;
 	const theme = getContext('theme');
@@ -18,7 +18,7 @@
 	{#if createdAt}
 		<a class="time exclude {$theme}" href={tweetUrl} target="_blank" rel="noopener noreferrer">
 			<time title={`Time Posted: ${createdAt.toUTCString()}`} dateTime={createdAt.toISOString()}>
-				{format(createdAt, 'h:mm a - MMM d, y')}
+				{timeFormat(createdAt, 'h:mm A - MMM D, Y')}
 			</time>
 		</a>
 	{/if}
