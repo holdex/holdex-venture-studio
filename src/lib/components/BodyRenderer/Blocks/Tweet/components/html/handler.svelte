@@ -31,7 +31,7 @@
 		<svelte:component this={components.img} {...nodeItem} {html} />
 	{:else if components[nodeItem.type]}
 		<svelte:component this={components[nodeItem.type]} {...nodeItem} />
-	{:else}
-		<CustomElement tag={nodeItem.type} {...nodeItem} />
+		<!-- {:else}
+		<CustomElement tag={nodeItem.type} {...nodeItem} /> -->
 	{/if}
 {/each}
