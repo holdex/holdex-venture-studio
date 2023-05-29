@@ -1,41 +1,32 @@
 <script>
-    import formatDistanceStrict from "date-fns/formatDistanceStrict";
-    import { getContext } from "svelte";
+	import { howFarFromNow } from '$components/DateManager';
+	import { getContext } from 'svelte';
 
-    const data = $$props.data;
+	const data = $$props.data;
 
-    const votesCount = data.options.reduce(
-        (count, option) => count + option.votes,
-        0
-    );
-    const endsAt = new Date(data.endsAt);
-    const now = new Date();
+	const votesCount = data.options.reduce((count, option) => count + option.votes, 0);
+	const endsAt = new Date(data.endsAt);
+	const now = new Date();
 
-    $: optionWidth = (option) =>
-        Math.round((option.votes / votesCount) * 100) || 1;
-    $: optionWidthLabel = (option) =>
-        Math.round((option.votes / votesCount) * 100) || 0;
+	$: optionWidth = (option) => Math.round((option.votes / votesCount) * 100) || 1;
+	$: optionWidthLabel = (option) => Math.round((option.votes / votesCount) * 100) || 0;
 
-    const theme = getContext("theme");
+	const theme = getContext('theme');
 </script>
 
 <div class="poll">
-    <div class="options">
-        {#each data.options as option}
-            <span class="label">{option.label}</span>
-            <span class="chart {$theme}" style="width: {optionWidth(option)}" />
-            <span>{optionWidthLabel(option)}%</span>
-        {/each}
-    </div>
-    <hr class={$theme} />
-    <div class="footer {$theme}">
-        <span class="votes-count">{votesCount} votes</span>
-        <span
-            >{now > endsAt
-                ? "Final results"
-                : `${formatDistanceStrict(endsAt, now)} left`}</span
-        >
-    </div>
+	<div class="options">
+		{#each data.options as option}
+			<span class="label">{option.label}</span>
+			<span class="chart {$theme}" style="width: {optionWidth(option)}" />
+			<span>{optionWidthLabel(option)}%</span>
+		{/each}
+	</div>
+	<hr class={$theme} />
+	<div class="footer {$theme}">
+		<span class="votes-count">{votesCount} votes</span>
+		<span>{now > endsAt ? 'Final results' : `${howFarFromNow(endsAt)} left`}</span>
+	</div>
 </div>
 
 <style lang="sass">

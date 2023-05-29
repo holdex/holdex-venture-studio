@@ -13,6 +13,14 @@ moment.updateLocale('en', {
   },
 })
 
+
+function howFarFromNow(endsAt:Date) {
+  const end = moment(endsAt);
+  const now = moment(new Date);
+
+  return end.from(now)
+}
+
 function timeFormat(time: number | string, format: string = 'DD MMM YYYY') {
   return moment(time).format(format)
 }
@@ -48,4 +56,4 @@ function durationOf(time: number | string) {
 }
 
 export type { unitOfTime, Moment }
-export { timeFormat, moment, customFormat, durationOf, extendedTimeFormat }
+export { howFarFromNow, timeFormat, moment, customFormat, durationOf, extendedTimeFormat }
