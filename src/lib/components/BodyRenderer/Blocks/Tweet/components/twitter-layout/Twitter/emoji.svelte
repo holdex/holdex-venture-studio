@@ -1,20 +1,13 @@
 <script>
-    const { alt, src } = $$props;
+	const { alt, src } = $$props;
 </script>
 
-<span class="emoji">
-    <img {alt} {src} width={18} height={18} />
+<span class="emoji inline-flex mx-0.5 my-0">
+	<img class="relative w-[18px] h-[18px]" {alt} {src} width={18} height={18} />
 </span>
 
 <style>
-    .emoji {
-        margin: 0 2px;
-        vertical-align: -3px;
-        display: inline-flex;
-    }
-    img {
-        position: relative;
-        width: 18px;
-        height: 18px;
-    }
+	.emoji {
+		vertical-align: -3px;
+	}
 </style>

@@ -15,15 +15,17 @@
 </script>
 
 <div class="poll">
-	<div class="options">
+	<div
+		class="@apply grid grid-cols-[max-content_14rem_max-content] items-center gap-4 overflow-auto;"
+	>
 		{#each data.options as option}
-			<span class="label">{option.label}</span>
-			<span class="chart {$theme}" style="width: {optionWidth(option)}" />
+			<span class="label overflow-auto text-right whitespace-pre-wrap">{option.label}</span>
+			<span class="chart h-full {$theme}" style="width: {optionWidth(option)}" />
 			<span>{optionWidthLabel(option)}%</span>
 		{/each}
 	</div>
-	<hr class={$theme} />
-	<div class="footer {$theme}">
+	<hr class="mt-4 mb-2 mx-0 border-0{$theme}" />
+	<div class="footer flex text-sm {$theme}">
 		<span class="votes-count">{votesCount} votes</span>
 		<span>{now > endsAt ? 'Final results' : `${howFarFromNow(endsAt)} left`}</span>
 	</div>
@@ -34,37 +36,22 @@
     .poll
         margin: $poll-margin
 
-    .options
-        display: grid
-        grid-template-columns: max-content 14rem max-content
-        align-items: center
-        grid-gap: 1rem
-        overflow: auto
-
-    .label
-        overflow: auto
-        text-align: right
-        white-space: pre-wrap
+    .label 
         word-wrap: break-word
 
     .chart
-        height: 100%
         background: map-get($light, poll-bar-color)
 
         &.dark
             background: map-get($dark, poll-bar-color)
 
     hr
-        border: 0
         border-top: 1px solid map-get($light, accents-2)
-        margin: 1rem 0 0.5rem 0
 
         &.dark
             border-top-color: map-get($dark, accents-2)
 
     .footer
-        display: flex
-        font-size: 0.875rem
         color: map-get($light, accents-4)
 
         &.dark

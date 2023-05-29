@@ -1,9 +1,9 @@
 <script>
-    const { className, ...rest } = $$props;
+	const { className, ...rest } = $$props;
 </script>
 
-<ol class={className} {...rest}>
-    <slot />
+<ol class={'pl4' + className} {...rest}>
+	<slot />
 </ol>
 
 <style lang="sass">
@@ -11,5 +11,4 @@
     
     ol
         margin: $text-margin
-        padding-left: 1rem
 </style>

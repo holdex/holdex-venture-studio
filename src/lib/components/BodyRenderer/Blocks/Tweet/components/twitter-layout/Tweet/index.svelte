@@ -9,8 +9,10 @@
 	let theme = getContext('theme');
 </script>
 
-<div class="tweet {className} {$theme}">
-	<blockquote>
+<div
+	class="tweet overflow-hidden rounded-[5px] hover:transition-[border-color] duration-[0.3s] ease-[ease-in-out] {className} {$theme}"
+>
+	<blockquote class="relative pt-5 pb-2.5 px-5">
 		<TweetHeader tweet={data} />
 		<slot />
 		<TweetInfo tweet={data} />
@@ -24,15 +26,13 @@
     .tweet
         color: map-get($light, tweet-font-color)
         font: $tweet-font
-        overflow: hidden
         background: map-get($light, tweet-bg-color)
         border: map-get($light, tweet-border)
-        border-radius: 5px
         margin: $container-margin
 
         &:hover
             border: map-get($light, tweet-border-hover)
-            transition: border-color 0.3s ease-in-out
+            
 
     .dark
         color: map-get($dark, tweet-font-color)
@@ -42,10 +42,6 @@
         &:hover
             border: map-get($dark, tweet-border-hover)
 
-
-    blockquote
-        position: relative
-        padding: 1.25rem 1.25rem 0.625rem 1.25rem
 
     .tweet :global(.icon)
         display: inline-block

@@ -35,8 +35,8 @@
 
 <template lang="pug">
     div.actions 
-        div.info 
-            a(class="like exclude {$theme}" 
+        div(class="flex mt-[0.2rem]") 
+            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 like exclude {$theme}" 
                 href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
@@ -44,28 +44,29 @@
                     div.icon.icon-heart
                         Icon(icon="{HeartIcon}" width="{24}" height="{24}" colorInherit)
                     unless likeCount == 0
-                        span.likes 
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
                             p {likeCount}
-            a(class=" exclude {$theme}" 
+
+            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
                 href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
                     div.icon
                         Icon(icon="{ReplyIcon}" width="{24}" height="{24}" colorInherit)
-                    span.text
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
                         p Reply 
 
-            a(class=" exclude {$theme}" 
+            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
                 title="Reply to tweet" 
                 target="_blank" 
                 rel="noopener noreferrer")
-                    div.icon.link
+                    div(class="icon link")
                         Icon(icon="{CopyLinkIcon}" width="{24}" height="{24}" colorInherit)
-                    span.text
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
                         p Copy Link 
-        div.replies 
-            a(class="readReplies"            
+        div(class="flex items-center justify-center") 
+            a(class="readReplies block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5"            
                 href="{tweetUrl}"
                 title="Read replies to tweet" 
                 target="_blank" 
@@ -79,47 +80,37 @@
     @import "../../common"
     .actions
         border-top: map-get($dark, tweet-border)
-        flex-direction: column
-        display: flex
-    
-    .info
-        display: flex
-        margin-top: 0.2rem
-        
+
     .replies
         display: flex
         align-items: center
         justify-content: center
 
     .readReplies
+        // TODO: tailwind not applying properly
         display: flex
         align-items: center
         justify-content: center
         width: 95%
         height: 32px
+        color: map-get($dark, link-color)
         background: map-get($dark, tweet-btn-color)
         border: map-get($dark, tweet-btn-border)
         border-radius: 999px
         margin-bottom: 15px
-
         font-style: normal
         font-weight: 700
         font-size: 14px
         line-height: 32px
-        color: map-get($dark, link-color)
 
         &:hover
             background: transparent
 
     a
-        display: block
-        color: map-get($light, tweet-link-color)
+        //TODO: text-sm is being applied nowhere
         font-size: 0.875rem
-        padding: 0.625rem 1.25rem
-        text-decoration: none
-        transition: color 0.3s ease-in-out
-
-
+        color: map-get($light, tweet-link-color)
+        
         &:hover
             color: map-get($light, tweet-link-color-hover)!important
 
@@ -135,39 +126,15 @@
 
     .link
         color: map-get($dark,tweet-color-gray )
-
     
     .likes
-        margin-left: 0.5rem
-        display: inline-block
-        // max-width: calc(100% - 50px)
-        white-space: nowrap
-        overflow: hidden
-        text-overflow: ellipsis
         font-family: $tweet-font
-        font-style: normal
-        font-weight: 700
-        font-size: 14px
-        line-height: 20px
         color: map-get($dark, tweet-color-red)    
 
     .text
-        margin-left: 0.5rem
-        display: inline-block
-        white-space: nowrap
-        overflow: hidden
-        text-overflow: ellipsis
         font-family: $tweet-font
-        font-style: normal
-        font-weight: 700
-        font-size: 14px
-        line-height: 20px
         color: map-get($dark, tweet-color-gray)    
 
-	
     .icon-heart
-        color: map-get($dark, tweet-color-red)    
-
-
-
+        color: map-get($dark, tweet-color-red)
 </style>

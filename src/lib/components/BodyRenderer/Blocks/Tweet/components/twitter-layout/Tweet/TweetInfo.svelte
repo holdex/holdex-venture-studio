@@ -14,9 +14,14 @@
 	$: createdAt = new Date(created_at);
 </script>
 
-<div class="info">
+<div class="text-sm flex">
 	{#if createdAt}
-		<a class="time exclude {$theme}" href={tweetUrl} target="_blank" rel="noopener noreferrer">
+		<a
+			class="no-underline not-italic font-medium text-sm leading-5 focus:underline exclude {$theme}"
+			href={tweetUrl}
+			target="_blank"
+			rel="noopener noreferrer"
+		>
 			<time title={`Time Posted: ${createdAt.toUTCString()}`} dateTime={createdAt.toISOString()}>
 				{timeFormat(createdAt, 'h:mm A - MMM D, Y')}
 			</time>
@@ -27,66 +32,13 @@
 <style lang="sass">
     @import "../../common"
 
-    a
-        text-decoration: none
-
-    .info
-        font-size: 0.875rem
-        display: flex
-
-    .icon
-        vertical-align: top
-        width: 1.25em
-        object-fit: contain
-
-    .icon-heart
-        width: 1.25em
-        object-fit: cover
-        object-position: 0% 50%
-        transition: object-position .3s ease-in-out
-
-    .like
-        display: inline-block
-        color: map-get($light, tweet-color-gray)
-        margin-right: 0.75rem
-        transition: color .3s ease-in-out
-
-        &:visited
-            color: map-get($light, tweet-color-gray)!important
-
-        &:hover
-            color: map-get($light, tweet-color-red)!important
-
-            .icon-heart
-                object-position: 100% 50%
-
-        &.dark
-            color: map-get($dark, tweet-color-gray)
-
-            &:visited
-                color: map-get($dark, tweet-color-gray)!important
-
-            &:hover
-                color: map-get($dark, tweet-color-red)!important
-
-    .likes
-        margin-left: 0.25rem
-        color: inherit
-
     .time
         color: map-get($light, tweet-color-gray)
         font-family: $tweet-font
-        font-style: normal
-        font-weight: 500
-        font-size: 14px
-        line-height: 20px        
 
         &:hover,
         &:focus
             color: map-get($light, tweet-link-color-hover)
-
-        &:focus
-            text-decoration: underline
 
         &.dark
             color: map-get($dark, tweet-color-gray)

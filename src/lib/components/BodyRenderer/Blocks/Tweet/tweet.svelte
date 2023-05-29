@@ -18,14 +18,10 @@
 	setContext('theme', themeStyle);
 </script>
 
-<div class="tweet" class:left-aligned={html} class:tweet--dark={$themeStyle === 'dark'}>
+<div class="flex flex-col w-full max-w-none shadow-md shadow-neutral-700">
 	{#if skeleton}
 		<TweetSkeleton />
 	{:else}
 		<Node {components} node={ast} {html} />
 	{/if}
 </div>
-
-<style lang="sass" src="./tweet.sass">
-
-</style>
