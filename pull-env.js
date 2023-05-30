@@ -26,7 +26,6 @@ const updateEnvs = async () => {
       .join('\n') +
     '\n';
 	const filename = '.env'
-	console.log(envContent)
 	try {
 		await outputFile(filename, envContent, 'utf8');
 		console.log(`${filename} file updated successfully.`);
