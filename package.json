@@ -2,8 +2,7 @@
 	"name": "holdex-venture-studio",
 	"version": "0.0.1",
 	"scripts": {
-		"pre-dev": "npx vercel env pull",
-		"pull-env": "./pull-env.sh",
+		"pre-dev": "node pull-env.js",
 		"dev": "npm run pre-dev && npm run generate && vite dev",
 		"build": "npm run generate && vite build",
 		"preview": "npm run generate  && vite preview",
@@ -50,6 +49,7 @@
 		"apexcharts": "^3.37.3",
 		"dotenv": "^16.0.3",
 		"editorjs-html": "^3.4.2",
+		"fs-extra": "^11.1.1",
 		"graphql": "^16.6.0",
 		"insane": "^2.6.2",
 		"lodash-es": "^4.17.21",
