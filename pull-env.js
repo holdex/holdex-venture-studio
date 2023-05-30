@@ -19,12 +19,12 @@ const updateEnvs = async () => {
 	let data = await fetchEnvs();
 	let envVars = data.data.env
 	let envContent = '';
-  
-    envContent += Object.keys(envVars)
-      .sort()
-      .map(key => `${key}="${escapeValue(envVars[key])}"`)
-      .join('\n') +
-    '\n';
+
+	envContent += Object.keys(envVars)
+		.sort()
+		.map(key => `${key}="${escapeValue(envVars[key])}"`)
+		.join('\n') +
+		'\n';
 	const filename = '.env'
 	try {
 		await outputFile(filename, envContent, 'utf8');
