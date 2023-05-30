@@ -4,7 +4,12 @@ Lean more about our DNA [here](https://holdex.io/about).
 
 ## Developing
 
-Once you've installed dependencies with `npm install` (or `npm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install` (or `npm install` or `yarn`), pull enviroment variables by using
+
+```bash
+npm run pull-env
+```
+Once you've pulled the environment variables start the development server by using:
 
 ```bash
 npm run dev
