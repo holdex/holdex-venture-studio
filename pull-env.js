@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import { outputFile } from 'fs-extra'
 
 const fetchEnvs = async () => {
-	let apiEndPt = "https://tools.holdex.io/api/env/pull?project=holdex-venture-studio&target=development&source=vercel-cli:pull&teamId=team_AecZQIv18pidHdUcIlNuvd8g";
+	let apiEndPt = "https://tools.holdex.io/api/env/pull?project=holdex-venture-studio";
 
 	let result = await fetch(apiEndPt, {
 		method: 'GET',
