@@ -50,7 +50,6 @@
 		"apexcharts": "^3.37.3",
 		"dotenv": "^16.0.3",
 		"editorjs-html": "^3.4.2",
-		"fs": "^0.0.1-security",
 		"graphql": "^16.6.0",
 		"insane": "^2.6.2",
 		"lodash-es": "^4.17.21",
