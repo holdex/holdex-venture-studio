@@ -17,19 +17,30 @@ const fetchEnvs = async () => {
 
 const updateEnvs = async () => {
 	let data = await fetchEnvs();
-	let envVaraibles = data.data.env
+	let envVars = data.data.env
 	let envContent = '';
-	for (const key in envVaraibles) {
-		envContent += `${key}='${envVaraibles[key]}'\n`
-	}
+  
+    envContent += Object.keys(envVars)
+      .sort()
+      .map(key => `${key}="${escapeValue(envVars[key])}"`)
+      .join('\n') +
+    '\n';
 	const filename = '.env'
-	
+	console.log(envContent)
 	try {
 		await outputFile(filename, envContent, 'utf8');
 		console.log(`${filename} file updated successfully.`);
 	} catch (error) {
 		console.error('Error updating .env file:', error);
 	}
+}
+
+function escapeValue(value) {
+	return value
+		? value
+			.replace(new RegExp('\n', 'g'), '\\n') // combine newlines (unix) into one line
+			.replace(new RegExp('\r', 'g'), '\\r') // combine newlines (windows) into one line
+		: '';
 }
 
 updateEnvs()
