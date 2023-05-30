@@ -3,6 +3,7 @@
 	"version": "0.0.1",
 	"scripts": {
 		"pre-dev": "npx vercel env pull",
+		"pull-env": "./pull-env.sh",
 		"dev": "npm run pre-dev && npm run generate && vite dev",
 		"build": "npm run generate && vite build",
 		"preview": "npm run generate  && vite preview",
@@ -49,10 +50,12 @@
 		"apexcharts": "^3.37.3",
 		"dotenv": "^16.0.3",
 		"editorjs-html": "^3.4.2",
+		"fs": "^0.0.1-security",
 		"graphql": "^16.6.0",
 		"insane": "^2.6.2",
 		"lodash-es": "^4.17.21",
 		"moment": "^2.29.4",
+		"node-fetch": "^3.3.1",
 		"numeral": "^2.0.6",
 		"rimraf": "^4.4.1",
 		"rollbar": "^2.26.1"
