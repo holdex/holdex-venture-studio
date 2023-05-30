@@ -20,9 +20,8 @@ const updateEnvs = async () => {
 	let envVaraibles = data.data.env
 	let envContent = '';
 	for (const key in envVaraibles) {
-		envContent += `${key}="${envVaraibles[key]}"\n`
+		envContent += `${key}='${envVaraibles[key]}'\n`
 	}
-	console.log(envContent)
 	const filename = '.env'
 	
 	try {
