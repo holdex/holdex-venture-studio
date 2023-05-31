@@ -2,7 +2,7 @@
 	const { className, ...rest } = $$props;
 </script>
 
-<ol class={'pl4' + className} {...rest}>
+<ol class={'p-l4' + className} {...rest}>
 	<slot />
 </ol>
 

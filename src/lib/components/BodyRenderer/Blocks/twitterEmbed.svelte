@@ -13,11 +13,9 @@
 	let loadTweet = async (tweetId: string | undefined) => {
 		return fetch(`/api/tweets?id=${tweetId}`).then((res) => res.json());
 	};
-
-	let promise = loadTweet(id);
 </script>
 
-{#await promise}
+{#await loadTweet(id)}
 	<Tweet theme={$theme} skeleton />
 {:then ast}
 	<Tweet theme={$theme} {ast} />

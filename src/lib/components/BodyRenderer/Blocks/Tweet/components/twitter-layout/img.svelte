@@ -35,10 +35,10 @@
 
 <style>
 	details {
-		margin-top: 10px;
+		@apply mt-2.5;
 	}
 	summary::-webkit-details-marker {
-		display: none;
+		@apply hidden;
 	}
 	:global(details-dialog) {
 		@apply fixed w-screen h-screen box-border text-center -translate-x-2/4 z-[999] px-6 py-[5vh] left-2/4 top-0;
@@ -49,7 +49,7 @@
 	}
 	@media screen and (max-width: 450px) {
 		:global(details-dialog) {
-			padding: 5vh 1rem;
+			@apply px-4 py-[5vh];
 		}
 	}
 </style>
