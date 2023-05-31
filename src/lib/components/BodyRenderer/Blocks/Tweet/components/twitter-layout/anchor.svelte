@@ -38,7 +38,7 @@
 </a>
 
 <style lang="sass">
-    @import "../common"
+    @import "../../../../../../styles/theme"
 
     a
         color: map-get($tw-light, link-color)

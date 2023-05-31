@@ -6,22 +6,17 @@
 	let theme = getContext('theme');
 </script>
 
-<ul class="list-none pl-4 {className} {$theme}" {...rest}>
+<ul class="list-none pl-4 text-[1.25rem_0] {className} {$theme}" {...rest}>
 	<slot />
 </ul>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
 
-    ul
-        margin: $text-margin
-    
     ul :global(li:before)
-        content: "-"
         color: map-get($tw-light, 'accents-3')
-        position: absolute
-        margin-left: -1rem
-        
+        @apply content-["-"] absolute ml-[-1rem]
+                
     .dark :global(li:before)
         color: map-get($tw-dark, 'accents-3')
 </style>

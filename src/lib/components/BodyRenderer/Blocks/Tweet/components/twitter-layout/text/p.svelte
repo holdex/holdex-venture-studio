@@ -1,8 +1,1 @@
-<p dir="auto" class="whitespace-pre-wrap break-words"><slot /></p>
-
-<style lang="sass">
-    @import "../../common"
-    
-    p
-        margin: $text-margin
-</style>
+<p dir="auto" class="mx-0 my-5 whitespace-pre-wrap break-words"><slot /></p>

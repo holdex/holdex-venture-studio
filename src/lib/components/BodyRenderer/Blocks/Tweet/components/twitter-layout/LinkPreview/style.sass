@@ -1,78 +1,48 @@
 @use "sass:math"
-@import "../../common"
 
 .embed-link
-    position: relative
-    display: inline-block
-    width: 100%
-    text-decoration: none!important
-    border-radius: 16px
-    line-height: 1
-    z-index: 1
-    margin-top: 12px
-    transition: background-color .3s ease-in-out, border-color .3s ease-in-out
-    background-color: map-get($tw-light, tweet-bg-color)
-    border: map-get($tw-light, tweet-border)
+    @apply relative inline-block w-full no-underline leading-none z-[1] mt-3 rounded-2xl
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out
+        background-color: map-get($tw-light, tweet-bg-color)
+        border: map-get($tw-light, tweet-border)
 
     &.dark
         background-color: map-get($tw-dark, tweet-bg-color)
         border: map-get($tw-dark, tweet-border)
 
     &__image
-        position: relative
-        display: inline-block
-        width: 100%
-        padding-bottom: math.div(9,16)
-        vertical-align: top
-        border-radius: 16px 16px 0 0
-        background-color: map-get($tw-light, tweet-bg-color)
-        border-bottom: map-get($tw-light, tweet-border)
+        @apply relative inline-block w-full align-top rounded-[16px_16px_0_0]
+            background-color: map-get($tw-light, tweet-bg-color)
+            border-bottom: map-get($tw-light, tweet-border)
 
         img
-            position: absolute
-            width: 100%
-            height: 100%
-            border-radius: 15px 15px 0 0
-            object-fit: cover
+            @apply absolute w-full h-full object-cover rounded-[15px_15px_0_0]
 
         &.relative
-            padding-bottom: 0
+            @apply pb-0
 
             img
-                position: relative
+                @apply relative
 
     &.dark .embed-link__image
         background-color: map-get($tw-dark, tweet-bg-color)
         border-bottom: map-get($tw-dark, tweet-border)
 
     &__content
-        position: relative
-        width: 100%
-        display: block
-        padding: 12px
-        font-size: 15px
-        line-height: 20px
-        white-space: normal
+        @apply relative w-full block text-[15px] leading-5 whitespace-normal p-3
 
     &__name
-        position: relative
-        display: block
-        margin-bottom: 2px
         color: map-get($tw-dark, accents-5)
-        @include truncate()
+        @apply truncate relative block mb-0.5
 
     &__title
-        position: relative
-        display: block
-        margin-bottom: 2px
         color: map-get($tw-dark, tweet-bg-color)
-        @include truncate()
+        @apply truncate relative block mb-0.5
 
     &__description
-        position: relative
-        display: block
-        -webkit-line-clamp: 2
-        color: map-get($tw-dark, accents-5)
+        @apply relative block
+            -webkit-line-clamp: 2
+            color: map-get($tw-dark, accents-5)
 
     &.dark .embed-link__title
         color: map-get($tw-light, tweet-bg-color)

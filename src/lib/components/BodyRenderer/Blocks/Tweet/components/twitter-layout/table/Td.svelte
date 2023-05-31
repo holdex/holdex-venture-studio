@@ -11,7 +11,8 @@
 </td>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
+
 
     td
         border: 1px solid map-get($tw-light, accents-2)

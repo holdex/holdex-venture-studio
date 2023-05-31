@@ -77,37 +77,26 @@
 </template>
 
 <style lang="sass">
-    @import "../../common"
+
+    @import "../../../../../../../styles/theme"
+
     .actions
         border-top: map-get($tw-dark, tweet-border)
 
     .replies
-        display: flex
-        align-items: center
-        justify-content: center
+        @apply flex items-center justify-center
 
     .readReplies
-        // TODO: tailwind not applying properly
-        display: flex
-        align-items: center
-        justify-content: center
-        width: 95%
-        height: 32px
+        @apply flex items-center justify-center w-[95%] h-8 not-italic font-bold leading-8 mb-[15px] rounded-[999px]
         color: map-get($tw-dark, link-color)
         background: map-get($tw-dark, tweet-btn-color)
         border: map-get($tw-dark, tweet-btn-border)
-        border-radius: 999px
-        margin-bottom: 15px
-        font-style: normal
-        font-weight: 700
         font-size: 14px
-        line-height: 32px
 
         &:hover
             background: transparent
 
     a
-        //TODO: text-sm is being applied nowhere
         font-size: 0.875rem
         color: map-get($tw-light, tweet-link-color)
         
@@ -122,17 +111,19 @@
 
     
     .icon
-        vertical-align: top
+        @apply align-top
 
     .link
         color: map-get($tw-dark,tweet-color-gray )
     
     .likes
-        font-family: $tweet-font
+        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
+    sans-serif
         color: map-get($tw-dark, tweet-color-red)    
 
     .text
-        font-family: $tweet-font
+        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
+    sans-serif
         color: map-get($tw-dark, tweet-color-gray)    
 
     .icon-heart

@@ -2,13 +2,6 @@
 	const { className, ...rest } = $$props;
 </script>
 
-<li class={'pl-0' + className} {...rest}>
+<li class={'mt-0 mb-2 mx-0 pl-0' + className} {...rest}>
 	<slot />
 </li>
-
-<style lang="sass">
-    @import "../../common"
-
-    li
-        margin: $li-margin
-</style>

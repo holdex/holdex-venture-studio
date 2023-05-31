@@ -30,11 +30,13 @@
 </div>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
+
 
     .time
         color: map-get($tw-light, tweet-color-gray)
-        font-family: $tweet-font
+        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
+    sans-serif
 
         &:hover,
         &:focus

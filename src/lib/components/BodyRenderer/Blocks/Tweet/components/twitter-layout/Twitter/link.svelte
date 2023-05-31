@@ -16,11 +16,11 @@
 </a>
 
 <style lang="sass">
-    @import "../../common"
+	@import "../../../../../../../styles/theme"
 
-    a
-        color: map-get($tw-light, link-color)
+a
+	color: map-get($tw-light, link-color)
 
-    .dark
-        color: map-get($tw-dark, link-color)
+.dark
+	color: map-get($tw-dark, link-color)
 </style>

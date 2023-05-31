@@ -6,20 +6,16 @@
 	let theme = getContext('theme');
 </script>
 
-<pre class="{className} {$theme}" {...rest}><slot /></pre>
+<pre class="mx-0 my-6 {className} {$theme}" {...rest}><slot /></pre>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
     
     pre
         color: map-get($tw-light, code-color)
         background: map-get($tw-light, code-bg-color)
-        padding: 1.25rem
-        margin: $container-margin
-        white-space: pre
-        overflow: auto
+        @apply whitespace-pre overflow-auto p-5
         -webkit-overflow-scrolling: touch
-
     .dark
         color: map-get($tw-dark, code-color)
         background: map-get($tw-dark, code-bg-color)

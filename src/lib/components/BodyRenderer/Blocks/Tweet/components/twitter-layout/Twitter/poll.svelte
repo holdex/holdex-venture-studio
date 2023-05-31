@@ -14,7 +14,7 @@
 	const theme = getContext('theme');
 </script>
 
-<div class="poll">
+<div class="mx-4 my-6">
 	<div
 		class="@apply grid grid-cols-[max-content_14rem_max-content] items-center gap-4 overflow-auto;"
 	>
@@ -26,15 +26,14 @@
 	</div>
 	<hr class="mt-4 mb-2 mx-0 border-0{$theme}" />
 	<div class="footer flex text-sm {$theme}">
-		<span class="votes-count">{votesCount} votes</span>
+		<span class="grow">{votesCount} votes</span>
 		<span>{now > endsAt ? 'Final results' : `${howFarFromNow(endsAt)} left`}</span>
 	</div>
 </div>
 
 <style lang="sass">
-    @import "../../common"
-    .poll
-        margin: $poll-margin
+    @import "../../../../../../../styles/theme"
+
 
     .label 
         word-wrap: break-word
@@ -56,9 +55,6 @@
 
         &.dark
             color: map-get($tw-dark, accents-4)
-
-    .votes-count
-        flex-grow: 1
 
     @media screen and (max-width: 450px)
         .options

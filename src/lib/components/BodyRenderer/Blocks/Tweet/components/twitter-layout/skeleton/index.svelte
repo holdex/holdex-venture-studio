@@ -14,7 +14,8 @@
 </span>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
+
 
     .skeleton
         background: linear-gradient(270deg,map-get($tw-light, accents-1),map-get($tw-light, accents-2),map-get($tw-light, accents-2),map-get($tw-light, accents-1))

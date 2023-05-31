@@ -8,7 +8,7 @@
 	let theme = getContext('theme');
 </script>
 
-<div class="container rounded-[5px] {$theme}">
+<div class="container mx-0 my-6 rounded-[5px] {$theme}">
 	<div class="pt-5 pb-2.5 px-5">
 		<Skeleton style="height: 2.25rem" />
 		<Skeleton style="height: 7rem; margin: 1.25rem 0" />
@@ -22,12 +22,11 @@
 </div>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
 
     .container
         background: map-get($tw-light,tweet-bg-color)
         border: map-get($tw-light, tweet-border)
-        margin: $container-margin
 
         &.dark
             background: map-get($tw-dark, tweet-bg-color)

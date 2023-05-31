@@ -55,31 +55,32 @@
 </div>
 
 <style lang="sass">
-    @import "../../common"
-    .avatar
-        & > img
-            border: map-get($tw-light, tweet-avatar-border)
-            @apply rounded-[50%]
+@import "../../../../../../../styles/theme"
 
-        &.dark > img
-            border: map-get($tw-dark, tweet-avatar-border)
+.avatar
+    & > img
+        border: map-get($tw-light, tweet-avatar-border)
+        @apply rounded-[50%]
 
-    .author
-        &:hover
-            color: map-get($tw-light, tweet-link-color-hover)
+    &.dark > img
+        border: map-get($tw-dark, tweet-avatar-border)
 
-        &.dark:hover
-            color: map-get($tw-dark, tweet-link-color-hover)
-            
-    .username
-        color: map-get($tw-light, tweet-color-gray)
-
-        &.dark
-            color: map-get($tw-dark, tweet-color-gray)
-
-    .follow 
+.author
+    &:hover
         color: map-get($tw-light, tweet-link-color-hover)
-        &:before 
-            color: map-get($tw-dark, tweet-color-gray)      
+
+    &.dark:hover
+        color: map-get($tw-dark, tweet-link-color-hover)
+		
+.username
+    color: map-get($tw-light, tweet-color-gray)
+
+    &.dark
+        color: map-get($tw-dark, tweet-color-gray)
+
+.follow 
+    color: map-get($tw-light, tweet-link-color-hover)
+    &:before 
+        color: map-get($tw-dark, tweet-color-gray)      
 
 </style>

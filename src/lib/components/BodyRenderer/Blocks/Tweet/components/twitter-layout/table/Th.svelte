@@ -10,7 +10,8 @@
 </th>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
+
 
     th
         border: 1px solid map-get($tw-light, accents-2)

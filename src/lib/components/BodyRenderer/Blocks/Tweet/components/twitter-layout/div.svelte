@@ -3,27 +3,23 @@
 </div>
 
 <style lang="sass">
-    @import "../common"
 
-    .image-container
-        display: grid
-        grid-template-columns: repeat(auto-fit, minmax(50%, 1fr))
-        margin: $container-margin
-
+    .image-container 
+        @apply grid grid-cols-[repeat(auto-fit,minmax(50%,1fr))] mx-0 my-6
+        
     .image-count-3 > :global(:first-child)
-        grid-row-end: span 2
-
+        @apply row-end-[span_2]
+        
     .gif-container,
     .video-container
-        margin: $container-margin
-
+        @apply mx-0 my-6
+    
     .gif-container > :global(video),
-    .video-container > :global(video)
-        width: 100%
-        max-height: 500px
+    .video-container > :global(video)  
+        @apply w-full max-h-[500px]
 
     .content-container
-        margin: $text-margin
-        white-space: pre-wrap
+        @apply whitespace-pre-wrap mx-0 my-5
         word-wrap: break-word
+
 </style>

@@ -11,7 +11,7 @@
 </code>
 
 <style lang="sass">
-    @import "../../common"
+    @import "../../../../../../../styles/theme"
 
     code
         font-size: 14px

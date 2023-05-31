@@ -15,10 +15,7 @@ moment.updateLocale('en', {
 
 
 function howFarFromNow(endsAt:Date) {
-  const end = moment(endsAt);
-  const now = moment(new Date);
-
-  return end.from(now)
+  return moment(endsAt).toNow()
 }
 
 function timeFormat(time: number | string, format: string = 'DD MMM YYYY') {
