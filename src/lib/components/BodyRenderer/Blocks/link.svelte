@@ -23,7 +23,8 @@
 	}
 	$: textWithoutPrefix = item.text.replace(/^https?:\/\//, '');
 	$: domain = textWithoutPrefix.split('/')[0];
-	$: truncatedUrl = textWithoutPrefix.length > 15 ? domain + '/' + textWithoutPrefix.slice(domain.length + 1, domain.length + 1 + 15) + '...' : textWithoutPrefix;
+	$: path = textWithoutPrefix.slice(domain.length + 1).length ? textWithoutPrefix.slice(domain.length + 1) : '';
+	$: truncatedUrl = path.length > 8 ? domain + '/' + textWithoutPrefix.slice(domain.length + 1, domain.length + 1 + 8) + '...' : textWithoutPrefix;
 	$: text = truncatedUrl || item.href;
 	$: isHoldexLink = regExp.holdexLink.test(item.href);
 </script>
