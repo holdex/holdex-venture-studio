@@ -17,10 +17,10 @@
     @import "../../common"
 
     .skeleton
-        background: linear-gradient(270deg,map-get($light, accents-1),map-get($light, accents-2),map-get($light, accents-2),map-get($light, accents-1))
+        background: linear-gradient(270deg,map-get($tw-light, accents-1),map-get($tw-light, accents-2),map-get($tw-light, accents-2),map-get($tw-light, accents-1))
 
     .dark
-        background: linear-gradient(90deg,map-get($dark, accents-1),map-get($dark, accents-2),map-get($dark, accents-2),map-get($dark, accents-1))
+        background: linear-gradient(90deg,map-get($tw-dark, accents-1),map-get($tw-dark, accents-2),map-get($tw-dark, accents-2),map-get($tw-dark, accents-1))
 
     @keyframes loading 
         0%

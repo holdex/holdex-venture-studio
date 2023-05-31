@@ -18,10 +18,10 @@
     
     ul :global(li:before)
         content: "-"
-        color: map-get($light, 'accents-3')
+        color: map-get($tw-light, 'accents-3')
         position: absolute
         margin-left: -1rem
         
     .dark :global(li:before)
-        color: map-get($dark, 'accents-3')
+        color: map-get($tw-dark, 'accents-3')
 </style>

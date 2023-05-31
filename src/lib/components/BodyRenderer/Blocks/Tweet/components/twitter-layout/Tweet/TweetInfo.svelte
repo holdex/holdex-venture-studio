@@ -33,17 +33,17 @@
     @import "../../common"
 
     .time
-        color: map-get($light, tweet-color-gray)
+        color: map-get($tw-light, tweet-color-gray)
         font-family: $tweet-font
 
         &:hover,
         &:focus
-            color: map-get($light, tweet-link-color-hover)
+            color: map-get($tw-light, tweet-link-color-hover)
 
         &.dark
-            color: map-get($dark, tweet-color-gray)
+            color: map-get($tw-dark, tweet-color-gray)
 
             &:hover,
             &:focus
-                color: map-get($dark, tweet-link-color-hover)
+                color: map-get($tw-dark, tweet-link-color-hover)
 </style>

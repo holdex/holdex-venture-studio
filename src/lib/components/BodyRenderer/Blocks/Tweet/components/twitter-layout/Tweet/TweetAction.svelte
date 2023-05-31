@@ -79,7 +79,7 @@
 <style lang="sass">
     @import "../../common"
     .actions
-        border-top: map-get($dark, tweet-border)
+        border-top: map-get($tw-dark, tweet-border)
 
     .replies
         display: flex
@@ -93,9 +93,9 @@
         justify-content: center
         width: 95%
         height: 32px
-        color: map-get($dark, link-color)
-        background: map-get($dark, tweet-btn-color)
-        border: map-get($dark, tweet-btn-border)
+        color: map-get($tw-dark, link-color)
+        background: map-get($tw-dark, tweet-btn-color)
+        border: map-get($tw-dark, tweet-btn-border)
         border-radius: 999px
         margin-bottom: 15px
         font-style: normal
@@ -109,32 +109,32 @@
     a
         //TODO: text-sm is being applied nowhere
         font-size: 0.875rem
-        color: map-get($light, tweet-link-color)
+        color: map-get($tw-light, tweet-link-color)
         
         &:hover
-            color: map-get($light, tweet-link-color-hover)!important
+            color: map-get($tw-light, tweet-link-color-hover)!important
 
         &.dark
-            color: map-get($dark, tweet-link-color)
+            color: map-get($tw-dark, tweet-link-color)
 
             &:hover
-                color: map-get($dark, tweet-link-color-hover)!important
+                color: map-get($tw-dark, tweet-link-color-hover)!important
 
     
     .icon
         vertical-align: top
 
     .link
-        color: map-get($dark,tweet-color-gray )
+        color: map-get($tw-dark,tweet-color-gray )
     
     .likes
         font-family: $tweet-font
-        color: map-get($dark, tweet-color-red)    
+        color: map-get($tw-dark, tweet-color-red)    
 
     .text
         font-family: $tweet-font
-        color: map-get($dark, tweet-color-gray)    
+        color: map-get($tw-dark, tweet-color-gray)    
 
     .icon-heart
-        color: map-get($dark, tweet-color-red)
+        color: map-get($tw-dark, tweet-color-red)
 </style>

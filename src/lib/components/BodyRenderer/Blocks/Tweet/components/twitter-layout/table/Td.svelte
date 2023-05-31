@@ -14,9 +14,9 @@
     @import "../../common"
 
     td
-        border: 1px solid map-get($light, accents-2)
+        border: 1px solid map-get($tw-light, accents-2)
 
     .dark
-        border-color: map-get($dark, accents-2)
+        border-color: map-get($tw-dark, accents-2)
 
 </style>

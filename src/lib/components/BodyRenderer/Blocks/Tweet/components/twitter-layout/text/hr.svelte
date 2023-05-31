@@ -13,9 +13,9 @@
 
     hr
         
-        border-top: 1px solid map-get($light, accents-2)
+        border-top: 1px solid map-get($tw-light, accents-2)
         margin: $text-margin
 
     .dark
-        border-top-color: map-get($dark, accents-2)
+        border-top-color: map-get($tw-dark, accents-2)
 </style>

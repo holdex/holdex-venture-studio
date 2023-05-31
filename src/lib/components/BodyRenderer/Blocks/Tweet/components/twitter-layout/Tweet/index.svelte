@@ -24,23 +24,23 @@
     @import "../../common"
 
     .tweet
-        color: map-get($light, tweet-font-color)
+        color: map-get($tw-light, tweet-font-color)
         font: $tweet-font
-        background: map-get($light, tweet-bg-color)
-        border: map-get($light, tweet-border)
+        background: map-get($tw-light, tweet-bg-color)
+        border: map-get($tw-light, tweet-border)
         margin: $container-margin
 
         &:hover
-            border: map-get($light, tweet-border-hover)
+            border: map-get($tw-light, tweet-border-hover)
             
 
     .dark
-        color: map-get($dark, tweet-font-color)
-        background: map-get($dark, tweet-bg-color)
-        border: map-get($dark, tweet-border)
+        color: map-get($tw-dark, tweet-font-color)
+        background: map-get($tw-dark, tweet-bg-color)
+        border: map-get($tw-dark, tweet-border)
 
         &:hover
-            border: map-get($dark, tweet-border-hover)
+            border: map-get($tw-dark, tweet-border-hover)
 
 
     .tweet :global(.icon)

@@ -14,14 +14,14 @@
     @import "../../common"
 
     blockquote
-        background: map-get($light,accents-1)
-        color: map-get($light, accents-5)
-        border: 1px solid map-get($light, accents-2)
+        background: map-get($tw-light,accents-1)
+        color: map-get($tw-light, accents-5)
+        border: 1px solid map-get($tw-light, accents-2)
         margin: $container-margin
         
 
     .dark
-        background: map-get($dark,accents-1)
-        color: map-get($dark, accents-5)
-        border-color: map-get($dark, accents-2)
+        background: map-get($tw-dark,accents-1)
+        color: map-get($tw-dark, accents-5)
+        border-color: map-get($tw-dark, accents-2)
 </style>

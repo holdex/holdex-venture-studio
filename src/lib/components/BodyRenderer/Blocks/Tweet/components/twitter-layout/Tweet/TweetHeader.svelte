@@ -58,28 +58,28 @@
     @import "../../common"
     .avatar
         & > img
-            border: map-get($light, tweet-avatar-border)
+            border: map-get($tw-light, tweet-avatar-border)
             @apply rounded-[50%]
 
         &.dark > img
-            border: map-get($dark, tweet-avatar-border)
+            border: map-get($tw-dark, tweet-avatar-border)
 
     .author
         &:hover
-            color: map-get($light, tweet-link-color-hover)
+            color: map-get($tw-light, tweet-link-color-hover)
 
         &.dark:hover
-            color: map-get($dark, tweet-link-color-hover)
+            color: map-get($tw-dark, tweet-link-color-hover)
             
     .username
-        color: map-get($light, tweet-color-gray)
+        color: map-get($tw-light, tweet-color-gray)
 
         &.dark
-            color: map-get($dark, tweet-color-gray)
+            color: map-get($tw-dark, tweet-color-gray)
 
     .follow 
-        color: map-get($light, tweet-link-color-hover)
+        color: map-get($tw-light, tweet-link-color-hover)
         &:before 
-            color: map-get($dark, tweet-color-gray)      
+            color: map-get($tw-dark, tweet-color-gray)      
 
 </style>

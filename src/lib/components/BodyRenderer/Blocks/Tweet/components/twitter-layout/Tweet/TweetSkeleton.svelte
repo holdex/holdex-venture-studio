@@ -25,17 +25,17 @@
     @import "../../common"
 
     .container
-        background: map-get($light,tweet-bg-color)
-        border: map-get($light, tweet-border)
+        background: map-get($tw-light,tweet-bg-color)
+        border: map-get($tw-light, tweet-border)
         margin: $container-margin
 
         &.dark
-            background: map-get($dark, tweet-bg-color)
-            border: map-get($dark, tweet-border)
+            background: map-get($tw-dark, tweet-bg-color)
+            border: map-get($tw-dark, tweet-border)
 
     .footer
-        border-top: map-get($light, tweet-border)
+        border-top: map-get($tw-light, tweet-border)
 
         &.dark
-            border-top: map-get($dark, tweet-border)
+            border-top: map-get($tw-dark, tweet-border)
 </style>

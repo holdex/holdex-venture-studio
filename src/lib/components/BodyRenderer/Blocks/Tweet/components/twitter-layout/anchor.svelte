@@ -41,8 +41,8 @@
     @import "../common"
 
     a
-        color: map-get($light, link-color)
+        color: map-get($tw-light, link-color)
 
     .dark
-        color: map-get($dark, link-color)
+        color: map-get($tw-dark, link-color)
 </style>

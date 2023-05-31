@@ -40,22 +40,22 @@
         word-wrap: break-word
 
     .chart
-        background: map-get($light, poll-bar-color)
+        background: map-get($tw-light, poll-bar-color)
 
         &.dark
-            background: map-get($dark, poll-bar-color)
+            background: map-get($tw-dark, poll-bar-color)
 
     hr
-        border-top: 1px solid map-get($light, accents-2)
+        border-top: 1px solid map-get($tw-light, accents-2)
 
         &.dark
-            border-top-color: map-get($dark, accents-2)
+            border-top-color: map-get($tw-dark, accents-2)
 
     .footer
-        color: map-get($light, accents-4)
+        color: map-get($tw-light, accents-4)
 
         &.dark
-            color: map-get($dark, accents-4)
+            color: map-get($tw-dark, accents-4)
 
     .votes-count
         flex-grow: 1
