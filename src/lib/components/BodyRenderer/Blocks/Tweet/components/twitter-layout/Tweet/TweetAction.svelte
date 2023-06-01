@@ -41,7 +41,7 @@
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
-                    div.icon.icon-heart
+                    span(class="icon tweet-color-red")
                         Icon(icon="{HeartIcon}" width="{24}" height="{24}" colorInherit)
                     unless likeCount == 0
                     span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
@@ -127,5 +127,6 @@
         color: map-get($tw-dark, tweet-color-gray)    
 
     .icon-heart
-        color: map-get($tw-dark, tweet-color-red)
+        // color: map-get($tw-dark, tweet-color-red)
+
 </style>
