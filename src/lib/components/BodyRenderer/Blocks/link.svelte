@@ -23,16 +23,16 @@
 			classes += 'text-paragraph-l';
 			break;
 	}
-
 	let truncateUrl = (url: string) => {
+
 		let textWithoutPrefix = url.replace(/^https?:\/\//, '');
 		let domain = textWithoutPrefix.split('/')[0];
 		let path = textWithoutPrefix.slice(domain.length + 1).length ? textWithoutPrefix.slice(domain.length + 1) : '';
 		let truncatedUrl = path.length > 8 ? domain + '/' + textWithoutPrefix.slice(domain.length + 1, domain.length + 1 + 8) + '...' : textWithoutPrefix;
 		return truncatedUrl;
 	}
-	$: isURL =  item.text ? item.text.includes('http') : false;
-	$: text = isURL ? truncateUrl(item.text): item.text || truncateUrl(item.href);
+	$: text = item.text || item.href;
+	$: truncated = temp.includes('http') ? truncateUrl(text) : text;
 	$: isHoldexLink = regExp.holdexLink.test(item.href);
 </script>
 
@@ -45,7 +45,7 @@
 	rel="noreferrer"
 
 >
-	<slot {text} />
+	<slot {truncated} />
 	{#if !isHoldexLink}
 		<Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
 	{/if}
