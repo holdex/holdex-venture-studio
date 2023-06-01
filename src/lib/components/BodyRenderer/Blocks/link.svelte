@@ -32,7 +32,7 @@
 		return truncatedUrl;
 	}
 	$: text = item.text || item.href;
-	$: truncated = temp.includes('http') ? truncateUrl(text) : text;
+	$: truncated = text.includes('http') ? truncateUrl(text) : text;
 	$: isHoldexLink = regExp.holdexLink.test(item.href);
 </script>
 
