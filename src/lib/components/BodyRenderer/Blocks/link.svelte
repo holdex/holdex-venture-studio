@@ -24,22 +24,15 @@
 			break;
 	}
 
-	let isURL: boolean;
-	let textWithoutPrefix: string;
-	let domain: string;
-	let path: string;
-	let truncatedUrl: string;
-
-	isURL =  item.text ? item.text.includes('http') : false;
-	if(isURL)
-	{
-		textWithoutPrefix = item.text.replace(/^https?:\/\//, '');
-		domain = textWithoutPrefix.split('/')[0];
-		path = textWithoutPrefix.slice(domain.length + 1).length ? textWithoutPrefix.slice(domain.length + 1) : '';
-		truncatedUrl = path.length > 8 ? domain + '/' + textWithoutPrefix.slice(domain.length + 1, domain.length + 1 + 8) + '...' : textWithoutPrefix;
+	let truncateUrl = (url: string) => {
+		let textWithoutPrefix = url.replace(/^https?:\/\//, '');
+		let domain = textWithoutPrefix.split('/')[0];
+		let path = textWithoutPrefix.slice(domain.length + 1).length ? textWithoutPrefix.slice(domain.length + 1) : '';
+		let truncatedUrl = path.length > 8 ? domain + '/' + textWithoutPrefix.slice(domain.length + 1, domain.length + 1 + 8) + '...' : textWithoutPrefix;
+		return truncatedUrl;
 	}
-
-	$: text = isURL ? truncatedUrl: item.text || item.href;
+	$: isURL =  item.text ? item.text.includes('http') : false;
+	$: text = isURL ? truncateUrl(item.text): item.text || item.href;
 	$: isHoldexLink = regExp.holdexLink.test(item.href);
 </script>
 
