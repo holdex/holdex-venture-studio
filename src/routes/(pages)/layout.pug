@@ -20,7 +20,7 @@ mixin mobile-nav
 
 .app-container(data-theme="{pageTheme}")
 	header(class!="z-10 w-full block  relative {scrollY > 1 ? 'sticky top-0 border-b border-solid border-l4 bg-l1' : ''}")
-			.outer-container(class="relative xs:before:content['] xs:before:absolute xs:before:left-0 xs:before:w-16 xs:before:h-16 xs:before:z-10 xs:before:bg-gradient-to-l xs:after:bg-gradient-to-r from-l1 to-transparent xs:after:content['] xs:after:absolute xs:after:right-0 xs:after:w-16 xs:after:h-16 xs:after:z-10 xs:after:top-0")
+			.outer-container(class="relative xs:before:content['] xs:before:absolute xs:before:left-0 xs:before:w-16 xs:before:h-16 xs:before:z-10 xs:before:bg-gradient-to-r xs:after:bg-gradient-to-l from-l1 to-transparent xs:after:content['] xs:after:absolute xs:after:right-0 xs:after:w-16 xs:after:h-16 xs:after:z-10 xs:after:top-0")
 				.header-wrapper(class="flex px-4 py-3 smDown:!pb-0 justify-center items-center w-full xs:overflow-x-scroll whitespace-nowrap")
 					.container(class="max-w-[1240px] flex items-center justify-between  xs:gap-4 ")
 						.logo-wrapper(class="relative xs:fixed z-10")
