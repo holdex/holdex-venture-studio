@@ -12,11 +12,6 @@
     @import "../../../../../../../styles/theme"
     
     pre
-        color: map-get($tw-light, code-color)
-        background: map-get($tw-light, code-bg-color)
-        @apply whitespace-pre overflow-auto p-5
+        @apply whitespace-pre overflow-auto p-5 text-tw-code-color bg-tw-code-bg-color
         -webkit-overflow-scrolling: touch
-    .dark
-        color: map-get($tw-dark, code-color)
-        background: map-get($tw-dark, code-bg-color)
 </style>

@@ -6,18 +6,10 @@
 	const { className, ...rest } = $$props;
 </script>
 
-<td class="px-3.5 py-2 {className} {$theme}" {...rest}>
+<td class="px-3.5 py-2 border border-tw-accents-2 {className} {$theme}" {...rest}>
 	<slot />
 </td>
 
 <style lang="sass">
     @import "../../../../../../../styles/theme"
-
-
-    td
-        border: 1px solid map-get($tw-light, accents-2)
-
-    .dark
-        border-color: map-get($tw-dark, accents-2)
-
 </style>

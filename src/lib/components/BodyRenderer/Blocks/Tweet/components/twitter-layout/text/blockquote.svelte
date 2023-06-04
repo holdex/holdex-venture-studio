@@ -6,21 +6,13 @@
 	let theme = getContext('theme');
 </script>
 
-<blockquote class="px-5 py-0 mx-0 my-6 {className} {$theme}" {...rest}>
+<blockquote
+	class="px-5 py-0 mx-0 my-6 bg-tw-accents-1 text-tw-accents-5 border border-tw-accents-2 {className} {$theme}"
+	{...rest}
+>
 	<slot />
 </blockquote>
 
 <style lang="sass">
     @import "../../../../../../../styles/theme"
-
-    blockquote
-        background: map-get($tw-light,accents-1)
-        color: map-get($tw-light, accents-5)
-        border: 1px solid map-get($tw-light, accents-2)
-        
-
-    .dark
-        background: map-get($tw-dark,accents-1)
-        color: map-get($tw-dark, accents-5)
-        border-color: map-get($tw-dark, accents-2)
 </style>

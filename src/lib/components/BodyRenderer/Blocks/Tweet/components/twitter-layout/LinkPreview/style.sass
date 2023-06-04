@@ -1,19 +1,11 @@
 @use "sass:math"
 
 .embed-link
-    @apply relative inline-block w-full no-underline leading-none z-[1] mt-3 rounded-2xl
+    @apply relative inline-block w-full no-underline leading-none z-[1] mt-3 rounded-2xl bg-tw-tweet-bg-color border border-tw-tweet-border
         transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out
-        background-color: map-get($tw-light, tweet-bg-color)
-        border: map-get($tw-light, tweet-border)
-
-    &.dark
-        background-color: map-get($tw-dark, tweet-bg-color)
-        border: map-get($tw-dark, tweet-border)
 
     &__image
-        @apply relative inline-block w-full align-top rounded-[16px_16px_0_0]
-            background-color: map-get($tw-light, tweet-bg-color)
-            border-bottom: map-get($tw-light, tweet-border)
+        @apply relative inline-block w-full align-top rounded-[16px_16px_0_0] bg-tw-tweet-bg-color border-b border-tw-tweet-border
 
         img
             @apply absolute w-full h-full object-cover rounded-[15px_15px_0_0]
@@ -25,24 +17,20 @@
                 @apply relative
 
     &.dark .embed-link__image
-        background-color: map-get($tw-dark, tweet-bg-color)
-        border-bottom: map-get($tw-dark, tweet-border)
+        @apply bg-tw-tweet-bg-color border-b border-tw-tweet-border
 
     &__content
         @apply relative w-full block text-[15px] leading-5 whitespace-normal p-3
 
     &__name
-        color: map-get($tw-dark, accents-5)
-        @apply truncate relative block mb-0.5
+        @apply truncate relative block mb-0.5 text-tw-accents-5
 
     &__title
-        color: map-get($tw-dark, tweet-bg-color)
-        @apply truncate relative block mb-0.5
+        @apply truncate relative block mb-0.5 text-tw-tweet-bg-color
 
     &__description
-        @apply relative block
+        @apply relative block text-tw-accents-5
             -webkit-line-clamp: 2
-            color: map-get($tw-dark, accents-5)
 
     &.dark .embed-link__title
-        color: map-get($tw-light, tweet-bg-color)
+        @apply text-tw-tweet-bg-color

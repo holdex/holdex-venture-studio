@@ -17,7 +17,7 @@
 <div class="text-sm flex">
 	{#if createdAt}
 		<a
-			class="no-underline not-italic font-medium text-sm leading-5 focus:underline exclude {$theme}"
+			class="inter text-tw-tweet-color-gray no-underline not-italic font-medium text-sm leading-5 focus:underline exclude hover:text-tw-tweet-link-color-hover {$theme}"
 			href={tweetUrl}
 			target="_blank"
 			rel="noopener noreferrer"
@@ -31,21 +31,4 @@
 
 <style lang="sass">
     @import "../../../../../../../styles/theme"
-
-
-    .time
-        color: map-get($tw-light, tweet-color-gray)
-        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
-    sans-serif
-
-        &:hover,
-        &:focus
-            color: map-get($tw-light, tweet-link-color-hover)
-
-        &.dark
-            color: map-get($tw-dark, tweet-color-gray)
-
-            &:hover,
-            &:focus
-                color: map-get($tw-dark, tweet-link-color-hover)
 </style>

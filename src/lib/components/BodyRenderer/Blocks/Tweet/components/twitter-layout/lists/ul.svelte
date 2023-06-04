@@ -14,9 +14,9 @@
     @import "../../../../../../../styles/theme"
 
     ul :global(li:before)
-        color: map-get($tw-light, 'accents-3')
-        @apply content-["-"] absolute ml-[-1rem]
+        @apply content-["-"] absolute ml-[-1rem] text-tw-accents-3
                 
     .dark :global(li:before)
-        color: map-get($tw-dark, 'accents-3')
+        @apply text-tw-accents-3
+
 </style>

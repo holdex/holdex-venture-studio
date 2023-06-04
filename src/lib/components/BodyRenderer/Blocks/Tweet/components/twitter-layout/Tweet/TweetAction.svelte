@@ -34,39 +34,45 @@
 </script>
 
 <template lang="pug">
-    div.actions 
+    div(class="border-t border-tw-tweet-border")
         div(class="flex mt-[0.2rem]") 
-            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 like exclude {$theme}" 
+            a(class="text-tw-tweet-link-color block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 like exclude {$theme}" 
                 href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
-                    span(class="icon tweet-color-red")
+                    span(class="align-top text-tw-tweet-color-red")
                         Icon(icon="{HeartIcon}" width="{24}" height="{24}" colorInherit)
                     unless likeCount == 0
-                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2 hover:text-tw-tweet-link-color-hover")
                             p {likeCount}
 
-            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
+            a(class="text-tw-tweet-link-color block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
                 href="{tweetUrl}"
                 title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
-                    div.icon
+                    span(class="align-top")
                         Icon(icon="{ReplyIcon}" width="{24}" height="{24}" colorInherit)
-                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2 hover:text-tw-tweet-link-color-hover")
                         p Reply 
 
-            a(class="block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
-                title="Reply to tweet" 
+
+            a(class="text-tw-tweet-link-color block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 exclude {$theme}" 
+                href="{tweetUrl}"
+                title="Like" 
                 target="_blank" 
                 rel="noopener noreferrer")
-                    div(class="icon link")
+                    span(class="align-top")
                         Icon(icon="{CopyLinkIcon}" width="{24}" height="{24}" colorInherit)
-                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2")
+                    span(class="inline-block whitespace-nowrap overflow-hidden text-ellipsis not-italic font-bold text-sm leading-5 ml-2 hover:text-tw-tweet-link-color-hover")
                         p Copy Link 
+
+
+
         div(class="flex items-center justify-center") 
-            a(class="readReplies block text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5"            
+            a(class="flex items-center justify-center w-[95%] h-8 not-italic font-bold leading-8 mb-[15px] rounded-[999px] text-sm no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] px-5 py-2.5 text-tw-tweet-link-color bg-tw-tweet-btn-color border border-tw-tweet-btn-border hover:bg-transparent"
+                        
                 href="{tweetUrl}"
                 title="Read replies to tweet" 
                 target="_blank" 
@@ -79,54 +85,12 @@
 <style lang="sass">
 
     @import "../../../../../../../styles/theme"
-
-    .actions
-        border-top: map-get($tw-dark, tweet-border)
-
-    .replies
-        @apply flex items-center justify-center
-
-    .readReplies
-        @apply flex items-center justify-center w-[95%] h-8 not-italic font-bold leading-8 mb-[15px] rounded-[999px]
-        color: map-get($tw-dark, link-color)
-        background: map-get($tw-dark, tweet-btn-color)
-        border: map-get($tw-dark, tweet-btn-border)
-        font-size: 14px
-
-        &:hover
-            background: transparent
-
     a
-        font-size: 0.875rem
-        color: map-get($tw-light, tweet-link-color)
-        
-        &:hover
-            color: map-get($tw-light, tweet-link-color-hover)!important
-
-        &.dark
-            color: map-get($tw-dark, tweet-link-color)
-
-            &:hover
-                color: map-get($tw-dark, tweet-link-color-hover)!important
-
+        font-size: 0.875rem 
     
     .icon
         @apply align-top
 
-    .link
-        color: map-get($tw-dark,tweet-color-gray )
-    
-    .likes
-        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
-    sans-serif
-        color: map-get($tw-dark, tweet-color-red)    
 
-    .text
-        font-family: normal normal 18px/1.4 Helvetica, Roboto, "Segoe UI", Calibri,
-    sans-serif
-        color: map-get($tw-dark, tweet-color-gray)    
-
-    .icon-heart
-        // color: map-get($tw-dark, tweet-color-red)
 
 </style>

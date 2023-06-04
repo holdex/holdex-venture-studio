@@ -7,7 +7,7 @@
 </script>
 
 <span
-	class="skeleton block w-full bg-[400%_100%] animate-[loading_8s_ease-in-out_infinite] rounded-[5px] {$theme}"
+	class="block bg-gradient-to-r from-tw-accents-1 via-tw-accents-2 to-tw-accents-1 w-full bg-[400%_100%] animate-[loading_8s_ease-in-out_infinite] rounded-[5px] {$theme}"
 	{style}
 >
 	<slot />
@@ -15,13 +15,6 @@
 
 <style lang="sass">
     @import "../../../../../../../styles/theme"
-
-
-    .skeleton
-        background: linear-gradient(270deg,map-get($tw-light, accents-1),map-get($tw-light, accents-2),map-get($tw-light, accents-2),map-get($tw-light, accents-1))
-
-    .dark
-        background: linear-gradient(90deg,map-get($tw-dark, accents-1),map-get($tw-dark, accents-2),map-get($tw-dark, accents-2),map-get($tw-dark, accents-1))
 
     @keyframes loading 
         0%

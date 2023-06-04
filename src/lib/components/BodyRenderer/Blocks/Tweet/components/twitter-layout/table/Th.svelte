@@ -5,18 +5,10 @@
 	const { className, ...rest } = $$props;
 </script>
 
-<th class="font-semibold px-3.5 py-2 {className} {$theme}" {...rest}>
+<th class="font-semibold px-3.5 py-2 border border-tw-accents-2 {className} {$theme}" {...rest}>
 	<slot />
 </th>
 
 <style lang="sass">
     @import "../../../../../../../styles/theme"
-
-
-    th
-        border: 1px solid map-get($tw-light, accents-2)
-
-    .dark
-        border-color: map-get($tw-dark, accents-2)
-
 </style>
