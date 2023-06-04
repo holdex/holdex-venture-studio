@@ -249,6 +249,7 @@ module.exports = {
 				5.5: '1.375rem',
 				5.75: '1.4375rem',
 				6.5: '1.625rem',
+				8.5: '2.125rem',
 				'11/25': '44%',
 				'1/2': '50%',
 				19: '4.75rem',
@@ -294,6 +295,9 @@ module.exports = {
 					'0px 0px 0px 2px rgba(0, 0, 0, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
 				'secondary-button-active':
 					'0px 0px 0px 2px rgba(0, 204, 255, 0.2), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)'
+			},
+			minHeight: {
+				32: '8rem',
 			}
 		}
 	},
