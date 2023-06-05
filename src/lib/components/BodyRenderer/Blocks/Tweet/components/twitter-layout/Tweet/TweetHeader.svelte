@@ -52,8 +52,6 @@
 </div>
 
 <style lang="sass">
-    @import "../../common"
-
     .avatar
         & > img
             @apply rounded-[50%] border border-tw-tweet-avatar-border 

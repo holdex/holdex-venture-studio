@@ -6,21 +6,11 @@
 </script>
 
 <a
-	class="inline-block no-underline hover:underline exclude {$theme}"
+	class="inline-block no-underline text-tw-tweet-link-color hover:underline exclude {$theme}"
 	{href}
 	target="_blank"
 	rel="noopener noreferrer"
 	title={href}
 >
-	<b><slot /></b>
+	<b class="text-tw-tweet-link-color hover:text-tw-tweet-link-color-hover"><slot /></b>
 </a>
-
-<style lang="sass">
-	@import "../../../../../../../styles/theme"
-
-a
-	color: map-get($tw-light, link-color)
-
-.dark
-	color: map-get($tw-dark, link-color)
-</style>

@@ -22,8 +22,6 @@
 </div>
 
 <style lang="sass">
-
-    @import "../../../../../../../styles/theme"
     
     .tweet :global(.icon)
         @apply inline-block h-[1.25em]

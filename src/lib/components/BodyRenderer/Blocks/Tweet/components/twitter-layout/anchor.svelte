@@ -32,17 +32,7 @@
 	target="_blank"
 	rel="noopener noreferrer"
 	title={title || href}
-	class="@apply inline-block no-underline hover:underline exclude {$theme}"
+	class="inline-block no-underline hover:underline exclude text-tw-tweet-link-color {$theme}"
 >
 	{beautifyHref(value)}
 </a>
-
-<style lang="sass">
-    @import "../../../../../../styles/theme"
-
-    a
-        color: map-get($tw-light, link-color)
-
-    .dark
-        color: map-get($tw-dark, link-color)
-</style>

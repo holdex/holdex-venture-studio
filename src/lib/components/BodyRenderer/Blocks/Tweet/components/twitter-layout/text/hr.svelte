@@ -7,7 +7,3 @@
 </script>
 
 <hr class="border-t border-tw-accents-2 mx-0 my-6 {className} {$theme}" {...rest} />
-
-<style lang="sass">
-    @import "../../../../../../../styles/theme"
-</style>

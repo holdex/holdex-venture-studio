@@ -25,3 +25,6 @@
 		<Node {components} node={ast} {html} />
 	{/if}
 </div>
+
+<style lang="scss">
+</style>
