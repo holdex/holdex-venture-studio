@@ -1,36 +1,36 @@
 @use "sass:math"
 
 .embed-link
-    @apply relative inline-block w-full no-underline leading-none z-[1] mt-3 rounded-2xl bg-tw-tweet-bg-color border border-tw-tweet-border
-        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out
+    relative inline-block w-full no-underline leading-none z-[1] mt-3 rounded-2xl bg-tw-tweet-bg-color border border-tw-tweet-border
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out @apply 
 
     &__image
-        @apply relative inline-block w-full align-top rounded-[16px_16px_0_0] bg-tw-tweet-bg-color border-b border-tw-tweet-border
+        relative inline-block w-full align-top rounded-[16px_16px_0_0] bg-tw-tweet-bg-color border-b border-tw-tweet-border @apply 
 
         img
-            @apply absolute w-full h-full object-cover rounded-[15px_15px_0_0]
+            absolute w-full h-full object-cover rounded-[15px_15px_0_0] @apply
 
         &.relative
-            @apply pb-0
+            pb-0 @apply
 
             img
-                @apply relative
+                relative @apply
 
     &.dark .embed-link__image
-        @apply bg-tw-tweet-bg-color border-b border-tw-tweet-border
+        bg-tw-tweet-bg-color border-b border-tw-tweet-border @apply
 
     &__content
-        @apply relative w-full block text-[15px] leading-5 whitespace-normal p-3
+        relative w-full block text-[15px] leading-5 whitespace-normal p-3 @apply
 
     &__name
-        @apply truncate relative block mb-0.5 text-tw-accents-5
+        truncate relative block mb-0.5 text-tw-accents-5 @apply
 
     &__title
-        @apply truncate relative block mb-0.5 text-tw-tweet-bg-color
+        truncate relative block mb-0.5 text-tw-tweet-bg-color @apply
 
     &__description
-        @apply relative block text-tw-accents-5
+        relative block text-tw-accents-5 @apply 
             -webkit-line-clamp: 2
 
     &.dark .embed-link__title
-        @apply text-tw-tweet-bg-color
+        text-tw-tweet-bg-color @apply

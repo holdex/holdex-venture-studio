@@ -14,12 +14,10 @@
 </template>
 
 <style lang="sass">
-
-    @media screen and (min-width: 992px) 
-    a 
-        @apply mr-2
-    
-    .permalink 
-        @apply inline-block
+	@media screen and (min-width: 992px)
+		a 
+			@apply mr-2
+		.permalink 
+			@apply inline-block
 
 </style>

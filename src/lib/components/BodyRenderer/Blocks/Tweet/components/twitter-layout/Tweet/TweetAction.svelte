@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { formatNumber } from '../../lib/utils';
 
 	import { CopyLinkIcon, HeartIcon, ReplyIcon } from '../Icons';
 	import Icon from '$components/Icons/index.svelte';
