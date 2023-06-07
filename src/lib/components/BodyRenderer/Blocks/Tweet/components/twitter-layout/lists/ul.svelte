@@ -11,8 +11,6 @@
 </ul>
 
 <style lang="sass">
-    @import "../../../../../../../styles/theme"
-
     ul :global(li:before)
         @apply content-["-"] absolute ml-[-1rem] text-tw-accents-3
                 

@@ -9,7 +9,3 @@
 <td class="px-3.5 py-2 border border-tw-accents-2 {className} {$theme}" {...rest}>
 	<slot />
 </td>
-
-<style lang="sass">
-    @import "../../../../../../../styles/theme"
-</style>

@@ -12,7 +12,3 @@
 >
 	<slot />
 </blockquote>
-
-<style lang="sass">
-    @import "../../../../../../../styles/theme"
-</style>

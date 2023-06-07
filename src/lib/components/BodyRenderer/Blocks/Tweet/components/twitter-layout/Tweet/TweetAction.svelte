@@ -82,14 +82,9 @@
 </template>
 
 <style lang="sass">
-
-    @import "../../../../../../../styles/theme"
     a
         font-size: 0.875rem 
     
     .icon
         @apply align-top
-
-
-
 </style>

@@ -35,7 +35,6 @@
 </div>
 
 <style lang="sass">
-    @import "../../../../../../../styles/theme"
     .label 
         word-wrap: break-word
 

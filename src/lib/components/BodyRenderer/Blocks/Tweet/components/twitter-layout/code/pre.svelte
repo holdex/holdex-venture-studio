@@ -11,8 +11,6 @@
 	{...rest}><slot /></pre>
 
 <style lang="sass">
-    @import "../../../../../../../styles/theme"
-    
     pre
         -webkit-overflow-scrolling: touch
 </style>

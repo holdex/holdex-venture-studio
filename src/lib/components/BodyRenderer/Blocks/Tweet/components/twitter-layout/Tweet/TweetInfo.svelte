@@ -28,7 +28,3 @@
 		</a>
 	{/if}
 </div>
-
-<style lang="sass">
-    @import "../../../../../../../styles/theme"
-</style>

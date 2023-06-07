@@ -14,8 +14,6 @@
 </span>
 
 <style lang="sass">
-    @import "../../../../../../../styles/theme"
-
     @keyframes loading 
         0%
             background-position: 200% 0

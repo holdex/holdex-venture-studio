@@ -14,8 +14,6 @@
 </code>
 
 <style lang="sass">
-    @import "../../../../../../../styles/theme"
-
     .dark.inline
         @apply text-tw-inline-code-color
 
