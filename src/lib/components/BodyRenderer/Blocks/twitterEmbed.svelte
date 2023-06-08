@@ -1,8 +1,8 @@
 <script lang="ts">
+	import { isBrowser } from '$lib/config';
 	import { getContext } from 'svelte';
-	import Tweet from './Tweet/tweet.svelte';
+	import Tweet from './Tweet/index.svelte';
 	import type { Writable } from 'svelte/store';
-	import { browser } from '$app/environment';
 
 	export let source: string;
 
@@ -11,7 +11,9 @@
 	let id = source.split('/').pop();
 
 	let loadTweet = async (tweetId: string | undefined) => {
-		return fetch(`/api/tweets?id=${tweetId}`).then((res) => res.json());
+		if (isBrowser) {
+			return fetch(`/api/tweets?id=${tweetId}`).then((res) => res.json());
+		}
 	};
 </script>
 

@@ -1,6 +1,4 @@
 <script>
-	// import CustomElement from "./customElement.svelte";
-
 	export let node;
 	export let components;
 	export let html;
@@ -31,7 +29,5 @@
 		<svelte:component this={components.img} {...nodeItem} {html} />
 	{:else if components[nodeItem.type]}
 		<svelte:component this={components[nodeItem.type]} {...nodeItem} />
-		<!-- {:else}
-		<CustomElement tag={nodeItem.type} {...nodeItem} /> -->
 	{/if}
 {/each}
