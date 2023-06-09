@@ -7,9 +7,21 @@
 </script>
 
 <span
-	class="block bg-gradient-to-r from-tw-accents-1 via-tw-accents-2 to-tw-accents-1 w-full bg-[400%_100%] animate-[loading_8s_ease-in-out_infinite] rounded-[5px] {$theme}"
+	class="block
+	bg-gradient-to-r
+	from-tw-accents-1
+	w-full
+	bg-[400%_100%]
+	animate-[loading_8s_ease-in-out_infinite]
+	rounded-[5px]
+	{$theme}"
 	{style}
 >
+	<!-- TODO: 
+	As I understand the existing placeholder and animation 
+	ware out of shape so upgraded to the current design 
+	compliant look for the skeleton.
+-->
 	<slot />
 </span>
 
