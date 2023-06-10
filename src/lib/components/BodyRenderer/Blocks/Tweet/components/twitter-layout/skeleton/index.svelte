@@ -1,23 +1,10 @@
 <script>
 	import { getContext } from 'svelte';
-
 	export let style = '';
-
 	let theme = getContext('theme');
 </script>
 
-<span
-	class="block
-	bg-gradient-to-r
-	from-tw-accents-1
-	w-full
-	bg-[400%_100%]
-	animate-[loading_8s_ease-in-out_infinite]
-	rounded-[5px]
-	{$theme}"
-	{style}
->
-	<!-- TODO: Animation -->
+<span class="block {$theme}" {style}>
 	<slot />
 </span>
 
