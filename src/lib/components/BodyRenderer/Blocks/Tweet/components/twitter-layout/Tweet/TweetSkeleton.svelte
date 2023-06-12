@@ -22,7 +22,7 @@
 				class="icon w-[1.25em] h-[1.25em] object-contain twicon brand exclude"
 				title="View on Twitter"
 				alt="twitter"
-				src={'/twitter.png'}
+				src="/twitter.png"
 			/>
 		</div>
 	</Skeleton>
