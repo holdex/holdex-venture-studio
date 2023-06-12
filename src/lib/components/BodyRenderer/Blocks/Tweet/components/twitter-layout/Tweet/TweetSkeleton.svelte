@@ -10,12 +10,10 @@
 	const twitterSrc = 'https://storage.googleapis.com/stage-holdex-public/assets/twitter.png';
 </script>
 
-<div
-	class="container mx-0 my-6 rounded-[5px] bg-tw-tweet-bg-color border border-tw-tweet-border ${theme}"
->
+<div class="container rounded-[5px] bg-tw-tweet-bg-color border border-tw-tweet-border ${theme}">
 	<Skeleton>
-		<div class="flex justify-between p-8 border-tw-tweet-border">
-			<div class="flex justify-between">
+		<div class="flex justify-between p-4 border-tw-tweet-border">
+			<div class="flex justify-between mt-2">
 				<span class="avatar animation animate mr-2.5 exclude ${theme}" />
 				<a
 					href={'#0'}
@@ -40,8 +38,9 @@
 	<Skeleton>
 		<div class="content animation animate" />
 	</Skeleton>
-	<Skeleton>
-		<div class="action animation animate ${theme}" />
+	<hr class="text-tw-tweet-border" />
+	<Skeleton style="margin: 1.25rem 0">
+		<div class="mt-2 action animation animate ${theme}" />
 	</Skeleton>
 </div>
 
@@ -52,10 +51,10 @@
 				@apply rounded-[50%] border border-tw-tweet-avatar-border w-36  
 
 		.author
-			@apply w-48 h-6 bg-tw-tweet-border text-tw-tweet-border border-b border-tw-tweet-bg-color  
+			@apply w-48 h-6 bg-tw-tweet-border text-tw-tweet-border border-b border-tw-tweet-bg-color rounded-md
 
 		.username
-			@apply w-24 h-6 bg-tw-tweet-border text-tw-tweet-border border-b border-tw-tweet-bg-color  
+			@apply w-24 h-6 bg-tw-tweet-border text-tw-tweet-border border-b border-tw-tweet-bg-color  rounded-md
 
 		.brand
 			@apply ml-auto
