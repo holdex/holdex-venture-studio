@@ -3,11 +3,7 @@
 
 	import Skeleton from '../skeleton/index.svelte';
 
-	export let simple = false;
-
 	let theme = getContext('theme');
-
-	const twitter = new URL('/twitter.png', import.meta.url).href;
 </script>
 
 <div class="container rounded-[5px] bg-tw-tweet-bg-color border border-tw-tweet-border ${theme}">
@@ -26,7 +22,7 @@
 				class="icon w-[1.25em] h-[1.25em] object-contain twicon brand exclude"
 				title="View on Twitter"
 				alt="twitter"
-				src={twitter}
+				src={'/twitter.png'}
 			/>
 		</div>
 	</Skeleton>
