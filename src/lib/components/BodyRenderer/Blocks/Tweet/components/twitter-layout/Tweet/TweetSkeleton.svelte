@@ -7,7 +7,7 @@
 
 	let theme = getContext('theme');
 
-	const twitterSrc = 'https://storage.googleapis.com/stage-holdex-public/assets/twitter.png';
+	const twitter = new URL('/twitter.png', import.meta.url).href;
 </script>
 
 <div class="container rounded-[5px] bg-tw-tweet-bg-color border border-tw-tweet-border ${theme}">
@@ -15,24 +15,19 @@
 		<div class="flex justify-between p-4 border-tw-tweet-border">
 			<div class="flex justify-between mt-2">
 				<span class="avatar animation animate mr-2.5 exclude ${theme}" />
-				<a
-					href={'#0'}
+				<span
 					class="flex flex-col no-underline transition-[color] duration-[0.3s] ease-[ease-in-out] exclude {$theme}"
-					target="_blank"
-					rel="noopener noreferrer"
 				>
 					<span class="author animation animate overflow-hidden ${theme}" title="name" />
 					<span class="username animation animate overflow-hidden ${theme}" title="username" />
-				</a>
+				</span>
 			</div>
-			<a href="#0" class="brand exclude" target="_blank" rel="noopener noreferrer">
-				<img
-					class="icon w-[1.25em] h-[1.25em] object-contain twicon"
-					title="View on Twitter"
-					alt="twitter"
-					src={twitterSrc}
-				/>
-			</a>
+			<img
+				class="icon w-[1.25em] h-[1.25em] object-contain twicon brand exclude"
+				title="View on Twitter"
+				alt="twitter"
+				src={twitter}
+			/>
 		</div>
 	</Skeleton>
 	<Skeleton>
