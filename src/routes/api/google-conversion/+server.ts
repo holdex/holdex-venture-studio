@@ -1,6 +1,5 @@
 import { default as _last } from 'lodash-es/last';
 import { default as _get } from 'lodash-es/get';
-// import { default as _repeat } from 'lodash-es/repeat';
 import { json } from '@sveltejs/kit';
 import { getEmbedUrl, getEmbedSource, regExp } from '$components/BodyParser/utils';
 
@@ -179,15 +178,6 @@ function isQuote(el: Schema$ParagraphElement) {
 
 function cleanText(text: string) {
 	return text.replace(/\n/g, '').trim();
-}
-
-function getTextFromParagraph(p: Schema$Paragraph) {
-	return p.elements
-		? p.elements
-				.filter((el) => el.textRun && el.textRun.content !== '\n')
-				.map((el) => (el.textRun ? getText(el) : ''))
-				.join('')
-		: '';
 }
 
 function getBulletContent(document: Schema$Document, element: Schema$ParagraphElement) {
