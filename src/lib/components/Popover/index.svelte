@@ -28,7 +28,6 @@
 	let dispatch = createEventDispatcher();
 
 	onMount(() => {
-		console.log('popover', popover);
 		appContainer = document.querySelector('.app-container') || document.body;
 		parent = wrapper?.parentElement || null;
 		if (parent) {
