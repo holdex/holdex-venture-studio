@@ -3,9 +3,9 @@ import config from '$lib/server/config';
 import { json, type RequestHandler } from '@sveltejs/kit';
 
 type Coin = {
-	id: string;
-	symbol: string;
-	name: string;
+  id: string;
+  symbol: string;
+  name: string;
 };
 
 let coins: Coin[] = [];
@@ -17,53 +17,53 @@ let coins: Coin[] = [];
  * @returns coin basic info or undefined if not able to find or fetch
  */
 async function getCoin(symbol: string): Promise<Coin | undefined> {
-	let coin = coins.find((coin) => coin.symbol === symbol);
+  let coin = coins.find((coin) => coin.symbol === symbol);
 
-	if (!coin) {
-		const res = await fetch('https://api.coingecko.com/api/v3/coins/list?include_platform=false');
-		if (res.ok) {
-			coins = await res.json();
-			coin = coins.find((coin) => coin.symbol === symbol);
-		}
-	}
+  if (!coin) {
+    const res = await fetch('https://api.coingecko.com/api/v3/coins/list?include_platform=false');
+    if (res.ok) {
+      coins = await res.json();
+      coin = coins.find((coin) => coin.symbol === symbol);
+    }
+  }
 
-	return coin;
+  return coin;
 }
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
-	const symbol = url.searchParams.get('symbol');
+  const symbol = url.searchParams.get('symbol');
 
-	if (!symbol) {
-		return json({ error: 'invalid_arguments' }, { status: 400 });
-	}
+  if (!symbol) {
+    return json({ error: 'invalid_arguments' }, { status: 400 });
+  }
 
-	const coin = await getCoin(symbol);
+  const coin = await getCoin(symbol);
 
-	if (!coin) {
-		return json({ error: `$${symbol.toUpperCase()} is not yet listed` }, { status: 404 });
-	}
+  if (!coin) {
+    return json({ error: `$${symbol.toUpperCase()} is not yet listed` }, { status: 404 });
+  }
 
-	const res = await fetch(
-		`${clientConfig.utilsApiUrl}/market-data/coins?url=https://www.coingecko.com/en/coins/${coin.id}&source=info`,
-		{
-			headers: {
-				'x-holdex-authorization': `Bearer ${config.utilsApiKey}`,
-			},
-		}
-	);
+  const res = await fetch(
+    `${clientConfig.utilsApiUrl}/market-data/coins?url=https://www.coingecko.com/en/coins/${coin.id}&source=info`,
+    {
+      headers: {
+        'x-holdex-authorization': `Bearer ${config.utilsApiKey}`,
+      },
+    }
+  );
 
-	if (!res.ok) {
-		return json({ error: `Failed to load data for $${symbol.toUpperCase()}` }, { status: 500 });
-	}
+  if (!res.ok) {
+    return json({ error: `Failed to load data for $${symbol.toUpperCase()}` }, { status: 500 });
+  }
 
-	const cointData = await res.json();
+  const cointData = await res.json();
 
-	return json(
-		{
-			...coin,
-			change: cointData.data.market_data?.price_change_24h || 0,
-			price: cointData.data.market_data?.current_price?.usd || 0,
-		},
-		{ status: 200 }
-	);
+  return json(
+    {
+      ...coin,
+      change: cointData.data.market_data?.price_change_24h || 0,
+      price: cointData.data.market_data?.current_price?.usd || 0,
+    },
+    { status: 200 }
+  );
 };

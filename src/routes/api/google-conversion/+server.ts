@@ -76,7 +76,7 @@ function convertToHoldexJson(document: Schema$Document) {
         const tableContent: any[] = [];
 
         table.tableRows.forEach((row) => {
-          let trowContent: any[] = [];
+          const trowContent: any[] = [];
           (row.tableCells as Schema$TableCell[]).forEach((tableCell) => {
             const { content: cellContent } = tableCell;
             cellContent?.forEach(({ paragraph }, i) => {
