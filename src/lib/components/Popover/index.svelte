@@ -35,20 +35,20 @@
 			parent.addEventListener('mouseleave', handleMouseLeave);
 		}
 
+		window.addEventListener('resize', placePopover);
+
 		return () => {
 			if (parent) {
 				parent.removeEventListener('mouseenter', handleMouseEnter);
 				parent.removeEventListener('mouseleave', handleMouseLeave);
 			}
+			window.removeEventListener('resize', placePopover);
 		};
 	});
 
-	const handleMouseEnter = async () => {
-		show = true;
-		dispatch('show');
-		await tick();
-
-		if (!parent || !appContainer || !popover || !popoverPointer) return;
+	/** Places popover and popover pointer in the right spot of the viewport */
+	const placePopover = () => {
+		if (!parent || !popover || !popoverPointer) return;
 
 		// Prevents popover from being rendered outside of the viewport
 		popover.style.left = `${Math.max(
@@ -65,7 +65,15 @@
 			parent.offsetLeft - popoverPointer.clientWidth / 2 + parent.clientWidth / 2
 		}px`;
 		popoverPointer.style.top = `${parent.offsetTop - popoverPointer.clientHeight}px`;
+	};
 
+	const handleMouseEnter = async () => {
+		show = true;
+		dispatch('show');
+		await tick();
+
+		if (!parent || !appContainer || !popover || !popoverPointer) return;
+		placePopover();
 		appContainer.appendChild(popover);
 		appContainer.appendChild(popoverPointer);
 	};
@@ -77,12 +85,18 @@
 		appContainer.removeChild(popover);
 		appContainer.removeChild(popoverPointer);
 	};
+
+	let popoverH = 0;
+	let popoverW = 0;
+	$: if (popoverH || popoverW) placePopover();
 </script>
 
 <span bind:this={wrapper}>
 	{#if show}
 		<span
 			bind:this={popover}
+			bind:clientHeight={popoverH}
+			bind:clientWidth={popoverW}
 			class="absolute z-50 rounded-2lg shadow text-left bg-l4 text-t2 p-2
                 {size === 'sm' ? 'text-caption' : 'text-footnote'}
             "><slot /></span
