@@ -67,7 +67,7 @@ type ParagraphBlock = {
 type TableBlock = {
 	type: string;
 	data: {
-		content: Array<Array<string>>;
+		content: Array<Array<any>>;
 	};
 };
 
@@ -401,19 +401,55 @@ const parseImage = (block: ImageBlock) => {
 };
 
 const parseTable = (block: TableBlock) => {
+	const tableContent: any[] = [];
+	block.data.content.forEach((row) => {
+		let trowContent: any[] = [];
+		row.forEach((cell) => {
+			if (cell.type === 'paragraph') {
+				const paragraph = parseParagraph(cell);
+				trowContent.push(paragraph);
+			} else if (cell.type === 'linkTool') {
+				const linkTook = parseLinkTool(cell);
+				trowContent.push(linkTook);
+			} else if (cell.type === 'nestedList') {
+				const nestedList = parseNestedList(cell);
+				trowContent.push(nestedList);
+			} else if (cell.type === 'header') {
+				const header = parseHeading(cell);
+				trowContent.push(header);
+			} else if (cell.type === 'list') {
+				const list = parseList(cell);
+				trowContent.push(list);
+			} else if (cell.type === 'image') {
+				const image = parseImage(cell);
+				trowContent.push(image);
+			} else if (cell.type === 'quote') {
+				const quote = parseQuote(cell);
+				trowContent.push(quote);
+			} else if (cell.type === 'embed') {
+				const embed = parseEmbed(cell);
+				trowContent.push(embed);
+			} else if (cell.type === 'code') {
+				const code = parseCode(cell);
+				trowContent.push(code);
+			}
+		});
+		tableContent.push(trowContent);
+	});
+
 	return {
 		type: 'table',
-		cells: block.data.content,
+		cells: tableContent,
 	};
 };
 
-export const parseTableCell = (cell: string) => {
-	const strippedCell = unescape(cell);
-	const inlineBlocks = parseInlineEls(strippedCell);
-	const tokens = tokeniseInlineEls(inlineBlocks);
+// export const parseTableCell = (cell: TableBlock) => {
+// 	const strippedCell = unescape(cell);
+// 	const inlineBlocks = parseInlineEls(cell);
+// 	const tokens = tokeniseInlineEls(inlineBlocks);
 
-	return tokens;
-};
+// 	return tokens;
+// };
 
 const parseEmbed = (block: EmbedBlock) => {
 	return {

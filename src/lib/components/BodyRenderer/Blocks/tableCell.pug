@@ -1,0 +1,60 @@
++if("typeof cell === 'object'")
+  Switch(condition="{cell.type}")
+    Case(value="heading")
+      +if("cell.level === 'h1'")
+        svelte:element(
+          this="p" 
+          class="heading font-satoshi {bindHeading(item.level)}" 
+          id="{cell.id}")
+          +each("cell.items as hItem")
+            InlineBlock(item="{hItem}")
+        +else()
+          svelte:element(
+            this="{cell.level}" 
+            class="cell font-satoshi {bindHeading(cell.level)} py-4" 
+            id="{item.id}")
+            +each("cell.items as hItem")
+              InlineBlock(item="{hItem}")
+    Case(value="paragraph")
+      svelte:element(this="p" class="p-el text-paragraph-l text-t2")
+        +each("cell.items as pItem")
+          InlineBlock(item="{pItem}")
+    Case(value="nestedList")
+      svelte:element(
+        class="{cell.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7 ml-4"
+        this="{cell.style === 'unordered' ? 'ul' : 'ol'}")
+        +each("cell.items as liItem")
+          NestedList(item="{liItem}" type="{cell.style}" let:item="{lItem}")
+            InlineBlock(item="{lItem}")
+    Case(value="list")
+      svelte:element(
+        class="{cell.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"
+        this="{cell.style === 'unordered' ? 'ul' : 'ol'}")
+        +each("cell.items as liItem")
+          li(class="text-paragraph-l text-t2")
+            +each("liItem as lItem")
+              InlineBlock(item="{lItem}") 
+    Case(value="quote")
+      blockquote(
+        title="{cell.text}" 
+        class="relative bg-l2 overflow-clip rounded-xl border border-solid border-l4 p-4 pl-5.5 text-paragraph-s text-t1 before:absolute before:content-[''] before:w-1.5 before:h-full before:left-0 before:top-0 before:bg-accent1-default")
+        +each("cell.items as QItem")
+          InlineBlock(item="{QItem}")
+    Case(value="embed")
+      +if("cell.service !== 'twitter'")
+        Embed(item="{cell}")
+        +else()
+          TwitterEmbed(source="{cell.source}" )
+    Case(value="code")
+      pre(class="bg-l2 border border-solid border-l4 rounded-xl py-4 px-6 w-full overflow-auto")
+        code(class="text-code font-mono")
+          TextWrapper(text="{cell.data.code}")
+    Case(value="image")
+      Image(item="{cell}" index="{index}")
+    Case(value="tally")
+      TallyButton(item="{cell}")
+    Case(value="chart")
+      Chart(item="{cell}")
+    //- Case(value="linkTool")
+  +else()
+    TextWrapper(text="{cell}")

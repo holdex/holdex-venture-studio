@@ -51,7 +51,7 @@ const mockConfig: Config = {
 	apiUrl: 'https://stellate.holdex.io',
 };
 
-const previewMock = false;
+const previewMock = true;
 const config = previewMock ? mockConfig : baseConfig;
 
 export const routes = {

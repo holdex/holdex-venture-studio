@@ -40,6 +40,7 @@ class Parser {
 		const [parsedBlocks, subtitle, parsedDAuthors, isGoogleDoc] = Parser.parseSubtitle(
 			parsedBody?.blocks
 		);
+		console.log({ parsedBlocks });
 		const blocks = Parser.parseBlocks(parsedBlocks);
 		const tocs = Parser.parseTocs(blocks);
 		const cover = Parser.parseThreadCover(blocks);
