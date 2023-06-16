@@ -28,6 +28,7 @@
 	let loadedTicker: Ticker | undefined = loaded.find(
 		(ticker) => ticker.id === item.text.toLowerCase()
 	);
+	let error = '';
 
 	const fetchPrice = async () => {
 		loadedTicker = loaded.find((ticker) => ticker.id === item.text.toLowerCase());
@@ -38,10 +39,20 @@
 		}
 		loading = true;
 
-		//TODO: replace with real API call and update price & change
-		await new Promise((resolve) => setTimeout(resolve, 1000));
+		let coinData = await (
+			await fetch(`/api/ticker-price?symbol=${item.text.toLowerCase()}`)
+		).json();
 
+		if (coinData.error) {
+			error = coinData.error;
+			loading = false;
+			return;
+		}
+
+		price = coinData.price;
+		change = coinData.change;
 		loading = false;
+
 		if (loadedTicker) {
 			loadedTicker.price = price;
 			loadedTicker.change = change;
@@ -66,23 +77,33 @@
 >
 	${item.text}
 	<Popover on:show={fetchPrice}>
-		<p class="whitespace-nowrap">
-			${item.text}:
-			<span class="{loading ? 'blur-sm' : 'blur-none'} transition-all">
-				{formatNumber(price, '$0,0.00')}
-			</span>
-		</p>
-		<p class="whitespace-nowrap">
-			24h:
-			<span
-				class="
-                    {change > 0 ? 'text-rating-a' : change < 0 ? 'text-rating-c' : 'text-rating-b'}
-                    {loading ? 'blur-sm' : 'blur-none'} 
-                    transition-all
-                "
-			>
-				{formatNumber(change, '0.00%')}
-			</span>
-		</p>
+		{#if loading || !error}
+			<p class="whitespace-nowrap">
+				${item.text}:
+				<span class="{loading ? 'blur-sm' : 'blur-none'} transition-all">
+					{formatNumber(price, '$0,0.00')}
+				</span>
+			</p>
+			<p class="whitespace-nowrap">
+				24h:
+				<span
+					class="
+                        {change > 0
+						? 'text-rating-a'
+						: change < 0
+						? 'text-rating-c'
+						: 'text-rating-b'}
+                        {loading ? 'blur-sm' : 'blur-none'} 
+                        transition-all
+                    "
+				>
+					{change > 0 ? '+' : ''}{formatNumber(change, '0.00%')}
+				</span>
+			</p>
+		{:else}
+			<p class="text-rating-c">
+				{error}
+			</p>
+		{/if}
 	</Popover>
 </span>
