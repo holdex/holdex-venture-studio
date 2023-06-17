@@ -39,15 +39,20 @@
     }
     loading = true;
 
-    let coinData = await (
-      await fetch(`/api/ticker-price?symbol=${item.text.toLowerCase()}`)
-    ).json();
+    let res = await fetch(`/api/ticker-price?symbol=${item.text.toLowerCase()}`);
 
-    if (coinData.error) {
-      error = coinData.error;
+    if (!res.ok) {
+      if (res.status === 404) {
+        error = `$${item.text} is not yet listed`;
+      } else {
+        error = 'Please, try later';
+      }
+
       loading = false;
       return;
     }
+
+    let coinData = await res.json();
 
     price = coinData.price;
     change = coinData.change;
@@ -57,17 +62,13 @@
       loadedTicker.price = price;
       loadedTicker.change = change;
       loadedTicker.timestamp = Date.now();
-      loaded = [...loaded];
     } else {
-      loaded = [
-        ...loaded,
-        {
-          id: item.text.toLowerCase(),
-          price,
-          change,
-          timestamp: Date.now(),
-        },
-      ];
+      loaded.push({
+        id: item.text.toLowerCase(),
+        price,
+        change,
+        timestamp: Date.now(),
+      });
     }
   };
 </script>

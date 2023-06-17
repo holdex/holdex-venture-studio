@@ -40,7 +40,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
   const coin = await getCoin(symbol);
 
   if (!coin) {
-    return json({ error: `$${symbol.toUpperCase()} is not yet listed` }, { status: 404 });
+    return json({ error: `not_found` }, { status: 404 });
   }
 
   const res = await fetch(
@@ -53,7 +53,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
   );
 
   if (!res.ok) {
-    return json({ error: `Failed to load data for $${symbol.toUpperCase()}` }, { status: 500 });
+    return json({ error: res.statusText }, { status: 500 });
   }
 
   const cointData = await res.json();
