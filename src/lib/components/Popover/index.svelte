@@ -97,13 +97,14 @@
       bind:this={popover}
       bind:clientHeight={popoverH}
       bind:clientWidth={popoverW}
-      class="absolute z-50 rounded-2lg shadow text-left bg-l4 text-t2 p-2
-                {size === 'sm' ? 'text-caption' : 'text-footnote'}
-            "><slot /></span
+      class="
+        absolute z-50 rounded-2lg shadow-md text-left bg-l4 text-t2 p-2
+        {size === 'sm' ? 'text-caption' : 'text-footnote'}
+      "><slot /></span
     >
     <span
       bind:this={popoverPointer}
-      class="absolute block z-49 rounded-sm shadow bg-l4 w-4 h-4 transform rotate-45"
+      class="absolute block z-50 rounded-sm bg-l4 w-4 h-4 rotate-45"
     />
   {/if}
 </span>
