@@ -19,7 +19,7 @@
 
   export let item: Item;
 
-  export let parentWrapper: string;
+  export let parentWrapper: string | undefined = undefined;
   setContext('wrapper', parentWrapper);
 </script>
 

@@ -37,7 +37,7 @@ export const POST: RequestHandler = async ({ request }) => {
 };
 
 function convertToHoldexJson(document: Schema$Document) {
-  const { body, headers, lists } = document;
+  const { body, headers } = document;
 
   const content: any[] = [];
   const authorBlock = {
