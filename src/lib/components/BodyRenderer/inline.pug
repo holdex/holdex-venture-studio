@@ -10,7 +10,7 @@ Switch(condition="{item.type}")
     code.rounded-lg.bg-l2.py-0.px-2.text-code.font-mono
       TextWrapper(text="{item.text}") 
   Case(value="price-ticker")
-    PriceTicker(item="{item}")
+    PriceTicker(ticker="{item.text}")
   //- Case(value="mention")
   //-     s handle mention
   //- possible removal of image

@@ -1,74 +1,33 @@
-<script lang="ts" context="module">
-  type Ticker = {
-    id: string;
-    price: number;
-    change: number;
-    timestamp: number;
-  };
-
-  let loaded: Ticker[] = [];
-</script>
-
 <script lang="ts">
   import { formatNumber } from '$components/NumbersManager';
   import Popover from '$components/Popover/index.svelte';
 
-  type Item = {
-    type: string;
-    text: string;
-  };
-
-  export let item: Item;
-
-  const REFETCH_DELAY = 1000 * 60 * 5;
+  export let ticker: string;
 
   let change = 0.1;
   let price = 1000;
   let loading = false;
-  let loadedTicker: Ticker | undefined = loaded.find(
-    (ticker) => ticker.id === item.text.toLowerCase()
-  );
   let error = '';
 
   const fetchPrice = async () => {
-    loadedTicker = loaded.find((ticker) => ticker.id === item.text.toLowerCase());
-    if (loadedTicker && loadedTicker.timestamp > Date.now() - REFETCH_DELAY) {
-      price = loadedTicker.price;
-      change = loadedTicker.change;
-      return;
-    }
     loading = true;
+    try {
+      let tickerInfo = await (await fetch(`/api/ticker-price?ticker=${ticker}`)).json();
 
-    let res = await fetch(`/api/ticker-price?symbol=${item.text.toLowerCase()}`);
+      if (tickerInfo.error) {
+        throw new Error(tickerInfo.error);
+      }
 
-    if (!res.ok) {
-      if (res.status === 404) {
-        error = `$${item.text} is not yet listed`;
+      price = tickerInfo.price;
+      change = tickerInfo.change;
+    } catch (err: any) {
+      if (err?.message == 'not_found') {
+        error = `$${ticker} not yet listed`;
       } else {
         error = 'Please, try later';
       }
-
+    } finally {
       loading = false;
-      return;
-    }
-
-    let coinData = await res.json();
-
-    price = coinData.price;
-    change = coinData.change;
-    loading = false;
-
-    if (loadedTicker) {
-      loadedTicker.price = price;
-      loadedTicker.change = change;
-      loadedTicker.timestamp = Date.now();
-    } else {
-      loaded.push({
-        id: item.text.toLowerCase(),
-        price,
-        change,
-        timestamp: Date.now(),
-      });
     }
   };
 </script>
@@ -76,11 +35,11 @@
 <span
   class="underline-offset-4 text-paragraph-l xs:text-paragraph-s text-accent1-default underline decoration-dashed inline-block"
 >
-  ${item.text}
+  ${ticker}
   <Popover on:show={fetchPrice}>
     {#if loading || !error}
       <p class="whitespace-nowrap">
-        ${item.text}:
+        ${ticker}:
         <span class="{loading ? 'blur-sm' : 'blur-none'} transition-all">
           {formatNumber(price, '$0,0.00')}
         </span>
