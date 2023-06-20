@@ -11,8 +11,10 @@
 	import Chart from './Blocks/chart.svelte';
 	import TwitterEmbed from './Blocks/twitterEmbed.svelte';
 	import Table from './Blocks/table.svelte';
+  import { parseTableCell } from '../BodyParser/blocks'
 
   export let item: any;
+  export let isTableCell: boolean = false;
 
   let bindHeading = (level: string) => {
     switch (level) {

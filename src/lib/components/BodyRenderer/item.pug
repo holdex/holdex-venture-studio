@@ -59,5 +59,8 @@
       TallyButton(item="{item}")
     Case(value="chart")
       Chart(item="{item}")
+  +elseif("isTableCell")
+    +each('parseTableCell(item) as cell')
+      InlineBlock(item="{cell}")
   +else
     TextWrapper(text="{item}")

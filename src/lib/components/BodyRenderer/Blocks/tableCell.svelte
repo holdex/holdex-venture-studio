@@ -5,4 +5,4 @@
 	export let cell: any;
 </script>
 
-<Item item={cell} />
+<Item item={cell} isTableCell />

@@ -401,6 +401,12 @@ const parseImage = (block: ImageBlock) => {
 };
 
 const parseTable = (block: TableBlock) => {
+  if (typeof block.data.content[0][0] === 'string') {
+    return {
+      type: 'table',
+      cells: block.data.content,
+    };
+  }
 	const tableContent: any[] = [];
 	block.data.content.forEach((row) => tableContent.push(parseBlocks(row)));
 
@@ -408,6 +414,14 @@ const parseTable = (block: TableBlock) => {
 		type: 'table',
 		cells: tableContent,
 	};
+};
+
+export const parseTableCell = (cell: string) => {
+  const strippedCell = unescape(cell);
+  const inlineBlocks = parseInlineEls(strippedCell);
+  const tokens = tokeniseInlineEls(inlineBlocks);
+
+  return tokens;
 };
 
 const parseEmbed = (block: EmbedBlock) => {
