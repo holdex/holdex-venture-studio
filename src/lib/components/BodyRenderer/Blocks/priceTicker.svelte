@@ -13,7 +13,7 @@
     loading = true;
     error = '';
     try {
-      let tickerInfo = await (await fetch(`/api/ticker-price?ticker=${ticker}`)).json();
+      let tickerInfo = await fetch(`/api/ticker-price?ticker=${ticker}`).then(res => res.json());
 
       if (tickerInfo.error) {
         throw new Error(tickerInfo.error);
