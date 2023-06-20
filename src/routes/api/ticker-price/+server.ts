@@ -9,7 +9,7 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
     return json({ error: 'invalid_arguments' }, { status: 400 });
   }
 
-  return fetch(`${clientConfig.utilsApiUrl}/exchange-rate?ticker=${ticker}asd`, {
+  return fetch(`${clientConfig.utilsApiUrl}/exchange-rate?ticker=${ticker}`, {
     headers: {
       'x-holdex-authorization': `Bearer ${config.utilsApiKey}`,
     },
