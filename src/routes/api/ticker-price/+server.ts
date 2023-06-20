@@ -16,7 +16,6 @@ export const GET: RequestHandler = async ({ fetch, url }) => {
   })
     .then((res) => res.json())
     .then((tickerInfo) => {
-      console.log(tickerInfo);
       if (!tickerInfo.error) {
         return json(
           {

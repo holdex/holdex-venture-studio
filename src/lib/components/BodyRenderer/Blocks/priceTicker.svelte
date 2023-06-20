@@ -11,6 +11,7 @@
 
   const fetchPrice = async () => {
     loading = true;
+    error = '';
     try {
       let tickerInfo = await (await fetch(`/api/ticker-price?ticker=${ticker}`)).json();
 
@@ -53,7 +54,7 @@
               transition-all
             "
         >
-          {change > 0 ? '+' : ''}{formatNumber(change, '0.00%')}
+          {change > 0 ? '+' : ''}{formatNumber(change / 100, '0.00%')}
         </span>
       </p>
     {:else}
