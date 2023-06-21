@@ -410,8 +410,12 @@ const parseTable = (block: TableBlock) => {
       cells: block.data.content,
     };
   }
-  const tableContent: TableRowOfStrings | TableRowOfElements = [];
-  block.data.content.forEach((row) => tableContent.push(parseBlocks(row)));
+  const tableContent: TableRowOfElements = [];
+  (block.data.content as TableRowOfElements).forEach((row) => {
+    let rowContent: any = [];
+    row.forEach(cell => rowContent.push(parseBlocks(cell)));
+    tableContent.push(rowContent)
+  });
 
   return {
     type: 'table',
