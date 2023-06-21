@@ -411,8 +411,8 @@ const parseTable = (block: TableBlock) => {
 	block.data.content.forEach((row) => tableContent.push(parseBlocks(row)));
 
 	return {
-		type: 'table',
-		cells: tableContent,
+	  type: 'table',
+	  cells: tableContent,
 	};
 };
 

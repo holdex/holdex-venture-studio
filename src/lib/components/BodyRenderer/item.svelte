@@ -1,20 +1,21 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unused-vars */
-	import { Switch, Case } from '$components/Switch';
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  import { Switch, Case } from '$components/Switch';
 
-	import InlineBlock from './inline.svelte';
-	import TextWrapper from './Blocks/textWrapper.svelte';
-	import NestedList from './Blocks/nestedList.svelte';
-	import Image from './Blocks/image.svelte';
-	import Embed from './Blocks/embed.svelte';
-	import TallyButton from './Blocks/tallyButton.svelte';
-	import Chart from './Blocks/chart.svelte';
-	import TwitterEmbed from './Blocks/twitterEmbed.svelte';
-	import Table from './Blocks/table.svelte';
+  import InlineBlock from './inline.svelte';
+  import TextWrapper from './Blocks/textWrapper.svelte';
+  import NestedList from './Blocks/nestedList.svelte';
+  import Image from './Blocks/image.svelte';
+  import Embed from './Blocks/embed.svelte';
+  import TallyButton from './Blocks/tallyButton.svelte';
+  import Chart from './Blocks/chart.svelte';
+  import TwitterEmbed from './Blocks/twitterEmbed.svelte';
+  import Table from './Blocks/table.svelte';
   import { parseTableCell } from '../BodyParser/blocks'
 
   export let item: any;
   export let isTableCell: boolean = false;
+  export let index: number;
 
   let bindHeading = (level: string) => {
     switch (level) {

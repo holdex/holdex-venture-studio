@@ -5,8 +5,8 @@
   export let blocks: any[];
 </script>
 
-{#each blocks as item}
-  <Item item={item} />
+{#each blocks as item, index}
+  <Item item={item} index={index} />
 {/each}
 
 <style lang="sass">
