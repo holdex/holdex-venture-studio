@@ -65,11 +65,14 @@ type ParagraphBlock = {
 };
 
 type TableBlock = {
-	type: string;
-	data: {
-		content: Array<Array<any>>;
-	};
+  type: string;
+  data: {
+    content: TableRowOfStrings | TableRowOfElements;
+  };
 };
+
+type TableRowOfStrings = Array<Array<string>>
+type TableRowOfElements = Array<Array<Array<HeadingBlock | ParagraphBlock | ListBlock | NestedListBlock | ImageBlock | CodeBlock>>>;
 
 type EmbedBlock = {
   type: string;
@@ -407,13 +410,13 @@ const parseTable = (block: TableBlock) => {
       cells: block.data.content,
     };
   }
-	const tableContent: any[] = [];
-	block.data.content.forEach((row) => tableContent.push(parseBlocks(row)));
+  const tableContent: any[] = [];
+  block.data.content.forEach((row) => tableContent.push(parseBlocks(row)));
 
-	return {
-		type: 'table',
-		cells: tableContent,
-	};
+  return {
+    type: 'table',
+    cells: tableContent,
+  };
 };
 
 export const parseTableCell = (cell: string) => {
