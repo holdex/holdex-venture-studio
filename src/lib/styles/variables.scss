@@ -19,10 +19,12 @@ $light-colors: (
   l4: toSpacedRgb(#dcdee5),
   l5: toSpacedRgb(#ced1db),
   l6: toSpacedRgb(#c9ccd6),
+  l7: toSpacedRgba(#dcdee5),
   t1: toSpacedRgb(#10141f),
   t2: toSpacedRgb(#2f323d),
   t3: toSpacedRgb(#5d657a),
   t4: toSpacedRgb(#ffffff),
+  t5: toSpacedRgb(#10141f),
 );
 
 $dark-colors: (
@@ -36,10 +38,12 @@ $dark-colors: (
   l4: toSpacedRgb(#2f323d),
   l5: toSpacedRgb(#393d47),
   l6: toSpacedRgb(#3d414d),
+  l7: toSpacedRgba(#2f323db3),
   t1: toSpacedRgb(#ffffff),
   t2: toSpacedRgb(#d7dae0),
   t3: toSpacedRgb(#a2a7b8),
   t4: toSpacedRgb(#10141f),
+  t5: toSpacedRgb(#10141f),
 );
 
 $tw-dark: (
