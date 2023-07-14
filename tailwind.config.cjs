@@ -75,6 +75,7 @@ module.exports = {
       t2: 'rgb(var(--t2) / <alpha-value>)',
       t3: 'rgb(var(--t3) / <alpha-value>)',
       t4: 'rgb(var(--t4) / <alpha-value>)',
+      m1: 'rgba(var(--m1) / 0.80)',
 
       'accent1-default': 'rgb(var(--accent1-default) / <alpha-value>)',
       'accent1-active': 'rgb(var(--accent1-active) / <alpha-value>)',
@@ -333,11 +334,18 @@ module.exports = {
           '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
         'secondary-button-active':
           '0px 0px 0px 2px rgba(0, 204, 255, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+        modal: '0px 8px 12px 0px rgba(0, 0, 0, var(--shadow-modal))'
       },
       minHeight: {
         32: '8rem',
       },
-    },
+      bottom: {
+        '7': '7px'
+      },
+      height: {
+        '0.2': '3px'
+      }
+    }
   },
   plugins: [],
 };
