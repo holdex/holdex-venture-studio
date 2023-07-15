@@ -42,8 +42,8 @@
   $: pageQ = getPageQ($page.url);
   $: isSearchMode = checkSearchMode($page.url);
 
-  export let avatar_list = [ "female-avatar.png", "avatar-2.png", "avatar-3.png", "avatar-4.png"]
-
+  export let avatar_list = ['female_image.svg', 'female_image2.svg', 'avatar3.svg', 'avatar4.svg'];
+  export let email = '';
   let parseMessage = (message: Message, category: string) => {
     return Parser.parseViaCategory(message, category);
   };
@@ -90,31 +90,36 @@
     isRefetching = false;
   };
 
-  // bool for toggling modal 
+  // bool for toggling modal
   export let isOpen = false;
 
-  // bool for managing subscription 
-  export let isSubscribed = false
+  // bool for managing subscription
+  export let isSubscribed = false;
 
   // toogle func for manage modal
   /** @param {boolean} subscribeState */
   let toggle = (subscribeState: boolean) => {
-    isOpen = !isOpen
-    isSubscribed = subscribeState
-  }
+    isOpen = !isOpen;
+    isSubscribed = subscribeState;
+    email = '';
+  };
 
   // hook for manage outside click
   /** @param {MouseEvent} event */
   let handleClickOutside = (event: MouseEvent) => {
-    isOpen = !isOpen
-	}
+    isOpen = !isOpen;
+  };
 
   // fun for managing user subscription
   /** @param {MouseEvent} event */
   let subscribe = (event: MouseEvent) => {
-    isSubscribed = !isSubscribed
-	}
+    isSubscribed = !isSubscribed;
+  };
 
+  /** @param {string} string */
+  export let isValidEmail = (email: string) => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+  };
 </script>
 
 <MetaTags
@@ -126,3 +131,9 @@
 
 <template lang="pug" src="./template.pug">
 </template>
+
+<style>
+  .blur {
+    filter: blur(4px);
+  }
+</style>

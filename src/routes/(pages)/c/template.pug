@@ -3,15 +3,15 @@ include ./mixins
 
 +if('storeData')
   +main-section
-    +header-wrapper.flex-col.gap-8(class="xs:gap-4")
+    +header-wrapper.flex-col.gap-8(class="xs:gap-4 {isOpen ? 'blur' : ''}")
       +nav-crumbs
         +crumbItemLink("/", "Home")
         +crumbDelimiter
         +crumbItemText("Studio")
       +messageHeader("Studio", "We drive the adoption of web3 technologies by empowering leaders with the necessary tools and capital to succeed.")()
-    +subscriber-container 
-    +modal    
-    +content-wrapper
+    +subscriber-container(class=" {isOpen ? 'blur' : ''}")
+    +modal 
+    +content-wrapper(class=" {isOpen ? 'blur' : ''}")
       +filter-options
       +feedRenderer
         Feed(
