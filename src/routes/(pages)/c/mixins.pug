@@ -144,7 +144,7 @@ mixin modal
     div(
       class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
     )
-      div(class="absolute w-full h-full z-20 bg-m1/80")
+      div(class="absolute w-full h-full z-20 bg-[#10141f]/80")
       div(class="absolute w-full max-w-2xl xs:max-w-sm max-h-full z-50 bg-l2 shadow-modal")
         div(
           use:clickOutside
@@ -155,5 +155,5 @@ mixin modal
             h3(class="text-h4-l font-semibold text-gray-900 dark:text-black") Subscribed to Holdex Network
           p(class="text-base leading-relaxed text-gray-500 dark:text-gray-400 pl-4 pb-4") Are you sure you want to unsubscribe?
           div(class="flex items-center p-4 space-x-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
-            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c text-m1")
+            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c text-[#10141f]")
             +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l2 text-t1")

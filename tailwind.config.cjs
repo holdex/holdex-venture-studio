@@ -74,8 +74,7 @@ module.exports = {
       t1: 'rgb(var(--t1) / <alpha-value>)',
       t2: 'rgb(var(--t2) / <alpha-value>)',
       t3: 'rgb(var(--t3) / <alpha-value>)',
-      t4: 'rgb(var(--t4) / <alpha-value>)',
-      m1: '#10141f',
+      t4: 'rgb(var(--t4) / <alpha-value>)', s
 
       'accent1-default': 'rgb(var(--accent1-default) / <alpha-value>)',
       'accent1-active': 'rgb(var(--accent1-active) / <alpha-value>)',
