@@ -5,11 +5,3 @@
 
   @return #{$red $green $blue};
 }
-
-@function toSpacedRgba($hexColor) {
-  $red: red($hexColor);
-  $green: green($hexColor);
-  $blue: blue($hexColor);
-
-  @return #{$red $green $blue, 0.7};
-}

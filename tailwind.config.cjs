@@ -75,8 +75,7 @@ module.exports = {
       t2: 'rgb(var(--t2) / <alpha-value>)',
       t3: 'rgb(var(--t3) / <alpha-value>)',
       t4: 'rgb(var(--t4) / <alpha-value>)',
-      t5: 'rgb(var(--t5) / <alpha-value>)',
-      m1: 'rgba(var(--m1) / 0.80)',
+      m1: '#10141f',
 
       'accent1-default': 'rgb(var(--accent1-default) / <alpha-value>)',
       'accent1-active': 'rgb(var(--accent1-active) / <alpha-value>)',
@@ -305,7 +304,6 @@ module.exports = {
       },
       opacity: {
         15: '0.15',
-        50: '0.50',
       },
       fontFamily: {
         sans: ['Inter', ...defaultTheme.fontFamily.sans],
@@ -340,23 +338,6 @@ module.exports = {
       },
       minHeight: {
         32: '8rem',
-      },
-      bottom: {
-        '8': '8px'
-      },
-      height: {
-        '0.2': '2px'
-      },
-      width: {
-        '30': '30%'
-      },
-      right: {
-        '8': '8px'
-      },
-      max: {
-        w: {
-          'sm': '24rem'
-        }
       },
     }
   },

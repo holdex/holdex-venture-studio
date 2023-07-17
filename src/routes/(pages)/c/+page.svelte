@@ -4,7 +4,7 @@
   import { page } from '$app/stores';
   import { routes } from '$lib/config';
   import Parser from '$components/BodyParser';
-  import clickOutside from '$routes/(pages)/c/clickoutside';
+  import clickOutside from '$lib/utils/clickoutside';
   import {
     feedEmptyIcon,
     HandThumbUp,
@@ -42,7 +42,7 @@
   $: pageQ = getPageQ($page.url);
   $: isSearchMode = checkSearchMode($page.url);
 
-  export let avatar_list = ['female_image.svg', 'female_image2.svg', 'avatar3.svg', 'avatar4.svg'];
+  export let avatar_list = ['avatar3.svg'];
   export let email = '';
   let parseMessage = (message: Message, category: string) => {
     return Parser.parseViaCategory(message, category);
@@ -92,6 +92,7 @@
 
   // bool for toggling modal
   export let isOpen = false;
+  export let blur = '';
 
   // bool for managing subscription
   export let isSubscribed = false;
@@ -102,11 +103,13 @@
     isOpen = !isOpen;
     isSubscribed = subscribeState;
     email = '';
+    blur = isOpen ? 'blur' : '';
   };
 
   // hook for manage outside click
   /** @param {MouseEvent} event */
   let handleClickOutside = (event: MouseEvent) => {
+    blur = '';
     isOpen = !isOpen;
   };
 
