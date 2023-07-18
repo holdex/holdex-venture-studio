@@ -93,7 +93,6 @@
   // bool for toggling modal
   export let isOpen = false;
   export let blur = '';
-
   // bool for managing subscription
   export let isSubscribed = false;
 
