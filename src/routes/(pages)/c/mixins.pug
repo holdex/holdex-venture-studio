@@ -95,9 +95,9 @@ mixin subscriber-container
     )
       div(class="flex xs:flex-col gap-8 justify-between xs:items-start items-center px-2")
         div(class="flex xs:flex-col items-start gap-4")
-          div(class="flex")
+          div(class="flex {styles2}")
             +each("avatar_list as src")
-              +avatar("{src}")
+              +avatar("{src}","{styles}")
           p(class="text-t3 text-lg text-black xs:pl-0 ")= "{isSubscribed ? 'Subscribed to Holdex Network.' : 'Join 4.543+ founders and industry experts.'}"
         +if("isSubscribed")
           button(
@@ -124,12 +124,8 @@ mixin subscriber-container
             span= "{isSubscribed ? 'Subscribed' : 'Subscribe'}"
     //- div(class="w-1/2 h-1 absolute right-0 [background:var(--line-gradient)]")
 
-mixin avatar(src)
-  img.relative.block.w-8.h-8.object-center.rounded-xl(
-    alt="avatar"
-    src=src
-    style="margin-left: -8px"
-  )
+mixin avatar(src,style)
+  img.relative.block.w-8.h-8.object-center.rounded-xl(alt="avatar" src=src style=style)
 
 mixin toggle-button(label, toggleFunc, classes)
   button(
@@ -145,7 +141,7 @@ mixin modal
       class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
     )
       div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80")
-      div(class="absolute w-full max-w-2xl xs:max-w-sm max-h-full z-50 bg-l2 shadow-modal")
+      div(class="absolute w-full max-w-2xl xs:max-w-sm max-h-full rounded z-50 bg-l2 shadow-modal")
         div(
           use:clickOutside
           on:click_outside!="{() => handleClickOutside()}"

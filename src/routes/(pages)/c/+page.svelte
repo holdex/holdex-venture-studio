@@ -93,6 +93,8 @@
   // bool for toggling modal
   export let isOpen = false;
   export let blur = '';
+  export let styles = avatar_list.length > 1 ? 'margin-left:-8px' : '';
+  export let styles2 = avatar_list.length > 1 ? 'ml-2' : '';
   // bool for managing subscription
   export let isSubscribed = false;
 
