@@ -58,6 +58,7 @@ mixin mobile-nav
                   img(alt="Home" src="/logo-white-w-text.svg")
                   +else
                     img(alt="Home" src="/logo-w-o-text.svg")
+                    span(class="pl-2 text-cta text-t1 transition-colors hover:text-accent1-default ")="Holdex"
 
             .flex.items-center.gap-2.sticky.right-0.z-20(class="md-up:gap-4")
               +button-icon-default(type="button" on:click!="{onThemeToggle}")
