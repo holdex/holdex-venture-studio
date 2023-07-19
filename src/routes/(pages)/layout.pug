@@ -42,7 +42,7 @@ mixin mobile-nav
     class!="z-10 w-full block  relative sticky top-0 border-b border-solid border-l4 bg-l1"
   )
     .outer-container(
-      class="relative xs:before:content['] xs:before:absolute xs:before:left-0 xs:before:w-16 xs:before:h-16 xs:before:z-10 xs:before:bg-gradient-to-r xs:after:bg-gradient-to-l from-l1 to-transparent xs:after:content['] xs:after:absolute xs:after:right-0 xs:after:w-16 xs:after:h-16 xs:after:z-10 xs:after:top-0"
+      class=""
     )
       .header-wrapper(
         class="w-full whitespace-nowrap lg-up:justify-center"
@@ -69,7 +69,7 @@ mixin mobile-nav
                 on:click!="{() => handleClick(undefined)}"
               )
 
-        div(class!="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up py-3 {scrollY > 1 ? 'hidden' : ''}")
+        div(class!="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up py-3 {scrollY > 1 ? 'hidden' : ''} mobile:after:bg-gradient-to-l from-l1 to-transparent mobile:after:absolute mobile:after:right-0 mobile:after:w-16 mobile:after:h-16")
           //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
           +main-nav(class="gap-4 xl-up:gap-8")
           .social-icons-nav(class="gap-5 flex items-start")
