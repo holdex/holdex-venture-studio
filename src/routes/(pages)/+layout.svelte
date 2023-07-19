@@ -121,3 +121,13 @@
   <style lang="scss" src="./layout.scss"></style>
   {@html `<script>document.documentElement.dataset.theme=localStorage.getItem('theme');</script>`}
 </svelte:head>
+
+<style lang="sass">
+  .scrollbar-hide::-webkit-scrollbar
+    display: none
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide 
+    -ms-overflow-style: none  /* IE and Edge */
+    scrollbar-width: none  /* Firefox */
+</style>
