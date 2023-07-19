@@ -2,7 +2,7 @@ include ./common-mixins
 
 mixin link(href, title)
   li(
-    class="flex relative items-center text-cta text-t1 transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 before:-bottom-4 before:w-full before:bg-transparent xs:before:!bg-transparent before:h-0.5"
+    class="flex relative items-center text-cta text-t1 transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 before:bottom-[-0.75rem] before:w-full before:bg-transparent before:h-0.5"
   )&attributes(attributes): a(
     class="text-inherit"
     href=href
