@@ -39,7 +39,7 @@ mixin mobile-nav
 
 .app-container
   header(
-    class!="z-10 w-full block  relative sticky top-0 border-b border-solid border-l4 bg-l1"
+    class!="z-10 w-full block  relative sticky top-0 bg-l1"
   )
     .outer-container(
       class=""
@@ -63,25 +63,25 @@ mixin mobile-nav
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-
-        div(class!="px-4 flex items-center justify-between overflow-x-scroll scrollbar-hide mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up py-3 {scrollY > 1 ? 'hidden' : ''} mobile:after:bg-gradient-to-l from-l1 to-transparent mobile:after:absolute mobile:after:right-0 mobile:after:w-16 mobile:after:h-16")
-          //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
-          +main-nav(class="gap-4 xl-up:gap-8")
-          .social-icons-nav(class="gap-5 flex items-start")
-            +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
-              class="!h-5 !w-5 !p-0"
-            )
-            +social-link("https://github.com/holdex", "{@html socialIcons.github}")(
-              class="!h-5 !w-5 !p-0"
-            )
-            +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")(
-              class="!h-5 !w-5 !p-0"
-            )
-            +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")(
-              class="!h-5 !w-5 !p-0"
-            )
-            +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(
-              class="!h-5 !w-5 !p-0"
+        div(class!="border-b border-solid border-l4  {scrollY > 1 ? 'hidden' : ''}")
+          div(class!="px-4 flex items-center justify-between overflow-x-scroll scrollbar-hide mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up py-3 mobile:after:bg-gradient-to-l from-l1 to-transparent mobile:after:absolute mobile:after:right-0 mobile:after:w-16 mobile:after:h-16")
+            //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
+            +main-nav(class="gap-4 xl-up:gap-8")
+            .social-icons-nav(class="gap-5 flex items-start")
+              +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
+                class="!h-5 !w-5 !p-0"
+              )
+              +social-link("https://github.com/holdex", "{@html socialIcons.github}")(
+                class="!h-5 !w-5 !p-0"
+              )
+              +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")(
+                class="!h-5 !w-5 !p-0"
+              )
+              +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")(
+                class="!h-5 !w-5 !p-0"
+              )
+              +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(
+                class="!h-5 !w-5 !p-0"
             )
 
   main: slot
