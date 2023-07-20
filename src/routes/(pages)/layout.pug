@@ -49,16 +49,11 @@ mixin mobile-nav
       )
         div(class="border-b border-solid border-l4 bg-l1 py-2")
           div(class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up")
-            .logo-wrapper.sticky.left-0.z-20
-              a(
-                class="relative flex w-6.5 h-6.5  {isBurgerDropdownShown ? '!w-25' : ''}"
-                href="{routes.index}"
+            .logo-wrapper(class="z-1 relative")
+              a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
+                name="logo"
+                class="w-32"
               )
-                +if('isBurgerDropdownShown')
-                  img(alt="Home" src="/logo-white-w-text.svg")
-                  +else
-                    img(alt="Home" src="/logo-w-o-text.svg")
-                    span(class="pl-2 text-cta text-t1 transition-colors hover:text-accent1-default ")="Holdex"
 
             .flex.items-center.gap-2.sticky.right-0.z-20(class="md-up:gap-4")
               +button-icon-default(type="button" on:click!="{onThemeToggle}")
