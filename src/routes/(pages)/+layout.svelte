@@ -40,7 +40,10 @@
   };
 
   var lastScrollTop = 0;
+  var secondaryNavScrollLeft = 0
   var status = true
+  var isLeftEnd = true
+  var isRightEnd = false
 
   onMount(() => {
     window.addEventListener("scroll", () => {
@@ -54,6 +57,30 @@
       lastScrollTop = st <= 0 ? 0 : st;
     }, false);
   });
+
+  onMount(() => {
+    const navbarElement = document.getElementById("secondary-navbar");
+    navbarElement && navbarElement.addEventListener("scroll", hasReachedRightEnd, false)
+
+    return () => {
+      navbarElement && navbarElement.removeEventListener("scroll", hasReachedRightEnd)
+    }
+  })
+
+  $: console.log({isLeftEnd, isRightEnd})
+
+  const hasReachedRightEnd = () => {
+    const navbarElement = document.getElementById("secondary-navbar");
+    const navbarSecionElement = document.getElementById("secondary-navbar-section");
+
+    if (!navbarElement || !navbarSecionElement) {
+      return 
+    }
+
+    secondaryNavScrollLeft = navbarElement?.scrollLeft;
+    isLeftEnd = secondaryNavScrollLeft === 0
+    isRightEnd = secondaryNavScrollLeft + navbarElement.clientWidth === navbarSecionElement.clientWidth ? true : false
+  }
 
   const isActive = (currentUrl: string, path: string, deepEqual = false) => {
     if (deepEqual) {
