@@ -39,6 +39,23 @@
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
   };
 
+  var lastScrollTop = 0;
+  var status = true
+
+  onMount(() => {
+    window.addEventListener("scroll", () => { // or window.addEventListener("scroll"....
+      var st = window.scrollY || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+      if (st > lastScrollTop) {
+          // downscroll code
+          status = false
+      } else if (st < lastScrollTop) {
+          // upscroll code
+          status = true
+      } // else was horizontal scroll
+      lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    }, false);
+  });
+
   const isActive = (currentUrl: string, path: string, deepEqual = false) => {
     if (deepEqual) {
       return currentUrl === path;
