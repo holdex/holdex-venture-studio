@@ -337,6 +337,12 @@ module.exports = {
       minHeight: {
         32: '8rem',
       },
+      height: {
+        '0.2': '1px'
+      },
+      maxWidth: {
+        mobile: '22rem'
+      }
     }
   },
   plugins: [],
