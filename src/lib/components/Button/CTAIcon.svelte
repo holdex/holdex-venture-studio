@@ -8,7 +8,7 @@
 
 </script>
 
-<button class="w-[50px] h-[50px] fixed bottom-3 right-[14px] z-50 sm-up:hidden" on:click={() => handleClick(undefined)}>
+<button class="w-[56px] h-[56px] fixed bottom-3 right-[14px] z-50 sm-up:hidden" on:click={() => handleClick(undefined)}>
 	<svg width="56" height="56" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
 		<g filter="url(#filter0_ddi_1554_15511)">
 			<rect x="8" y="4" width="56" height="56" rx="12" fill="#00CCFF"/>
