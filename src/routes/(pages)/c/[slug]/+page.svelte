@@ -86,7 +86,7 @@
   let isHashtagActive = (filter: string, tag: string) => {
     if (!filter) return '';
     return filter.toLowerCase() === tag.toLowerCase()
-      ? '!text-t1 !bg-l3 before:!border-accent1-default !shadow-tag-active'
+      ? '!text-t1 before:!border-accent1-default !shadow-tag-active'
       : '';
   };
 
