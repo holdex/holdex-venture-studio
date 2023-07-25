@@ -91,10 +91,10 @@ mixin subscriber-container
     div(class="absolute [background:var(--line-gradient)] w-1/3 xs:w-1/2 h-[1px] left-10")
     div(class="absolute bottom-8 h-[1px] [background:var(--line-gradient)] right-10  w-1/3 xs:w-1/2")
     div(
-      class="flex flex-col justify-start gap-4 xs:gap-4 w-full bg-l2 border border-solid border-l4 px-2 {isSubscribed ? 'py-4':'py-4 pb-2'} rounded-xl mb-8"
+      class="flex flex-col justify-start gap-4 xs:gap-6 w-full bg-l2 border border-solid border-l4 px-2 {isSubscribed ? 'py-4':'py-4 pb-2'} rounded-xl mb-8"
     )
       div(class="flex xs:flex-col gap-8 justify-between xs:items-start items-center px-2")
-        div(class="flex xs:flex-col items-center xs:items-start gap-3")
+        div(class="flex xs:flex-col items-center xs:items-start gap-3 xs:gap-4")
           div(class="flex {styles2}")
             +each("avatar_list as src")
               +avatar("{src}","{styles}")
@@ -113,7 +113,7 @@ mixin subscriber-container
             type="text"
             placeholder="Add your email to join Holdex network"
             bind:value="{email}"
-            class="bg-l2 border-l4 hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 xs:py-4 px-2 rounded-xl mr-2 xs:mb-0"
+            class="bg-l2 border-l4 font-medium hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 xs:py-4 px-2 rounded-xl mr-2 xs:mb-0"
           )
           button(
             on:click!="{subscribe}"
@@ -130,7 +130,7 @@ mixin toggle-button(label, toggleFunc, classes)
   button(
     on:click!=toggleFunc
     type="button"
-    class="relative inline-flex z-1 h-full xs:w-full border text-sm border-solid border-l4 font-bold  xs:ml-0  shadow-secondary-button items-center justify-center p-2.5 px-3.75 rounded-xl hover:border-accent1-active hover:shadow-secondary-button-hover" + " " + classes
+    class="relative inline-flex z-1 h-full xs:w-full border text-sm border-solid border-l4 font-bold  xs:ml-0  shadow-secondary-button items-center justify-center p-2.5 px-4 rounded-xl hover:border-accent1-active hover:shadow-secondary-button-hover" + " " + classes
   )&attributes(attributes)
     span= label
 
@@ -149,7 +149,7 @@ mixin modal
           class=" p-4 rounded-lg shadow dark:bg-gray-700"
         )
           h3(class="text-h4-l font-satoshi xs:text-h4-s font-bold text-gray-900 dark:text-black") Subscribed to Holdex Network
-          p(class="text-base leading-relaxed text-t3 pb-4") Are you sure you want to unsubscribe?
+          p(class="text-base leading-relaxed text-t3 mt-3 pb-4") Are you sure you want to unsubscribe?
           div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
-            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 text-t1 dark:text-t4")
-            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 py-3 text-t1")
+            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-2 text-t1 dark:text-t4")
+            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 py-2 text-t1")
