@@ -88,8 +88,8 @@ mixin feedRenderer
 
 mixin subscriber-container
   div(class="relative max-w-[604px] w-full xs:px-4 flex")
-    div(class="absolute [background:var(--line-gradient)] w-1/3 xs:w-1/2 h-0.2 left-10")
-    div(class="absolute bottom-8 h-0.2 [background:var(--line-gradient)] right-10  w-1/3 xs:w-1/2")
+    div(class="absolute [background:var(--line-gradient)] w-1/3 xs:w-1/2 h-[1px] left-10")
+    div(class="absolute bottom-8 h-[1px] [background:var(--line-gradient)] right-10  w-1/3 xs:w-1/2")
     div(
       class="flex flex-col justify-start gap-4 xs:gap-4 w-full bg-l2 border border-solid border-l4 px-2 {isSubscribed ? 'py-4':'py-4 pb-2'} rounded-xl mb-8"
     )
@@ -141,7 +141,7 @@ mixin modal
     )
       div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
       div(
-        class="absolute w-full max-w-2xl xs:max-w-mobile max-h-full rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
+        class="absolute w-full max-w-2xl xs:max-w-[22rem] max-h-full rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
       )
         div(
           use:clickOutside
