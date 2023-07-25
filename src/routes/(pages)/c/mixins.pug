@@ -15,10 +15,10 @@ mixin crumbItemText(name)
 mixin filter-options
   ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
     +filter-option-item("{() => handleSort($page.url, 'CREATED_AT')}", "By Time")(
-      class!="border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}"
+      class!="border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? 'bg-l2 dark:bg-l3 !text-accent1-default' : ''}"
     )
     +filter-option-item("{() => handleSort($page.url, 'NET_UP_VOTES')}", "By Rating")(
-      class!="rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}"
+      class!="rounded-r-underbase {pageFilter === 'NET_UP_VOTES' ? 'bg-l2 dark:bg-l3 !text-accent1-default' : ''}"
     )
 
 mixin filter-option-item(onClick, title)

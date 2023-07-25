@@ -320,7 +320,7 @@ module.exports = {
           '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 8px rgba(0, 0, 0, var(--shadow-input-alpha))',
         tag: '0px 4px 8px rgba(0, 0, 0, 0.16)',
         'tag-active':
-          ' 0px 0px 0px 2px rgba(0, 204, 255, var(--shadow-button-ring-alpha)), 0px 4px 8px rgba(0, 0, 0, 0.16)',
+          '0px 0px 0px 2px rgba(46, 131, 229, 0.20)',
         button:
           '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 8px rgba(0, 0, 0, var(--shadow-input-alpha)), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
         'button-hover':
