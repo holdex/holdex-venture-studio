@@ -94,32 +94,34 @@ mixin subscriber-container
       class="flex flex-col justify-start gap-4 xs:gap-6 w-full bg-l2 border border-solid border-l4 px-2 {isSubscribed ? 'py-4':'py-4 pb-2'} rounded-xl mb-8"
     )
       div(class="flex xs:flex-col gap-8 justify-between xs:items-start items-center px-2")
-        div(class="flex xs:flex-col items-center xs:items-start gap-3 xs:gap-4")
-          div(class="flex {styles2}")
+        div(class="flex xs:flex-col items-center xs:items-start gap-2 xs:gap-4")
+          div(class="flex  {styles2}")
             +each("avatar_list as src")
               +avatar("{src}","{styles}")
-          p(class="text-t3 text-lg text-black xs:pl-0 ")= "{isSubscribed ? 'Subscribed to Holdex Network.' : 'Join 4.543+ founders and industry experts.'}"
+          p(
+            class="text-t3 md-up:text-lg leading-8 text-black {isSubscribed ? 'text-lg' : 'text-base'} xs:pl-0 "
+          )= "{isSubscribed ? 'Subscribed to Holdex Network.' : 'Join 4.543+ founders and industry experts.'}"
         +if("isSubscribed")
           button(
             on:click!="{() => toggle(isSubscribed)}"
             type="button"
-            class="relative inline-flex z-1 bg-l3 text-t1 h-full xs:w-full border border-solid border-l4 font-bold xs:-mt-4 shadow-secondary-button items-center justify-center py-1 px-3 rounded-lg hover:border-accent1-active hover:shadow-secondary-button-hover"
+            class="relative inline-flex z-1 bg-l3 text-t1 h-full xs:w-full border border-solid border-l4 font-bold xs:-mt-4 text-sm shadow-secondary-button items-center justify-center px-2 py-1 rounded-lg hover:border-accent1-active hover:shadow-secondary-button-hover"
           )&attributes(attributes)
             span= "Learn More"
 
       +if("!isSubscribed")
-        div(class="flex flex-row xs:flex-col gap-2 items-start w-full px-2 mb-2 ")
+        div(class="flex flex-row xs:flex-col gap-4 xs:gap-2 items-start w-full px-2 mb-2 ")
           input(
             type="text"
             placeholder="Add your email to join Holdex network"
             bind:value="{email}"
-            class="bg-l2 text-t3 placeholder:text-t3 border-l4 font-medium hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 xs:py-4 px-2 rounded-xl mr-2 xs:mb-0"
+            class="bg-l2 text-sm text-t3 placeholder:text-t3 border-l4 font-medium hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 p-2.5 rounded-xl"
           )
           button(
             on:click!="{subscribe}"
             type="button"
             disabled="{!isValidEmail(email)}"
-            class="relative disabled:cursor-not-allowed disabled:text-t3 inline-flex z-1 bg-l3 text-t1 h-full xs:w-full border border-solid border-l4 font-bold xs:mt-1 shadow-secondary-button items-center justify-center p-2 px-3.75 rounded-xl hover:border-accent1-active hover:shadow-secondary-button-hover"
+            class="relative disabled:cursor-not-allowed text-sm disabled:text-t3 inline-flex z-1 bg-l3 text-t1 h-full xs:w-full border border-solid border-l4 font-bold shadow-secondary-button items-center justify-center md-up:py-2 py-1 px-4 rounded-xl hover:border-accent1-active hover:shadow-secondary-button-hover"
           )&attributes(attributes)
             span= "{isSubscribed ? 'Subscribed' : 'Subscribe'}"
 
@@ -135,21 +137,20 @@ mixin toggle-button(label, toggleFunc, classes)
     span= label
 
 mixin modal
-  +if("isOpen")
-    div(
-      class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
-    )
-      div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
+  //- +if("isOpen")
+  div(
+    class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
+  )
+    div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
+    div(class="absolute w-full max-w-2xl xs:max-w-[22rem] rounded-xl z-50 bg-l2 border border-l4 shadow-modal")
       div(
-        class="absolute w-full max-w-2xl xs:max-w-[22rem] max-h-full rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
+        use:clickOutside
+        on:click_outside!="{() => handleClickOutside()}"
+        class=" p-4 rounded-lg shadow dark:bg-gray-700"
       )
-        div(
-          use:clickOutside
-          on:click_outside!="{() => handleClickOutside()}"
-          class=" p-4 rounded-lg shadow dark:bg-gray-700"
-        )
+        div(class="flex gap-2 flex-col")
           h3(class="text-h4-l font-satoshi xs:text-h4-s font-bold text-gray-900 dark:text-black") Subscribed to Holdex Network
-          p(class="text-base leading-relaxed text-t3 mt-3 pb-4") Are you sure you want to unsubscribe?
-          div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
-            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-2 text-t1 dark:text-t4")
-            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 py-2 text-t1")
+          p(class="text-base md-up:text-lg text-t3 pb-4") Are you sure you want to unsubscribe?
+        div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
+          +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 text-t1 dark:text-t4")
+          +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 md-up:py-3 py-3 text-t1")
