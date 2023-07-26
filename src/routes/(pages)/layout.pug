@@ -2,7 +2,7 @@ include ./common-mixins
 
 mixin link(href, title)
   li(
-    class="flex relative items-center text-cta text-t1 transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 before:bottom-[-0.75rem] before:w-full before:bg-transparent before:h-0.5"
+    class="flex relative items-center text-cta transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 sm-up:before:bottom-[-1rem] before:bottom-[-0.5rem] before:w-full before:bg-transparent before:h-0.5"
   )&attributes(attributes): a(
     class="text-inherit"
     href=href
@@ -11,7 +11,7 @@ mixin link(href, title)
 
 mixin social-link(href, content)
   a(
-    class="flex flex-col items-center justify-center w-8 h-8 p-1 text-t1 transition-colors hover:text-accent1-default"
+    class="flex flex-col items-center justify-center w-8 h-8 p-1 transition-colors hover:text-accent1-default"
     href=href
     target="_blank"
     rel="noopener noreferrer"
@@ -64,10 +64,10 @@ mixin mobile-nav
                 on:click!="{() => handleClick(undefined)}"
               )
         div(id="secondary-navbar" class!="border-b border-solid border-l4 z-[98] bg-l1 {status ? 'opacity-1' : 'opacity-0 translate-y-[-57px]'} overflow-x-scroll scrollbar-hide")
-          div(id="secondary-navbar-section" class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-4 { !isLeftEnd ? 'mobile:before:bg-gradient-to-r mobile:before:absolute mobile:before:left-0 mobile:before:w-24 mobile:before:h-10 mobile:before:z-10' : ''} { !isRightEnd ? 'mobile:after:bg-gradient-to-l mobile:after:absolute mobile:after:right-0 mobile:after:w-24 mobile:after:h-10 mobile:after:z-10' : ''}")
+          div(id="secondary-navbar-section" class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'mobile:before:bg-gradient-to-r mobile:before:absolute mobile:before:left-0 mobile:before:w-24 mobile:before:h-10 mobile:before:z-10' : ''} { !isRightEnd ? 'mobile:after:bg-gradient-to-l mobile:after:absolute mobile:after:right-0 mobile:after:w-24 mobile:after:h-10 mobile:after:z-10' : ''}")
             //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
-            +main-nav(class="gap-4 xl-up:gap-8")
-            .social-icons-nav(class="gap-5 flex items-start")
+            +main-nav(class="gap-6 sm-up:gap-8")
+            .social-icons-nav(class!="gap-6 sm-up:gap-8 flex items-start {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}")
               +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
                 class="!h-5 !w-5 !p-0"
               )
