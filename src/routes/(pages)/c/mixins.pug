@@ -137,20 +137,22 @@ mixin toggle-button(label, toggleFunc, classes)
     span= label
 
 mixin modal
-  //- +if("isOpen")
-  div(
-    class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
-  )
-    div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
-    div(class="absolute w-full max-w-2xl xs:max-w-[22rem] rounded-xl z-50 bg-l2 border border-l4 shadow-modal")
+  +if("isOpen")
+    div(
+      class="fixed top-0 left-0 right-0 z-50 w-full p-4 flex justify-center items-center overflow-y-auto md:inset-0 h-full max-h-full"
+    )
+      div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
       div(
-        use:clickOutside
-        on:click_outside!="{() => handleClickOutside()}"
-        class=" p-4 rounded-lg shadow dark:bg-gray-700"
+        class="absolute w-full max-w-2xl xs:max-w-[22rem] rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
       )
-        div(class="flex gap-2 flex-col")
-          h3(class="text-h4-l font-satoshi xs:text-h4-s font-bold text-gray-900 dark:text-black") Subscribed to Holdex Network
-          p(class="text-base md-up:text-lg text-t3 pb-4") Are you sure you want to unsubscribe?
-        div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
-          +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 text-t1 dark:text-t4")
-          +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 md-up:py-3 py-3 text-t1")
+        div(
+          use:clickOutside
+          on:click_outside!="{() => handleClickOutside()}"
+          class=" p-4 rounded-lg shadow dark:bg-gray-700"
+        )
+          div(class="flex gap-2 flex-col")
+            h3(class="text-h4-l font-satoshi xs:text-h4-s font-bold text-gray-900 dark:text-black") Subscribed to Holdex Network
+            p(class="text-base md-up:text-lg text-t3 pb-4") Are you sure you want to unsubscribe?
+          div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
+            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 text-t1 dark:text-t4")
+            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 md-up:py-3 py-3 text-t1")
