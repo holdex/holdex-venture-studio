@@ -60,7 +60,7 @@ mixin button-secondary-small(label)
 mixin button-icon-small(icon)
   button(
     type="button"
-    class="relative inline-flex z-1 bg-l3 text-t1 border border-solid border-l3 shadow-secondary-button items-center justify-center p-1.25 rounded-2lg transition-all focus:border-accent1-default hover:text-t1 hover:border-accent1-active hover:shadow-secondary-button-hover"
+    class="relative inline-flex z-1 bg-l3 text-t1 border border-solid border-l5 shadow-secondary-button items-center justify-center p-1.25 rounded-2lg transition-all hover:text-t1 hover:!border-accent1-active hover:bg-l3 hover:shadow-secondary-button-hover hover:dark:bg-l1 focus:text-t1 focus:!border-accent1-active focus:bg-l3 dark:bg-l3 dark:border-l3 dark:hover:shadow-secondary-button-hover disabled:bg-l3 disabled:border-l4"
   )&attributes(attributes)
     if block
       block
