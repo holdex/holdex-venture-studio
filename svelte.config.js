@@ -1,5 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -7,7 +9,9 @@ const config = {
   // for more information about preprocessors
   preprocess: preprocess({
     pug: true,
-    postcss: true,
+    postcss: {
+      plugins: [tailwindcss, autoprefixer],
+    },
     sourceMap: true,
   }),
   compilerOptions: {

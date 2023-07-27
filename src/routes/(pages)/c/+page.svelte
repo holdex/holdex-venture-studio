@@ -119,7 +119,7 @@
 
   /** @param {string} string */
   export let isValidEmail = (email: string) => {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
+    return /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email);
   };
 </script>
 
@@ -132,9 +132,3 @@
 
 <template lang="pug" src="./template.pug">
 </template>
-
-<style>
-  .blur {
-    filter: blur(4px);
-  }
-</style>

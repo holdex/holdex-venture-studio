@@ -115,7 +115,7 @@ mixin subscriber-container
             type="text"
             placeholder="Add your email to join Holdex network"
             bind:value="{email}"
-            class="bg-l2 text-sm text-t3 placeholder:text-t3 border-l4 font-medium hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 p-2.5 rounded-xl"
+            class="bg-l2 text-sm text-t3 placeholder:text-t3 border-l4 font-medium hover:border-accent1-active hover:shadow-secondary-button-hover shadow-secondary-button border w-full h-12 p-2.5 pl-1.5 rounded-xl"
           )
           button(
             on:click!="{subscribe}"
@@ -143,7 +143,7 @@ mixin modal
     )
       div(class="absolute w-full h-full z-20 bg-t1/80 dark:bg-t4/80" style="backdrop-filter: blur(2px)")
       div(
-        class="absolute w-full max-w-2xl xs:max-w-[22rem] rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
+        class="absolute w-full max-w-[38rem] xs:max-w-[21.5rem] rounded-xl z-50 bg-l2 border border-l4 shadow-modal"
       )
         div(
           use:clickOutside
@@ -152,7 +152,9 @@ mixin modal
         )
           div(class="flex gap-2 flex-col")
             h3(class="text-h4-l font-satoshi xs:text-h4-s font-bold text-gray-900 dark:text-black") Subscribed to Holdex Network
-            p(class="text-base md-up:text-lg text-t3 pb-4") Are you sure you want to unsubscribe?
-          div(class="flex items-center pt-4 gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col")
-            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 text-t1 dark:text-t4")
-            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 md-up:py-3 py-3 text-t1")
+            p(class="text-base md-up:text-lg text-t3 pt-2.5 xs:pt-1.25 pb-4") Are you sure you want to unsubscribe?
+          div(
+            class="flex items-center pt-4 gap-4 xs:gap-2 border-t border-l2-200 rounded-b border-l4 xs:flex-col"
+          )
+            +toggle-button("Unsubscribe", "{() => toggle(!isSubscribed)}", "bg-rating-c py-3 xs:py-2 text-t1 dark:text-t4")
+            +toggle-button("Close", "{() => toggle(isSubscribed)}", "bg-l3 md-up:py-3 py-2.5 text-t1")
