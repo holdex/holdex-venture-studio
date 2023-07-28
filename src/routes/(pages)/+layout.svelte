@@ -67,8 +67,6 @@
     }
   })
 
-  $: console.log({isLeftEnd, isRightEnd})
-
   const hasReachedRightEnd = () => {
     const navbarElement = document.getElementById("secondary-navbar");
     const navbarSecionElement = document.getElementById("secondary-navbar-section");
