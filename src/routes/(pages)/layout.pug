@@ -82,7 +82,7 @@ mixin mobile-nav
           )
 
   main: slot 
-  .cta-icon(class="w-[56px] h-[56px] bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10")
+  button(class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10" on:click!="{() => handleClick(undefined)}")
     Icon(icon="{ChatBubbleBottomCenter}" width="{32}" height="{32}" isOutlined)
 
   footer(class="mt-16 xs:mt-8 flex flex-col items-center w-full")
