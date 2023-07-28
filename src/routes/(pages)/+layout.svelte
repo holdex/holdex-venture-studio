@@ -58,26 +58,26 @@
     }, false);
   });
 
-  onMount(() => {
-    const navbarElement = document.getElementById("secondary-navbar");
-    navbarElement && navbarElement.addEventListener("scroll", hasReachedRightEnd, false)
+  const scrollAction = (node: Node) => {
+    const hasReachedRightEnd = () => {
+      const navbarSecionElement = document.getElementById("secondary-navbar-section");
 
-    return () => {
-      navbarElement && navbarElement.removeEventListener("scroll", hasReachedRightEnd)
-    }
-  })
+      if (!node || !navbarSecionElement) {
+        return 
+      }
 
-  const hasReachedRightEnd = () => {
-    const navbarElement = document.getElementById("secondary-navbar");
-    const navbarSecionElement = document.getElementById("secondary-navbar-section");
-
-    if (!navbarElement || !navbarSecionElement) {
-      return 
+      secondaryNavScrollLeft = node?.scrollLeft;
+      isLeftEnd = secondaryNavScrollLeft === 0
+      isRightEnd = secondaryNavScrollLeft + node.clientWidth === navbarSecionElement.clientWidth ? true : false
     }
 
-    secondaryNavScrollLeft = navbarElement?.scrollLeft;
-    isLeftEnd = secondaryNavScrollLeft === 0
-    isRightEnd = secondaryNavScrollLeft + navbarElement.clientWidth === navbarSecionElement.clientWidth ? true : false
+    node.addEventListener("scroll", hasReachedRightEnd, false)
+
+    return {
+      destory() {
+        node.removeEventListener("scroll", hasReachedRightEnd)
+      }
+    }
   }
 
   const isActive = (currentUrl: string, path: string, deepEqual = false) => {
