@@ -38,15 +38,15 @@
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
   };
 
-  var lastScrollTop = 0;
-  var secondaryNavScrollLeft = 0
-  var status = true
-  var isLeftEnd = true
-  var isRightEnd = false
+  let lastScrollTop = 0;
+  let secondaryNavScrollLeft = 0
+  let status = true
+  let isLeftEnd = true
+  let isRightEnd = false
 
   onMount(() => {
     window.addEventListener("scroll", () => {
-      var st = window.scrollY || document.documentElement.scrollTop;
+      const st = window.scrollY || document.documentElement.scrollTop;
       if (st > lastScrollTop) {
           status = false
       } else if (st < lastScrollTop) {
@@ -57,7 +57,7 @@
     }, false);
   });
 
-  const scrollAction = (node: Node) => {
+  const scrollAction = (node: HTMLElement) => {
     const hasReachedRightEnd = () => {
       const navbarSecionElement = document.getElementById("secondary-navbar-section");
 
