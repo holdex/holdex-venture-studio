@@ -2,18 +2,39 @@ mixin table-cell
   +if("typeof cellContents === 'object'")
     +each('cellContents as content')
       Item(item="{content}" isTableCell)
-    +else()
+    +else
       Item(item="{cellContents}" isTableCell)
 
-table(class="table w-full border-separate border-spacing-0 bg-l1 overflow-auto")
-  tbody
+.relative.w-full.overflow-auto
+  table(class="w-full border-separate border-spacing-0 bg-l1 min-w-screen")
     +each('cells as row, index')
-      tr
-        +each('row as cellContents, i')
-          +if('index === 0')
-            th(class="bg-l2 py-1.5 px-3 text-t1 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl last:border-r")
-              +table-cell()
-            +else()
-              td(
-                class="py-1.5 px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {index === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}")
-                +table-cell()
+      thead
+        tr
+          +each('row as cellContents, i')
+            +if('index === 0')
+              +if('i===0')
+                th(
+                  class="z-99 left-0 sticky bg-l2 py-1.5 px-3 text-t1 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl last:border-r"
+                  scope="col"
+                )
+                  +table-cell
+                +else
+                  th(
+                    class="bg-l2 py-1.5 px-3 text-t1 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl last:border-r"
+                    scope="col"
+                  )
+                    +table-cell
+      tbody
+        tr
+          +each('row as cellContents, i')
+            +if('index != 0')
+              +if('i===0')
+                td(
+                  class="z-99 bg-l1 left-0 sticky py-1.5 px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {index === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
+                )
+                  +table-cell
+                +else
+                  td(
+                    class="py-1.5 px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {index === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
+                  )
+                    +table-cell
