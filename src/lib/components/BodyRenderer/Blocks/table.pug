@@ -5,7 +5,7 @@ mixin table-cell
     +else
       Item(item="{cellContents}" isTableCell)
 
-.relative.overflow-auto.w-full(style:width="calc(100% + 106px)")
+.relative.overflow-auto.w-full
   table(class="border-separate border-spacing-0 bg-l1")
     +each('cells as row, rowIndex')
       thead
