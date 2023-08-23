@@ -34,7 +34,11 @@
         +each("item.items as liItem")
           NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
             InlineBlock(item="{lItem}") 
-    //- Case(value="linkTool")
+    Case(value="link")
+      RichLink(item="{item}" let:text)
+        TextWrapper(text="{text}")
+          slot
+
     Case(value="quote")
       blockquote(
         title="{item.text}"

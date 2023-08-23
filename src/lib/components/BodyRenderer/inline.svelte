@@ -8,6 +8,8 @@
   import Link from './Blocks/link.svelte';
   import Hashtag from './Blocks/hashtag.svelte';
   import PriceTicker from './Blocks/priceTicker.svelte';
+  import RichLink from './Blocks/richLink.svelte';
+
   import { setContext } from 'svelte';
 
   type Item = {

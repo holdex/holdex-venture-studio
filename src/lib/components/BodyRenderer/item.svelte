@@ -10,10 +10,11 @@
   import TallyButton from './Blocks/tallyButton.svelte';
   import Chart from './Blocks/chart.svelte';
   import Table from './Blocks/table.svelte';
+  import RichLink from './Blocks/richLink.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
 
   export let item: any;
-  export let isTableCell: boolean = false;
+  export let isTableCell = false;
   export let index: number;
 
   let bindHeading = (level: string) => {
