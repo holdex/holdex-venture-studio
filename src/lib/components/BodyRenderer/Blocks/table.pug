@@ -38,3 +38,6 @@ mixin table-cell
                     class="max-w-[200px]  {colIndex === 1 ? 'bg-gradient-to-r to-transparent from-s1' : colIndex === row.length-1 ? 'bg-gradient-to-r to-s1 from-transparent' : ''}  bg-l1 py-1.5 px-3  text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
                   )
                     +table-cell
+
+//- { !isLeftEnd ? 'mobile:before:bg-gradient-to-r mobile:before:absolute mobile:before:left-0 mobile:before:w-24 mobile:before:h-10 mobile:before:z-10' : ''} \
+//- { !isRightEnd ? 'mobile:after:bg-gradient-to-l mobile:after:absolute mobile:after:right-0 mobile:after:w-24 mobile:after:h-10 mobile:after:z-10' : ''}"
