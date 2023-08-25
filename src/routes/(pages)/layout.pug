@@ -42,15 +42,12 @@ mixin mobile-nav
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center")
       div(class="border-b border-solid border-l4 bg-l1  z-[99]")
         div(class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up")
-          .logo-wrapper(class="z-1 relative")
-            a(class="relative flex h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
-              name="only-logo"
-              class="w-24"
-            )
+          .logo-wrapper(class="z-1 relative w-24")
+            a(class="relative flex" href="{routes.index}"): SVGIcon(name="only-logo" class="w-24")
           div(
             id="secondary-navbar"
             use:scrollAction
-            class!=" border-solid border-l4 z-[98] bg-l1  overflow-x-scroll scrollbar-hide w-full"
+            class!="-ml-8 border-solid border-l4 z-[98] bg-l1  overflow-x-scroll scrollbar-hide w-full"
           )
             div(
               id="secondary-navbar-section"
