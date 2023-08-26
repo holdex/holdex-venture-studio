@@ -5,8 +5,23 @@ mixin table-cell
     +else
       Item(item="{cellContents}" isTableCell)
 
-.relative.overflow-auto.w-full(id="table-scroll" use:scrollAction)
-  table(class="h-full border-separate border-spacing-0 bg-l1 overflow-x-scroll scrollbar-hide")
+.div(class="w-full flex absolute h-full")
+  .div(class="w-8 h-24")
+  .div(class="w-8 h-24")
+  .div(class="w-8 h-24")
+  .div(class="w-4 h-24")
+  .div(
+    class="h-full w-24 {isLeftEnd ? 'hidden' : 'bg-gradient-to-r to-transparent from-s1'} z-40"
+    use:scrollAction
+  )
+
+.div(
+  class="h-full right-0 w-24 absolute {isRightEnd ? 'hidden' : 'bg-gradient-to-l to-transparent from-s1'} z-40 {mobile?'':'hidden'}"
+  use:scrollAction
+)
+
+.relative.overflow-auto(use:scrollAction)
+  table(class="border-separate border-spacing-0" id="table-scroll")
     +each('cells as row, rowIndex')
       thead
         tr
@@ -14,41 +29,27 @@ mixin table-cell
             +if('rowIndex === 0')
               +if('colIndex === 0')
                 th(
-                  class!="max-w-[200px] z-99 text-left left-0 sticky bg-l2 py-1.5 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
+                  class="text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
                   scope="col"
                 )
                   +table-cell
                 +else
-                  +if('colIndex === 1')
-                    th(
-                      class!="w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl border-r {isLeftEnd && w>550 ? '' : 'bg-gradient-to-r to-transparent from-s1'}"
-                      scope="col"
-                    )
-                      +table-cell
-                    +else
-                      +if('colIndex === cells[0].length-1')
-                        th(
-                          class!="w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl border-r {!isRightEnd ? '' : 'bg-gradient-to-r from-transparent to-s1'}"
-                          scope="col"
-                        )
-                          +table-cell
-                        +else
-                          th(
-                            class!="w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl border-r"
-                            scope="col"
-                          )
-                            +table-cell
+                  th(
+                    class="max-w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l last:border-r border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl"
+                    scope="col"
+                  )
+                    +table-cell
       tbody
         tr
           +each('row as cellContents, colIndex')
             +if('rowIndex != 0')
               +if('colIndex === 0')
                 td(
-                  class!="max-w-[200px] z-99 bg-l1 left-0 sticky py-1.5 px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b last:border-r': ''}"
+                  class="bg-l1 left-0 sticky px-3 text-t2 text-footnote border-solid border-l  border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
                 )
                   +table-cell
                 +else
                   td(
-                    class!="max-w-[200px]bg-l1 py-1.5 px-3  text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''} {!isLeftEnd ? '' : colIndex === 1 && w<550 && 'bg-gradient-to-r to-transparent from-s1'}{!isRightEnd ? '' : colIndex === cells[0].length-1 && 'bg-gradient-to-r from-transparent to-s1'}"
+                    class="max-w-[200px] bg-l1 py-1.5 px-3 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
                   )
                     +table-cell

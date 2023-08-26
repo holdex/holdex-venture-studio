@@ -1,31 +1,40 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Item from '../item.svelte';
 
   export let cells: any[];
-
   let secondaryNavScrollLeft = 0;
   let isLeftEnd = true;
-  let isRightEnd = false;
-  let w;
+  let isRightEnd = undefined;
+  let mobile = false;
+  let tableWidth;
+
+  onMount(() => {
+    window.addEventListener('resize', () => (mobile = window.innerWidth < 550));
+
+    return () => {
+      window.removeEventListener('resize', () => (mobile = window.innerWidth < 550));
+    };
+  });
 
   const scrollAction = (node: HTMLElement) => {
     const hasReachedRightEnd = () => {
-      const navbarSectionElement = document.getElementById('table-scroll');
+      const tableScrollElement = document.getElementById('table-scroll');
 
-      if (!node || !navbarSectionElement) {
+      if (!node || !tableScrollElement) {
         return;
       }
 
       secondaryNavScrollLeft = node?.scrollLeft;
+
       isLeftEnd = secondaryNavScrollLeft === 0;
       isRightEnd =
-        secondaryNavScrollLeft + node.clientWidth === navbarSectionElement.clientWidth
-          ? false
-          : true;
+        secondaryNavScrollLeft + node.clientWidth === tableScrollElement.clientWidth ? true : false;
     };
 
     node.addEventListener('scroll', hasReachedRightEnd, false);
+
     return {
       destory() {
         node.removeEventListener('scroll', hasReachedRightEnd);
@@ -34,7 +43,7 @@
   };
 </script>
 
-<div class="w-full" bind:clientWidth={w}>
+<div class="w-full" bind:clientWidth={tableWidth}>
   <template lang="pug" src="./table.pug">
   </template>
 </div>
