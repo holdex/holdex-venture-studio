@@ -11,6 +11,7 @@
   let tableWidth;
 
   onMount(() => {
+    mobile = window.innerWidth < 550;
     window.addEventListener('resize', () => (mobile = window.innerWidth < 550));
 
     return () => {
