@@ -4,14 +4,17 @@
   import Item from '../item.svelte';
 
   export let cells: any[];
-  let secondaryNavScrollLeft = 0;
+  let hasRoomToScrollLeft = 0;
   let isLeftEnd = true;
   let isRightEnd = undefined;
   let mobile = false;
   let tableWidth;
 
   onMount(() => {
+    const tableScrollElement = document.getElementById('table-scroll');
+
     mobile = window.innerWidth < 550;
+
     window.addEventListener('resize', () => (mobile = window.innerWidth < 550));
 
     return () => {
@@ -27,11 +30,16 @@
         return;
       }
 
-      secondaryNavScrollLeft = node?.scrollLeft;
+      const maxScroll = tableScrollElement.clientWidth - node.clientWidth;
+      hasRoomToScrollLeft = node?.scrollLeft;
 
-      isLeftEnd = secondaryNavScrollLeft === 0;
-      isRightEnd =
-        secondaryNavScrollLeft + node.clientWidth === tableScrollElement.clientWidth ? true : false;
+      isLeftEnd = hasRoomToScrollLeft === 0;
+
+      const scrollBuffer = maxScroll - hasRoomToScrollLeft;
+      const hasRoomToScrollRight =
+        scrollBuffer + hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth ||
+        hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth;
+      isRightEnd = !isLeftEnd && hasRoomToScrollRight;
     };
 
     node.addEventListener('scroll', hasReachedRightEnd, false);
