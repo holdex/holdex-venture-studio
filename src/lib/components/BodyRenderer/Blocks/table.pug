@@ -6,21 +6,18 @@ mixin table-cell
       Item(item="{cellContents}" isTableCell)
 
 .div(class="w-full flex absolute h-full")
-  .div(class="w-8 h-24")
-  .div(class="w-8 h-24")
-  .div(class="w-8 h-24")
-  .div(class="w-4 h-24")
+  .div(class="right-shade-spacer")
   .div(
     class="h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-s1'} z-40"
     use:scrollAction
   )
+  .div(
+    class="h-full rounded-xl border-r border-l4 right-0 w-24 absolute {isRightEnd ? 'hidden' : 'bg-gradient-to-l to-transparent from-s1'} z-40 {mobile?'':'hidden'}"
+    use:scrollAction
+  )
 
-.div(
-  class="h-full right-0 w-24 absolute {isRightEnd ? 'hidden' : 'bg-gradient-to-l to-transparent from-s1'} z-40 {mobile?'':'hidden'}"
-  use:scrollAction
-)
-
-.relative.overflow-auto(use:scrollAction)
+//- .border.absolute(class="h-full z-[99] w-full rounded-xl border-l4")
+.relative.overflow-auto(use:scrollAction class="rounded-xl")
   table(class="border-separate border-spacing-0" id="table-scroll")
     +each('cells as row, rowIndex')
       thead
