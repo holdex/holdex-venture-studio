@@ -57,9 +57,11 @@ mixin social
 
 .app-container
   header(class!="z-10 w-full block relative sticky top-0")
-    .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center")
-      div(class="border-b border-solid border-l4 bg-l1 py-0")
-        div(class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up")
+    .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
+      div(class="border-b border-solid border-l4 bg-l1 py-0 ")
+        div(
+          class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up mobile:h-[64px]"
+        )
           .logo-wrapper(class="z-1 relative w-8 h-8 ")
             a(class="relative flex  h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
               name="only-logo"
