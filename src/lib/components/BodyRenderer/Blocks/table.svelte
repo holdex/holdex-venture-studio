@@ -52,7 +52,9 @@
   };
 </script>
 
-<div class="w-full" bind:clientWidth={tableWidth}>
-  <template lang="pug" src="./table.pug">
-  </template>
+<div class="w-[710px] -left-[53px] xs:w-full xs:left-0 relative">
+  <div class="w-full" bind:clientWidth={tableWidth}>
+    <template lang="pug" src="./table.pug">
+    </template>
+  </div>
 </div>
