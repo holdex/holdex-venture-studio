@@ -13,7 +13,7 @@ mixin table-scroll-shades
       use:scrollAction
     )
     .div(
-      class="h-full rounded-xl border-r border-l4 right-0 w-24 absolute {isRightEnd ? 'hidden' : 'bg-gradient-to-l to-transparent from-s1'} z-40 {mobile?'':'hidden'}"
+      class="h-full rounded-xl border-r border-l4 right-0 w-24 absolute {isRightEnd ? 'hidden' : 'bg-gradient-to-l to-transparent from-s1'} z-40 {hasRoomToScrollRight?'':'hidden'}"
       use:scrollAction
     )
 

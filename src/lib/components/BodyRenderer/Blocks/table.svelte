@@ -7,18 +7,22 @@
   let hasRoomToScrollLeft = 0;
   let isLeftEnd = true;
   let isRightEnd = undefined;
-  let mobile = false;
+  let hasRoomToScrollRight = false;
   let tableWidth;
+  const tableIsScrollable = 583;
 
   onMount(() => {
     const tableScrollElement = document.getElementById('table-scroll');
-
-    mobile = window.innerWidth < 550;
-
-    window.addEventListener('resize', () => (mobile = window.innerWidth < 550));
-
+    hasRoomToScrollRight = window.innerWidth < tableIsScrollable;
+    window.addEventListener(
+      'resize',
+      () => (hasRoomToScrollRight = window.innerWidth < tableIsScrollable)
+    );
     return () => {
-      window.removeEventListener('resize', () => (mobile = window.innerWidth < 550));
+      window.removeEventListener(
+        'resize',
+        () => (hasRoomToScrollRight = window.innerWidth < tableIsScrollable)
+      );
     };
   });
 
