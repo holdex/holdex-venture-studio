@@ -27,7 +27,7 @@ mixin table-scroll-shades
             +if('rowIndex === 0')
               +if('colIndex === 0')
                 th(
-                  class="text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
+                  class="max-w-[200px] text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
                   scope="col"
                 )
                   +table-cell
@@ -43,7 +43,7 @@ mixin table-scroll-shades
             +if('rowIndex != 0')
               +if('colIndex === 0')
                 td(
-                  class="bg-l1 left-0 sticky px-3 text-t2 text-footnote border-solid border-l  border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
+                  class="max-w-[200px] bg-l1 left-0 sticky px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
                 )
                   +table-cell
                 +else

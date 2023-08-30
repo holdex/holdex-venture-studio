@@ -13,11 +13,14 @@
 
   onMount(() => {
     const tableScrollElement = document.getElementById('table-scroll');
+
     hasRoomToScrollRight = window.innerWidth < tableIsScrollable;
+
     window.addEventListener(
       'resize',
       () => (hasRoomToScrollRight = window.innerWidth < tableIsScrollable)
     );
+
     return () => {
       window.removeEventListener(
         'resize',
@@ -40,6 +43,7 @@
       isLeftEnd = hasRoomToScrollLeft === 0;
 
       const scrollBuffer = maxScroll - hasRoomToScrollLeft;
+
       const hasRoomToScrollRight =
         scrollBuffer + hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth ||
         hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth;
@@ -56,7 +60,7 @@
   };
 </script>
 
-<div class="w-[710px] -left-[53px] xs:w-full xs:left-0 relative">
+<div class="md-up:w-[604px] lg-up:w-[710px] xs:w-full xs:left-0 relative tablescroll">
   <div class="w-full" bind:clientWidth={tableWidth}>
     <template lang="pug" src="./table.pug">
     </template>

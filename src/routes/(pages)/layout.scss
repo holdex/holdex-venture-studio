@@ -7,3 +7,12 @@
 .right-shade-spacer {
   @apply w-28;
 }
+
+.tablescroll {
+  @apply xl:-left-[53px] lg:-left-[53px] md:-left-[53px] tb:-left-[53px];
+}
+
+td {
+  vertical-align: top;
+  text-align: left;
+}
