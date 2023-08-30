@@ -32,5 +32,4 @@
 	:global(b),
 	:global(em),
 	:global(strong)
-		@apply text-t1
 </style>
