@@ -6,6 +6,7 @@
   export let cells: any[];
   let hasRoomToScrollLeft = 0;
   let isLeftEnd = true;
+
   let isRightEnd = undefined;
   let hasRoomToScrollRight = false;
   let tableWidth;
@@ -41,13 +42,10 @@
       hasRoomToScrollLeft = node?.scrollLeft;
 
       isLeftEnd = hasRoomToScrollLeft === 0;
-
       const scrollBuffer = maxScroll - hasRoomToScrollLeft;
 
-      const hasRoomToScrollRight =
-        scrollBuffer + hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth ||
-        hasRoomToScrollLeft + node.clientWidth === tableScrollElement.clientWidth;
-      isRightEnd = !isLeftEnd && hasRoomToScrollRight;
+      isRightEnd = maxScroll - scrollBuffer === node?.scrollWidth - node.clientWidth;
+      const hasRoomToScrollRight = scrollBuffer > 0 || isRightEnd;
     };
 
     node.addEventListener('scroll', hasReachedRightEnd, false);
