@@ -1,6 +1,6 @@
 Switch(condition="{item.type}")
   Case(value="link")
-    RichLink(item="{item}" let:text)
+    Link(item="{item}" let:text)
       TextWrapper(text="{text}")
         slot
   Case(value="hashtag")

@@ -34,10 +34,20 @@
         +each("item.items as liItem")
           NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
             InlineBlock(item="{lItem}") 
+
     Case(value="link")
-      RichLink(item="{item}" let:text)
+      Link(item="{item}" let:text)
         TextWrapper(text="{text}")
           slot
+
+    Case(value="linkTool")
+      RichLink(item="{item}")
+      em(style:color="red") 
+        | {item.data.url}
+        .br
+        | {item.data.embed}
+        .hidden
+          //- | {console.log(item)}
 
     Case(value="quote")
       blockquote(
