@@ -11,6 +11,7 @@
   let hasRoomToScrollRight = false;
   let tableWidth;
   const tableIsScrollable = 583;
+  let contentWrap = false;
 
   onMount(() => {
     const tableScrollElement = document.getElementById('table-scroll');
@@ -29,6 +30,8 @@
       );
     };
   });
+
+  const contentFitsMaxColWidth = (item) => {};
 
   const scrollAction = (node: HTMLElement) => {
     const hasReachedRightEnd = () => {

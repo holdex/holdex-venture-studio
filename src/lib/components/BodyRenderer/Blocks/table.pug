@@ -27,13 +27,13 @@ mixin table-scroll-shades
             +if('rowIndex === 0')
               +if('colIndex === 0')
                 th(
-                  class="max-w-[200px] text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
+                  class="col-fixed-width text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
                   scope="col"
                 )
                   +table-cell
                 +else
                   th(
-                    class="max-w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l last:border-r border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl"
+                    class="col-mw max-w-[200px] bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l last:border-r border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl"
                     scope="col"
                   )
                     +table-cell
@@ -48,6 +48,6 @@ mixin table-scroll-shades
                   +table-cell
                 +else
                   td(
-                    class="max-w-[200px] bg-l1 py-1.5 px-3 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
+                    class="col-mw bg-l1 py-1.5 px-3 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
                   )
                     +table-cell
