@@ -56,7 +56,7 @@ mixin mobile-nav
             //- div(class="mobile:w-24 w-0 border h-[50px] absolute")
             div(
               id="secondary-navbar-section"
-              class!="sns px-4 flex gap-x-8 items-center justify-start mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-0 xs:before:w-24 xs:before:h-10 xs:before:z-10 xs:before:ml-24' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-0 xs:after:w-24 xs:after:h-10 xs:after:z-10 xs:after:mr-54 mobile:after:mr-0': ''}"
+              class!="sns px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-0 xs:before:w-24 xs:before:h-10 xs:before:z-10 xs:before:ml-24' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-0 xs:after:w-24 xs:after:h-10 xs:after:z-10 xs:after:mr-54 mobile:after:mr-0': ''}"
             )
               //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
               +main-nav(class="gap-6")
