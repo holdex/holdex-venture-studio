@@ -164,7 +164,7 @@ function convertToHoldexJson(document: Schema$Document) {
     });
   }
 
-  return getStructuralTOC(newContent);
+  return newContent;
 }
 
 function getHeaderRowAuthor(content: Schema$ParagraphElement) {
@@ -434,10 +434,10 @@ function parseParagraph(
 
         tagContent.push({
           type: 'header',
+          id: textStyle.link.headingId.replace(/h./, ''),
           data: {
             level: level > 4 ? 4 : level,
             text: content,
-            items: [],
           },
         });
       }
