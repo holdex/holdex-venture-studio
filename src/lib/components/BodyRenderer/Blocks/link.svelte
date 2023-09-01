@@ -59,6 +59,6 @@
 </a>
 
 <style lang="sass">
-  :global(a *)
+  a :global(*)
     @apply text-inherit
 </style>
