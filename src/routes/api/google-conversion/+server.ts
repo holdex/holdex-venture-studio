@@ -433,7 +433,7 @@ function parseParagraph(
           2;
 
         tagContent.push({
-          type: 'paragraph',
+          type: 'header',
           data: {
             level: level > 4 ? 4 : level,
             text: content,
