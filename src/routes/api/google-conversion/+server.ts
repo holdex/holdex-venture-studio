@@ -36,52 +36,6 @@ export const POST: RequestHandler = async ({ request }) => {
   );
 };
 
-const getStructuralTOC = (parsedBody: any[]) => {
-  const structuredBody: any[] = [];
-
-  for (const dataBlock of parsedBody) {
-    const { type } = dataBlock;
-
-    if (type === 'toc') {
-      const { items } = dataBlock;
-      const newItems: any[] = [];
-      let stack: any[] = [];
-
-      items.forEach((item) => {
-        const level = item.data.level - 2;
-
-        if (level === 0) {
-          if (stack.length > 0) {
-            newItems.push(stack[0]);
-            stack = [];
-          }
-          const newItem = { ...item, data: { ...item.data, items: [] } };
-          stack.push(newItem);
-        } else {
-          const parent = stack[(level as number) - 1];
-          if (parent) {
-            parent.data.items?.push({ ...item, data: { ...item.data, items: [] } });
-            stack[level as number] = parent.data.items?.[parent.data.items.length - 1];
-          }
-        }
-      });
-
-      if (stack.length > 0) {
-        newItems.push(stack[0]);
-      }
-
-      structuredBody.push({
-        type: 'toc',
-        items: newItems,
-      });
-    } else {
-      structuredBody.push(dataBlock);
-    }
-  }
-
-  return structuredBody;
-};
-
 function convertToHoldexJson(document: Schema$Document) {
   const { body, headers } = document;
 
