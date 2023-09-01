@@ -48,7 +48,9 @@ const getStructuralTOC = (parsedBody: any[]) => {
       let stack: any[] = [];
 
       items.forEach((item) => {
-        if (item.data.level === 0) {
+        const level = item.data.level - 2;
+
+        if (level === 0) {
           if (stack.length > 0) {
             newItems.push(stack[0]);
             stack = [];
@@ -56,10 +58,10 @@ const getStructuralTOC = (parsedBody: any[]) => {
           const newItem = { ...item, data: { ...item.data, items: [] } };
           stack.push(newItem);
         } else {
-          const parent = stack[(item.data.level as number) - 1];
+          const parent = stack[(level as number) - 1];
           if (parent) {
             parent.data.items?.push({ ...item, data: { ...item.data, items: [] } });
-            stack[item.data.level as number] = parent.data.items?.[parent.data.items.length - 1];
+            stack[level as number] = parent.data.items?.[parent.data.items.length - 1];
           }
         }
       });
@@ -423,13 +425,17 @@ function parseParagraph(
           }
         }
       } else if (textStyle?.link?.headingId) {
+        const level =
+          (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
+            ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
+            : 0) /
+            18 +
+          2;
+
         tagContent.push({
           type: 'paragraph',
           data: {
-            level:
-              (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
-                ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
-                : 0) / 18,
+            level: level > 4 ? 4 : level,
             text: content,
             items: [],
           },
