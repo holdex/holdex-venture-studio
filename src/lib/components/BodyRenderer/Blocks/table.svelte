@@ -4,54 +4,48 @@
   import Item from '../item.svelte';
 
   export let cells: any[];
-  let hasRoomToScrollLeft = 0;
+
   let isLeftEnd = true;
+  let isRightEnd = false;
 
-  let isRightEnd = undefined;
-  let hasRoomToScrollRight = false;
+  let hasRoomToScrollRight = 0;
+  let hasRoomToScrollLeft = 0;
+
   let tableWidth;
-  const tableIsScrollable = 583;
-  let contentWrap = false;
-
-  onMount(() => {
-    const tableScrollElement = document.getElementById('table-scroll');
-
-    hasRoomToScrollRight = window.innerWidth < tableIsScrollable;
-
-    window.addEventListener(
-      'resize',
-      () => (hasRoomToScrollRight = window.innerWidth < tableIsScrollable)
-    );
-
-    return () => {
-      window.removeEventListener(
-        'resize',
-        () => (hasRoomToScrollRight = window.innerWidth < tableIsScrollable)
-      );
-    };
-  });
-
-  const contentFitsMaxColWidth = (item) => {};
 
   const scrollAction = (node: HTMLElement) => {
     const hasReachedRightEnd = () => {
       const tableScrollElement = document.getElementById('table-scroll');
 
       if (!node || !tableScrollElement) {
+        console.log('return');
         return;
       }
 
-      const maxScroll = tableScrollElement.clientWidth - node.clientWidth;
+      const maxScroll = tableScrollElement.clientWidth - node!.parentElement!.clientWidth;
+
       hasRoomToScrollLeft = node?.scrollLeft;
 
       isLeftEnd = hasRoomToScrollLeft === 0;
-      const scrollBuffer = maxScroll - hasRoomToScrollLeft;
 
-      isRightEnd = maxScroll - scrollBuffer === node?.scrollWidth - node.clientWidth;
-      const hasRoomToScrollRight = scrollBuffer > 0 || isRightEnd;
+      const hasRoomToScrollRight = maxScroll - hasRoomToScrollLeft;
+
+      isRightEnd = maxScroll - hasRoomToScrollLeft >= 0;
+
+      const offsetScrollDelta = node.scrollWidth - node.offsetWidth;
+
+      if (
+        (!isLeftEnd && hasRoomToScrollLeft === node.scrollWidth - node.offsetWidth) ||
+        hasRoomToScrollRight === 0 ||
+        node.scrollWidth - 1 !== tableScrollElement?.clientWidth
+      ) {
+        isRightEnd = false;
+      }
     };
 
     node.addEventListener('scroll', hasReachedRightEnd, false);
+
+    hasReachedRightEnd();
 
     return {
       destory() {
@@ -61,9 +55,11 @@
   };
 </script>
 
-<div class="md-up:w-[604px] lg-up:w-[710px] xs:w-full xs:left-0 relative tablescroll">
-  <div class="w-full" bind:clientWidth={tableWidth}>
-    <template lang="pug" src="./table.pug">
-    </template>
+{#if cells.length}
+  <div class="md-up:w-[604px] lg-up:w-[710px] xs:w-full xs:left-0 relative tablescroll">
+    <div class="w-full" bind:clientWidth={tableWidth}>
+      <template lang="pug" src="./table.pug">
+      </template>
+    </div>
   </div>
-</div>
+{/if}
