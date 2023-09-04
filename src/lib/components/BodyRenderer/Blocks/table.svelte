@@ -30,14 +30,13 @@
 
       const hasRoomToScrollRight = maxScroll - hasRoomToScrollLeft;
 
-      isRightEnd = maxScroll - hasRoomToScrollLeft >= 0;
+      let rect = node.getBoundingClientRect();
 
-      const offsetScrollDelta = node.scrollWidth - node.offsetWidth;
+      isRightEnd = isLeftEnd && (isLeftEnd || maxScroll - hasRoomToScrollLeft >= 0);
 
       if (
         (!isLeftEnd && hasRoomToScrollLeft === node.scrollWidth - node.offsetWidth) ||
-        hasRoomToScrollRight === 0 ||
-        node.scrollWidth - 1 !== tableScrollElement?.clientWidth
+        hasRoomToScrollRight === 0
       ) {
         isRightEnd = false;
       }
