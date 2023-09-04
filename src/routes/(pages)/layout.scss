@@ -24,13 +24,5 @@ td {
 }
 
 .col-mw {
-  // white-space: nowrap;
   @apply max-w-[200px];
 }
-
-// TODO: col width?
-// is the sticky col width to remain fixed 200px?
-
-// TODO: no right border on scroll
-// TODO: no right fade on scroll
-// TODO: inline links not respecting z-index of sticky col
