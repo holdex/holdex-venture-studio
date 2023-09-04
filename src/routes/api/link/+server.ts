@@ -17,7 +17,7 @@ export const GET: RequestHandler = async ({ fetch, url, params }) => {
 
   return json(
     {
-      result: 'ok',
+      result: urlin,
     },
     {
       status: 200,
