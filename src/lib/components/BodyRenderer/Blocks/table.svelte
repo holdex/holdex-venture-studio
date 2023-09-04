@@ -32,7 +32,7 @@
 
       let rect = node.getBoundingClientRect();
 
-      isRightEnd = isLeftEnd && (isLeftEnd || maxScroll - hasRoomToScrollLeft >= 0);
+      isRightEnd = isLeftEnd || maxScroll - hasRoomToScrollLeft >= 0;
 
       if (
         (!isLeftEnd && hasRoomToScrollLeft === node.scrollWidth - node.offsetWidth) ||
