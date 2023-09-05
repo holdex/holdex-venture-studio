@@ -473,6 +473,7 @@ const parseParagraph = (
                 .map((element) => element[tag])
                 .filter((element) => Boolean(element.length))
             ).slice(2),
+            caption: '',
             alignment: 'left',
           },
         });
@@ -507,6 +508,7 @@ const parseParagraph = (
                 .map((element) => (element as any)[tag])
                 .filter((element) => element.length > 0) as string[]
             ),
+            caption: '',
             alignment: 'left',
           },
         });
