@@ -51,7 +51,7 @@ class Parser {
       isGoogleDoc,
       blocks,
       parsedBody,
-      tocs: tocs.data,
+      tocs: tocs?.data,
       subtitle,
       cover,
     };
