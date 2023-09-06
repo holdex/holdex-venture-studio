@@ -40,15 +40,16 @@ mixin mobile-nav
 .app-container
   header(class!="z-10 w-full block relative sticky top-0")
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center")
-      div(class="bg-l1 border-b border-solid border-l4")
+      div(class="bg-l1 xs:border-b border-solid border-l4")
         div(
           class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
         )
-          .logo-wrapper(class="z-20 relative w-[64px] flex items-center justify-center")
+          .logo-wrapper(class="z-100 relative w-[64px] flex items-center justify-center")
             a(class="relative flex h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
               name="only-logo"
               class="w-24"
             )
+
           div(
             id="secondary-navbar"
             use:scrollAction
@@ -56,7 +57,7 @@ mixin mobile-nav
           )
             div(
               id="secondary-navbar-section"
-              class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-0 xs:before:w-24  xs:before:z-10 xs:before:ml-24' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-0 xs:after:w-24  xs:after:z-10 xs:after:mr-54 xs:after:mr-0': ''}"
+              class!="sns px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-0 xs:before:w-24 xs:before:h-10 xs:before:z-10 xs:before:ml-24' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-0 xs:after:w-24 xs:after:h-10 xs:after:z-10 xs:after:mr-54 mobile:after:mr-0': ''}"
             )
               +main-nav(class="gap-6")
               .social-icons-nav(
