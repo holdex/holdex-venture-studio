@@ -56,7 +56,7 @@
 
 {#if cells.length}
   <div
-    class="md-up:w-[604px] lg-up:w-[710px] xs:w-full xs:left-0 relative tablescroll p-3 w-full align-top text-left z-1"
+    class="md-up:w-[604px] lg-up:w-[710px] xs:w-full xs:left-0 relative tablescroll p-3 w-full text-left z-1"
   >
     <div class="w-full" bind:clientWidth={tableWidth}>
       <template lang="pug" src="./table.pug">

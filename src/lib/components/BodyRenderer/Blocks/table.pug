@@ -1,3 +1,31 @@
+mixin table-row(rowIndex, colIndex, cellContents)
+  +if('rowIndex != 0')
+    +if('colIndex === 0')
+      td(
+        class="z-20 bg-l1 left-0 sticky px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
+      )
+        +table-cell
+      +else
+        td(
+          class="align-top col-mw bg-l1 py-1.5 px-3 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''} "
+        )
+          +table-cell
+
+mixin table-head-row(rowIndex, colIndex, cellContents)
+  +if('rowIndex === 0')
+    +if('colIndex === 0')
+      th(
+        class="col-fixed-width text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
+        scope="col"
+      )
+        +table-cell
+      +else
+        th(
+          class="col-mw bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l last:border-r border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl"
+          scope="col"
+        )
+          +table-cell
+
 mixin table-cell
   +if("typeof cellContents === 'object'")
     +each('cellContents as content')
@@ -24,30 +52,8 @@ mixin table-scroll-shades
       thead
         tr
           +each('row as cellContents, colIndex')
-            +if('rowIndex === 0')
-              +if('colIndex === 0')
-                th(
-                  class="col-fixed-width text-left left-0 sticky bg-l2 px-3 text-footnote font-bold border-solid border-l border-t border-l4 first:rounded-tl-xl"
-                  scope="col"
-                )
-                  +table-cell
-                +else
-                  th(
-                    class="col-mw bg-l2 text-left py-1.5 px-3 text-footnote font-bold border-solid border-l last:border-r border-t border-l4 first:rounded-tl-xl last:rounded-tr-xl"
-                    scope="col"
-                  )
-                    +table-cell
+            +table-head-row(rowIndex, colIndex, cellContents)
       tbody
         tr
           +each('row as cellContents, colIndex')
-            +if('rowIndex != 0')
-              +if('colIndex === 0')
-                td(
-                  class="z-20 bg-l1 left-0 sticky px-3 text-t2 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''}"
-                )
-                  +table-cell
-                +else
-                  td(
-                    class="col-mw bg-l1 py-1.5 px-3 text-footnote border-solid border-l border-t border-l4 last:border-r {rowIndex === cells.length - 1 ? 'first:rounded-bl-xl last:rounded-br-xl border-b': ''} "
-                  )
-                    +table-cell
+            +table-row(rowIndex, colIndex, cellContents)
