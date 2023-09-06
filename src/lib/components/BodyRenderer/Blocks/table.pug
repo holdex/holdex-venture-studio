@@ -47,14 +47,11 @@ mixin table-scroll-shades
 +table-scroll-shades
 .relative.overflow-auto(use:scrollAction class="rounded-xl" id="table-parent")
   table(class="border-separate border-spacing-0" id="table-scroll")
-    +each('cells as row, rowIndex')
-      +if('rowIndex===0')
-        thead
-          tr
-            +each('row as cellContents, colIndex')
+    tbody
+      +each('cells as row, rowIndex')
+        tr
+          +each('row as cellContents, colIndex')
+            +if('rowIndex===0')
               +table-head-row(rowIndex, colIndex, cellContents)
-        +else
-          tbody
-            tr
-              +each('row as cellContents, colIndex')
+              +else
                 +table-row(rowIndex, colIndex, cellContents)
