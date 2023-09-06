@@ -71,7 +71,7 @@ mixin social
           div(id="secondary-navbar" use:scrollAction class!=" z-[21] bg-l1 overflow-x-scroll scrollbar-hide w-full")
             div(
               id="secondary-navbar-section"
-              class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-12 xs:before:w-24 xs:before:h-10 xs:before:z-10' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-[210px] mobile:after:right-0 xs:after:w-24 xs:after:h-10 xs:after:z-10' : ''}"
+              class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'xs:before:bg-gradient-to-r xs:before:absolute xs:before:left-12 xs:before:w-24 xs:before:h-10 xs:before:z-10' : ''} { !isRightEnd ? 'xs:after:bg-gradient-to-l xs:after:absolute xs:after:right-[210px] mobile:xs:after:right-[56px]  xs:after:w-24 xs:after:h-10 xs:after:z-10' : ''}"
             )
               +main-nav(class="gap-6")
               +social
