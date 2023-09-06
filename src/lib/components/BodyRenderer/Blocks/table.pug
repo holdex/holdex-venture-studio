@@ -19,12 +19,11 @@ mixin table-row(rowIndex, colIndex, cellContents)
         +table-data-cell
 
 mixin table-head-row(rowIndex, colIndex, cellContents)
-  +if('rowIndex === 0')
-    +if('colIndex === 0')
-      +table-header-cell.div(class!="col-fixed-width left-0 sticky")
-        +table-cell
-      +else
-        +table-header-cell.div(class!="col-mw last:rounded-tr-xl last:border-r")
+  +if('colIndex === 0')
+    +table-header-cell.div(class!="col-fixed-width left-0 sticky")
+      +table-cell
+    +else
+      +table-header-cell.div(class!="col-mw last:rounded-tr-xl last:border-r")
 
 mixin table-cell
   +if("typeof cellContents === 'object'")
