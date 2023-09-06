@@ -14,7 +14,7 @@
   import { parseTableCell } from '../BodyParser/blocks';
 
   export let item: any;
-  export let isTableCell = false;
+  export let isTableCell: boolean;
   export let index: number;
 
   let bindHeading = (level: string) => {
