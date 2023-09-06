@@ -12,11 +12,10 @@ mixin table-data-cell
     +table-cell
 
 mixin table-row(rowIndex, colIndex, cellContents)
-  +if('rowIndex != 0')
-    +if('colIndex === 0')
-      +table-data-cell.div(class!="z-20 left-0 sticky text-t2")
-      +else
-        +table-data-cell
+  +if('colIndex === 0')
+    +table-data-cell.div(class!="z-20 left-0 sticky text-t2")
+    +else
+      +table-data-cell
 
 mixin table-head-row(rowIndex, colIndex, cellContents)
   +if('colIndex === 0')
