@@ -13,9 +13,7 @@
 }
 
 td {
-  vertical-align: top;
-  text-align: left;
-  @apply p-3 w-full;
+  @apply p-3 w-full align-top text-left;
 }
 
 .col-fixed-width {
