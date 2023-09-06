@@ -12,10 +12,6 @@
   @apply xl:-left-[53px] lg:-left-[53px] md:-left-[53px] tb:-left-[53px];
 }
 
-td {
-  @apply p-3 w-full align-top text-left;
-}
-
 .col-fixed-width {
   white-space: wrap;
   @apply min-w-[200px];
