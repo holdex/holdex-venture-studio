@@ -51,7 +51,7 @@
       {#if ogdata.image[0].url}
         <div
           class="rich-link-image h-full rounded-xl bg-contain"
-          style={`border: 0px solid red; background-size: contain; background-repeat: no-repeat; object-fit: cover;
+          style={`object-fit: cover; overflow:hidden;
           `}
         >
           <img class="h-full rounded-xl" src={ogdata?.image[0]?.url} alt={ogdata.title} />
