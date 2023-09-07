@@ -46,10 +46,16 @@
 </script>
 
 {#await loadOgData(item?.data?.url) then ogdata}
-  <div class="flex border border-l4 bg-l2 rounded-xl w-full items-center p-1 h-24">
-    <div class="h-full p-1">
+  <div class="flex border border-l4 bg-l2 rounded-xl w-full items-center h-24">
+    <div class="h-full flex items-center">
       {#if ogdata.image[0].url}
-        <img class="w-32 h-full rounded-xl" src={ogdata?.image[0]?.url} alt={ogdata.title} />
+        <div
+          class="rich-link-image h-full rounded-xl bg-contain"
+          style={`border: 0px solid red; background-size: contain; background-repeat: no-repeat; object-fit: cover;
+          `}
+        >
+          <img class="h-full rounded-xl" src={ogdata?.image[0]?.url} alt={ogdata.title} />
+        </div>
       {:else}
         <Icon icon={Link} width={32} height={32} colorInherit />
       {/if}
