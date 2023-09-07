@@ -12,11 +12,14 @@ export const GET: RequestHandler = async ({ url }) => {
 
     if (data) {
       const { error, result } = data;
-      const { ogDescription, ogTitle, ogImage } = result;
+      const { ogDescription, ogTitle, ogImage, ogSiteName } = result;
       if (result && !error) {
         return json(
           {
-            result: { ogDescription, ogTitle, ogImage },
+            desc: ogDescription,
+            title: ogTitle,
+            image: ogImage,
+            name: ogSiteName,
           },
           {
             status: 200,
