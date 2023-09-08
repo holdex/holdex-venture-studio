@@ -46,7 +46,6 @@
 </script>
 
 {#await loadOgData(item?.data?.url) then ogdata}
-  {console.log(ogdata)}
   <div class="flex border border-l4 bg-l2 rounded-xl w-full items-center h-24">
     <div class="h-full flex items-center">
       {#if ogdata.image}
