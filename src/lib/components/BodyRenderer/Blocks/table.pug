@@ -32,7 +32,7 @@ mixin table-cell
       Item(item="{cellContents}" isTableCell)
 
 mixin table-scroll-shades
-  +if("totalCols > 2")
+  +if("cells[0].length > 2")
     .div(class="w-full flex absolute h-full")
       .div(class="right-shade-spacer")
       .div(
