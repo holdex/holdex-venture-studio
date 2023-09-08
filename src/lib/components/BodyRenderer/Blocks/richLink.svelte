@@ -38,9 +38,8 @@
   };
 
   let truncateOgDesc = (desc: string) => {
-    return desc.slice(0, 50);
+    return desc.slice(0, isHoldexLink ? 54 : 65);
   };
-
   $: truncated = truncateUrl(item?.data?.url);
   $: isHoldexLink = regExp.holdexLink.test(item?.data?.url);
 </script>
