@@ -33,10 +33,10 @@ mixin table-cell
 
 mixin table-scroll-shades
   +if("totalCols > 2")
-    .div(class=" w-full flex absolute h-full")
+    .div(class="w-full flex absolute h-full")
       .div(class="right-shade-spacer")
       .div(
-        class="h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
+        class="{hasRoomToScrollRight?'':'hidden'} h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
         use:scrollAction
       )
       .div(
