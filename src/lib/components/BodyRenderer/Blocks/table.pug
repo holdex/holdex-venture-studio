@@ -32,16 +32,17 @@ mixin table-cell
       Item(item="{cellContents}" isTableCell)
 
 mixin table-scroll-shades
-  .div(class=" w-full flex absolute h-full")
-    .div(class="right-shade-spacer")
-    .div(
-      class="h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
-      use:scrollAction
-    )
-    .div(
-      class="h-full rounded-xl border-r border-l4 right-0 w-24 absolute {isRightEnd ? 'bg-gradient-to-l to-transparent from-l1':'hidden' } z-40"
-      use:scrollAction
-    )
+  +if("totalCols > 2")
+    .div(class=" w-full flex absolute h-full")
+      .div(class="right-shade-spacer")
+      .div(
+        class="h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
+        use:scrollAction
+      )
+      .div(
+        class="h-full rounded-xl border-r border-l4 right-0 w-24 absolute {isRightEnd ? 'bg-gradient-to-l to-transparent from-l1':'hidden' } z-40"
+        use:scrollAction
+      )
 
 +table-scroll-shades
 .relative.overflow-auto(use:scrollAction class="rounded-xl" id="table-parent")
