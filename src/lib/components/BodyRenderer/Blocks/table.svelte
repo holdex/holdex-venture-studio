@@ -8,8 +8,6 @@
 
   let totalCols = cells[0].length;
 
-  cells = cells.map((row) => row.filter((c, i) => i < 3 && i > 0));
-
   let isLeftEnd = true;
   let isRightEnd = false;
 
