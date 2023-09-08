@@ -20,7 +20,6 @@
       const tableScrollElement = document.getElementById('table-scroll');
 
       if (!node || !tableScrollElement) {
-        console.log('return');
         return;
       }
 
