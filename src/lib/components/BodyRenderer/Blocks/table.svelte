@@ -6,7 +6,6 @@
   export let cells: any[];
 
   let totalCols = cells[0].length;
-  console.log('🚀 ~ file: table.svelte:10 ~ totalCols:', totalCols);
 
   let isLeftEnd = true;
   let isRightEnd = false;
