@@ -1,12 +1,9 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Item from '../item.svelte';
   import Node from './Tweet/components/html/node.svelte';
 
   export let cells: any[];
-
-  let totalCols = cells[0].length;
 
   let isLeftEnd = true;
   let isRightEnd = false;
@@ -16,13 +13,6 @@
 
   let tableWidth;
 
-  onMount(() => {
-    const tableScrollElement = document.getElementById('table-scroll');
-
-    if (!tableScrollElement) {
-      return;
-    }
-  });
   const scrollAction = (node: HTMLElement) => {
     const hasReachedRightEnd = () => {
       const tableScrollElement = document.getElementById('table-scroll');
