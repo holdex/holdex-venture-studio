@@ -37,9 +37,6 @@
     }
   };
 
-  let truncateOgDesc = (desc: string) => {
-    return desc.slice(0, isHoldexLink ? 54 : 65);
-  };
   $: truncated = truncateUrl(item?.data?.url);
   $: isHoldexLink = regExp.holdexLink.test(item?.data?.url);
 </script>
@@ -64,9 +61,9 @@
       {/if}
     </div>
 
-    <div class="p-4 flex flex-col text-footnote justify-between gap-1">
+    <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
       <div class="font-semibold">{ogdata.name || ogdata.title}</div>
-      <div class="text-t3">{truncateOgDesc(ogdata.desc)}...</div>
+      <div class="text-t3 text-ellipsis truncate">{ogdata.desc}</div>
       <div>
         <a
           title={item.title ? item.title : ''}
