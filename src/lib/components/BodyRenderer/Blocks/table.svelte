@@ -1,7 +1,6 @@
 <script lang="ts">
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Item from '../item.svelte';
-  import Node from './Tweet/components/html/node.svelte';
 
   export let cells: any[];
 
