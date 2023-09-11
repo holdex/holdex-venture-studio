@@ -36,7 +36,7 @@ mixin table-scroll-shades
     .div(class="w-full flex absolute h-full")
       .div(class="right-shade-spacer")
       .div(
-        class="{hasRoomToScrollRight?'':'hidden'} h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
+        class="h-full w-24 {isLeftEnd ? 'hidden' : 'border-l4 border-l bg-gradient-to-r to-transparent from-l1'} z-40"
         use:scrollAction
       )
       .div(
