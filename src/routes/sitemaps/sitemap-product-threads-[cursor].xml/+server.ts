@@ -29,7 +29,7 @@ export const GET: RequestHandler = async ({ locals, params }) => {
       status: 200,
       headers: {
         'Content-Type': 'text/xml',
-        'Cache-Contro': isDev
+        'Cache-Control': isDev
           ? 'no-cache'
           : isStage
           ? 'max-age=0, s-maxage=300'
