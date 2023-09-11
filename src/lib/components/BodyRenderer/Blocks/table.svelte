@@ -7,12 +7,25 @@
   let isLeftEnd = true;
   let isRightEnd = false;
   let maxScroll;
-  let hasRoomToScrollRight = 0;
-  let hasRoomToScrollLeft = 0;
+  let isScroller = false;
 
   let tableWidth;
 
+  const hasScroll = (element: any, direction: any) => {
+    direction = direction === 'vertical' ? 'scrollTop' : 'scrollLeft';
+
+    let result = !!element[direction];
+
+    if (!result) {
+      element[direction] = 1;
+      result = !!element[direction];
+      element[direction] = 0;
+    }
+    return result;
+  };
+
   const scrollAction = (node: HTMLElement) => {
+    isScroller = hasScroll(node, 'horizontal');
     const hasReachedRightEnd = () => {
       const tableScrollElement = document.getElementById('table-scroll');
 
@@ -22,20 +35,8 @@
 
       maxScroll = tableScrollElement.clientWidth - node!.parentElement!.clientWidth;
 
-      hasRoomToScrollLeft = node?.scrollLeft;
-
-      isLeftEnd = hasRoomToScrollLeft === 0;
-
-      hasRoomToScrollRight = maxScroll - hasRoomToScrollLeft;
-
-      isRightEnd = maxScroll - hasRoomToScrollRight >= 0;
-
-      if (
-        (!isLeftEnd && hasRoomToScrollLeft === node.scrollWidth - node.offsetWidth) ||
-        hasRoomToScrollRight === 0
-      ) {
-        isRightEnd = !isRightEnd;
-      }
+      isLeftEnd = node?.scrollLeft === 0;
+      isRightEnd = maxScroll === node?.scrollLeft;
     };
 
     node.addEventListener('scroll', hasReachedRightEnd, false);
