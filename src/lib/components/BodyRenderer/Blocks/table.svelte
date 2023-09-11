@@ -6,7 +6,7 @@
 
   let isLeftEnd = true;
   let isRightEnd = false;
-
+  let maxScroll;
   let hasRoomToScrollRight = 0;
   let hasRoomToScrollLeft = 0;
 
@@ -20,7 +20,7 @@
         return;
       }
 
-      const maxScroll = tableScrollElement.clientWidth - node!.parentElement!.clientWidth;
+      maxScroll = tableScrollElement.clientWidth - node!.parentElement!.clientWidth;
 
       hasRoomToScrollLeft = node?.scrollLeft;
 
@@ -28,15 +28,13 @@
 
       hasRoomToScrollRight = maxScroll - hasRoomToScrollLeft;
 
-      let rect = node.getBoundingClientRect();
-
-      isRightEnd = isLeftEnd || maxScroll - hasRoomToScrollLeft >= 0;
+      isRightEnd = maxScroll - hasRoomToScrollRight >= 0;
 
       if (
         (!isLeftEnd && hasRoomToScrollLeft === node.scrollWidth - node.offsetWidth) ||
         hasRoomToScrollRight === 0
       ) {
-        isRightEnd = false;
+        isRightEnd = !isRightEnd;
       }
     };
 
