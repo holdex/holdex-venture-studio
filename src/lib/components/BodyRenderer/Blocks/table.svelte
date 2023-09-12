@@ -25,7 +25,6 @@
   };
 
   const scrollAction = (node: HTMLElement) => {
-    isScroller = hasScroll(node, 'horizontal');
     const tableScrollElement = document.getElementById('table-scroll');
 
     const maxScrollLeft = node?.scrollWidth - node?.clientWidth;
@@ -37,13 +36,10 @@
       }
       isLeftEnd = node?.scrollLeft === 0;
       isRightEnd = maxScroll === node?.scrollLeft;
+      isScroller = hasScroll(node, 'horizontal');
 
       if (isRightEnd) {
         isScroller = false;
-      }
-
-      if (!isRightEnd) {
-        isScroller = hasScroll(node, 'horizontal');
       }
 
       if (maxScrollLeft === node?.scrollLeft) {
