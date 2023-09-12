@@ -1,10 +1,10 @@
 <script lang="ts">
+  import { goto } from '$app/navigation';
   import { regExp } from '$components/BodyParser/utils';
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { isBrowser } from '$lib/config';
   import { Link } from '@steeze-ui/heroicons';
-  import { getContext } from 'svelte';
 
   type Item = {
     type: string;
@@ -46,24 +46,35 @@
   $: isHoldexLink = regExp.holdexLink.test(item?.data?.url);
 
   let promise = loadOgData(item?.data?.url);
+
+  const richLinkClicked = (data) => {
+    if (!isHoldexLink) {
+      window.open(item.data?.url, '_blank');
+    }
+
+    if (isHoldexLink) {
+      goto(item.data?.url);
+    }
+  };
 </script>
 
-<a
-  href={item?.data?.url}
-  class="flex border border-l4 bg-l2 rounded-xl w-full items-center h-24"
-  target={isHoldexLink ? '_self' : '_blank'}
+<span
+  id="link"
+  class="cursor-pointer flex border border-l4 bg-l2 rounded-xl w-full items-center h-24"
+  on:click={richLinkClicked}
+  on:keydown={richLinkClicked}
 >
   {#await promise}
     <div class="h-full flex items-center">
       <div
-        class="w-full rich-link-image-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation"
+        class="w-full rich-link-image-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation animate"
       />
       <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
         <div class="animation animate h-4 skeleton-desc" />
         <div class="animation animate h-4" />
         <div>
           <a
-            title={' '}
+            title={''}
             href={item.data?.url}
             target={isHoldexLink ? '_self' : '_blank'}
             class={classes}
@@ -114,7 +125,7 @@
       </div>
     </div>
   {/await}
-</a>
+</span>
 
 <style lang="sass">
   
