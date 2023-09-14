@@ -73,18 +73,12 @@
         <div class="animation animate h-4 skeleton-desc" />
         <div class="animation animate h-4" />
         <div>
-          <a
-            title={''}
-            href={item.data?.url}
-            target={isHoldexLink ? '_self' : '_blank'}
-            class={classes}
-            rel="noreferrer"
-          >
+          <span class={classes}>
             {truncated}
             {#if !isHoldexLink}
               <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
             {/if}
-          </a>
+          </span>
         </div>
       </div>
     </div>
@@ -128,6 +122,12 @@
 </span>
 
 <style lang="sass">
+
+  .rich-link-image
+    @apply h-[88px] w-[128px]
+  
+  .rich-link-image-skeleton 
+    @apply h-[88px] w-[220px]
   
   .skeleton-desc
     @apply w-[200px]
