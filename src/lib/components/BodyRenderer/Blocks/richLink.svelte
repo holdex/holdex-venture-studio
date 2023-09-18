@@ -124,7 +124,7 @@
 <style lang="sass">
 
   .rich-link-image
-    @apply h-[88px] w-[128px]
+    @apply h-[88px] w-[128px] ml-[3px]
   
   .rich-link-image-skeleton 
     @apply h-[88px] w-[220px]
