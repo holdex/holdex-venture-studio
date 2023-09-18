@@ -38,6 +38,10 @@
       isRightEnd = maxScroll === node?.scrollLeft;
       isScroller = hasScroll(node, 'horizontal') || !isRightEnd;
 
+      if (isRightEnd) {
+        isScroller = false;
+      }
+
       if (maxScrollLeft === node?.scrollLeft) {
         isRightEnd = true;
       }
