@@ -36,11 +36,7 @@
       }
       isLeftEnd = node?.scrollLeft === 0;
       isRightEnd = maxScroll === node?.scrollLeft;
-      isScroller = hasScroll(node, 'horizontal');
-
-      if (isRightEnd) {
-        isScroller = false;
-      }
+      isScroller = hasScroll(node, 'horizontal') || !isRightEnd;
 
       if (maxScrollLeft === node?.scrollLeft) {
         isRightEnd = true;
@@ -69,3 +65,13 @@
     </div>
   </div>
 {/if}
+
+<style lang="sass">
+  .scrollbar-hide::-webkit-scrollbar
+    display: none
+
+  /* For IE, Edge and Firefox */
+  .scrollbar-hide 
+    -ms-overflow-style: none  /* IE and Edge */
+    scrollbar-width: none  /* Firefox */
+</style>
