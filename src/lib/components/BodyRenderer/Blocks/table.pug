@@ -39,12 +39,12 @@ mixin table-scroll-shades
       use:scrollAction
     )
     .div(
-      class="h-full w-24 rounded-xl border-r border-l4 right-0 absolute {isRightEnd ? 'hidden': 'bg-gradient-to-l to-transparent from-l1' } {!isScroller?'hidden':''} z-40"
+      class="h-full w-24 rounded-xl border-r border-l4 right-0 absolute {isRightEnd ? 'hidden': 'bg-gradient-to-l to-transparent from-l1' }  z-40"
       use:scrollAction
     )
 
 +table-scroll-shades
-.relative.overflow-auto(use:scrollAction class="rounded-xl" id="table-parent")
+.relative.overflow-auto(use:scrollAction class="rounded-xl scrollbar-hide" id="table-parent")
   table(class="w-full border-separate border-spacing-0" id="table-scroll")
     tbody
       +each('cells as row, rowIndex')
