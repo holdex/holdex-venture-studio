@@ -60,7 +60,7 @@
 
 <span
   id="link"
-  class="cursor-pointer flex border border-l4 bg-l2 rounded-xl w-full items-center h-24"
+  class="cursor-pointer flex bg-l2 rounded-xl w-full items-center h-24 border border-l4"
   on:click={richLinkClicked}
   on:keydown={richLinkClicked}
 >
@@ -69,7 +69,7 @@
       <div
         class="w-full rich-link-image-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation animate"
       />
-      <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
+      <section class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
         <div class="animation animate h-4 skeleton-desc" />
         <div class="animation animate h-4" />
         <div>
@@ -80,13 +80,13 @@
             {/if}
           </span>
         </div>
-      </div>
+      </section>
     </div>
   {:then ogdata}
-    <div class="h-full flex items-center">
+    <figure class="flex items-center h-24">
       {#if ogdata.image}
         <div
-          class="rich-link-image h-full rounded-xl bg-contain bg-no-repeat bg-center"
+          class="rich-link-image rounded-xl bg-contain bg-no-repeat bg-center"
           style={`background-size:cover; background-position: center;
             background-repeat: no-repeat; background-image: url(${ogdata?.image[0]?.url});`}
         />
@@ -97,7 +97,7 @@
           <Icon icon={Link} width={32} height={32} />
         </div>
       {/if}
-    </div>
+    </figure>
 
     <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
       <div class="font-semibold">{ogdata.name || ogdata.title}</div>
