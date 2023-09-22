@@ -103,19 +103,13 @@
       <div class="font-semibold">{ogdata.name || ogdata.title}</div>
       <div class="text-t3 text-ellipsis truncate">{ogdata.desc}</div>
       <div>
-        <a
-          title={item?.data?.title || ''}
-          href={item?.data?.url}
-          target={isHoldexLink ? '_self' : '_blank'}
-          class={classes}
-          rel="noreferrer"
-        >
+        <p class={classes}>
           {truncated}
 
           {#if !isHoldexLink}
             <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
           {/if}
-        </a>
+        </p>
       </div>
     </div>
   {/await}
