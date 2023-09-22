@@ -67,7 +67,7 @@
   {#await promise}
     <div class="h-full flex items-center">
       <div
-        class="w-full rich-link-image-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation animate"
+        class="w-full image-holder-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation animate"
       />
       <section class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
         <div class="animation animate h-4 skeleton-desc" />
@@ -83,10 +83,10 @@
       </section>
     </div>
   {:then ogdata}
-    <figure class="flex items-center h-24">
+    <section class="flex items-center h-24">
       {#if ogdata.image}
         <div
-          class="rich-link-image rounded-xl bg-contain bg-no-repeat bg-center"
+          class="image-holder rounded-xl bg-contain bg-no-repeat bg-center"
           style={`background-size:cover; background-position: center;
             background-repeat: no-repeat; background-image: url(${ogdata?.image[0]?.url});`}
         />
@@ -97,7 +97,7 @@
           <Icon icon={Link} width={32} height={32} />
         </div>
       {/if}
-    </figure>
+    </section>
 
     <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
       <div class="font-semibold">{ogdata.name || ogdata.title}</div>
@@ -123,10 +123,10 @@
 
 <style lang="sass">
 
-  .rich-link-image
+  .image-holder
     @apply h-[88px] w-[128px] ml-[3px]
   
-  .rich-link-image-skeleton 
+  .image-holder-skeleton 
     @apply h-[88px] w-[220px]
   
   .skeleton-desc
