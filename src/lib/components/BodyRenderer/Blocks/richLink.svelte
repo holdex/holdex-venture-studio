@@ -65,44 +65,44 @@
   on:keydown={richLinkClicked}
 >
   {#await promise}
-    <div class="h-full flex items-center">
-      <div
+    <span class="h-full flex items-center">
+      <span
         class="w-full image-holder-skeleton h-full rounded-xl bg-contain bg-no-repeat bg-center animation animate"
       />
       <section class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
-        <div class="animation animate h-4 skeleton-desc" />
-        <div class="animation animate h-4" />
-        <div>
+        <span class="animation animate h-4 skeleton-desc" />
+        <span class="animation animate h-4" />
+        <span>
           <span class={classes}>
             {truncated}
             {#if !isHoldexLink}
               <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
             {/if}
           </span>
-        </div>
+        </span>
       </section>
-    </div>
+    </span>
   {:then ogdata}
     <section class="flex items-center h-24">
       {#if ogdata.image}
-        <div
+        <span
           class="image-holder rounded-xl bg-contain bg-no-repeat bg-center"
           style={`background-size:cover; background-position: center;
             background-repeat: no-repeat; background-image: url(${ogdata?.image[0]?.url});`}
         />
       {:else}
-        <div
+        <span
           class="w-[40px] h-[40px] bg-l3 ml-4 rounded-full flex items-center justify-center p-2 text-t3"
         >
           <Icon icon={Link} width={32} height={32} />
-        </div>
+        </span>
       {/if}
     </section>
 
-    <div class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
-      <div class="font-semibold">{ogdata.name || ogdata.title}</div>
-      <div class="text-t3 text-ellipsis truncate">{ogdata.desc}</div>
-      <div>
+    <span class="p-4 flex flex-col text-footnote justify-between gap-1 w-full overflow-hidden">
+      <span class="font-semibold">{ogdata.name || ogdata.title}</span>
+      <span class="text-t3 text-ellipsis truncate">{ogdata.desc}</span>
+      <span>
         <p class={classes}>
           {truncated}
 
@@ -110,8 +110,8 @@
             <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
           {/if}
         </p>
-      </div>
-    </div>
+      </span>
+    </span>
   {/await}
 </span>
 
