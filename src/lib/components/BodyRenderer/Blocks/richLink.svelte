@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { goto } from '$app/navigation';
   import { regExp } from '$components/BodyParser/utils';
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
@@ -46,23 +45,11 @@
   $: isHoldexLink = regExp.holdexLink.test(item?.data?.url);
 
   let promise = loadOgData(item?.data?.url);
-
-  const richLinkClicked = (data) => {
-    if (!isHoldexLink) {
-      window.open(item.data?.url, '_blank');
-    }
-
-    if (isHoldexLink) {
-      goto(item.data?.url);
-    }
-  };
 </script>
 
-<span
-  id="link"
+<a
+  href={item.data?.url}
   class="cursor-pointer flex bg-l2 rounded-xl w-full items-center h-24 border border-l4"
-  on:click={richLinkClicked}
-  on:keydown={richLinkClicked}
 >
   {#await promise}
     <span class="h-full flex items-center">
@@ -103,17 +90,17 @@
       <span class="font-semibold">{ogdata.name || ogdata.title}</span>
       <span class="text-t3 text-ellipsis truncate">{ogdata.desc}</span>
       <span>
-        <p class={classes}>
+        <span class={classes}>
           {truncated}
 
           {#if !isHoldexLink}
             <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
           {/if}
-        </p>
+        </span>
       </span>
     </span>
   {/await}
-</span>
+</a>
 
 <style lang="sass">
 
