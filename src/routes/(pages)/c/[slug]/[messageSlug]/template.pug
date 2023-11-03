@@ -25,10 +25,9 @@ mixin author
       +messageHeader("{message.title}", "{message.subtitle}", "{message.cover}")
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
-    .author-block(class="flex flex-col bg-l1 border border-solid border-l4 rounded-xl w-full dark:bg-l2")
     .text-container(
-      class="flex flex-row w-full justify-between smDown:flex-col smDown:justify-start smDown:items-start"
-    )
+      class="flex flex-row w-full justify-between py-8 border-t border-b border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
+    ) 
       .text-content(class!="flex flex-col items-start")
         TextParagraph(textColor="text-t3")
           time(
@@ -52,8 +51,6 @@ mixin author
               target="_blank"
               rel="noreferrer"
             )
-    .author-block(class="flex flex-col bg-l1 border border-solid border-l4 rounded-xl w-full dark:bg-l2")
-
   +content-wrapper
     +if('message.tocs && message.tocs.length > 0')
       details(
