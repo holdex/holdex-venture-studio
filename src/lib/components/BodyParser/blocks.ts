@@ -493,6 +493,7 @@ const htmlParser = HTMLParser({
   quote: parseQuote,
   image: parseImage,
   list: parseList,
+  cover: (b: any) => b,
   nestedList: parseNestedList,
   paragraph: parseParagraph,
   table: parseTable,
