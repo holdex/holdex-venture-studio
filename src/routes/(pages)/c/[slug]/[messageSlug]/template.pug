@@ -26,7 +26,7 @@ mixin author
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
     .text-container(
-      class="flex flex-row w-full justify-between py-8 border-t border-b border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
+      class="flex flex-row w-full items-center justify-between py-8 border-t border-b border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
     ) 
       .text-content(class!="flex flex-col items-start")
         TextParagraph(textColor="text-t3")
@@ -34,13 +34,13 @@ mixin author
             datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
             title="{extendedTimeFormat(message.createdAt)}"
           ) {timeFormat(message.createdAt)} {message.updatedAt ? '| Updated ' + timeFormat(message.updatedAt) : ''}
-        TextParagraph(class="flex flex-wrap flex-row gap-3 xs:gap-2" textColor="text-t3")
-          span(class="inline-flex items-center gap-1")
-            Icon(icon="{Eye}" width="{20}" height="{20}" colorInherit)
-            span {formatNumber(message.viewsCount, '0,0a')}
-          span(class="inline-flex items-center gap-1") 
-            Icon(icon="{ChatBubbleLeftEllipsis}" width="{20}" height="{20}" colorInherit)
-            span {formatNumber(message.allReplies.totalCount, '0,0a')}
+        //- TextParagraph(class="flex flex-wrap flex-row gap-3 xs:gap-2" textColor="text-t3")
+        //-   span(class="inline-flex items-center gap-1")
+        //-     Icon(icon="{Eye}" width="{20}" height="{20}" colorInherit)
+        //-     span {formatNumber(message.viewsCount, '0,0a')}
+        //-   span(class="inline-flex items-center gap-1") 
+        //-     Icon(icon="{ChatBubbleLeftEllipsis}" width="{20}" height="{20}" colorInherit)
+        //-     span {formatNumber(message.allReplies.totalCount, '0,0a')}
       .text-content(class!="flex flex-col smDown:gap-4")
         TextParagraph(class="flex flex-wrap justify-end smDown:justify-start" textColor="text-t3") #[span.mr-1 By] #[+author]
         +if('message.isGoogleDoc')
