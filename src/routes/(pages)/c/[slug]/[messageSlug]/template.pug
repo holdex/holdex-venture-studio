@@ -5,7 +5,7 @@ mixin author
   +if('message.docAuthors.length > 0')
     +each('message.docAuthors as author, i')
       +if('i !== 0')
-        span.mr-2 ,
+        span(class="mr-[5px]") ,
       +inline-link("{author.url}",'{author.name}')(
         class="xs:text-paragraph-s"
         target="_blank"
@@ -26,7 +26,7 @@ mixin author
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
     .text-container(
-      class="flex flex-row w-full items-center justify-between py-8 border-t border-b border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
+      class="flex flex-row w-full items-center justify-between py-[31px] border-y border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
     ) 
       .text-content(class!="flex flex-col items-start")
         TextParagraph(textColor="text-t3")
@@ -44,7 +44,7 @@ mixin author
       .text-content(class!="flex flex-col smDown:gap-4")
         TextParagraph(class="flex flex-wrap justify-end smDown:justify-start" textColor="text-t3") #[span.mr-1 By] #[+author]
         +if('message.isGoogleDoc')
-          .edit-wrapper(class="flex gap-2 justify-end smDown:justify-start")
+          .edit-wrapper(class="flex gap-[5px] justify-end smDown:justify-start")
             TextParagraph(class="flex" textColor="text-t3") Have a suggestion?
             +inline-link("{message.isGoogleDoc}",'Edit Article')(
               class="xs:text-paragraph-s"

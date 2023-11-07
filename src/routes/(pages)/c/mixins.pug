@@ -70,9 +70,13 @@ mixin button-icon-small(icon)
 mixin messageHeader(title, subtitle, cover=null)
   h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s")&attributes(attributes)= title
   if cover && cover !== ''
-    img(src=cover alt=title class="w-full h-auto object-contain border border-solid border-l4 rounded-xl")
+    img(
+      src=cover
+      alt=title
+      class="w-full h-auto object-contain box-border border border-solid border-l4 rounded-xl"
+    )
   if subtitle
-    p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s  w-full")= subtitle
+    p(class="text-subtitle-xl text-t2 text-center smDown:text-left xs:text-subtitle-s  w-full")= subtitle
 
 mixin feedRenderer
   +if('isSearchMode')
