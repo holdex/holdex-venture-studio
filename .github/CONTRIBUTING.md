@@ -1,4 +1,4 @@
-# Holdex Contributing Guide <!-- omit in toc -->
+# Holdex Contributing Guide
 
 Thank you for your interest in contributing to our project! Any contribution you make will be reflected on [holdex.io](https://holdex.io) or related websites. Please read our [Code of Conduct](./CODE_OF_CONDUCT.md) to keep our community approachable and respectable.
 
