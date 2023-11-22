@@ -35,21 +35,6 @@ Our solution requiremest:
 1. [Keep PRs small](https://artsy.github.io/blog/2021/03/09/strategies-for-small-focused-pull-requests/) and completable within 3-4 hours. If the solution requires more time, then decompose the problem into smaller problems until you can solve that problem within 3-4 hours.
 2. When creating PRs and commits, make sure the name of the PR is super [clean and simple](https://pulsar.apache.org/contribute/develop-semantic-title/#how-to-write-good-pr-titles). You must follow [Conventional Commit](https://www.conventionalcommits.org) guidelines here.
 
-## Trial Tasks
-
-We are contantly looking for new talent to join our team and support our [portfolio companies](https://holdex.io/portfolio). But before we can get you onboard as a permanent member, we expect you to show us your skills in practice by solving a trial task. The task depends on your skill set, but no matter what you do, you must always completly follow these gudelines.
-
-If you are interested in working with use, please choose one of the repositories where you can contribute.  
-
-- Designers: talk to us and we will provide you with the access to our Figma
-- Developers: 
-  - python: https://github.com/truflation/truflation
-  - solidity: talk to us and we will provide you with the access to the repository
-  - html/css: https://github.com/holdex/holdex-venture-studio
-  - NodeJs: https://github.com/holdex/holdex-venture-studio
-
-Once you have chosen the repository, fork it and identify the problem to work on. Not all of this repositories will have problems re
-
 #
 
 Trial
