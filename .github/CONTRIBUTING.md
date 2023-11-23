@@ -37,7 +37,7 @@ Whether it’s code, design, or marketing material, we expect a lean and clean s
 If the source-code modification is required, the solution is presented as [GitHub PR](https://docs.github.com/en/pull-requests). 
 
 #### PR requirement
-We usually reject PRs which don't correspont to the following criteria:
+We usually reject PRs which don't correspond to the following criteria:
 
 1. **Small size**. [Keep PRs small](https://artsy.github.io/blog/2021/03/09/strategies-for-small-focused-pull-requests/) and completable within 3-4 hours. If the solution requires more time, then decompose the problem into smaller problems until you can solve that problem within 3-4 hours.
 2. **Clear naming**. When creating PRs and commits, make sure the name of the PR is [clean and simple](https://pulsar.apache.org/contribute/develop-semantic-title/#how-to-write-good-pr-titles). You must follow [Conventional Commit](https://www.conventionalcommits.org) guidelines.
