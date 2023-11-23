@@ -1,6 +1,6 @@
 # Welcome to Holdex
 
-> Before you begin, please get acquainted with our [contibution guidelines](CONTRIBUTING.md).
+> Before you begin, please get acquainted with our [contribution guidelines](CONTRIBUTING.md).
 
 ## Developing
 
