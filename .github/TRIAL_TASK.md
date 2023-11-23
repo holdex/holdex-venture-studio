@@ -5,7 +5,7 @@ We are contantly looking for new talent to join our team and support our [portfo
 To start your trial task, please follow these steps:
 1. Align yourself with our [contributing guidelines](./CONTRIBUTING.md)
 1. Select your skill set:
-   1. Designers: talk to us and we will provide you with the access to our Figma
+   1. Designers: talk to us and we will provide you with access to our Figma
    1. Developers: 
       1. python: https://github.com/truflation/truflation
       1. solidity: talk to us and we will provide you with the access to the repository
