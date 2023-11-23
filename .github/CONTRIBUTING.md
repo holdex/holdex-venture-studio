@@ -19,7 +19,7 @@ As soon as you get involved in one of our projects, you must understand the goal
 
 It is crucial to understand the business context of the goal and how achieving the goal will impact the project.
 
-All goals can be identified as GitHub issues in the relevant repository. Goals are created and managed by Partner level contributor.
+All goals can be identified as GitHub issues in the relevant repository. Goals are created and managed by Partner level contributors.
 
 ### Problem
 Once the goal is clear, you must identify what stops you from achieving it. Anything that is stopping us - is a “Problem”. A typical question to ask is: "what valuable action the user can’t perform?".
