@@ -16,7 +16,7 @@ import type {
   Schema$TextStyle,
 } from '$lib/types/googleDoc';
 import type { RequestHandler } from './$types';
-import type { Author, CTAElement } from '$components/BodyParser/blocks';
+import type { CTAElement, Author } from '$components/BodyParser/blocks';
 import type { Parsed$Paragraph, Parsed$ParagraphElement } from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
