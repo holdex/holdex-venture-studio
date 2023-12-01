@@ -39,9 +39,9 @@ type ImageBlock = {
 type CoverBlock = {
   type: string;
   data: {
-    text: string
-  }
-}
+    text: string;
+  };
+};
 
 type ListBlock = {
   type: 'list';
@@ -111,9 +111,26 @@ type LinkToolBlock = {
   };
 };
 
+type CTA = {
+  type: string;
+  data: CTAElement;
+};
+
 export type Author = {
   name: string;
   url: string;
+};
+
+export type CTAElement = {
+  title: string;
+  description: string;
+  link1: null | CTALink;
+  link2: null | CTALink;
+};
+
+type CTALink = {
+  url: string;
+  text: string;
 };
 
 type AuthorBlock = {
@@ -428,10 +445,10 @@ const parseCoverBlock = (block: CoverBlock) => {
   return {
     type: 'cover',
     data: {
-      text: getOptimizedUrl(block.data.text, '_1500x1500')
-    }
-  }
-}
+      text: getOptimizedUrl(block.data.text, '_1500x1500'),
+    },
+  };
+};
 
 const parseTable = (block: TableBlock) => {
   if (typeof block.data.content[0][0] === 'string') {
@@ -449,7 +466,7 @@ const parseTable = (block: TableBlock) => {
       } else {
         rowContent.push(parseBlocks([cell]));
       }
-    })
+    });
     tableContent.push(rowContent);
   });
 
@@ -510,6 +527,13 @@ const parseAuthor = (block: AuthorBlock) => {
   };
 };
 
+const parseCTA = (block: CTA) => {
+  return {
+    type: 'cta',
+    data: block.data,
+  };
+};
+
 const htmlParser = HTMLParser({
   header: parseHeading,
   quote: parseQuote,
@@ -527,6 +551,7 @@ const htmlParser = HTMLParser({
   source: (b: any) => b,
   author: parseAuthor,
   toc: parseToc,
+  cta: parseCTA,
 });
 
 const parseBlocks = (blocks: any[]) => htmlParser.parse({ blocks });
