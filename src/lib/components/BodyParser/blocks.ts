@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
+// @ts-ignore 
 import HTMLParser from 'editorjs-html';
 import { bindTokens } from './tokens';
 import { escape, unescape } from './escaper';
