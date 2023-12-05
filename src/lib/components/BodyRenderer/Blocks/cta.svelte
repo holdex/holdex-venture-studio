@@ -16,30 +16,30 @@
       {/if}
 
       {#if item.description}
-        <p class="text-cta text-t3">{item.description}</p>
+        <p class="text-cta text-t3 dark:text-t2">{item.description}</p>
       {/if}
     </div>
+
     {#if item.link1}
-      <a
-        class="text-center relative xs:w-full bg-accent1-default text-t4 text-button border border-solid border-transparent shadow-button flex items-center justify-center p-4 xs:py-2 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active dark:hover:shadow-button-hover"
-        href={item.link1.url}>{item.link1.text}</a
-      >
+      <Button variant="primary" size="large" href={item.link1.url}>
+        <p class="buttontext text-t4">{item.link1.text}</p>
+      </Button>
     {/if}
 
     {#if item.link2}
-      <a
-        class="relative xs:w-full bg-l1 text-t1 text-button border border-solid border-l5 shadow-secondary-button items-center justify-center p-4 xs:py-2 rounded-xl hover:!border-accent1-active focus:!border-accent1-active dark:bg-l3 dark:border-l3 dark:hover:shadow-secondary-button-hover"
-        href={item.link2.url}>{item.link2.text}</a
-      >
+      <Button variant="secondary" size="large" href={item.link2.url}>
+        <p class="buttontext text-t1 border-1 border">{item.link2.text}</p>
+      </Button>
     {/if}
   </div>
 </div>
 
 <style lang="sass">
-  .text-button
-    line-height: 32px
-    font-weight: 700
-    left: 0
+  .buttontext
+    padding: 0.5em
+    line-height: 32px !important
+    font-weight: 700 !important
+    text-align: center
   .gradient
     &:before
       content: ""
