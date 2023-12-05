@@ -1,3 +1,9 @@
+mixin content-wrapper-portfolio
+  .content-wrapper(
+    class="flex items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+  )&attributes(attributes)
+    block
+
 mixin crumbItemLink(href, name)
   li: a(
     class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-accent1-default"
