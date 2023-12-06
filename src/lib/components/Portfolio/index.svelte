@@ -1,10 +1,9 @@
 <script lang="ts">
   /* eslint-disable @typescript-eslint/no-unused-vars */
-  //   import Icon from '$components/Icons/index.svelte';
 
-  import Hashtag from '$components/Hashtag/index.svelte';
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import type numeral from 'numeral';
+  import Hashtag from '$components/BodyRenderer/Blocks/hashtag.svelte';
 
   export let isFeatured: boolean;
   export let communitySlug: string;

@@ -72,4 +72,5 @@ mixin metric(type, value)
         li.underline.underline-offset-4.text-accent1-default.text-inter.h-8.text-paragraph-l(
           class="bg-accent1-default/15"
         )
-          | {'#'}{tag}
+          Hashtag(item="{tag}" link="/c?filter={tag}")
+            | {'#'}{tag}
