@@ -6,12 +6,6 @@
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import type numeral from 'numeral';
 
-  //   import { ChatBubbleLeftEllipsis, HandThumbUp } from '$components/Icons';
-  //   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
-  //   import { formatNumber } from '$components/NumbersManager';
-  //   import type { ParsedMessage } from '$components/BodyParser';
-
-  //   export let message: ParsedMessage;
   export let isFeatured: boolean;
   export let communitySlug: string;
   export let messageSlug: string;
