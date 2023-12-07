@@ -50,49 +50,40 @@ mixin metric(type, value=null)
         h2(
           class="relative text-h2-l xs:text-h2-s font-satoshi inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
         ) {title}
-      TextParagraph {subtitle}
-      +if('isFeatured == true')
-        TextParagraph {description}
-        .portfolio-metrics(class="w-full flex flex-wrap gap-8 smDown:flex-col smDown:gap-6")
-          +if('totalLoansOriginated')
-            +metric('totalLoansOriginated', '{formattedTotalLoansOriginated}')
-          +if('totalValueLocked')
-            +metric('totalValueLocked', '{formattedTotalValueLocked}')
-          +if('founders')
-            +metric('founders', '{founders}')
-          +if('investors')
-            +metric('investors')
-              .investor-wrapper(
-                class="w-full overflow-hidden inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-100px),transparent_100%)] "
+    TextParagraph {subtitle}
+    +if('isFeatured == true')
+      TextParagraph {description}
+      .portfolio-metrics(class="w-full flex flex-wrap gap-8 smDown:flex-col smDown:gap-6")
+        +if('totalLoansOriginated')
+          +metric('totalLoansOriginated', '{formattedTotalLoansOriginated}')
+        +if('totalValueLocked')
+          +metric('totalValueLocked', '{formattedTotalValueLocked}')
+        +if('founders')
+          +metric('founders', '{founders}')
+        +if('investors')
+          +metric('investors')
+            .investor-wrapper(
+              class="w-full overflow-hidden inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-100px),transparent_100%)] "
+            )
+              .investor-strip(
+                class="w-full flex flex-row gap-6 align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
               )
-                .investor-strip(
-                  class="w-full flex flex-row gap-6 align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
-                )
-                  +each('JSON.parse(investors) as investor')
-                    img(
-                      class="investor-logo h-8 mobile:h-4 filter invert dark:invert-0"
-                      src="/portfolioLogo/investor/{investor}.svg"
-                      alt="{investor}"
-                    )
-          +if('totalFunding')
-            +metric('totalFunding', '{formattedTotalFunding}')
-          +if('fullyDilutedMarketCap')
-            +metric('fullyDilutedMarketCap', '{formattedFullyDilutedMarketCap}')
+                +each('JSON.parse(investors).concat(JSON.parse(investors)) as investor')
+                  img(
+                    class="investor-logo h-8 mobile:h-6 filter invert dark:invert-0"
+                    src="/portfolioLogo/investor/{investor}.svg"
+                    alt="{investor}"
+                  )
+        +if('totalFunding')
+          +metric('totalFunding', '{formattedTotalFunding}')
+        +if('fullyDilutedMarketCap')
+          +metric('fullyDilutedMarketCap', '{formattedFullyDilutedMarketCap}')
 
   +if('JSON.parse(hashtags) && JSON.parse(hashtags).length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
       +each('JSON.parse(hashtags) as tag, index')
-        li.underline.underline-offset-4.text-accent1-default.text-inter.h-8.text-paragraph-l(
-          class="bg-accent1-default/15"
+        li(
+          class="bg-accent1-default/15 underline offset-4 text-accent1-default text-inter h-8 text-paragraph-l smDown:text-paragraph-s"
         )
           Hashtag(item="{tag}" link="/c?filter={tag}")
             | {'#'}{tag}
-
-//- <div class="w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
-//-     <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
-//-         <!-- ... -->
-//-     </ul>
-//-     <ul class="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll" aria-hidden="true">
-//-         <!-- ... -->
-//-     </ul>
-//- </div>
