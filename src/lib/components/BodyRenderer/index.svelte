@@ -1,12 +1,30 @@
 <script lang="ts">
-	/* eslint-disable @typescript-eslint/no-unused-vars */
-  import Item from './item.svelte'
+  /* eslint-disable @typescript-eslint/no-unused-vars */
+  import Item from './item.svelte';
 
   export let blocks: any[];
+  $: addtionalBlocks = [
+    ...blocks,
+    {
+      type: 'cta',
+      data: {
+        title: 'We dont talk about Bruno',
+        description: 'It was wedding day',
+        link1: {
+          text: 'Button 1',
+          url: 'https://google.com',
+        },
+        link2: {
+          text: 'Button 2',
+          url: 'https://google.com',
+        },
+      },
+    },
+  ];
 </script>
 
-{#each blocks as item, index}
-  <Item item={item} index={index} />
+{#each addtionalBlocks as item, index}
+  <Item {item} {index} />
 {/each}
 
 <style lang="sass">

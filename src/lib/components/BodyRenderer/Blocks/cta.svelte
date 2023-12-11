@@ -6,59 +6,74 @@
   export let item: CTAElement;
 </script>
 
-<div class="relative">
-  <div
-    class="gradient flex flex-row xs:flex-col gap-4 items-center w-full border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2"
-  >
-    <div class="flex flex-col xs:pb-4">
-      {#if item.title}
-        <p class="text-cta-title">{item.title}</p>
-      {/if}
+<div
+  class="relative cta flex flex-row xs:flex-col gap-6 items-center w-full border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2"
+>
+  <div class="flex flex-col xs:w-full">
+    {#if item.title}
+      <p class="text-cta-title">{item.title}</p>
+    {/if}
 
-      {#if item.description}
-        <p class="text-cta text-t3 dark:text-t2">{item.description}</p>
-      {/if}
-    </div>
+    {#if item.description}
+      <p class="text-cta text-t3 dark:text-t2">{item.description}</p>
+    {/if}
+  </div>
 
+  <div class="ml-auto cta-buttons dark:cta-buttons-dark flex flex-row gap-4 xs:flex-col xs:w-full">
     {#if item.link1}
-      <Button variant="primary" size="large" href={item.link1.url}>
-        <p class="buttontext text-t4">{item.link1.text}</p>
+      <Button class="cta-button text-t4" variant="primary" size="large" href={item.link1.url}>
+        {item.link1.text}
       </Button>
     {/if}
 
     {#if item.link2}
-      <Button variant="secondary" size="large" href={item.link2.url}>
-        <p class="buttontext text-t1 border-1 border">{item.link2.text}</p>
+      <Button
+        class="cta-button text-t1 border-secondary"
+        variant="secondary"
+        size="large"
+        href={item.link2.url}
+      >
+        {item.link2.text}
       </Button>
     {/if}
   </div>
 </div>
 
 <style lang="sass">
-  .buttontext
-    padding: 0.5em
-    line-height: 32px !important
-    font-weight: 700 !important
-    text-align: center
-  .gradient
+  .cta
+    .cta-buttons 
+      :global(.cta-button)
+        font-size: 14px
+        line-height: 32px
+        font-weight: 700 !important
+        text-align: center
+      :global(:is([data-theme="light"] .border-secondary))
+        border: 1px solid var(--layer-light-05, #CED1DB)
+      :global(:is([data-theme="dark"] .border-secondary))
+        border: none
     &:before
       content: ""
       position: absolute
       display: block
-      top: -0.5px
-      left: 40px
-      width: 300px
-      height: 1.5px
-      background-image:  linear-gradient(to right, #00000000 5%, #2E83E5A0, #00000000, #00000000, #00000000)
+      top: 0px
+      left: 50px
+      width: 200px
+      height: 1px
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, #2E83E5 25.56%, #2E83E5 50.63%, rgba(46, 131, 229, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%)
       background-repeat: no-repeat
+      @media screen and (max-width: 767px)
+        left: 20px
+
     &:after
       content: ""
       position: absolute
       display: block
       bottom: 0px
-      right: 0px
-      width: 300px
-      height: 1.5px
-      background-image:  linear-gradient(to right, #00000000 5%, #2E83E5A0, #00000000, #00000000, #00000000)
+      right: 50px
+      width: 200px
+      height: 1px
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, #2E83E5 25.56%, #2E83E5 50.63%, rgba(46, 131, 229, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%)
       background-repeat: no-repeat
+      @media screen and (max-width: 450px)
+        right: 20px
 </style>

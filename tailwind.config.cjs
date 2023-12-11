@@ -247,11 +247,18 @@ module.exports = {
           fontWeight: '400',
         },
       ],
-      cta: [
-        '14px',
+      'cta-title': [
+        '18px',
         {
           lineHeight: '32px',
           fontWeight: '700',
+        },
+      ],
+      cta: [
+        '18px',
+        {
+          lineHeight: '32px',
+          fontWeight: '400',
         },
       ],
       footnote: [
