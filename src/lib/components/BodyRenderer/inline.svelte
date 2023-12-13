@@ -18,7 +18,6 @@
   };
 
   export let item: Item;
-  console.log(item);
 
   function trimText(text: string) {
     if (text.endsWith('( ')) {
