@@ -247,13 +247,6 @@ module.exports = {
           fontWeight: '400',
         },
       ],
-      'cta-title': [
-        '18px',
-        {
-          lineHeight: '32px',
-          fontWeight: '700',
-        },
-      ],
       cta: [
         '18px',
         {

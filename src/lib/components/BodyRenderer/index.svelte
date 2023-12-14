@@ -8,8 +8,8 @@
     {
       type: 'cta',
       data: {
-        title: 'We dont talk about Bruno',
-        description: 'It was wedding day',
+        title: '123',
+        description: 'CTa test description',
         link1: {
           text: 'Button 1',
           url: 'https://google.com',
