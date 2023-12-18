@@ -147,6 +147,7 @@ const videoRegExp = new RegExp(regExp.video, 'gmi');
 const imageRegExp = new RegExp(regExp.image, 'gmi');
 const tallyLinkExp = new RegExp(regExp.tallyLink, 'mi');
 const coingeckoLinkExp = new RegExp(regExp.coingeckoLink, 'mi');
+const gistLinkExp = new RegExp(regExp.gistLink, 'mi');
 export const linkExp = new RegExp(
   /^<a\s+(?:[^>]*?\s+)?href=(["'\\])(.*?)\1[^>]*>(.*?)<\/a>$/,
   'ui'
@@ -203,6 +204,14 @@ const tokeniseInlineEls = (inlineBlocks: string[]) => {
           });
           break;
         }
+        case gistLinkExp.test(b): {
+          const match = b.match(gistLinkExp) as RegExpExecArray;
+          tokens.push({
+            type: 'embed',
+            url: match[0],
+          });
+          break;
+        }
         default: {
           const match = b.match(linkExp) as RegExpExecArray;
           tokens.push({
@@ -237,6 +246,16 @@ const tokeniseInlineEls = (inlineBlocks: string[]) => {
           tokens.push({
             type: 'chart',
             url: match[0],
+          });
+          break;
+        }
+        case gistLinkExp.test(b): {
+          const match = b.match(gistLinkExp) as RegExpExecArray;
+          tokens.push({
+            type: 'embed',
+            embed: match[0],
+            source: match[0],
+            service: 'gist',
           });
           break;
         }
