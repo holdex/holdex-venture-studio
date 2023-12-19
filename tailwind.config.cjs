@@ -248,10 +248,10 @@ module.exports = {
         },
       ],
       cta: [
-        '18px',
+        '14px',
         {
           lineHeight: '32px',
-          fontWeight: '400',
+          fontWeight: '700',
         },
       ],
       footnote: [
