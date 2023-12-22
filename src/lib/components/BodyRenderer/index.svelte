@@ -23,7 +23,7 @@
   ];
 </script>
 
-{#each addtionalBlocks as item, index}
+{#each blocks as item, index}
   <Item {item} {index} />
 {/each}
 
