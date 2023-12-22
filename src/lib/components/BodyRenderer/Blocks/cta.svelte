@@ -7,7 +7,7 @@
 </script>
 
 <div
-  class="relative cta flex flex-row xs:flex-col gap-6 w-full border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2"
+  class="relative cta flex flex-row xs:flex-col xs:gap-6 gap-4 w-full border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2"
 >
   <div class="flex flex-col xs:w-full">
     {#if item.title}
@@ -19,7 +19,7 @@
     {/if}
   </div>
 
-  <div class="ml-auto flex flex-row gap-4 xs:flex-col xs:w-full py-1.75">
+  <div class="ml-auto flex flex-row gap-4 xs:gap-2 xs:flex-col xs:w-full my-auto">
     {#if item.link1}
       <Button
         class="text-t1"
