@@ -9,6 +9,7 @@
   import Hashtag from './Blocks/hashtag.svelte';
   import PriceTicker from './Blocks/priceTicker.svelte';
   import { setContext } from 'svelte';
+  import LinkBlock from './Blocks/LinkBlock/LinkBlock.svelte'
 
   type Item = {
     type: string;
