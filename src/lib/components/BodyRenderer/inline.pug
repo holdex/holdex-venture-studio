@@ -1,5 +1,6 @@
 Switch(condition="{item.type}")
   Case(value="link")
+   LinkBlock(item="{item}")
     Link(item="{item}" let:text)
       TextWrapper(text="{text}")
         slot
