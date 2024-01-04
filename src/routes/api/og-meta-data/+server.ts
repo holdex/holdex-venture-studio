@@ -2,7 +2,7 @@ import { json, type RequestHandler } from "@sveltejs/kit";
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
   try {
-    const apiKey = '';
+    const apiKey = 'pk_81a92661d3647e25a0b14380e3381569467f8c68';
     const site = url.searchParams.get('site');
     const apiUrl = `https://jsonlink.io/api/extract?url=${site}&api_key=${apiKey}`;
 
