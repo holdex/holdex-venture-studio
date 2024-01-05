@@ -1,4 +1,4 @@
- <script lang="ts">
+<script lang="ts">
   import { Link } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount } from 'svelte';
@@ -10,11 +10,27 @@
     title?: string;
   };
 
-  type MetaData = {
-    title: string;
-    description: string;
-    images: string[];
-  };
+  interface OgImage {
+    url: string;
+    type: string;
+  }
+
+  interface OgResult {
+    success: number;
+    link: string;
+    meta: {
+      title?: string;
+      site_name?: string;
+      description?: string;
+      image?: OgImage;
+    };
+  }
+
+  export let item: Item;
+  let metaInfo: OgResult;
+
+  $: site = item.href;
+  $: text = item.text;
 
   function isURL(text: string) {
     const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
@@ -22,50 +38,29 @@
   }
 
   async function fetchMetaTags(url: string) {
-    const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
-    const data = await response.json();
-    return data;
+    try {
+      const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
+      const data: OgResult = await response.json();
+      metaInfo = data;
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  export let item: Item;
-
-  let metaData: MetaData = {
-    title: "",
-    description: "",
-    images: [],
-  };
-
-
-  $: site = item.href;
-  $: text = item.text;
-  
-  let loading = false;
-
 
   onMount(async () => {
     if (isURL(text)) {
-      try {
-        loading = true;
-        const data: MetaData = await fetchMetaTags(site);
-        metaData = data
-      } catch (error) {
-        console.error('Error fetching meta tags:', error);
-      } finally {
-        loading = false;
-      }
+      fetchMetaTags(site);
     }
   });
 
-
-  $: title = metaData.title;
-  $: description = metaData.description;
-  $: src = metaData.images?.[0];
+  $: title = metaInfo?.meta?.title ?? '';
+  $: description = metaInfo?.meta?.description ?? '';
+  $: src = metaInfo?.meta?.image?.url ?? '';
 </script>
-
 
 {#if isURL(text)}
   <div class="link-block bg-l1 border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl">
-    {#if (title && description) || src}
+    {#if (metaInfo?.success === 1)}
       <div class={"h-full flex items-center justify-center image-link-container"}>
         {#if src}
           <img class="link-image rounded-xl" src={src} alt="Logo">
@@ -77,8 +72,8 @@
       </div>
       <div class="link-details">
         <div class="w-full">
-          <p class="ellipsis text-t1 title">{title !== undefined ? title : ""}</p>
-          <p class="ellipsis text-t3 description">{description !== undefined ? description : ""}</p>
+          <p class="ellipsis text-t1 title">{title}</p>
+          <p class="ellipsis text-t3 description">{description}</p>
           <div><slot /></div>
         </div>
       </div>
@@ -87,10 +82,5 @@
 {:else}
   <slot/>
 {/if}
-
-
-
-
-
 
 <style lang="scss" src="./linkblock.scss"></style>
