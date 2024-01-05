@@ -1,7 +1,9 @@
 <script lang="ts">
-  import { Link } from '$components/Icons';
+  import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount } from 'svelte';
+  import Link from '../link.svelte'
+  import TextWrapper from '../textWrapper.svelte';
 
   type Item = {
     type: string;
@@ -30,12 +32,8 @@
   let metaInfo: OgResult;
 
   $: site = item.href;
-  $: text = item.text;
 
-  function isURL(text: string) {
-    const urlPattern = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
-    return urlPattern.test(text);
-  }
+  
 
   async function fetchMetaTags(url: string) {
     try {
@@ -48,9 +46,7 @@
   }
 
   onMount(async () => {
-    if (isURL(text)) {
       fetchMetaTags(site);
-    }
   });
 
   $: title = metaInfo?.meta?.title ?? '';
@@ -58,15 +54,15 @@
   $: src = metaInfo?.meta?.image?.url ?? '';
 </script>
 
-{#if isURL(text)}
-  <div class="link-block bg-l1 border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl">
+
+<div class="link-block bg-l1 border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl">
     {#if (metaInfo?.success === 1)}
       <div class={"h-full flex items-center justify-center image-link-container"}>
         {#if src}
           <img class="link-image rounded-xl" src={src} alt="Logo">
         {:else}
           <div class="icon-wrapper bg-l3">
-            <Icon icon={Link} class="text-t3" width={30} height={30}/>
+            <Icon icon={LinkIcon} class="text-t3" width={30} height={30}/>
           </div>
         {/if}
       </div>
@@ -74,13 +70,15 @@
         <div class="w-full">
           <p class="ellipsis text-t1 title">{title}</p>
           <p class="ellipsis text-t3 description">{description}</p>
-          <div><slot /></div>
+          <Link item={item} let:text>
+            <TextWrapper text={text}>
+            <slot/>
+            </TextWrapper>
+          </Link>
         </div>
       </div>
     {/if}
-  </div>
-{:else}
-  <slot/>
-{/if}
+</div>
+
 
 <style lang="scss" src="./linkblock.scss"></style>

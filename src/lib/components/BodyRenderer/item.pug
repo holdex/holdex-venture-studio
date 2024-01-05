@@ -20,7 +20,10 @@
         +else
           svelte:element(this="p" class="w-full break-words p-el text-paragraph-l text-t2")
             +each("item.items as pItem")
-              InlineBlock(item="{pItem}")
+              +if("pItem.type === 'link' && isURL(pItem.text)")
+                 LinkBlock(item="{pItem}")
+                 +else
+                    InlineBlock(item="{pItem}")
     Case(value="list")
       svelte:element(
         class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"

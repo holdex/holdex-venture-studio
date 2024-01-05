@@ -3,7 +3,6 @@
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { getContext } from 'svelte';
-  import LinkBlock from './LinkBlock/index.svelte'
 
   type Item = {
     type: string;
@@ -46,7 +45,6 @@
 </script>
 
 {' '}
-<LinkBlock {item}>
   <a
   title={item.title ? item.title : ''}
   href={item.href}
@@ -59,7 +57,6 @@
     <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
   {/if}
 </a>
-</LinkBlock>
 
 <style lang="sass">
   a :global(*)

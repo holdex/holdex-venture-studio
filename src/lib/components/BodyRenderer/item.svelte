@@ -3,6 +3,7 @@
   import { Switch, Case } from '$components/Switch';
 
   import InlineBlock from './inline.svelte';
+  import LinkBlock from './Blocks/LinkBlock/index.svelte'
   import TextWrapper from './Blocks/textWrapper.svelte';
   import NestedList from './Blocks/nestedList.svelte';
   import Image from './Blocks/image.svelte';
@@ -13,10 +14,15 @@
   import Table from './Blocks/table.svelte';
   import CTA from './Blocks/cta.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
+  import { isURL } from '$lib/utils/isUrl';
 
+  
+  
   export let item: any;
   export let isTableCell: boolean;
   export let index: number;
+
+  
 
   let bindHeading = (level: string) => {
     switch (level) {
