@@ -1,12 +1,12 @@
 .link-block {
-  height: 105px;
+  height: 92px;
   max-width: 604px;
   display: flex;
   width: 100%;
 }
 
 .image-link-container {
-  padding: .1rem;
+  padding: 2px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -16,7 +16,7 @@
 }
 
 .link-image {
-  width: 120px;
+  width: 128px;
   height: 100%;
 }
 
@@ -24,30 +24,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: .6rem;
+  width:40px;
+  height:40px;
   border-radius: 50px;
 }
 
 .link-details {
   display: flex;
   align-items: center;
-  height: 100%;
-  padding: .5rem .5rem .5rem .5rem;
+  height: 100%; 
   overflow: hidden;
+
 }
 
 .title {
   font-weight: 700;
   line-height: 20px;
-  font-size: 15px;
-  margin-bottom: .3rem;
+  font-size: 14px;
+  line-height:20px;
+  margin-bottom: 2.5px;
 }
 
 .description {
   font-weight: 500;
   line-height: 20px;
   font-size: 14px;
-  margin-bottom: .3rem;
+  line-height:20px;
+  margin-bottom: 2.5px;
+}
+
+.link-wrapper{
+  font-size:14px;
+  overflow-y: hidden;
+  display: flex;
+  align-items: center;
+  line-height: 20px;
+  font-weight:500;
 }
 
 .ellipsis {
@@ -56,3 +68,5 @@
   white-space: nowrap;
   width: 100%;
 }
+
+
