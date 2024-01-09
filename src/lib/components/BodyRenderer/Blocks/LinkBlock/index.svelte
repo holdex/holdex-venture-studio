@@ -55,7 +55,7 @@
 </script>
 
 
-<div class={`link-block bg-l1 ${src?"gap-4":"gap-1"} border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl`}>
+<div class={`link-block bg-l1  border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl`}>
     {#if (metaInfo?.success === 1)}
       <div class={"h-full flex items-center justify-center image-link-container"}>
         {#if src}
@@ -66,7 +66,7 @@
           </div>
         {/if}
       </div>
-      <div class="link-details">
+      <div class={`link-details ${src?"padding-with-image":"padding-no-image"}`}>
         <div class="w-full">
           <p class="ellipsis text-t1 title">{title}</p>
           <p class="ellipsis text-t3 description">{description}</p>

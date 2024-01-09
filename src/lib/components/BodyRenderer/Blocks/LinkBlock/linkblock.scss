@@ -34,7 +34,13 @@
   align-items: center;
   height: 100%; 
   overflow: hidden;
+}
 
+.padding-with-image{
+  padding:12px 16px 12px 16px;
+}
+.padding-no-image{
+  padding:12px 16px 12px 4px;
 }
 
 .title {
@@ -42,7 +48,7 @@
   line-height: 20px;
   font-size: 14px;
   line-height:20px;
-  margin-bottom: 2.5px;
+  margin-bottom: 4px;
 }
 
 .description {
@@ -50,7 +56,7 @@
   line-height: 20px;
   font-size: 14px;
   line-height:20px;
-  margin-bottom: 2.5px;
+  margin-bottom: 4px;
 }
 
 .link-wrapper{
