@@ -93,18 +93,26 @@ function convertToHoldexJson(document: Schema$Document) {
         });
 
         const cta: CTAElement = parseCTASection(tableContent);
-        if (cta == ({} as CTAElement)) {
+        const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
+        if (testimonial != ({} as TestimonialElement)) {
           newContent.push({
-            type: 'table',
-            data: {
-              content: tableContent,
-            },
+            type: 'testimonial',
+            data: testimonial,
           });
-        } else {
+        } else if (cta != ({} as CTAElement)) {
           newContent.push({
             type: 'cta',
             data: cta,
           });
+        } else {
+          {
+            newContent.push({
+              type: 'table',
+              data: {
+                content: tableContent,
+              },
+            });
+          }
         }
       }
       // Table Of Contents
@@ -170,7 +178,7 @@ function parseCTASection(content: any[]) {
 
 function parseTestimonialSection(content: any[]) {
   const testimonial: TestimonialElement = {} as TestimonialElement;
-  if (content.length === 7 && (content[0] as any[]).length === 2) {
+  if (content.length === 5 && (content[0] as any[]).length === 2) {
     const contentHead = content[0];
     if (
       contentHead[0][0].type === 'paragraph' &&
