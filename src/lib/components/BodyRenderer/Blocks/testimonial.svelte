@@ -11,9 +11,9 @@
   class="testimonial relative flex-col justify-start items-stretch w-full border border-solid border-l4 rounded-xl bg-l1 dark:bg-l2"
 >
   <div class="flex flex-row border-b border-solid border-l4 p-4">
-    <div class="flex rounded-full items-center">
+    <div class="flex items-center">
       {#if item.picture}
-        <img class="avatar rounded-full" src={item.picture.url} alt={item.picture.text} />
+        <div class="avatar rounded-full" style="background-image: url('{item.picture?.url}')" />
       {/if}
     </div>
     <div class="flex flex-col xs:w-full ml-4">
@@ -57,8 +57,9 @@
     background-repeat: no-repeat
     @media screen and (max-width: 450px)
       right: 5%
-.avatar
-  width: 48px 
-  min-width: 48px
-  margin: auto
+.avatar 
+    background-size: 48px
+    width: 48px
+    height: 48px
+
 </style>
