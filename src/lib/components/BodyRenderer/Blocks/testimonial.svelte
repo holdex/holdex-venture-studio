@@ -8,18 +8,12 @@
 </script>
 
 <div
-  class="relative flex flex-col justify-start items-stretch w-full border border-solid border-l4 rounded-xl bg-l1 dark:bg-l2"
+  class="testimonial relative flex-col justify-start items-stretch w-full border border-solid border-l4 rounded-xl bg-l1 dark:bg-l2"
 >
   <div class="flex flex-row border-b border-solid border-l4 p-4">
     <div class="flex rounded-full items-center">
       {#if item.picture}
-        <img
-          class="rounded-full my-auto"
-          src={item.picture.url}
-          width={'48px'}
-          height={'48px'}
-          style="max-height: 48px; margin:auto"
-        />
+        <img class="avatar rounded-full" src={item.picture.url} alt={item.picture.text} />
       {/if}
     </div>
     <div class="flex flex-col xs:w-full ml-4">
@@ -40,5 +34,31 @@
 </div>
 
 <style lang="sass">
-
+.testimonial
+  &:before
+    content: ""
+    position: absolute
+    top: 0px
+    left: 10%
+    width: 200px
+    height: 1px
+    background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, rgba(0, 204, 255, 0.25) 25.56%, #0CF 50.63%, rgba(0, 204, 255, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%) 
+    background-repeat: no-repeat
+    @media screen and (max-width: 450px)
+      left: 5%
+  &:after
+    content: ""
+    position: absolute
+    bottom: 0px
+    right: 10%
+    width: 200px
+    height: 1px
+    background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, rgba(0, 204, 255, 0.25) 25.56%, #0CF 50.63%, rgba(0, 204, 255, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%)      
+    background-repeat: no-repeat
+    @media screen and (max-width: 450px)
+      right: 5%
+.avatar
+  width: 48px 
+  min-width: 48px
+  margin: auto
 </style>
