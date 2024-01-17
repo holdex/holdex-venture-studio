@@ -8,7 +8,7 @@
   $: parsedBlocks = blocks.map((block) => {
     if (block.type == 'table') {
       const testimonial = parseTestimonialSection(block.cells);
-      if (testimonial != ({} as TestimonialElement)) {
+      if (testimonial != undefined) {
         return {
           type: 'testimonial',
           data: testimonial,

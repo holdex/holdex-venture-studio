@@ -1,8 +1,8 @@
 import type { TestimonialElement } from '$components/BodyParser/blocks';
 
 export function parseTestimonialSection(content: any[]) {
-  const testimonial: TestimonialElement = {} as TestimonialElement;
   if (content.length === 5 && (content[0] as any[]).length === 2) {
+    const testimonial: TestimonialElement = {} as TestimonialElement;
     const contentHead = content[0];
     if (
       contentHead[0][0].type === 'paragraph' &&
@@ -25,7 +25,8 @@ export function parseTestimonialSection(content: any[]) {
         text: data['picture'],
         url: data['picture'],
       };
+      return testimonial;
     }
   }
-  return testimonial;
+  return undefined;
 }
