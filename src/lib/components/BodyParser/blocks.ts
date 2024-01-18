@@ -132,6 +132,7 @@ export type CTAElement = {
   link1: null | Link;
   link2: null | Link;
 };
+
 export type TestimonialElement = {
   picture: null | Link;
   name: string;
