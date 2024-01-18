@@ -5,7 +5,7 @@
 
   export let item: TestimonialElement;
 
-  $: themeContext = getContext('theme');
+  let themeContext = getContext('theme');
 </script>
 
 <div
