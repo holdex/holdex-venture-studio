@@ -1,5 +1,7 @@
 import type { TestimonialElement } from '$components/BodyParser/blocks';
 
+/// This is the logic to test testimonial component in preview environment.
+/// if the api works well when deployed, it should be removed
 export function parseTestimonialSection(content: any[]) {
   if (content.length === 5 && (content[0] as any[]).length === 2) {
     const testimonial: TestimonialElement = {} as TestimonialElement;

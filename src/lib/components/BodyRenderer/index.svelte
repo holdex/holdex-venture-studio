@@ -2,9 +2,11 @@
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Item from './item.svelte';
   import { parseTestimonialSection } from './utils';
-  import type { TestimonialElement } from '$components/BodyParser/blocks';
 
   export let blocks: any[];
+
+  /// This is the logic to test testimonial component in preview environment.
+  /// if the api works well when deployed, it should be removed
   $: parsedBlocks = blocks.map((block) => {
     if (block.type == 'table') {
       const testimonial = parseTestimonialSection(block.cells);
