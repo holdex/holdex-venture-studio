@@ -94,7 +94,10 @@ function convertToHoldexJson(document: Schema$Document) {
 
         const cta: CTAElement = parseCTASection(tableContent);
         const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
+
         if (testimonial != ({} as TestimonialElement)) {
+          /// This logic is for parsing testimonial data
+          /// It will be tested after deployment
           newContent.push({
             type: 'testimonial',
             data: testimonial,
