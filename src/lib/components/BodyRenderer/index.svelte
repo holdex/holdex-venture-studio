@@ -1,25 +1,11 @@
 <script lang="ts">
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Item from './item.svelte';
-  import { parseTestimonialSection } from './utils';
-  import type { TestimonialElement } from '$components/BodyParser/blocks';
 
   export let blocks: any[];
-  $: parsedBlocks = blocks.map((block) => {
-    if (block.type == 'table') {
-      const testimonial = parseTestimonialSection(block.cells);
-      if (testimonial != undefined) {
-        return {
-          type: 'testimonial',
-          data: testimonial,
-        };
-      }
-    }
-    return block;
-  });
 </script>
 
-{#each parsedBlocks as item, index}
+{#each blocks as item, index}
   <Item {item} {index} />
 {/each}
 
