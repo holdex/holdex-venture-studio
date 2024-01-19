@@ -15,7 +15,7 @@
   <div class="flex flex-row border-b border-solid border-l4 p-4">
     <div class="flex items-center">
       {#if item.picture}
-        <div class="avatar rounded-full" style="background-image: url('{item.picture?.url}')" />
+        <img class="w-12 h-12 rounded-full object-cover object-center" src={item.picture.url} />
       {/if}
     </div>
     <div class="flex flex-col xs:w-full ml-4">
