@@ -7,7 +7,6 @@ export const load: PageServerLoad = async ({ locals, params }) => {
     params.slug,
     params.messageSlug
   );
- console.log(options)
   return {
     queryOptions: JSON.stringify(options),
     apollo: locals.apolloClient.extract(),
