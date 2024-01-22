@@ -14,7 +14,6 @@
   import Table from './Blocks/table.svelte';
   import CTA from './Blocks/cta.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
-  import { isURL } from '$lib/utils/isUrl';
 
   
   

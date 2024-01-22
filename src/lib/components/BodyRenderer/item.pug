@@ -20,10 +20,7 @@
         +else
           svelte:element(this="p" class="w-full break-words p-el text-paragraph-l text-t2")
             +each("item.items as pItem")
-              +if("pItem.type === 'link' && isURL(pItem.text)")
-                 LinkBlock(item="{pItem}")
-                 +else
-                    InlineBlock(item="{pItem}")
+              InlineBlock(item="{pItem}")
     Case(value="list")
       svelte:element(
         class="{item.style === 'unordered' ? 'list-disc' : 'list-decimal'} pl-7"
@@ -41,7 +38,8 @@
         +each("item.items as liItem")
           NestedList(item="{liItem}" type="{item.style}" let:item="{lItem}")
             InlineBlock(item="{lItem}") 
-    //- Case(value="linkTool")
+    Case(value="linkTool")
+      LinkBlock(item="{item.data}")
     Case(value="quote")
       blockquote(
         title="{item.text}"

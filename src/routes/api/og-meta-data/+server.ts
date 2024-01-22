@@ -3,7 +3,8 @@ import ogs from 'open-graph-scraper';
 import { parseOgResult } from "$lib/utils/parseOgResult";
 
 export const GET: RequestHandler = async ({ fetch, url }) => {
-    const site = url.searchParams.get('site');
+
+    const site = decodeURIComponent(url.searchParams.get('site') || '');
     if (!site) {
         return json(parseOgResult({ requestUrl:null }),{status:400});
     }

@@ -2,14 +2,14 @@
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount } from 'svelte';
-  import Link from '../link.svelte'
+  import Link from './linkblocklink.svelte'
   import TextWrapper from '../textWrapper.svelte';
 
   type Item = {
-    type: string;
-    text: string;
-    href: string;
-    title?: string;
+    type:'link';
+    url: string;
+    title: string;
+    embed: string;
   };
 
   interface OgImage {
@@ -31,7 +31,9 @@
   export let item: Item;
   let metaInfo: OgResult;
 
-  $: site = item.href;
+  $: site = item.url;
+
+  $:console.log(site)
 
   
 
@@ -71,10 +73,8 @@
           <p class="ellipsis text-t1 title">{title}</p>
           <p class="ellipsis text-t3 description">{description}</p>
           <div class="link-wrapper">
-            <Link item={item} let:text>
-              <TextWrapper text={text}>
-              <slot/>
-              </TextWrapper>
+            <Link {item} let:text>
+              <TextWrapper text={text}/>
             </Link>
           </div>
         </div>

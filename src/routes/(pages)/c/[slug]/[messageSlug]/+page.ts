@@ -7,5 +7,5 @@ export const load: PageLoad = async ({ data }) => {
   const store = await getMessage<{ community: Community }>(data.apollo, options, {
     community: {} as Community,
   });
-  return { store };
+    return { store };
 };
