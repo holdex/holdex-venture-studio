@@ -67,7 +67,7 @@
 </script>
 
 <MetaTags
-  title={message.title}
+  title="{message.title} - Job | Holdex"
   description={message.subtitle ? message.subtitle : ''}
   pageType="article"
   path={routes.message(message.communitySlug, message.messageSlug)}
