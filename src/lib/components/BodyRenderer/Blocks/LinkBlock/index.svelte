@@ -2,11 +2,11 @@
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount } from 'svelte';
-  import Link from './linkblocklink.svelte'
+  import Link from './linkblocklink.svelte';
   import TextWrapper from '../textWrapper.svelte';
 
   type Item = {
-    type:'link';
+    type: 'link';
     url: string;
     title: string;
     embed: string;
@@ -33,54 +33,52 @@
 
   $: site = item.url;
 
-  $:console.log(site)
-
-  
-
   async function fetchMetaTags(url: string) {
     try {
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
       const data: OgResult = await response.json();
       metaInfo = data;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
   onMount(async () => {
-      fetchMetaTags(site);
+    fetchMetaTags(site);
   });
 
-  $: title = metaInfo?.meta?.title ?? '';
-  $: description = metaInfo?.meta?.description ?? '';
-  $: src = metaInfo?.meta?.image?.url ?? '';
+  $: title = (metaInfo?.meta?.title ?? '') as string;
+  $: description = (metaInfo?.meta?.description ?? '') as string;
+  $: src = (metaInfo?.meta?.image?.url ?? '') as string;
 </script>
 
-
-<div class={`link-block bg-l1  border border-solid border-l3 w-full overflow-hidden dark:bg-l2 flex rounded-xl`}>
-    {#if (metaInfo?.success === 1)}
-      <div class={"h-full flex items-center justify-center image-link-container"}>
-        {#if src}
-          <img class="link-image rounded-xl" src={src} alt="Logo">
-        {:else}
-          <div class="icon-wrapper bg-l3">
-            <Icon icon={LinkIcon} class="text-t3" width={30} height={30}/>
-          </div>
-        {/if}
-      </div>
-      <div class={`link-details ${src?"padding-with-image":"padding-no-image"}`}>
-        <div class="w-full">
-          <p class="ellipsis text-t1 title">{title}</p>
-          <p class="ellipsis text-t3 description">{description}</p>
-          <div class="link-wrapper">
-            <Link {item} let:text>
-              <TextWrapper text={text}/>
-            </Link>
-          </div>
+<div
+  class={`${
+    metaInfo?.success === 0 ? 'hide-block' : 'flex'
+  } link-block bg-l1  border border-solid border-l3 dark:bg-l2  rounded-xl`}
+>
+  {#if metaInfo?.success === 1}
+    <div class={'image-link-container'}>
+      {#if src}
+        <img class="link-image rounded-xl" {src} alt="Logo" />
+      {:else}
+        <div class="icon-wrapper bg-l3">
+          <Icon icon={LinkIcon} class="text-t3" width={30} height={30} />
+        </div>
+      {/if}
+    </div>
+    <div class={`link-details ${src ? 'padding-with-image' : 'padding-no-image'}`}>
+      <div>
+        <p class="ellipsis text-t1 title">{title}</p>
+        <p class="ellipsis text-t3 description">{description}</p>
+        <div class="link-wrapper">
+          <Link {item} let:text>
+            <TextWrapper {text} />
+          </Link>
         </div>
       </div>
-    {/if}
+    </div>
+  {/if}
 </div>
-
 
 <style lang="scss" src="./linkblock.scss"></style>
