@@ -4,8 +4,11 @@
   /* eslint-disable @typescript-eslint/no-unused-vars */
 
   export let item: TestimonialElement;
+  let themeContext: any = null;
 
-  let themeContext = getContext('theme');
+  onMount(() => {
+    themeContext = getContext('theme');
+  });
 </script>
 
 <div
