@@ -9,6 +9,7 @@
   import MetaTags from '$components/MetaTags/index.svelte';
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import Button from '$components/Button/index.svelte';
+  import Reviews from '$components/Reviews/index.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';

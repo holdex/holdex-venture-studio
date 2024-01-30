@@ -18,6 +18,7 @@
   <div class="flex flex-row border-b border-solid border-l4 p-4">
     <div class="flex items-center">
       {#if item.picture}
+        <!-- svelte-ignore a11y-missing-attribute -->
         <img class="w-12 h-12 rounded-full object-cover object-center" src={item.picture.url} />
       {/if}
     </div>
