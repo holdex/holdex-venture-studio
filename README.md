@@ -1,4 +1,4 @@
-# Welcome to Holdex
+# Welcome to Holdex 
 
 > Before you begin align yourself with [contributing guidelines](https://github.com/holdex/developers/blob/main/.github/CONTRIBUTING.md).
 
