@@ -4,6 +4,7 @@
   import { onMount } from 'svelte';
   import Link from './linkblocklink.svelte';
   import TextWrapper from '../textWrapper.svelte';
+  import LinkBlockSleleton from './linkblockskeleton.svelte';
 
   type Item = {
     type: 'link';
@@ -28,6 +29,12 @@
     };
   }
 
+  let imageLoaded: boolean = false;
+
+  function onImageLoad() {
+    imageLoaded = true;
+  }
+
   export let item: Item;
   let metaInfo: OgResult;
 
@@ -38,6 +45,7 @@
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
       const data: OgResult = await response.json();
       metaInfo = data;
+      console.log(data);
     } catch (error) {
       console.error(error);
     }
@@ -50,6 +58,8 @@
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
+
+  $: success = metaInfo?.success === 1;
 </script>
 
 <div
@@ -57,10 +67,17 @@
     metaInfo?.success === 0 ? 'hide-block' : 'flex'
   } link-block bg-l1  border border-solid border-l3 dark:bg-l2  rounded-xl`}
 >
-  {#if metaInfo?.success === 1}
+  {#if success}
     <div class={'image-link-container'}>
       {#if src}
-        <img class="link-image rounded-xl" {src} alt="Logo" />
+        <div class="link-image-wrapper rounded-xl bg-l3">
+          <img
+            class={`link-image ${imageLoaded ? 'block' : 'hidden'} `}
+            on:load={onImageLoad}
+            {src}
+            alt="Logo"
+          />
+        </div>
       {:else}
         <div class="icon-wrapper bg-l3">
           <Icon icon={LinkIcon} class="text-t3" width={30} height={30} />
@@ -78,6 +95,8 @@
         </div>
       </div>
     </div>
+  {:else}
+    <LinkBlockSleleton />
   {/if}
 </div>
 
