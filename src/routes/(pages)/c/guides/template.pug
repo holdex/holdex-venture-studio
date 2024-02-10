@@ -12,10 +12,10 @@ include ../../c/mixins
         +crumbItemText("Guides")
       +messageHeader("Guides", "Crypto made clear with beginner-friendly guides and insights.")()
 
-    +content-wrapper(class="xs:!px-0")
+    +content-wrapper
       +feedRenderer
         Feed(
-          feedType="job"
+          feedType="resource"
           edges="{edges}"
           totalCount="{totalCount}"
           isRefetching="{isRefetching}"
