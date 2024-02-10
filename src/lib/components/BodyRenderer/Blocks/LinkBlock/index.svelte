@@ -48,7 +48,6 @@
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
       const data: OgResult = await response.json();
       metaInfo = data;
-      console.log(data);
     } catch (error) {
       console.error(error);
     }
