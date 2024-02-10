@@ -1,10 +1,13 @@
 <script lang="ts">
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import Link from './linkblocklink.svelte';
   import TextWrapper from '../textWrapper.svelte';
   import LinkBlockSleleton from './linkblockskeleton.svelte';
+  import { getContext } from 'svelte';
+
+  let themeContext: any = getContext('theme');
 
   type Item = {
     type: 'link';
@@ -51,9 +54,34 @@
     }
   }
 
+  let active: boolean = false;
+  let componentElement: HTMLElement;
+
   onMount(async () => {
     fetchMetaTags(site);
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (componentElement && !componentElement.contains(event.target as Node)) {
+        active = false;
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    onDestroy(() => {
+      document.removeEventListener('click', handleClickOutside);
+    });
   });
+
+  const handleClick = () => {
+    active = !active;
+  };
+
+  function handleKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter') {
+      handleClick();
+    }
+  }
 
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
@@ -63,14 +91,18 @@
 </script>
 
 <div
-  class={`${
-    metaInfo?.success === 0 ? 'hide-block' : 'flex'
-  } link-block bg-l1  border border-solid border-l3 dark:bg-l2  rounded-xl`}
+  class={`link-block bg-l1 dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
+    ${metaInfo?.success === 0 ? 'hide-block' : 'flex'}
+    ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
+    ${active ? ($themeContext === 'dark' ? 'dark-shadow' : 'light-shadow') : ''}`}
+  bind:this={componentElement}
+  on:click={handleClick}
+  on:keydown={handleKeydown}
 >
   {#if success}
     <div class={'image-link-container'}>
       {#if src}
-        <div class="link-image-wrapper rounded-xl bg-l3">
+        <div class="link-image-wrapper rounded-xl">
           <img
             class={`link-image ${imageLoaded ? 'block' : 'hidden'} `}
             on:load={onImageLoad}
