@@ -16,7 +16,7 @@
   let parentWrapper = getContext('wrapper');
 
   $: classes =
-    'underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+    'underline  underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
 
   switch (item.type) {
     case 'link':
@@ -45,18 +45,15 @@
 </script>
 
 {' '}
-  <a
+  <span
   title={item.title ? item.title : ''}
-  href={item.url}
   class={classes}
-  target={isHoldexLink ? '_self' : '_blank'}
-  rel="noreferrer"
 >
   <slot text={truncated} />
   {#if !isHoldexLink}
     <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
   {/if}
-</a>
+</span>
 
 <style lang="sass">
   a :global(*)

@@ -6,6 +6,7 @@
   import TextWrapper from '../textWrapper.svelte';
   import LinkBlockSleleton from './linkblockskeleton.svelte';
   import { getContext } from 'svelte';
+  import { regExp } from '$components/BodyParser/utils';
 
   let themeContext: any = getContext('theme');
 
@@ -82,14 +83,21 @@
     }
   }
 
+  $: isHoldexLink = regExp.holdexLink.test(item.url);
+
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
 
   $: success = metaInfo?.success === 1;
+
 </script>
 
-<div
+<a
+title={item.title ? item.title : ''}
+href={item.url}
+target={isHoldexLink ? '_self' : '_blank'}
+rel="noreferrer"
   class={`link-block bg-l1 dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
     ${metaInfo?.success === 0 ? 'hide-block' : 'flex'}
     ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
@@ -129,6 +137,6 @@
   {:else}
     <LinkBlockSleleton />
   {/if}
-</div>
+  </a>
 
 <style lang="scss" src="./linkblock.scss"></style>
