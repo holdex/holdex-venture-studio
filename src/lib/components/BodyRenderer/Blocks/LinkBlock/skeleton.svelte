@@ -14,4 +14,4 @@
 
 </div>
 
-<style lang="scss" src="./linkblockskeleton.scss"></style>
+<style lang="scss" src="./skeleton.scss"></style>

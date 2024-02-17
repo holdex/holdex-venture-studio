@@ -2,9 +2,9 @@
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount, onDestroy } from 'svelte';
-  import Link from './linkblocklink.svelte';
+  import Link from '../link.svelte';
   import TextWrapper from '../textWrapper.svelte';
-  import LinkBlockSleleton from './linkblockskeleton.svelte';
+  import Skeleton from './skeleton.svelte';
   import { getContext } from 'svelte';
   import { regExp } from '$components/BodyParser/utils';
 
@@ -15,6 +15,13 @@
     url: string;
     title: string;
     embed: string;
+  };
+
+  type PassedLink = {
+    type: 'link';
+    text: string;
+    href: string;
+    title?: string;
   };
 
   interface OgImage {
@@ -42,6 +49,13 @@
   export let item: Item;
   let metaInfo: OgResult;
 
+  const passedLink: PassedLink = {
+    type: 'link',
+    text: item.url,
+    href: item.url,
+    title: item.title,
+  };
+
   $: site = item.url;
 
   async function fetchMetaTags(url: string) {
@@ -57,20 +71,18 @@
   let active: boolean = false;
   let componentElement: HTMLElement;
 
-  onMount(async () => {
+  onMount(() => {
     fetchMetaTags(site);
+  });
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (componentElement && !componentElement.contains(event.target as Node)) {
-        active = false;
-      }
-    };
+  const handleClickOutside = (event: MouseEvent) => {
+    if (componentElement && !componentElement.contains(event.target as Node)) {
+      active = false;
+    }
+  };
 
+  onMount(() => {
     document.addEventListener('click', handleClickOutside);
-
-    onDestroy(() => {
-      document.removeEventListener('click', handleClickOutside);
-    });
   });
 
   const handleClick = () => {
@@ -90,14 +102,13 @@
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
 
   $: success = metaInfo?.success === 1;
-
 </script>
 
 <a
-title={item.title ? item.title : ''}
-href={item.url}
-target={isHoldexLink ? '_self' : '_blank'}
-rel="noreferrer"
+  title={item.title ? item.title : ''}
+  href={item.url}
+  target={isHoldexLink ? '_self' : '_blank'}
+  rel="noreferrer"
   class={`link-block bg-l1 dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
     ${metaInfo?.success === 0 ? 'hide-block' : 'flex'}
     ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
@@ -128,15 +139,15 @@ rel="noreferrer"
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
         <div class="link-wrapper">
-          <Link {item} let:text>
+          <Link item={passedLink} let:text>
             <TextWrapper {text} />
           </Link>
         </div>
       </div>
     </div>
   {:else}
-    <LinkBlockSleleton />
+    <Skeleton />
   {/if}
-  </a>
+</a>
 
 <style lang="scss" src="./linkblock.scss"></style>

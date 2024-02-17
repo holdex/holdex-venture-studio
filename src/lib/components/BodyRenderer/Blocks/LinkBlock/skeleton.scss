@@ -1,0 +1,38 @@
+
+.linkblock-skeleton {
+  @apply w-full h-full flex;
+}
+
+.linkblock-skeleton .right-side {
+  @apply p-[2px_0_2px_2px] h-full flex items-center justify-center min-w-[5rem] max-w-max flex-none;
+}
+
+.linkblock-skeleton .right-side > div {
+  @apply w-[128px] h-full;
+}
+
+.linkblock-skeleton .left-side {
+  @apply flex items-center h-full overflow-hidden w-full px-[12px] py-[16px]
+}
+
+.linkblock-skeleton .left-side > div {
+  @apply w-full flex flex-col h-full gap-[.4rem];
+}
+
+.linkblock-skeleton .left-side .title,
+.linkblock-skeleton .left-side .description,
+.linkblock-skeleton .left-side .link {
+  @apply h-[3rem]  w-full;
+}
+
+.linkblock-skeleton .left-side .title {
+  @apply  max-w-[55%];
+}
+
+.linkblock-skeleton .left-side .description {
+  @apply  max-w-[75%];
+}
+
+.linkblock-skeleton .left-side .link {
+  @apply  max-w-[45%];
+}
