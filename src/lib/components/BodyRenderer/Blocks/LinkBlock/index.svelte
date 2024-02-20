@@ -8,8 +8,6 @@
   import { getContext } from 'svelte';
   import { regExp } from '$components/BodyParser/utils';
 
-  let themeContext: any = getContext('theme');
-
   type Item = {
     type: 'link';
     url: string;
@@ -40,6 +38,8 @@
     };
   }
 
+  let themeContext: any = getContext('theme');
+
   let imageLoaded: boolean = false;
 
   function onImageLoad() {
@@ -68,39 +68,15 @@
     }
   }
 
-  let active: boolean = false;
-  let componentElement: HTMLElement;
-
   onMount(() => {
     fetchMetaTags(site);
   });
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (componentElement && !componentElement.contains(event.target as Node)) {
-      active = false;
-    }
-  };
-
-  onMount(() => {
-    document.addEventListener('click', handleClickOutside);
-  });
-
-  const handleClick = () => {
-    active = !active;
-  };
-
-  function handleKeydown(event: KeyboardEvent) {
-    if (event.key === 'Enter') {
-      handleClick();
-    }
-  }
 
   $: isHoldexLink = regExp.holdexLink.test(item.url);
 
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
-
   $: success = metaInfo?.success === 1;
 </script>
 
@@ -112,10 +88,7 @@
   class={`link-block bg-l1 dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
     ${metaInfo?.success === 0 ? 'hide-block' : 'flex'}
     ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
-    ${active ? ($themeContext === 'dark' ? 'dark-shadow' : 'light-shadow') : ''}`}
-  bind:this={componentElement}
-  on:click={handleClick}
-  on:keydown={handleKeydown}
+    `}
 >
   {#if success}
     <div class={'image-link-container'}>
@@ -138,7 +111,7 @@
       <div>
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
-        <div class="link-wrapper">
+        <div class="flex items-center text-sm font-medium leading-5">
           <Link item={passedLink} let:text>
             <TextWrapper {text} />
           </Link>
