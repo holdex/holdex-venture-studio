@@ -2,25 +2,18 @@
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount, onDestroy } from 'svelte';
-  import Link from '../link.svelte';
+ import LinkText from './linktext.svelte';
   import TextWrapper from '../textWrapper.svelte';
   import Skeleton from './skeleton.svelte';
   import { getContext } from 'svelte';
   import { regExp } from '$components/BodyParser/utils';
 
   type Item = {
-    type: 'link';
     url: string;
     title: string;
     embed: string;
   };
 
-  type PassedLink = {
-    type: 'link';
-    text: string;
-    href: string;
-    title?: string;
-  };
 
   interface OgImage {
     url: string;
@@ -49,12 +42,6 @@
   export let item: Item;
   let metaInfo: OgResult;
 
-  const passedLink: PassedLink = {
-    type: 'link',
-    text: item.url,
-    href: item.url,
-    title: item.title,
-  };
 
   $: site = item.url;
 
@@ -112,9 +99,9 @@
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
         <div class="flex items-center text-sm font-medium leading-5">
-          <Link item={passedLink} let:text>
+          <LinkText url={item.url} let:text>
             <TextWrapper {text} />
-          </Link>
+          </LinkText>
         </div>
       </div>
     </div>
