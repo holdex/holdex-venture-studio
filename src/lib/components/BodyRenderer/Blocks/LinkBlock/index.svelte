@@ -2,7 +2,7 @@
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { onMount, onDestroy } from 'svelte';
- import LinkText from './linktext.svelte';
+  import LinkText from './linkText.svelte';
   import TextWrapper from '../textWrapper.svelte';
   import Skeleton from './skeleton.svelte';
   import { getContext } from 'svelte';
@@ -13,7 +13,6 @@
     title: string;
     embed: string;
   };
-
 
   interface OgImage {
     url: string;
@@ -42,16 +41,18 @@
   export let item: Item;
   let metaInfo: OgResult;
 
-
   $: site = item.url;
 
   async function fetchMetaTags(url: string) {
     try {
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
+      if (!response.ok) {
+        throw new Error(`${response.statusText}`);
+      }
       const data: OgResult = await response.json();
       metaInfo = data;
-    } catch (error) {
-      console.error(error);
+    } catch (error: any) {
+      console.error(error?.message || 'An unexpected error occurred');
     }
   }
 
@@ -72,8 +73,7 @@
   href={item.url}
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
-  class={`link-block bg-l1 dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
-    ${metaInfo?.success === 0 ? 'hide-block' : 'flex'}
+  class={`link-block bg-l1 flex dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
     ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
     `}
 >
@@ -99,7 +99,7 @@
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
         <div class="flex items-center text-sm font-medium leading-5">
-          <LinkText url={item.url} let:text>
+          <LinkText href={item.url} let:text>
             <TextWrapper {text} />
           </LinkText>
         </div>

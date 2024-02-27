@@ -18,7 +18,7 @@ export const GET: RequestHandler = async ({ url,setHeaders }) => {
             ? 'max-age=0, s-maxage=500'
             : 'max-age=0, s-maxage=3600',
     });
-    
+ 
     try {
         const data = await ogs({ url: site});
         const response = parseOgResult(data.result);

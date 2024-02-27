@@ -3,7 +3,7 @@
     import { ArrowTopRightOnSquare } from '$components/Icons';
     import Icon from '$components/Icons/index.svelte';
   
-    export let url: string;
+    export let href: string;
   
     let classes =
       'relative inline-block  underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
@@ -22,9 +22,9 @@
       return truncatedUrl;
     };
   
-    $: text = url;
+    $: text = href;
     $: truncated = text.includes('http') ? truncateUrl(text) : text;
-    $: isHoldexLink = regExp.holdexLink.test(url);
+    $: isHoldexLink = regExp.holdexLink.test(text);
   </script>
   
   {' '}
