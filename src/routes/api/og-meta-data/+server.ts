@@ -20,7 +20,7 @@ export const GET: RequestHandler = async ({ url,setHeaders }) => {
     });
  
     try {
-        const data = await ogs({ url: site});
+        const data = await ogs({ url:site});
         const response = parseOgResult(data.result);
         return json(response);
     } catch (err) {

@@ -64,6 +64,7 @@
 
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
+  $: url = (metaInfo?.link ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
   $: success = metaInfo?.success === 1;
 </script>
@@ -99,7 +100,7 @@
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
         <div class="flex items-center text-sm font-medium leading-5">
-          <LinkText href={item.url} let:text>
+          <LinkText href={url} let:text>
             <TextWrapper {text} />
           </LinkText>
         </div>
