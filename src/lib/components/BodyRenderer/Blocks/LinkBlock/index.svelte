@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount} from 'svelte';
   import LinkText from './linkText.svelte';
   import TextWrapper from '../textWrapper.svelte';
   import Skeleton from './skeleton.svelte';
