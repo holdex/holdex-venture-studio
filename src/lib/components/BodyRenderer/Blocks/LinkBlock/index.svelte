@@ -60,13 +60,15 @@
     fetchMetaTags(site);
   });
 
-  $: isHoldexLink = regExp.holdexLink.test(item.url);
-
+  
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
   $: url = (metaInfo?.link ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
   $: success = metaInfo?.success === 1;
+
+
+  $: isHoldexLink = regExp.holdexLink.test(url);
 </script>
 
 <a
