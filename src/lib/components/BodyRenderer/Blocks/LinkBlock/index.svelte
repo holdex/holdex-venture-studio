@@ -70,8 +70,8 @@
 </script>
 
 <a
-  title={item.title ? item.title : ''}
-  href={item.url}
+  title={title ? title : ''}
+  href={url}
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
   class={`link-block bg-l1 flex dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
@@ -99,7 +99,7 @@
       <div>
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
-        <div class="flex items-center text-sm font-medium leading-5">
+        <div class="flex ellipsis items-center text-sm font-medium leading-5">
           <LinkText href={url} let:text>
             <TextWrapper {text} />
           </LinkText>
