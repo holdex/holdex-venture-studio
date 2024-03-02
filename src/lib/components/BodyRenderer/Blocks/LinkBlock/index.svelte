@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
-  import { onMount} from 'svelte';
+  import { onMount } from 'svelte';
   import LinkText from './linkText.svelte';
   import TextWrapper from '../textWrapper.svelte';
   import Skeleton from './skeleton.svelte';
@@ -43,6 +43,7 @@
 
   $: site = item.url;
 
+
   async function fetchMetaTags(url: string) {
     try {
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
@@ -53,20 +54,20 @@
       metaInfo = data;
     } catch (error: any) {
       console.error(error?.message || 'An unexpected error occurred');
-    }
+    } 
   }
 
   onMount(() => {
     fetchMetaTags(site);
   });
 
-  
+
+
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
   $: url = (metaInfo?.link ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
   $: success = metaInfo?.success === 1;
-
 
   $: isHoldexLink = regExp.holdexLink.test(url);
 </script>
@@ -77,7 +78,7 @@
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
   class={`link-block bg-l1 flex dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
-    ${$themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
+    ${themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
     `}
 >
   {#if success}
@@ -98,11 +99,11 @@
       {/if}
     </div>
     <div class={`link-details ${src ? 'padding-with-image' : 'padding-no-image'}`}>
-      <div>
+      <div class="flex justify-center flex-col items-center">
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
-        <div class="flex ellipsis items-center text-sm font-medium leading-5">
-          <LinkText href={url} let:text>
+        <div class="flex ellipsis overflow-hidden items-center text-sm font-medium leading-5">
+          <LinkText href={url ? url : item.url} let:text>
             <TextWrapper {text} />
           </LinkText>
         </div>

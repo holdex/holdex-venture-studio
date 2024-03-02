@@ -55,6 +55,7 @@
     "dotenv": "^16.0.3",
     "editorjs-html": "^3.4.2",
     "graphql": "^16.6.0",
+    "https-proxy-agent": "^7.0.4",
     "insane": "^2.6.2",
     "lodash-es": "^4.17.21",
     "moment": "^2.29.4",
