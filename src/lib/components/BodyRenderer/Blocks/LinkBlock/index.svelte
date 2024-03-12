@@ -42,6 +42,7 @@
   let metaInfo: OgResult;
 
   $: site = item.url;
+ 
 
 
   async function fetchMetaTags(url: string) {
@@ -65,7 +66,7 @@
 
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
-  $: url = (metaInfo?.link ?? '') as string;
+  $: url = (metaInfo?.link ?? item.url ?? "") as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
   $: success = metaInfo?.success === 1;
 
@@ -77,7 +78,7 @@
   href={url}
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
-  class={`link-block bg-l1 flex dark:bg-l2  border border-solid border border-l4 shadow-accent1-default rounded-xl
+  class={`link-block bg-l1 flex dark:bg-l2  border-solid border border-l4 shadow-accent1-default rounded-xl
     ${themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
     `}
 >
@@ -94,7 +95,7 @@
         </div>
       {:else}
         <div class="icon-wrapper bg-l3">
-          <Icon icon={LinkIcon} class="text-t3" width={30} height={30} />
+          <Icon icon={LinkIcon} class="text-t3" width={24} height={24} />
         </div>
       {/if}
     </div>
@@ -103,7 +104,7 @@
         <p class="ellipsis text-t1 title">{title}</p>
         <p class="ellipsis text-t3 description">{description}</p>
         <div class="flex ellipsis overflow-hidden items-center text-sm font-medium leading-5">
-          <LinkText href={url ? url : item.url} let:text>
+          <LinkText href={url} let:text>
             <TextWrapper {text} />
           </LinkText>
         </div>
