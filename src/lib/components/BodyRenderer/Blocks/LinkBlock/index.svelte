@@ -44,7 +44,6 @@
   $: site = item.url;
  
 
-
   async function fetchMetaTags(url: string) {
     try {
       const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
@@ -66,7 +65,7 @@
 
   $: title = (metaInfo?.meta?.title ?? '') as string;
   $: description = (metaInfo?.meta?.description ?? '') as string;
-  $: url = (metaInfo?.link ?? item.url ?? "") as string;
+  $: url = (metaInfo?.link ?? item.url ?? '') as string;
   $: src = (metaInfo?.meta?.image?.url ?? '') as string;
   $: success = metaInfo?.success === 1;
 

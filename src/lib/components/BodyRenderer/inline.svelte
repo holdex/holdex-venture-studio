@@ -12,7 +12,7 @@
 
   type Item = {
     type: string;
-    text: string
+    text: string;
     href?: string;
     title?: string;
   };

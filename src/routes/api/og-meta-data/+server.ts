@@ -46,7 +46,6 @@ export const GET: RequestHandler = async ({ url, setHeaders }) => {
     }
 };
 
-
 function getRootDomain(url:string) {
     try {
         const newUrl = new URL(url);
