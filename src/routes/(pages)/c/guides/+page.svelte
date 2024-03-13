@@ -19,6 +19,7 @@
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import Feed from '$components/Feed/index.svelte';
+  import TextParagraph from '$components/TextParagraph/index.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
