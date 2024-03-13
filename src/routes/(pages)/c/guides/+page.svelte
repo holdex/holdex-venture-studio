@@ -89,7 +89,7 @@
 
 <MetaTags
   title="Guides | Holdex"
-  description="Crypto made clear with beginner-friendly guides and insights."
+  description="Product and business crypto guides for someone who truly understands the power of blockchain."
   path={routes.guides}
   imagePath="/og/index.png"
 />
