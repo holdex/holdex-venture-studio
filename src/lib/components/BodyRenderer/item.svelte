@@ -16,13 +16,9 @@
   import Testimonial from './Blocks/testimonial.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
 
-  
-  
   export let item: any;
   export let isTableCell: boolean;
   export let index: number;
-
-  
 
   let bindHeading = (level: string) => {
     switch (level) {

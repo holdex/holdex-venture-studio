@@ -4,9 +4,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
 @import './utils';
-
 
 @mixin colorScheme($scheme: 'dark') {
   @if $scheme == 'light' {

@@ -24,7 +24,7 @@
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
   $: message = Parser.parseFromCategory(community);
-  
+
   let renderTocPadding = (level: 'h2' | 'h3' | 'h4') => {
     switch (level) {
       case 'h3':

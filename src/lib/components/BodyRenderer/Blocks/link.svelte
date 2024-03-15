@@ -45,7 +45,7 @@
 </script>
 
 {' '}
-  <a
+<a
   title={item.title ? item.title : ''}
   href={item.href}
   class={classes}
