@@ -6,14 +6,14 @@ article.block.flex.items-center.gap-4(class!="{className}")
         src="{message.cover || '/default-cover.png'}"
       )
   .feed-content.flex.items-start.justify-center.flex-col
-    a.transition-colors.block(
-      href="/c/{message.communitySlug}/{message.messageSlug}"
-      class!="hover:text-accent1-default"
-    )
-      TextParagraph.block.relative.w-full.whitespace-nowrap.overflow-hidden.text-ellipsis(
-        element="h2"
-        textColor="text-inherit"
-        class="!font-bold"
+    TextParagraph.block.relative.w-full.whitespace-nowrap.overflow-hidden.text-ellipsis(
+      element="h2"
+      textColor="text-inherit"
+      class="!font-bold"
+    ) 
+      a.transition-colors.block(
+        href="/c/{message.communitySlug}/{message.messageSlug}"
+        class!="hover:text-accent1-default"
       ) {message.title}
     +if('message.subtitle')
       TextParagraph.block.relative.w-full.whitespace-nowrap.overflow-hidden.text-ellipsis(
