@@ -1,0 +1,37 @@
+.linkblock-skeleton {
+  @apply w-full h-full flex;
+
+  .right-side {
+    @apply py-0.5 pr-0 pl-0.5 h-full flex items-center justify-center min-w-[5rem] max-w-max flex-none;
+
+    > div {
+      @apply w-[128px] h-full;
+    }
+  }
+
+  .left-side {
+    @apply flex items-center h-full overflow-hidden w-full px-4 py-3;
+
+    > div {
+      @apply w-full flex flex-col h-full gap-[.4rem];
+    }
+
+    .title,
+    .description,
+    .link {
+      @apply h-[3rem] w-full;
+    }
+
+    .title {
+      @apply max-w-[55%];
+    }
+
+    .description {
+      @apply max-w-[75%];
+    }
+
+    .link {
+      @apply max-w-[45%];
+    }
+  }
+}
