@@ -350,6 +350,8 @@ module.exports = {
         32: '8rem',
       },
       animation: {
+        'infinite-scroll-companies': 'infinite-scroll 15s linear infinite',
+        'infinite-scroll-mobile': 'infinite-scroll 7s linear infinite',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
       },
       keyframes: {
