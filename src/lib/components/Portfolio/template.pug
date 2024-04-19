@@ -10,10 +10,14 @@ mixin metricValue(value)
 
 mixin metricValueInvestors
   .investor-wrapper(
-    class="w-full overflow-hidden inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-100px),transparent_100%)] "
+    class="w-full overflow-hidden flex flex-nowrap gap-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)]"
   )
     .investor-strip(
-      class="w-full flex flex-row gap-6 align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
+      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
+    )
+      block
+    .investor-strip(
+      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
     )
       block
 
