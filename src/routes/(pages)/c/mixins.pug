@@ -104,11 +104,14 @@ mixin companyLogoStrip(logos)
       class="mt-2 w-full overflow-hidden flex flex-nowrap gap-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)]"
     )
       .company-logo-strip(
-        class="flex gap-6 min-w-max justify-around align-middle mobile:animate-infinite-scroll-mobile animate-infinite-scroll-companies will-change-transform"
+        class="flex gap-6 min-w-max justify-around align-middle animate-infinite-scroll-companies will-change-transform"
       )
         each logo in logos
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
           img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
+      .company-logo-strip(
+        class="flex gap-6 min-w-max justify-around align-middle animate-infinite-scroll-companies will-change-transform"
+      )
         each logo in logos
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
           img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
