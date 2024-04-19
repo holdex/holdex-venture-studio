@@ -8,12 +8,18 @@ mixin metricTitle(title)
 mixin metricValue(value)
   p.metric-value(class="font-satoshi text-h4-l xs:text-h4-s text-t1")= value
 
-mixin metricValueInvestors
+mixin metricValueInvestors(duration)
   .investor-wrapper(
-    class="w-full overflow-hidden inline-flex flex-nowrap [mask-image:_linear-gradient(to_right,transparent_0,_black_80px,_black_calc(100%-100px),transparent_100%)] "
+    class="w-full overflow-hidden flex flex-nowrap gap-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)]"
   )
     .investor-strip(
-      class="w-full flex flex-row gap-6 align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
+      style=`animation-duration: ${duration}s;`
+      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
+    )
+      block
+    .investor-strip(
+      style=`animation-duration: ${duration}s;`
+      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
     )
       block
 
@@ -24,7 +30,7 @@ mixin investorImg(value)
     alt=value
   )
 
-mixin metric(type, value=null)
+mixin metric(type, value=null, investorsAnimationDuration=null)
   case type
     when 'totalLoansOriginated'
       +metricContainer("smDown:gap-2 min-w-[180px]")
@@ -49,7 +55,7 @@ mixin metric(type, value=null)
     when 'investors'
       +metricContainer("w-full")
         +metricTitle("Investors")
-        +metricValueInvestors
+        +metricValueInvestors(investorsAnimationDuration)
           block
 
 article.portfolio-product-card(
@@ -75,7 +81,7 @@ article.portfolio-product-card(
         +if('founders')
           +metric('founders', '{founders}')
         +if('investors')
-          +metric('investors')
+          +metric('investors', null, '{investorsAnimationDuration}')
             +each('JSON.parse(investors).concat(JSON.parse(investors)) as investor')
               +investorImg('{investor}')
         +if('totalFunding')

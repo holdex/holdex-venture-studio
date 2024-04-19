@@ -16,7 +16,7 @@
   export let totalLoansOriginated: number;
   export let totalValueLocked: number;
   export let founders: string;
-  export let investors: string[];
+  export let investors: string;
   export let totalFunding: number;
   export let fullyDilutedMarketCap: number;
   let className = '';
@@ -34,6 +34,7 @@
   let formattedTotalValueLocked: string | undefined;
   let formattedTotalFunding: string | undefined;
   let formattedFullyDilutedMarketCap: string | undefined;
+  let investorsAnimationDuration: number | undefined;
 
   $: {
     if (totalLoansOriginated !== undefined) {
@@ -47,6 +48,9 @@
     }
     if (fullyDilutedMarketCap !== undefined) {
       formattedFullyDilutedMarketCap = parseNumber(fullyDilutedMarketCap);
+    }
+    if (investors !== undefined) {
+      investorsAnimationDuration = JSON.parse(investors).length * 2;
     }
   }
 </script>
