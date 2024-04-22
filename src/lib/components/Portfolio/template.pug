@@ -57,6 +57,11 @@ mixin metric(type, value=null, investorsAnimationDuration=null)
         +metricTitle("Investors")
         +metricValueInvestors(investorsAnimationDuration)
           block
+    when 'borrowers'
+      +metricContainer("w-full")
+        +metricTitle("Borrowers")
+        +metricValueInvestors(investorsAnimationDuration)
+          block
 
 article.portfolio-product-card(
   class="group w-full h-full rounded-xl flex flex-col bg-l1 border border-l4 p-8 smDown:px-4 smDown:py-6 justify-between {isFeatured ? 'gap-16 smDown:gap-12' : 'gap-6'}"
@@ -84,6 +89,10 @@ article.portfolio-product-card(
           +metric('investors', null, '{investorsAnimationDuration}')
             +each('JSON.parse(investors).concat(JSON.parse(investors)) as investor')
               +investorImg('{investor}')
+        +if('borrowers')
+          +metric('borrowers', null, '{borrowersAnimationDuration}')
+            +each('JSON.parse(borrowers).concat(JSON.parse(borrowers)) as borrower')
+              +investorImg('{borrower}')
         +if('totalFunding')
           +metric('totalFunding', '{formattedTotalFunding}')
         +if('fullyDilutedMarketCap')
