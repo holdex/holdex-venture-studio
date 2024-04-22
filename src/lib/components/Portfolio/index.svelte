@@ -35,8 +35,8 @@
   let formattedTotalValueLocked: string | undefined;
   let formattedTotalFunding: string | undefined;
   let formattedFullyDilutedMarketCap: string | undefined;
-  let investorsAnimationDuration: number | undefined;
   let borrowersAnimationDuration: number | undefined;
+  let investorsAnimationDuration: number | undefined;
 
   $: {
     if (totalLoansOriginated !== undefined) {
@@ -51,11 +51,11 @@
     if (fullyDilutedMarketCap !== undefined) {
       formattedFullyDilutedMarketCap = parseNumber(fullyDilutedMarketCap);
     }
-    if (investors !== undefined) {
-      investorsAnimationDuration = JSON.parse(investors).length * 2;
-    }
     if (borrowers !== undefined) {
       borrowersAnimationDuration = JSON.parse(borrowers).length * 2;
+    }
+    if (investors !== undefined) {
+      investorsAnimationDuration = JSON.parse(investors).length * 2;
     }
   }
 </script>
