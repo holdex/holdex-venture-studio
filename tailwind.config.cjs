@@ -350,12 +350,13 @@ module.exports = {
         32: '8rem',
       },
       animation: {
+        'infinite-scroll-companies': 'infinite-scroll 15s linear infinite',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
       },
       keyframes: {
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(calc(-100% - 24px))' },
         },
       },
       backgroundImage: {
