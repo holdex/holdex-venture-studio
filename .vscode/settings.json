@@ -11,7 +11,7 @@
   },
   "scss.lint.unknownAtRules": "ignore",
   "[svelte]": {
-    "editor.defaultFormatter": "svelte.svelte-vscode"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[pug]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
