@@ -20,12 +20,31 @@ import type { Author, CTAElement, TestimonialElement } from '$components/BodyPar
 import type { Parsed$Paragraph, Parsed$ParagraphElement, Parsed$ParagraphItems } from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
-export const POST: RequestHandler = async ({ request }) => {
+
+export const POST: RequestHandler = async ({ request,fetch }) => {
   const { data, updatedAt } = await request.json();
-  const jsonData = convertToHoldexJson(data);
+  const jsonData =  convertToHoldexJson(data);
+
+  const enrichedJsonData = await Promise.all(jsonData.map(async (item) => {
+    if (item.type === 'linkTool') {
+        const metaInfo = await fetchMetaTags(item.data.url, fetch);
+          if (metaInfo) {
+            return { ...item, 
+              data: {
+               ...item.data,
+               title:metaInfo.meta.title ?? '',
+               description:metaInfo.meta.description??'',
+               image:metaInfo.meta.image.url?? ''
+              }
+               };
+            }
+         }
+    return item;
+  }));
+
   return json(
     {
-      blocks: jsonData,
+      blocks: enrichedJsonData,
       time: updatedAt,
       version: '2.20.0',
     },
@@ -602,3 +621,15 @@ const parseParagraph = (
     }
   }
 };
+
+
+async function fetchMetaTags(url:string,fetch:any) {
+  try {
+    const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Failed to fetch metadata:', error);
+    return null;
+  }
+}

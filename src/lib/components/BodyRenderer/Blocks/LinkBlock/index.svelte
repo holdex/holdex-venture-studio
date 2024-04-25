@@ -1,10 +1,10 @@
 <script lang="ts">
   import { Link as LinkIcon } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
-  import { onMount } from 'svelte';
+  // import { onMount } from 'svelte';
   import LinkText from './linkText.svelte';
   import TextWrapper from '../textWrapper.svelte';
-  import Skeleton from './skeleton.svelte';
+  // import Skeleton from './skeleton.svelte';
   import { getContext } from 'svelte';
   import { regExp } from '$components/BodyParser/utils';
                          
@@ -12,23 +12,25 @@
     url: string;
     title: string;
     embed: string;
+    image?:string;
+    description?:string;
   };
 
-  interface OgImage {
-    url: string;
-    type: string;
-  }
+  // interface OgImage {
+  //   url: string;
+  //   type: string;
+  // }
 
-  interface OgResult {
-    success: number;
-    link: string;
-    meta: {
-      title?: string;
-      site_name?: string;
-      description?: string;
-      image?: OgImage;
-    };
-  }
+  // interface OgResult {
+  //   success: number;
+  //   link: string;
+  //   meta: {
+  //     title?: string;
+  //     site_name?: string;
+  //     description?: string;
+  //     image?: OgImage;
+  //   };
+  // }
 
   let themeContext: any = getContext('theme');
 
@@ -39,35 +41,40 @@
   }
 
   export let item: Item;
-  let metaInfo: OgResult;
+  // let metaInfo: OgResult;
 
-  $: site = item.url;
+  // $: site = item.url;
  
 
-  async function fetchMetaTags(url: string) {
-    try {
-      const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
-      if (!response.ok) {
-        throw new Error(`${response.statusText}`);
-      }
-      const data: OgResult = await response.json();
-      metaInfo = data;
-    } catch (error: any) {
-      console.error(error?.message || 'An unexpected error occurred');
-    } 
-  }
+  // async function fetchMetaTags(url: string) {
+  //   try {
+  //     const response = await fetch(`/api/og-meta-data?site=${encodeURIComponent(url)}`);
+  //     if (!response.ok) {
+  //       throw new Error(`${response.statusText}`);
+  //     }
+  //     const data: OgResult = await response.json();
+  //     metaInfo = data;
+  //   } catch (error: any) {
+  //     console.error(error?.message || 'An unexpected error occurred');
+  //   } 
+  // }
 
-  onMount(() => {
-    fetchMetaTags(site);
-  });
+  // onMount(() => {
+    // fetchMetaTags(site);
+  // });
 
 
 
-  $: title = (metaInfo?.meta?.title ?? '') as string;
-  $: description = (metaInfo?.meta?.description ?? '') as string;
-  $: url = (metaInfo?.link ?? item.url ?? '') as string;
-  $: src = (metaInfo?.meta?.image?.url ?? '') as string;
-  $: success = metaInfo?.success === 1;
+  // $: title = (metaInfo?.meta?.title ?? '') as string;
+  // $: description = (metaInfo?.meta?.description ?? '') as string;
+  // $: url = (metaInfo?.link ?? item.url ?? '') as string;
+  // $: src = (metaInfo?.meta?.image?.url ?? '') as string;
+  // $: success = metaInfo?.success === 1;
+
+  $: title = (item.title ?? '') as string;
+  $: description = (item.description ?? '') as string;
+  $: url = (item.url ?? '') as string;
+  $: src = (item.image ?? '') as string;
 
   $: isHoldexLink = regExp.holdexLink.test(url);
 </script>
@@ -81,7 +88,7 @@
     ${themeContext === 'dark' ? 'dark-hover' : 'light-hover'}
     `}
 >
-  {#if success}
+  <!-- {#if success} -->
     <div class={'image-link-container'}>
       {#if src}
         <div class="link-image-wrapper rounded-xl">
@@ -109,9 +116,9 @@
         </div>
       </div>
     </div>
-  {:else}
-    <Skeleton />
-  {/if}
+  <!-- {:else} -->
+    <!-- <Skeleton /> -->
+  <!-- {/if} -->
 </a>
 
 <style lang="scss" src="./linkblock.scss"></style>
