@@ -44,9 +44,9 @@ mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimati
       +metricContainer("smDown:gap-2 min-w-[180px]")
         +metricTitle("Total Funding")
         +metricValue(value)
-    when 'fullyDilutedMarketCap'
+    when 'marketCapitalization'
       +metricContainer("smDown:gap-2 min-w-[180px]")
-        +metricTitle("Fully Diluted Market Cap")
+        +metricTitle("Market Capitalization")
         +metricValue(value)
     when 'founders'
       +metricContainer("smDown:gap-2 w-full")
@@ -95,8 +95,8 @@ article.portfolio-product-card(
               +logoImg('{investor}')
         +if('totalFunding')
           +metric('totalFunding', '{formattedTotalFunding}')
-        +if('fullyDilutedMarketCap')
-          +metric('fullyDilutedMarketCap', '{formattedFullyDilutedMarketCap}')
+        +if('marketCapitalization')
+          +metric('marketCapitalization', '{formattedmarketCapitalization}')
 
   +if('JSON.parse(hashtags) && JSON.parse(hashtags).length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
