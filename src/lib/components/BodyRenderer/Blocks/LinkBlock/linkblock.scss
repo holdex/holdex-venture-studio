@@ -1,0 +1,58 @@
+.link-block {
+  @apply h-[92px] max-w-[604px] w-full overflow-hidden;
+
+  &.hide-block {
+    @apply hidden;
+  }
+}
+
+.light-hover:hover,
+.dark-hover:hover {
+  @apply bg-l3 transition-colors duration-100 ease-in-out;
+}
+
+.image-link-container {
+  @apply py-0.5 pr-0 pl-0.5 h-full flex items-center justify-center min-w-[5rem] max-w-max flex-none;
+
+  .link-image-wrapper {
+    @apply w-[128px] h-full overflow-hidden;
+  }
+
+  .link-image {
+    @apply w-full h-full object-cover;
+  }
+
+  .icon-wrapper {
+    @apply flex items-center justify-center w-10 h-10 rounded-full;
+  }
+
+}
+
+.link-details {
+  @apply flex items-center h-full overflow-hidden w-full;
+
+  > div {
+    @apply w-full flex flex-col h-full;
+  }
+
+  &.padding-with-image {
+    @apply px-4 py-3;
+  }
+
+  &.padding-no-image {
+    @apply py-3 pr-4 pl-1;
+  }
+
+  .title,
+  .description {
+    @apply font-medium leading-5 text-sm mb-1;
+  }
+
+  .title {
+    @apply font-[700];
+  }
+
+  .ellipsis {
+    @apply overflow-hidden truncate w-full;
+  }
+}

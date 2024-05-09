@@ -26,5 +26,7 @@ export type Parsed$Paragraph = {
     file?: {
       url?: string;
     };
+    description?:string;
+    image?:string;
   };
 };
