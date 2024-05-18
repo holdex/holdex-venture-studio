@@ -16,8 +16,8 @@ import type {
   Schema$TextStyle,
 } from '$lib/types/googleDoc';
 import type { RequestHandler } from './$types';
-import type { Author, CTAElement } from '$components/BodyParser/blocks';
-import type { Parsed$Paragraph, Parsed$ParagraphElement } from '$lib/types/googleConversion';
+import type { Author, CTAElement, TestimonialElement } from '$components/BodyParser/blocks';
+import type { Parsed$Paragraph, Parsed$ParagraphElement, Parsed$ParagraphItems } from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -93,18 +93,26 @@ function convertToHoldexJson(document: Schema$Document) {
         });
 
         const cta: CTAElement = parseCTASection(tableContent);
-        if (cta == ({} as CTAElement))
+        const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
+
+        if (!_.isEmpty(testimonial)) {
+          newContent.push({
+            type: 'testimonial',
+            data: testimonial,
+          });
+        } else if (!_.isEmpty(cta)) {
+          newContent.push({
+            type: 'cta',
+            data: cta,
+          });
+        } else {
           newContent.push({
             type: 'table',
             data: {
               content: tableContent,
             },
           });
-        else
-          newContent.push({
-            type: 'cta',
-            data: cta,
-          });
+        }
       }
       // Table Of Contents
       else if (tableOfContents) {
@@ -149,22 +157,51 @@ function parseCTASection(content: any[]) {
       cta.title = data['title'];
       cta.description = data['description'];
       if (data['button1_title'] === undefined || data['button1_title'] === '') cta.link1 = null;
-      else
+      else {
         cta.link1 = {
           text: data['button1_title'],
           url: data['button1_url'],
         };
+      }
       if (data['button2_title'] === undefined || data['button2_title'] === '') cta.link2 = null;
-      else
+      else {
         cta.link2 = {
           text: data['button2_title'],
           url: data['button2_url'],
         };
+      }
     }
   }
   return cta;
 }
 
+function parseTestimonialSection(content: any[]) {
+  const testimonial: TestimonialElement = {} as TestimonialElement;
+  if (content.length === 5 && (content[0] as any[]).length === 2) {
+    const contentHead = content[0];
+    if (
+      contentHead[0][0].type === 'paragraph' &&
+      contentHead[0][0].data.text === 'type' &&
+      contentHead[1][0].type === 'paragraph' &&
+      contentHead[1][0].data.text === 'testimonial'
+    ) {
+      const data: any = {};
+      content.forEach(([[first], [second]], i) => {
+        if (first === undefined || first.type !== 'paragraph') return;
+        if (second === undefined || second.type !== 'paragraph') data[first.data.text] = '';
+        else data[first.data.text] = second.data.text;
+      });
+      testimonial.name = data['name'];
+      testimonial.title = data['title'];
+      testimonial.content = data['content'];
+      testimonial.picture = {
+        text: data['name'],
+        url: data['picture'],
+      };
+    }
+  }
+  return testimonial;
+}
 function getHeaderRowAuthor(content: Schema$ParagraphElement) {
   const author: Author = {} as Author;
   if (content && content.textRun?.textStyle?.link) {
@@ -205,7 +242,7 @@ function getListTag(list: Schema$List, nestingLevel: number | null | undefined) 
 
 const twitterRegExp = new RegExp(regExp.twitter, 'mi');
 const videoRegExp = new RegExp(regExp.video, 'mi');
-const tallyRegExp = new RegExp(/^https?:\/\/apply.holdex.io\/([^/?&]*)?$/, 'mi');
+const tallyRegExp = new RegExp(/^https:\/\/apply\.holdex\.io\/.*$/, 'mi');
 
 function isLink(elements: Schema$ParagraphElement[]) {
   const [el1, el2] = elements;
@@ -277,7 +314,7 @@ function getImage(document: Schema$Document, element: Schema$ParagraphElement) {
   return null;
 }
 
-function getText(element: Schema$ParagraphElement, { isHeader = false } = {}) {
+function getText(element: Schema$ParagraphElement, { isHeader = false, isCtaLink = false } = {}) {
   let text = cleanText(element.textRun?.content as string);
   const { link, underline, strikethrough, bold, italic } = element?.textRun
     ?.textStyle as Schema$TextStyle;
@@ -301,6 +338,9 @@ function getText(element: Schema$ParagraphElement, { isHeader = false } = {}) {
   }
 
   if (link) {
+    if (isCtaLink) {
+      return (link.url || text) as string
+    }
     return `<a href="${link.url}">${text}</a>`;
   }
 
@@ -311,7 +351,8 @@ const parseParagraphElement = (
   document: Schema$Document,
   tag: string,
   parentContent: (Parsed$Paragraph | Parsed$ParagraphElement)[],
-  element: Schema$ParagraphElement
+  element: Schema$ParagraphElement,
+  wrappingTable: boolean | undefined = undefined
 ) => {
   const { textRun, richLink, inlineObjectElement } = element;
 
@@ -342,6 +383,7 @@ const parseParagraphElement = (
     parentContent.push({
       [tag]: getText(element, {
         isHeader: tag !== 'p',
+        isCtaLink: wrappingTable
       }),
     });
   }
@@ -381,7 +423,7 @@ const parseParagraph = (
     const listStyle = listTag === 'ol' ? 'ordered' : 'unordered';
 
     if (prevListId === listId) {
-      const list: Parsed$ParagraphElementItems[] = _.last(contents)?.data.items ?? [];
+      const list: Parsed$ParagraphItems[] = (_.last(contents)?.data as Parsed$ParagraphItems).items ?? [];
 
       if (nestingLevel !== undefined) {
         const lastIndex = list.length - 1;
@@ -487,7 +529,7 @@ const parseParagraph = (
           (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             : 0) /
-            18 +
+          18 +
           2;
 
         tagContent.push({
@@ -520,7 +562,7 @@ const parseParagraph = (
           },
         });
       } else {
-        elements?.forEach((element) => parseParagraphElement(document, tag, tagContent, element));
+        elements?.forEach((element) => parseParagraphElement(document, tag, tagContent, element, wrappingTable));
       }
     }
 

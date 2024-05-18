@@ -350,13 +350,24 @@ module.exports = {
         32: '8rem',
       },
       animation: {
+        'infinite-scroll-companies': 'infinite-scroll 15s linear infinite',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
       },
       keyframes: {
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
+          to: { transform: 'translateX(calc(-100% - 24px))' },
         },
+      },
+      backgroundImage: {
+        'card-1-dark': "url('/cardBg/card-1-bg-dark.png')",
+        'card-2-dark': "url('/cardBg/card-2-bg-dark.png')",
+        'card-3-dark': "url('/cardBg/card-3-bg-dark.png')",
+        'card-4-dark': "url('/cardBg/card-4-bg-dark.png')",
+        'card-1-light': "url('/cardBg/card-1-bg-light.png')",
+        'card-2-light': "url('/cardBg/card-2-bg-light.png')",
+        'card-3-light': "url('/cardBg/card-3-bg-light.png')",
+        'card-4-light': "url('/cardBg/card-4-bg-light.png')",
       },
     },
   },
