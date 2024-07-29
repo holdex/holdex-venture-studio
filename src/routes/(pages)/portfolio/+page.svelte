@@ -18,7 +18,7 @@
   import Icon from '$components/Icons/index.svelte';
 
   // import DefaultFeedItem from '$components/Feed/Item/index.svelte';
-  // import Feed from '$components/Feed/index.svelte';
+  import Feed from '$components/Feed/index.svelte';
   import PortfolioItem from '$components/Portfolio/index.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
@@ -36,12 +36,13 @@
     totalCount: 0,
     pageInfo: null,
   });
+  $: parsedEdges = edges.map(edge => parseMessage(edge?.node as Message));
   $: pageFilter = undefined;
   $: isSearchMode = false;
   $: pageQ = undefined;
   $: handleSort = () => {};
 
-  let parseMessage = (message: Message, category: string) => {
+  let parseMessage = (message: Message, category?: string) => {
     return Parser.parseViaCategory(message, category);
   };
 
