@@ -63,7 +63,7 @@ mixin social
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
-          class="px-4 flex items-center justify-between mx-auto gap-4 sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
+          class="pl-4 flex items-center justify-between gap-2 mx-auto sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
         )
           .logo-wrapper(class="relative w-8 h-8 ")
             a(class="relative flex  h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
@@ -71,10 +71,10 @@ mixin social
               class="w-8 h-8 "
             )
 
-          div(id="secondary-navbar" class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex")
+          div(id="secondary-navbar" class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]")
             div(
               id="secondary-navbar-section h-full"
-              class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4"
+              class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 animate-navigation-left-right md-up:animate-none"
             )
               +main-nav(class="gap-6")
               +social
