@@ -1,9 +1,39 @@
-include ./common-mixins
+include ./index-mixins
+include ./c/mixins
 
 +main-section
-  +header-wrapper
-    h1.text-title-l.font-satoshi.text-center(class="smDown:text-left xs:text-h1-s" id="{message.id}")
-      | At #[TextHighlight Holdex], we're helping innovators build the next Web3 products
+  +section-hero-wrapper
+    h1.text-title-l.font-satoshi.text-center(class="smDown:text-left xs:text-h1-s smDown:mx-4" id="{message.id}")
+      | At 
+      span.underline.font-satoshi Holdex
+      | , we're helping innovators build the next Web3 products
+    p.text-subtitle-l.font-inter.text-center(class="smDown:text-left smDown:mx-4")
+      | We are your end-to-end technical partner that builds products,
+      br
+      | designs, grows teams, and transforms bold ideas into reality
+
+  +wrap-dark
+    div(class="h-full rounded-base-radius dark bg-[#10141F] p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #1C202D 40%, #10141F 60%); padding: 0.1rem;")
+        div(class="h-full rounded-underbase dark bg-[#10141F] px-12 py-10 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3 gap-4 g-subcontainer-gradient")
+          +wrap-subcontainer-dark("$900M+", "Combined Valuation")
+          +wrap-subcontainer-dark("$1B", "Transaction Volume")
+          +wrap-subcontainer-dark("100K", "Users Supported")
+
+  +wrap-light
+    div(class="h-full rounded-base-radius bg-l2 p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 70%); padding: 0.1rem;")
+        div(class="h-full rounded-underbase bg-l2 px-12 py-10 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3 gap-4 bg-subcontainer-gradient-light")
+          +wrap-subcontainer-light("$900M+", "Combined Valuation")
+          +wrap-subcontainer-light("$1B", "Transaction Volume")
+          +wrap-subcontainer-light("100K", "Users Supported")
+
+  +cta('The results of ', 'Our Clients', ' speak for themselves', '/portfolio')
+
+  .text-center.pb-16
+    +companiesStrip.flex-col.gap-8(class="xs:gap-4")
+      +companyLogoStripIndex([{ lightPath: '/portfolioLogo/light/clearpool.png', darkPath: '/portfolioLogo/dark/clearpool.png', name: 'Clearpool' }, { lightPath: '/portfolioLogo/light/truflation.png', darkPath: '/portfolioLogo/dark/truflation.png', name: 'Truflation' }, { lightPath: '/portfolioLogo/light/zebec.png', darkPath: '/portfolioLogo/dark/zebec.png', name: 'Zebec Protocol' }, { lightPath: '/portfolioLogo/light/synnax.png', darkPath: '/portfolioLogo/dark/synnax.png', name: 'Synnax' }, { lightPath: '/portfolioLogo/light/finoverse.png', darkPath: '/portfolioLogo/dark/finoverse.png', name: 'Finoverse' }, { lightPath: '/portfolioLogo/light/web3headhunting.png', darkPath: '/portfolioLogo/dark/web3headhunting.png', name: 'Web3 Headhunting' }, { lightPath: '/portfolioLogo/light/wakame.png', darkPath: '/portfolioLogo/dark/wakame.png', name: 'Wakame' }, { lightPath: '/portfolioLogo/light/pickle.png', darkPath: '/portfolioLogo/dark/pickle.png', name: 'Pickle Finance' }, { lightPath: '/portfolioLogo/light/lumiere.png', darkPath: '/portfolioLogo/dark/lumiere.png', name: 'Lumiere' }, { lightPath: '/portfolioLogo/light/amplify.png', darkPath: '/portfolioLogo/dark/amplify.png', name: 'Amplify' }, { lightPath: '/portfolioLogo/light/coins-and-skins.png', darkPath: '/portfolioLogo/dark/coins-and-skins.png', name: 'Coins and Skins' }])
+
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
     p.text-t1 { @html signature }
