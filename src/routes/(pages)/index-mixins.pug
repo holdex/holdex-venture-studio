@@ -1,17 +1,22 @@
 
 // main section
 mixin main-section
-  section.main(class="flex flex-col items-center pt-16 xs:pt-8")
+  section.main(class="flex flex-col items-center pt-16 xs:pt- gap-19")
     block
 
 // hero section
 mixin section-hero-wrapper
-  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full lg:max-w-full mb-[74px] xs:px-4")
+  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
+    block
+
+// KPIs section
+mixin section-kpis-wrapper
+  .section-hero-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
     block
 
 mixin companiesStrip
   .companiesStrip(
-    class="flex items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+    class="flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
   )&attributes(attributes)
     block
 
@@ -20,37 +25,26 @@ mixin content-wrapper
     block
 
 mixin wrap-dark
-  section(class="hidden dark:block rounded-base-radius bg-gradient-to-r mb-8" style="background-image: linear-gradient(to bottom right, #1C202D 40%, #10141F 60%); padding: 0.1rem;")
-    block
+  section(class="hidden dark:block rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(to bottom right, #1C202D 30%, #10141F 45%); padding: 0.1rem;")
+   div(class="h-full rounded-base-radius bg-l1 p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #393F4F 20%, #10141F 40%); padding: 0.15rem;")
+        div(class=" h-full rounded-underbase bg-l1 gap-4 ")
+          div(class="h-full rounded-underbase bg-subcontainer-gradient px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3 ")
+            block
 
 mixin wrap-light
-  section(class="block dark:hidden rounded-base-radius bg-gradient-to-r mb-8" style="background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 70%); padding: 0.1rem;")
-    block
+  section(class="block dark:hidden rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(to bottom right, #D8D9E0 30%, #F0F1F5 45%); padding: 0.1rem;")
+    div(class="h-full rounded-base-radius bg-l2 p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 40%); padding: 0.15rem;")
+        div(class="h-full rounded-underbase bg-l2 gap-4 ")
+          div(class="h-full rounded-underbase bg-subcontainer-gradient-light px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
+            block
 
-mixin wrap-subcontainer-dark(kpiValue, kpiDescription)
-  div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #272B38 40%, #10141F 60%); padding: 0.04rem;")
-    div(class="h-full rounded-underbase w-full dark bg-[#10141F] bg-subcontainer-gradient p-8")
+mixin wrap-subcontainer(kpiValue, kpiDescription)
+  div(class="rounded-underbase bg-gradient-to-r")
+    div(class="h-full rounded-underbase w-full p-8")
       h3(class="text-subtitle-xl font-medium text-accent1-default font-inter text-center") #{kpiValue}
       p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
-
-mixin wrap-subcontainer-light(kpiValue, kpiDescription)
-  div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #C1C5D2 40%, #F0F1F5 60%); padding: 0.04rem;")
-    div(class="h-full rounded-underbase w-full bg-l2 bg-subcontainer-gradient-light p-8")
-      h3(class="text-subtitle-xl font-medium text-accent1-default font-inter text-center") #{kpiValue}
-      p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
-
-mixin companyLogoStripIndex(logos)
-  if logos !== undefined
-    .company-logo-wrapper(
-      class="mt-2 w-full overflow-hidden flex flex-nowrap gap-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)]"
-    )
-      .company-logo-strip(
-        class="flex mt-4 gap-6 min-w-max justify-around align-middle animate-infinite-scroll-companies will-change-transform"
-      )
-        each logo in logos
-          div(class="border border-[#dadada] dark:border-[#4C5058] dark:bg-[#1D212B] rounded-full  px-4 py-2 flex justify-center items-center" style="box-sizing: border-box; height: 100%;")
-            img(class="dark:hidden company-logo h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
-            img(class="hidden dark:block company-logo h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
   p(class="text-subtitle-l text-center mb-8")
@@ -61,4 +55,3 @@ mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
 
 
 // services section
-
