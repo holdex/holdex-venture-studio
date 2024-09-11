@@ -1,5 +1,5 @@
 ## Update
-- [/index](https://www.figma.com/design/ouzfjob16mSlDSCY7MT9ZM/Holdex-(https%3A%2F%2Fgithub.com%2Fholdex%2Fmarketing%2Fissues%2F68)?node-id=9032-65456&t=KTk0bdIQIktfo4Jx-4)
+- [/index](https://www.figma.com/design/39MGGVIGQ1bL3FgVzuXEdC/Holdex?node-id=7355-63376&t=gg8CmTOHvTA9KGyC-4)
 
 ## Guides
 
