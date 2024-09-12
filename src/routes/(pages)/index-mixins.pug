@@ -20,34 +20,47 @@ mixin companiesStrip
   )&attributes(attributes)
     block
 
+mixin companyLogoStripIndex(logos)
+  if logos !== undefined
+    .company-logo-wrapper(
+      class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle"
+    )
+      .company-logo-strip(
+        class="flex flex-wrap gap-8 justify-around align-middle"
+      )
+        each logo in logos
+          img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
+          img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
+
+
 mixin content-wrapper
   .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block
 
 mixin wrap-dark
-  section(class="hidden dark:block rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(to bottom right, #1C202D 30%, #10141F 45%); padding: 0.1rem;")
+  section(class="hidden dark:block rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(176deg, #1C202D 20%, #10141F 30%); padding: 0.0625rem;")
    div(class="h-full rounded-base-radius bg-l1 p-2 gap-4")
-      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #393F4F 20%, #10141F 40%); padding: 0.15rem;")
-        div(class=" h-full rounded-underbase bg-l1 gap-4 ")
-          div(class="h-full rounded-underbase bg-subcontainer-gradient px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3 ")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(165deg, #393F4F 20%, #10141F 40%); padding: 0.0625rem;")
+        div(class=" h-full rounded-xl bg-l1 gap-4 ")
+          div(class="h-full rounded-xl bg-subcontainer-gradient px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3 ")
             block
 
 mixin wrap-light
-  section(class="block dark:hidden rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(to bottom right, #D8D9E0 30%, #F0F1F5 45%); padding: 0.1rem;")
+  section(class="block dark:hidden rounded-base-radius bg-gradient-to-r" style="background-image: linear-gradient(to bottom right, #D8D9E0 30%, #F0F1F5 45%); padding: 0.0625rem;")
     div(class="h-full rounded-base-radius bg-l2 p-2 gap-4")
-      div(class="rounded-underbase bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 40%); padding: 0.15rem;")
-        div(class="h-full rounded-underbase bg-l2 gap-4 ")
+      div(class="rounded-xl bg-gradient-to-r py-10" style="background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 40%); padding: 0.0625rem;")
+        div(class="h-full rounded-xl bg-l2 gap-4 ")
           div(class="h-full rounded-underbase bg-subcontainer-gradient-light px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
             block
 
 mixin wrap-subcontainer(kpiValue, kpiDescription)
   div(class="rounded-underbase bg-gradient-to-r")
     div(class="h-full rounded-underbase w-full p-8")
-      h3(class="text-subtitle-xl font-medium text-accent1-default font-inter text-center") #{kpiValue}
+      h3(class="text-h3-l font-medium text-accent1-default font-satoshi text-center") #{kpiValue}
       p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
-  p(class="text-subtitle-l text-center mb-8")
+  p(class="text-subtitle-l text-center mb-8 text-t2")
     | #{normalTextBefore}
     a(class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25" href=link)
       | #{underlinedText}
