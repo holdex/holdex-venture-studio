@@ -1,0 +1,64 @@
+
+// main section
+mixin main-section
+  section.main(class="flex flex-col items-center pt-16 xs:pt-8 gap-19")
+    block
+
+// hero section
+mixin section-hero-wrapper
+  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
+    block
+
+// KPIs section
+mixin section-kpis-wrapper
+  .section-kpis-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
+    block
+
+mixin companiesStrip
+  .companiesStrip(
+    class="flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+  )&attributes(attributes)
+    block
+
+mixin companyLogoStripIndex(logos)
+  if logos !== undefined
+    .company-logo-wrapper(
+      class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle"
+    )
+      .company-logo-strip(
+        class="flex flex-wrap gap-8 justify-around align-middle"
+      )
+        each logo in logos
+          img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
+          img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
+
+
+mixin content-wrapper
+  .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
+    block
+
+mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainerGradientClass)
+  section(class=(isDark ? "hidden dark:block" : "block dark:hidden") + " rounded-base-radius bg-gradient-to-r" style=backgroundStyle)
+    div(class="h-full rounded-base-radius " + bgClass + " p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-10" style=gradientStyle)
+        div(class="h-full rounded-xl " + bgClass + " gap-4")
+          div(class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
+            +wrap-subcontainer("$1,500M+", "Transactional Value")
+            +wrap-subcontainer("$900M+", "Combined Market Cap")
+            +wrap-subcontainer("100,000+", "Users Served")
+
+mixin wrap-subcontainer(kpiValue, kpiDescription)
+  div(class="rounded-underbase bg-gradient-to-r")
+    div(class="h-full rounded-underbase w-full p-8")
+      h3(class="text-h3-l font-medium text-accent1-default font-satoshi text-center") #{kpiValue}
+      p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
+
+mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
+  p(class="text-subtitle-l text-center mb-8 text-t2")
+    | #{normalTextBefore}
+    a(class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25" href=link)
+      | #{underlinedText}
+    | #{normalTextAfter}
+
+
+// services section

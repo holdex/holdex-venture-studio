@@ -365,6 +365,12 @@ module.exports = {
         }
       },
       backgroundImage: {
+
+        //- Landing Page 
+          //- Hero / KPIs    
+        'subcontainer-gradient': 'linear-gradient(to bottom, #1A1E29, #10141F)', 
+        'subcontainer-gradient-light': 'linear-gradient(to bottom, #EAEBEF, #F0F1F5)', 
+
         'card-1-dark': "url('/cardBg/card-1-bg-dark.png')",
         'card-2-dark': "url('/cardBg/card-2-bg-dark.png')",
         'card-3-dark': "url('/cardBg/card-3-bg-dark.png')",
