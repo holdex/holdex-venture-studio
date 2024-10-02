@@ -5,7 +5,6 @@
   import BodyRenderer from '$components/BodyRenderer/index.svelte';
   import TextHighlight from '$components/TextHighlight/index.svelte';
   import { signature } from '$components/Icons';
-
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
 
@@ -14,6 +13,19 @@
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
   $: message = Parser.parse(storeData?.message as Message);
+
+  function sanitizeStyle(style: string): string {
+    const allowedStyles = /^(background-image|padding):[\w\s,.#%-]+;$/;
+    return allowedStyles.test(style) ? style : '';
+  }
+
+  $: backgroundStyle = sanitizeStyle(
+    'background-image: linear-gradient(176deg, #1C202D 20%, #10141F 30%); padding: 0.0625rem;'
+  );
+  $: gradientStyle = sanitizeStyle(
+    'background-image: linear-gradient(165deg, #393F4F 20%, #10141F 40%); padding: 0.0625rem;'
+  );
+  
 </script>
 
 <MetaTags
