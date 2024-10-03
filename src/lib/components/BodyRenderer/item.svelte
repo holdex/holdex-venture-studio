@@ -3,6 +3,7 @@
   import { Switch, Case } from '$components/Switch';
 
   import InlineBlock from './inline.svelte';
+  import LinkBlock from './Blocks/LinkBlock/index.svelte'
   import TextWrapper from './Blocks/textWrapper.svelte';
   import NestedList from './Blocks/nestedList.svelte';
   import Image from './Blocks/image.svelte';
