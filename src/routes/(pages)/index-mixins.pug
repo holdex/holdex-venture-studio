@@ -42,7 +42,7 @@ mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainer
     div(class="h-full rounded-base-radius " + bgClass + " p-2 gap-4")
       div(class="rounded-underbase bg-gradient-to-r py-10" style=gradientStyle)
         div(class="h-full rounded-xl " + bgClass + " gap-4")
-          div(class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-3 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
+          div(class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
             +wrap-subcontainer("$1,500M+", "Transactional Value")
             +wrap-subcontainer("$900M+", "Combined Market Cap")
             +wrap-subcontainer("100,000+", "Users Served")
