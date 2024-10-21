@@ -68,13 +68,16 @@ article.portfolio-product-card(
 )
   .portfolio-product-body(class="flex flex-col w-full gap-8 smDown:gap-6")
     .portfolio-product-header(class="flex flex-col w-full gap-4 smDown:gap-2")
-      a.transition-colors.text-t1.block(
-        href="/c/{communitySlug}/{messageSlug}"
-        class!="hover:text-accent1-default"
+      a.transition-colors.text-t1.flex.gap-1.items-end.w-fit(
+        href="{slug}"
+        target="{isExternal ? '_blank' : '_self'}"
+        class!="hover:text-accent1-default bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
       )
         h2(
-          class="relative text-h2-l xs:text-h2-s font-satoshi inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+          class="relative text-h2-l xs:text-h2-s font-satoshi inline-block underline underline-offset-4 text-accent1-default transition-colors"
         ) {title}
+        +if('isExternal')
+          Icon(icon="{ArrowTopRightOnSquare}" width=24 height=24 class="text-accent1-default")
       TextParagraph {subtitle}
     +if('isFeatured == true')
       TextParagraph {description}

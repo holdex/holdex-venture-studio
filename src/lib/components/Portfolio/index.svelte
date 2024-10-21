@@ -4,8 +4,12 @@
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import type numeral from 'numeral';
   import Hashtag from '$components/BodyRenderer/Blocks/hashtag.svelte';
+  import Icon from '$components/Icons/index.svelte';
+  import { ArrowTopRightOnSquare } from '$components/Icons';
 
   export let isFeatured: boolean;
+  export let slug: string;
+  export let isExternal = false;
   export let communitySlug: string;
   export let messageSlug: string;
   export let title: string;
