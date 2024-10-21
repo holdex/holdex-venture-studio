@@ -58,6 +58,30 @@
       investorsAnimationDuration = JSON.parse(investors).length * 2;
     }
   }
+
+  const emptyTags = [
+    'ethereum',
+    'optimism',
+    'polygon',
+    'multi-chain',
+    'architecture',
+    'banking',
+    'credit-rating',
+    'zk',
+    'software-development',
+    'react',
+    'hr',
+    'remote',
+    'team-management',
+    'svelte',
+    'ios',
+    'android',
+    'yield-farming',
+    ' nodejs',
+    'factoring',
+    'credit',
+    'identity',
+  ];
 </script>
 
 <template lang="pug" src="./template.pug">
