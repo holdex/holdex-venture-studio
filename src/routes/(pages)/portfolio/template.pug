@@ -53,7 +53,7 @@ include ../c/mixins
           description="Synnax takes credit intelligence one step further and integrates AI to curate, analyze and, predict market data for decentralized loans. Holdex is assigned to lead product development and engineering team management at Synnax."
           hashtags=["defi", "credit-rating", "ai", "zk"]
           founders="Robert Alcorn, Dario Capodici, Alessio Quaglini"
-          investors=["nolimitholdings", "edessa", "kenetic", "bitscale", "ryzelabs", "mhventures", "hextrust", "moonvault", "gamefi", "typhon", "ausvic", "drops", "everstake"]
+          investors=["tonventures", "kenetic", "wintermute", "edessa", "nolimitholdings", "bitscale", "ryzelabs", "mhventures", "hextrust", "moonvault", "gamefi", "typhon", "ausvic", "drops", "everstake"]
         )
         PortfolioItem(
           isFeatured
@@ -67,26 +67,24 @@ include ../c/mixins
         )
         PortfolioItem(
           isFeatured
-          slug="https://cicero.network/"
-          isExternal
-          title="Cicero"
-          subtitle="Permissionless lending with institutional borrowers."
-          description="Cicero is a permissionless lending protocol that allows institutional borrowers to access credit from a global pool of lenders."
-          hashtags=["defi", "lending", "dapp"]
-          investors=["hashkey", "sequoia", "wintermute", "arrington", "sino"]
-        )
-        PortfolioItem(
-          isFeatured
           slug="https://hextrust.com/"
           isExternal
           title="HexTrust"
           subtitle="Digital asset custodian for ecosystems."
           description="Hex Trust is a fully-licensed digital asset custodian that provides solutions for protocols, foundations, financial institutions, and the Web3 ecosystem."
           hashtags=["defi", "asset-custody"]
-          investors=["hashkey", "sequoia", "wintermute", "arrington", "sino"]
         )
       +subheadingText("More Projects")
       +portfolio-product-wrapper
+        PortfolioItem(
+          isFeatured=false
+          slug="https://cicero.network/"
+          isExternal
+          title="Cicero"
+          subtitle="Permissionless lending with institutional borrowers."
+          description="Cicero is a permissionless lending protocol that allows institutional borrowers to access credit from a global pool of lenders."
+          hashtags=["defi", "lending", "dapp"]
+        )
         PortfolioItem(
           isFeatured=false
           slug="c/companies/finoverse"
