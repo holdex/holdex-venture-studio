@@ -71,6 +71,7 @@ article.portfolio-product-card(
       a.transition-colors.text-t1.flex.gap-1.items-end.w-fit(
         href="{slug}"
         target="{isExternal ? '_blank' : '_self'}"
+        rel="{isExternal ? 'noopener noreferrer' : undefined}"
         class!="hover:text-accent1-default bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
       )
         h2(
