@@ -9,8 +9,11 @@
   export let item: Item;
   export let link: string | undefined = undefined;
 
-  let classes =
-    'relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+  let classes = `relative inline-block text-accent1-default transition-colors ${
+    link
+      ? 'underline underline-offset-4 bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25'
+      : 'bg-transparent hover:bg-transparent'
+  }`;
 
   $: text = item.text || item.href;
 </script>

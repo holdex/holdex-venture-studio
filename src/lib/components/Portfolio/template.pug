@@ -105,9 +105,7 @@ article.portfolio-product-card(
   +if('JSON.parse(hashtags) && JSON.parse(hashtags).length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
       +each('JSON.parse(hashtags) as tag, index')
-        li(
-          class="bg-accent1-default/15 underline offset-4 text-accent1-default text-inter h-8 text-paragraph-l smDown:text-paragraph-s"
-        )
+        li(class="text-inter h-8 text-paragraph-l smDown:text-paragraph-s")
           Hashtag(
             item="{tag}"
             link="{emptyTags.indexOf(tag) !== -1 ? undefined : `/c?filter=${tag}`}"
