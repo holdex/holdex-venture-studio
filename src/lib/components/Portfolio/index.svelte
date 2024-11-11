@@ -85,6 +85,8 @@
     'factoring',
     'credit',
     'identity',
+    'rwa',
+    'prediction-market',
   ];
 </script>
 
