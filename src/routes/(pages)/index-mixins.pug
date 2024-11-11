@@ -26,7 +26,7 @@ mixin companyLogoStripIndex(logos)
       class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle"
     )
       .company-logo-strip(
-        class="flex flex-wrap gap-8 justify-around align-middle"
+        class="flex flex-wrap gap-8 justify-center align-middle"
       )
         each logo in logos
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
