@@ -48,6 +48,10 @@ mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimati
       +metricContainer("smDown:gap-2 min-w-[180px]")
         +metricTitle("Market Capitalization")
         +metricValue(value)
+    when 'reservesInUsd'
+      +metricContainer("smDown:gap-2 min-w-[180px]")
+        +metricTitle("Reserves in USD")
+        +metricValue(value)
     when 'founders'
       +metricContainer("smDown:gap-2 w-full")
         +metricTitle("Founders")
@@ -87,6 +91,8 @@ article.portfolio-product-card(
           +metric('totalLoansOriginated', '{formattedTotalLoansOriginated}')
         +if('totalValueLocked')
           +metric('totalValueLocked', '{formattedTotalValueLocked}')
+        +if('reservesInUsd')
+          +metric('reservesInUsd', '{formattedReservesInUsd}')
         +if('totalFunding')
           +metric('totalFunding', '{formattedTotalFunding}')
         +if('marketCapitalization')
