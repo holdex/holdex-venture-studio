@@ -91,7 +91,13 @@
     'credit',
     'identity',
     'rwa',
-    'prediction-market',
+    'asset-custody',
+    'stablecoin',
+    'flatcoin',
+    'inflation',
+    'betting',
+    'etf',
+    'trading',
   ];
 </script>
 
