@@ -19,6 +19,7 @@
 
   export let totalLoansOriginated: number;
   export let totalValueLocked: number;
+  export let reservesInUsd: number;
   export let founders: string;
   export let investors: string;
   export let borrowers: string;
@@ -37,6 +38,7 @@
 
   let formattedTotalLoansOriginated: string | undefined;
   let formattedTotalValueLocked: string | undefined;
+  let formattedReservesInUsd: string | undefined;
   let formattedTotalFunding: string | undefined;
   let formattedmarketCapitalization: string | undefined;
   let borrowersAnimationDuration: number | undefined;
@@ -48,6 +50,9 @@
     }
     if (totalValueLocked !== undefined) {
       formattedTotalValueLocked = parseNumber(totalValueLocked);
+    }
+    if (reservesInUsd !== undefined) {
+      formattedReservesInUsd = parseNumber(reservesInUsd);
     }
     if (totalFunding !== undefined) {
       formattedTotalFunding = parseNumber(totalFunding);
