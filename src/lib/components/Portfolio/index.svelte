@@ -98,6 +98,9 @@
     'betting',
     'etf',
     'trading',
+    'nostr',
+    'social-dapp',
+    'options-trading',
   ];
 </script>
 
