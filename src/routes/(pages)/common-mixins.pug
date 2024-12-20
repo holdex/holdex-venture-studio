@@ -27,3 +27,13 @@ mixin button-icon-default
     class="relative inline-flex w-10 h-10 z-1 bg-l1 text-t3 border border-solid border-l5 shadow-secondary-button items-center justify-center p-1.75 rounded-2lg hover:text-t1 hover:!border-accent1-active focus:text-t1 focus:!border-accent1-active dark:bg-l3 dark:border-l3 dark:hover:shadow-secondary-button-hover"
   )&attributes(attributes)
     block
+
+mixin guideCard(href, title, subtitle, className='')
+  a.card(
+    class=`group w-full h-full justify-center rounded-xl flex flex-col transition-colors border border-l4 p-8 smDown:px-4 smDown:py-6 gap-4 bg-center bg-cover bg-l1 hover:bg-l2 ${className}`
+    href=href
+  )
+    h2(
+      class="relative text-h2-l xs:text-h2-s font-satoshi inline-block text-t1 group-hover:text-accent1-default"
+    ) #{title}
+    p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
