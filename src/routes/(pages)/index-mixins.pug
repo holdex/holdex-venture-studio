@@ -1,17 +1,17 @@
 
 // main section used only in main page
 mixin main-section-standard
-  section.main(class="flex flex-col items-center pt-16 xs:pt-8 gap-19")
+  section.main(class="flex flex-col items-center pt-16 xs:pt-8 gap-19.5 smDown:gap-18")
     block
 
 // hero section
 mixin section-hero-wrapper
-  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
+  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 mt-4 sm:mt-2.5 xs:mt-10.5 max-w-[1028px] w-full xs:px-4")
     block
 
 // KPIs section
 mixin section-kpis-wrapper
-  .section-kpis-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-8 max-w-[1028px] w-full xs:px-4")
+  .section-kpis-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-5.7 max-w-[1028px] w-full xs:px-4")
     block
 
 mixin companiesStrip
@@ -54,7 +54,7 @@ mixin wrap-subcontainer(kpiValue, kpiDescription)
       p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
-  p(class="text-subtitle-l text-center mb-8 text-t2")
+  p(class="text-subtitle-l text-center mb-0.45 text-t2")
     | #{normalTextBefore}
     a(class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25" href=link)
       | #{underlinedText}
