@@ -1,12 +1,12 @@
 
 // main section used only in main page
 mixin main-section-standard
-  section.main(class="flex flex-col items-center pt-16 xs:pt-8 gap-19.5 smDown:gap-18")
+  section.main(class="flex flex-col items-center pt-8 xs:pt-6 gap-19.5 smDown:gap-18")
     block
 
 // hero section
 mixin section-hero-wrapper
-  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 mt-4 sm:mt-2.5 xs:mt-10.5 max-w-[1028px] w-full")
+  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 mt-7.5 sm:mt-0.75 xs:mt-0.75 max-w-[1028px] w-full")
     block
 
 // KPIs section
@@ -54,7 +54,7 @@ mixin wrap-subcontainer(kpiValue, kpiDescription)
       p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
-  p(class="text-subtitle-l text-center mb-0.45 text-t2")
+  p(class="text-subtitle-l text-center mb-0.45 xs:mt-0.25 text-t2")
     | #{normalTextBefore}
     a(class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25" href=link)
       | #{underlinedText}
@@ -62,7 +62,7 @@ mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
 
 mixin section-learn-wrapper()
   .section-learn-wrapper(
-    class="flex flex-col justify-center items-center lg-up:pt-16 lg-up:px-0 smDown:items-start smDown:px-4 xs:pt-8 gap-4 max-w-[1028px] w-full tb:max-w-[794px] smDown:max-w-[604px]"
+    class="flex flex-col justify-center items-center lg-up:pt-16 lg-up:px-0 smDown:items-start smDown:px-4 xs:pt-8 gap-4 smDown:gap-4 max-w-[1028px] w-full tb:max-w-[794px] smDown:max-w-[604px]"
   )
     block
 // services section
