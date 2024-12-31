@@ -287,17 +287,21 @@ module.exports = {
         1.25: '0.3125rem',
         1.75: '0.4375rem',
         2.25: '0.5625rem',
+        2.5: '0.625rem',
         2.75: '0.6875rem',
         3.75: '0.9375rem',
+        4.5: '1.125rem',
         5.5: '1.375rem',
-        5.6: '1.875rem',
         5.75: '1.4375rem',
         6.5: '1.625rem',
+        7.5: '2.000rem',
         8.5: '2.125rem',
-        3.8: '3.875rem',
-        '11/25': '44%',
+        '11/25': '44%', 
         '1/2': '50%',
+        10.5: '2.65rem',
+        18: '4.624rem',
         19: '4.75rem',
+        19.5: '4.95rem',
         21: '5.438rem',
         23: '5.75rem',
         25: '6.25rem',
@@ -368,10 +372,10 @@ module.exports = {
       },
       backgroundImage: {
 
-        //- Landing Page 
-          //- Hero / KPIs    
-        'subcontainer-gradient': 'linear-gradient(to bottom, #1A1E29, #10141F)', 
-        'subcontainer-gradient-light': 'linear-gradient(to bottom, #EAEBEF, #F0F1F5)', 
+        //- Landing Page
+          //- Hero / KPIs
+        'subcontainer-gradient': 'linear-gradient(to bottom, #1A1E29, #10141F)',
+        'subcontainer-gradient-light': 'linear-gradient(to bottom, #EAEBEF, #F0F1F5)',
 
         'card-1-dark': "url('/cardBg/card-1-bg-dark.png')",
         'card-2-dark': "url('/cardBg/card-2-bg-dark.png')",
