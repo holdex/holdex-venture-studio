@@ -101,6 +101,11 @@
     'nostr',
     'social-dapp',
     'options-trading',
+    'voip',
+    'streaming',
+    'lending',
+    'index',
+    'nodejs',
   ];
 </script>
 
