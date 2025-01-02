@@ -106,6 +106,9 @@
     'lending',
     'index',
     'nodejs',
+    'wallet',
+    'open-source',
+    'typescript',
   ];
 </script>
 
