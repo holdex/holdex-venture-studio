@@ -117,6 +117,7 @@
     'gaming',
     'defi',
     'exchange',
+    'python',
   ];
 </script>
 
