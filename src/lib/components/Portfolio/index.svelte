@@ -109,6 +109,14 @@
     'wallet',
     'open-source',
     'typescript',
+    'dapp',
+    'go',
+    'ai',
+    'design',
+    'oracle',
+    'gaming',
+    'defi',
+    'exchange',
   ];
 </script>
 
