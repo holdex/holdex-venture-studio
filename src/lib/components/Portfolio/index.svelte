@@ -118,6 +118,12 @@
     'defi',
     'exchange',
     'python',
+    'poap',
+    'nft',
+    'decentraland',
+    'did',
+    'kyc',
+    'collateralized',
   ];
 </script>
 
