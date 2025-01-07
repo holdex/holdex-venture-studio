@@ -29,6 +29,14 @@
 
   export let data: PageData;
 
+  const escapeHtml = (unsafe: string): string =>
+    unsafe
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: ({ edges, totalCount, pageInfo } = storeData?.postedMessages || {
@@ -36,8 +44,8 @@
     totalCount: 0,
     pageInfo: null,
   });
-  $: pageFilter = getPageFilter($page.url) || '';
-  $: pageQ = getPageQ($page.url) || '';
+  $: pageFilter = escapeHtml(getPageFilter($page.url) || '');
+  $: pageQ = escapeHtml(getPageQ($page.url) || '');
   $: isSearchMode = checkSearchMode($page.url);
 
   $: metaTitle =
