@@ -60,7 +60,7 @@
       ? `A list of "${pageFilter || pageQ}" articles.`
       : 'We empower the next web3 innovators to build and accelerate blockchain adoption.';
 
-  metaTitle = metaTitle || 'Holdex | Your Gateway to Blockchain Innovation';
+  metaTitle = metaTitle || 'At Holdex, we’re helping innovators build the next web3 products';
   metaDescription =
     metaDescription || 'Discover blockchain resources, opportunities, and insights with Holdex.';
 
