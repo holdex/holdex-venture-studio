@@ -33,6 +33,15 @@ export const actions: Actions = {
       return fail(400, { email, name, message, missing: { message: true } });
     }
 
+    if (typeof message === 'string' && message.length > 160) {
+      return fail(400, {
+        email,
+        name,
+        message,
+        error: 'Message exceeds the maximum allowed length of 160 characters.',
+      });
+    }
+
     const response = await fetch(config.contactFormSubmitUrl, {
       method: 'POST',
       body: JSON.stringify({ email, name, message }),
