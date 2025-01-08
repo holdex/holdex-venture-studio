@@ -20,9 +20,17 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const data = await request.formData();
 
-    const email = data.get('email') as string;
-    const name = data.get('name') as string;
-    const message = data.get('message') as string;
+    const rawEmail = data.get('email');
+    const rawName = data.get('name');
+    const rawMessage = data.get('message');
+
+    if (!(typeof rawEmail === 'string' && typeof rawName === 'string' && typeof rawMessage === 'string')) {
+      return fail(400, { error: 'Invalid form data types' });
+    }
+
+    const email = rawEmail.trim();
+    const name = rawName.trim();
+    const message = rawMessage.trim();
 
     const escapeHtml = (unsafe: string) =>
       unsafe
