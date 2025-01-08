@@ -4,7 +4,6 @@ import { default as clientConfig } from '$lib/config';
 import { fail } from '@sveltejs/kit';
 import sgMail from '@sendgrid/mail';
 import type { Actions, PageServerLoad } from './$types';
-import DOMPurify from 'dompurify';
 
 sgMail.setApiKey(config.sendgridApiKey);
 
@@ -21,9 +20,9 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const data = await request.formData();
 
-    const email = DOMPurify.sanitize(data.get('email') as string).trim();
-    const name = DOMPurify.sanitize(data.get('name') as string).trim();
-    const message = DOMPurify.sanitize(data.get('message') as string).trim();
+    const email = data.get('email') as string;
+    const name = data.get('name') as string;
+    const message = data.get('message') as string;
 
     const escapeHtml = (unsafe: string) =>
       unsafe
