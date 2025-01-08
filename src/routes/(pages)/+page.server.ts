@@ -58,7 +58,7 @@ export const actions: Actions = {
         to: config.contactFormRecipientEmail,
         from: config.contactFormSenderEmail,
         subject: `Contact Form Submission from ${escapeHtml(name)}`,
-        text: `You have received a new message:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
+        text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(email)}\nMessage: ${escapeHtml(message)}`,
         html: `<p><strong>Name:</strong> ${name}</p>
                <p><strong>Email:</strong> ${escapeHtml(email)}</p>
                <p><strong>Message:</strong></p>
