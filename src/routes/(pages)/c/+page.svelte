@@ -29,6 +29,14 @@
 
   export let data: PageData;
 
+  const escapeHtml = (unsafe: string): string =>
+    unsafe
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: ({ edges, totalCount, pageInfo } = storeData?.postedMessages || {
@@ -36,9 +44,25 @@
     totalCount: 0,
     pageInfo: null,
   });
-  $: pageFilter = getPageFilter($page.url);
-  $: pageQ = getPageQ($page.url);
+  $: pageFilter = escapeHtml(getPageFilter($page.url) || '');
+  $: pageQ = escapeHtml(getPageQ($page.url) || '');
   $: isSearchMode = checkSearchMode($page.url);
+
+  $: metaTitle =
+    pageFilter.length > 0
+      ? `Search "${pageFilter}"`
+      : pageQ.length > 0
+      ? `Search Results for "${pageQ}"`
+      : 'Holdex | Web3 based startup studio';
+
+  $: metaDescription =
+    pageFilter.length > 0 || pageQ.length > 0
+      ? `A list of "${pageFilter || pageQ}" articles.`
+      : 'We empower the next web3 innovators to build and accelerate blockchain adoption.';
+
+  metaTitle = metaTitle || 'At Holdex, we’re helping innovators build the next web3 products';
+  metaDescription =
+    metaDescription || 'Discover blockchain resources, opportunities, and insights with Holdex.';
 
   let parseMessage = (message: Message, category: string) => {
     return Parser.parseViaCategory(message, category);
@@ -88,11 +112,10 @@
 </script>
 
 <MetaTags
-  title="Holdex | Web3 based startup studio"
-  description="We empower the next web3 innovators to build and accelerate blockchain adoption."
-  path={routes.studio}
+  title={metaTitle}
+  description={metaDescription}
+  path={$page.url.pathname}
   imagePath="/og/index.png"
 />
 
-<template lang="pug" src="./template.pug">
-</template>
+<template lang="pug" src="./template.pug"></template>

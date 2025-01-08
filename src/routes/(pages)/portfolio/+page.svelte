@@ -64,8 +64,8 @@
 </script>
 
 <MetaTags
-  title="Holdex | Web3 based startup studio"
-  description="We empower the next web3 innovators to build and accelerate blockchain adoption."
+  title="Our Portfolio of Startups | Holdex"
+  description="A list of blockchain products Holdex has worked across different verticals including DeFi, lending, KYC, gameFi, DAO, and developer tools, to name a few."
   path={routes.portfolio}
   imagePath="/og/portfolio.png"
 />
