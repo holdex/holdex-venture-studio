@@ -23,6 +23,7 @@
   export let founders: string;
   export let investors: string;
   export let borrowers: string;
+  export let ecosystemPartners: string;
   export let totalFunding: number;
   export let marketCapitalization: number;
   let className = '';
@@ -43,6 +44,7 @@
   let formattedmarketCapitalization: string | undefined;
   let borrowersAnimationDuration: number | undefined;
   let investorsAnimationDuration: number | undefined;
+  let ecosystemPartnersAnimationDuration: number | undefined;
 
   $: {
     if (totalLoansOriginated !== undefined) {
@@ -66,6 +68,9 @@
     if (investors !== undefined) {
       investorsAnimationDuration = JSON.parse(investors).length * 2;
     }
+    if (ecosystemPartners !== undefined) {
+      ecosystemPartnersAnimationDuration = JSON.parse(ecosystemPartners).length * 2;
+    }
   }
 
   const emptyTags = [
@@ -86,7 +91,7 @@
     'ios',
     'android',
     'yield-farming',
-    ' nodejs',
+    'nodejs',
     'factoring',
     'credit',
     'identity',
@@ -124,6 +129,8 @@
     'did',
     'kyc',
     'collateralized',
+    'layer-1',
+    'cross-chain',
   ];
 </script>
 
