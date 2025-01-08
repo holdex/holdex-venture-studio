@@ -69,6 +69,7 @@
       investorsAnimationDuration = JSON.parse(investors).length * 2;
     }
     if (ecosystemPartners !== undefined) {
+      console.log(ecosystemPartners);
       ecosystemPartnersAnimationDuration = JSON.parse(ecosystemPartners).length * 2;
     }
   }
@@ -132,6 +133,8 @@
     'layer-1',
     'cross-chain',
   ];
+
+  $: console.log(ecosystemPartnersAnimationDuration);
 </script>
 
 <template lang="pug" src="./template.pug">
