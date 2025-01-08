@@ -4,8 +4,9 @@ import { default as clientConfig } from '$lib/config';
 import { fail } from '@sveltejs/kit';
 import sgMail from '@sendgrid/mail';
 import type { Actions, PageServerLoad } from './$types';
+import DOMPurify from 'dompurify';
 
-sgMail.setApiKey(config.sengridApiKey);
+sgMail.setApiKey(config.sendgridApiKey);
 
 export const load: PageServerLoad = async ({ locals }) => {
   const options = await loadMessage(locals.apolloClient, clientConfig.articles.home);
@@ -20,9 +21,17 @@ export const actions: Actions = {
   default: async ({ request }) => {
     const data = await request.formData();
 
-    const email = data.get('email') as string;
-    const name = data.get('name') as string;
-    const message = data.get('message') as string;
+    const email = DOMPurify.sanitize(data.get('email') as string).trim();
+    const name = DOMPurify.sanitize(data.get('name') as string).trim();
+    const message = DOMPurify.sanitize(data.get('message') as string).trim();
+
+    const escapeHtml = (unsafe: string) =>
+      unsafe
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
 
     if (!email) {
       return fail(400, { email, name, message, missing: { email: true } });
@@ -49,12 +58,12 @@ export const actions: Actions = {
       const msg = {
         to: config.contactFormRecipientEmail,
         from: config.contactFormSenderEmail,
-        subject: `Contact Form Submission from ${name}`,
+        subject: `Contact Form Submission from ${escapeHtml(name)}`,
         text: `You have received a new message:\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}`,
         html: `<p><strong>Name:</strong> ${name}</p>
-               <p><strong>Email:</strong> ${email}</p>
+               <p><strong>Email:</strong> ${escapeHtml(email)}</p>
                <p><strong>Message:</strong></p>
-               <p>${message}</p>`,
+               <p>${escapeHtml(message)}</p>`,
       };
 
       await sgMail.send(msg);

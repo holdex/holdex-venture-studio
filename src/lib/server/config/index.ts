@@ -5,7 +5,7 @@ import {
   CONTACT_FORM_SUBMIT_URL,
   ROLLBAR_ACCESS_TOKEN,
   HOLDEX_UTILS_API_KEY,
-  SENGRID_API_KEY,
+  SENDGRID_API_KEY,
   CONTACT_FORM_RECIPIENT_EMAIL,
   CONTACT_FORM_SENDER_EMAIL,
 } from '$env/static/private';
@@ -17,7 +17,7 @@ type Config = {
   rollbarAccessToken: string;
   gitCommitSha: string;
   utilsApiKey: string;
-  sengridApiKey: string;
+  sendgridApiKey: string;
   contactFormRecipientEmail: string;
   contactFormSenderEmail: string;
 };
@@ -28,7 +28,7 @@ const config: Config = {
   rollbarAccessToken: ROLLBAR_ACCESS_TOKEN,
   gitCommitSha: VERCEL_GIT_COMMIT_SHA,
   utilsApiKey: HOLDEX_UTILS_API_KEY,
-  sengridApiKey: SENGRID_API_KEY,
+  sendgridApiKey: SENDGRID_API_KEY,
   contactFormRecipientEmail: CONTACT_FORM_RECIPIENT_EMAIL,
   contactFormSenderEmail: CONTACT_FORM_SENDER_EMAIL,
 };
