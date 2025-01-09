@@ -1,6 +1,5 @@
 include ../common-mixins
 include ../c/mixins
-//pr init
 +if('storeData')
   +main-section
     +header-wrapper.flex-col.gap-8(class="xs:gap-4")
@@ -129,6 +128,14 @@ include ../c/mixins
           title="Thirdweb Svelte"
           subtitle="Open-source Svelte SDK for thirdweb, developed by Holdex. It includes out-of-the-box UI components and API integration."
           hashtags=["wallet", "open-source", "typescript"]
+        )
+        PortfolioItem(
+          isFeatured=false
+          slug="https://t.me/odyssey_of_fate_bot?start=zolotokrylin-8fea32e9"
+          isExternal
+          title="Odyssey of Fate"
+          subtitle="Odyssey of Fate is a Telegram mini-game that embarks you on a journey of cunning, risk, and reward as you navigate the turbulent seas of fate, inspired by the epic voyage of Odysseus back to Ithaca."
+          hashtags=["wallet", "telegram", "TON", "options-trading", "education", "user-acquisition"]
         )
         PortfolioItem(
           isFeatured=false

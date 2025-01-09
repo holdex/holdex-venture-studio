@@ -124,6 +124,10 @@
     'did',
     'kyc',
     'collateralized',
+    'telegram',
+    'TON',
+    'user-acquisition',
+    'education',
   ];
 </script>
 
