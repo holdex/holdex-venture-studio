@@ -132,7 +132,7 @@
     'layer-1',
     'cross-chain',
     'evm',
-    'appchain,
+    'appchain',
     'layer-2',
   ];
 </script>
