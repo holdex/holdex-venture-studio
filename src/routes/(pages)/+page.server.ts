@@ -67,24 +67,13 @@ export const actions: Actions = {
         from: config.contactFormSenderEmail,
         subject: `Contact Form Submission from ${escapeHtml(name)}`,
         text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(email)}\nMessage: ${escapeHtml(message)}`,
-        html: `<p><strong>Name:</strong> ${name}</p>
-               <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-               <p><strong>Message:</strong></p>
-               <p>${escapeHtml(message)}</p>`,
       };
 
       await sgMail.send(msg);
 
       return { success: true };
     } catch (error: unknown) {
-      console.error('Error sending email:', error);
-
-      if (error instanceof Error && 'response' in error) {
-        const sgError = error as { response: { statusCode: number; headers: any } };
-        console.error('SendGrid response status:', sgError.response.statusCode);
-      }
-
-      return fail(500, { error: 'Failed to send email. Please try again later.' });
+      throw new Error('Failed to send email. Please try again later.');
     }
   },
 };
