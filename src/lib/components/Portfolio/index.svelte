@@ -131,6 +131,9 @@
     'collateralized',
     'layer-1',
     'cross-chain',
+    'evm',
+    'appchain,
+    'layer-2',
   ];
 </script>
 
