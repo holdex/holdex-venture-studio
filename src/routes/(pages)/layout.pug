@@ -111,6 +111,7 @@ mixin social
           textarea(
             rows="{5}"
             required
+            maxlength="160"
             bind:value="{message}"
             class="relative w-full border border-solid border-l4 block min-h-32 h-32 bg-l1 shadow-input rounded-xl p-2.5 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
             name="message"
