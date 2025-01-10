@@ -1,3 +1,4 @@
+
 // main section used only in main page
 mixin main-section-standard
   section.main(class="flex flex-col items-center pt-8 xs:pt-6 gap-19.5 smDown:gap-18")
@@ -5,16 +6,12 @@ mixin main-section-standard
 
 // hero section
 mixin section-hero-wrapper
-  .section-hero-wrapper(
-    class="flex flex-col items-center justify-center bg-gray-100 gap-8 mt-7.5 sm:mt-0.75 xs:mt-0.75 max-w-[1028px] w-full"
-  )
+  .section-hero-wrapper(class="flex flex-col items-center justify-center bg-gray-100 gap-8 mt-7.5 sm:mt-0.75 xs:mt-0.75 max-w-[1028px] w-full")
     block
 
 // KPIs section
 mixin section-kpis-wrapper
-  .section-kpis-wrapper(
-    class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-7.5 max-w-[1028px] w-full"
-  )
+  .section-kpis-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-7.5 max-w-[1028px] w-full")
     block
 
 mixin content-wrapper
@@ -22,16 +19,11 @@ mixin content-wrapper
     block
 
 mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainerGradientClass)
-  section(
-    class=(isDark ? "hidden dark:block" : "block dark:hidden") + " rounded-base-radius bg-gradient-to-r"
-    style=backgroundStyle
-  )
+  section(class=(isDark ? "hidden dark:block" : "block dark:hidden") + " rounded-base-radius bg-gradient-to-r" style=backgroundStyle)
     div(class="h-full rounded-base-radius " + bgClass + " p-2 gap-4")
       div(class="rounded-underbase bg-gradient-to-r py-10" style=gradientStyle)
         div(class="h-full rounded-xl " + bgClass + " gap-4")
-          div(
-            class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3"
-          )
+          div(class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3")
             +wrap-subcontainer("$1,500M+", "Transactional Value")
             +wrap-subcontainer("$900M+", "Combined Market Cap")
             +wrap-subcontainer("100,000+", "Users Served")
@@ -45,14 +37,11 @@ mixin wrap-subcontainer(kpiValue, kpiDescription)
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
   p(class="text-subtitle-l text-center mb-1 xs:mt-1 text-t2")
     | #{normalTextBefore}
-    a(
-      class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-      href=link
-    )
+    a(class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25" href=link)
       | #{underlinedText}
     | #{normalTextAfter}
 
-mixin section-learn-wrapper
+mixin section-learn-wrapper()
   .section-learn-wrapper(
     class="flex flex-col lg:items-center smDown:items-start lg:pt-16 tb:px-4 md:px-16 xs:px-4 pt-8 gap-4 max-w-[1028px] w-full md:max-w-[1160px] sm:max-w-[604px] smDown:px-4"
   )
