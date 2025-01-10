@@ -134,6 +134,10 @@
     'evm',
     'appchain',
     'layer-2',
+    'telegram',
+    'TON',
+    'user-acquisition',
+    'education',
   ];
 </script>
 
