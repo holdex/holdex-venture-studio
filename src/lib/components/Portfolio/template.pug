@@ -30,7 +30,7 @@ mixin logoImg(value)
     alt=value
   )
 
-mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimationDuration=null)
+mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimationDuration=null, ecosystemPartnersAnimationDuration=null)
   case type
     when 'totalLoansOriginated'
       +metricContainer("smDown:gap-2 min-w-[180px]")
@@ -65,6 +65,11 @@ mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimati
       +metricContainer("w-full")
         +metricTitle("Investors")
         +metricValueLogos(investorsAnimationDuration)
+          block
+    when 'ecosystemPartners'
+      +metricContainer("w-full")
+        +metricTitle("Ecosystem Partners")
+        +metricValueLogos(ecosystemPartnersAnimationDuration)
           block
 
 article.portfolio-product-card(
@@ -106,7 +111,11 @@ article.portfolio-product-card(
         +if('investors')
           +metric('investors', null, null, '{investorsAnimationDuration}')
             +each('JSON.parse(investors).concat(JSON.parse(investors)) as investor')
-              +logoImg('{investor}') 
+              +logoImg('{investor}')
+        +if('ecosystemPartners')
+          +metric('ecosystemPartners', null, null, null,'{ecosystemPartnersAnimationDuration}')
+            +each('JSON.parse(ecosystemPartners).concat(JSON.parse(ecosystemPartners)) as ecosystemPartner')
+              +logoImg('{ecosystemPartner}') 
 
   +if('JSON.parse(hashtags) && JSON.parse(hashtags).length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
