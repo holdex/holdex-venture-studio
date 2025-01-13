@@ -4,6 +4,7 @@
   import Parser, { type Message } from '$components/BodyParser';
   import BodyRenderer from '$components/BodyRenderer/index.svelte';
   import TextHighlight from '$components/TextHighlight/index.svelte';
+  import CompanyLogoStrip from '$components/CompanyLogoStrip/index.svelte';
   import { signature } from '$components/Icons';
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
