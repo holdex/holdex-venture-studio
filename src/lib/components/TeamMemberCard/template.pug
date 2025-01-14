@@ -1,0 +1,20 @@
+article.flex.p-4.flex-col.w-full.max-w-lg(class="smDown:flex-col smDown:items-start")
+  .flex.items-start(class="smDown:flex-col smDown:gap-2")
+    .w-12.h-12.rounded-xl.overflow-hidden(style="background-color: #3d414d" class="smDown:ml-2")
+    .flex.flex-col.ml-3(class="gap-1 smDown:ml-2")
+      span(class="text-base font-bold text-white flex items-center")
+        a(
+          href="{link}"
+          class="relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+          target="_blank"
+          rel="noopener noreferrer"
+        )
+          | {name}
+        span.text-t2(class="mx-2 font-bold") 
+          | &#160;—&#160;
+        span.text-subtitle-l.font-inter.text-center.text-t2(class="font-bold")
+          | {role}
+      TextParagraph.text-sm.text-gray-300
+        | {description}
+  TextParagraph.text-sm.text-gray-300(class="smDown:ml-2")
+    | {additionalDescription}
