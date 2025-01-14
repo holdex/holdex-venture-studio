@@ -1,6 +1,5 @@
 include ../common-mixins
 include ../c/mixins
-
 +if('storeData')
   +main-section
     +header-wrapper.flex-col.gap-8(class="xs:gap-4")
@@ -8,8 +7,8 @@ include ../c/mixins
         +crumbItemLink("/", "Home")
         +crumbDelimiter
         +crumbItemText("Portfolio")
-      +messageHeader("Portfolio", "Meet the companies that are driving the innovation and adoption of disruptive technologies.")()
-      +companyLogoStrip([ { lightPath: '/portfolioLogo/light/clearpool.png', darkPath: '/portfolioLogo/dark/clearpool.png', name: 'Clearpool' }, { lightPath: '/portfolioLogo/light/truflation.png', darkPath: '/portfolioLogo/dark/truflation.png', name: 'Truflation' }, { lightPath: '/portfolioLogo/light/zebec.png', darkPath: '/portfolioLogo/dark/zebec.png', name: 'Zebec Protocol' }, { lightPath: '/portfolioLogo/light/synnax.png', darkPath: '/portfolioLogo/dark/synnax.png', name: 'Synnax' }, { lightPath: '/portfolioLogo/light/ozean.png', darkPath: '/portfolioLogo/dark/ozean.png', name: 'Ozean' }, { lightPath: '/portfolioLogo/light/usdx.png', darkPath: '/portfolioLogo/dark/usdx.png', name: 'USDX' }, { lightPath: '/portfolioLogo/light/nuon.png', darkPath: '/portfolioLogo/dark/nuon.png', name: 'Nuon' }, { lightPath: '/portfolioLogo/light/indexfun.png', darkPath: '/portfolioLogo/dark/indexfun.png', name: 'Index.fun' }, { lightPath: '/portfolioLogo/light/hextrust.png', darkPath: '/portfolioLogo/dark/hextrust.png', name: 'HexTrust' }, { lightPath: '/portfolioLogo/light/ithaca.png', darkPath: '/portfolioLogo/dark/ithaca.png', name: 'Ithaca' }, { lightPath: '/portfolioLogo/light/cicero.png', darkPath: '/portfolioLogo/dark/cicero.png', name: 'Cicero' }, { lightPath: '/portfolioLogo/light/finoverse.png', darkPath: '/portfolioLogo/dark/finoverse.png', name: 'Finoverse' }, { lightPath: '/portfolioLogo/light/web3headhunting.png', darkPath: '/portfolioLogo/dark/web3headhunting.png', name: 'Web3 Headhunting' }, { lightPath: '/portfolioLogo/light/nostrocket.png', darkPath: '/portfolioLogo/dark/nostrocket.png', name: 'Nostrocket' }, { lightPath: '/portfolioLogo/light/wakame.png', darkPath: '/portfolioLogo/dark/wakame.png', name: 'Wakame' }, { lightPath: '/portfolioLogo/light/pickle.png', darkPath: '/portfolioLogo/dark/pickle.png', name: 'Pickle Finance' }, { lightPath: '/portfolioLogo/light/lumiere.png', darkPath: '/portfolioLogo/dark/lumiere.png', name: 'Lumiere' }, { lightPath: '/portfolioLogo/light/amplify.png', darkPath: '/portfolioLogo/dark/amplify.png', name: 'Amplify' }, { lightPath: '/portfolioLogo/light/coins-and-skins.png', darkPath: '/portfolioLogo/dark/coins-and-skins.png', name: 'Coins and Skins' } ])
+      +messageHeader("Portfolio", "Meet Holdex's portfolio companies that drive the adoption of decentralized technologies and inclusive DeFi services.")()
+      CompanyLogoStrip
     +content-wrapper-portfolio
       +feedRenderer
       +subheadingText("Featured Projects")
@@ -19,11 +18,22 @@ include ../c/mixins
           slug="c/companies/clearpool-finance"
           title="Clearpool Finance"
           subtitle="Lend stablecoins to leading institutions & earn attractive risk-adjusted yields."
-          description="As core members and stakeholders, we are Clearpool’s product department from day 1. We continue to design, develop, and launch lending products together with business stakeholders."
-          hashtags=["defi", "dapp", "ethereum", "optimism", "polygon"]
+          description="As core members and stakeholders, we are Clearpool's product department from day 1. We continue to design, develop, and launch lending products together with business stakeholders."
+          hashtags=["defi", "lending", "dapp", "multi-chain", "evm"]
           borrowers=["fasanara", "bastion", "portofino", "wincent", "amber", "auros", "folkvang", "wintermute", "fbg-capital", "alphanonce", "gravity-team", "ledgerprime", "parallel", "nibbio", "manifold", "adaptive-frontier", "arbelos", "hyperithm", "banxa"]
           investors=["sequoia", "arrington", "sino", "hashkey", "wintermute"]
           totalLoansOriginated=626408796.38
+        )
+        PortfolioItem(
+          isFeatured
+          slug="https://ozean.finance/"
+          isExternal
+          title="Ozean"
+          subtitle="The Blockchain for RWA yield."
+          description="Ozean is a permissionless Ethereum Layer 2 solution with an optional compliance layer, built on the OP Stack. It fosters interoperability and provides essential infrastructure for institutional financial markets. Through its native stablecoin $USDX backed by treasury bills, users can earn native yield while accessing a unified platform that bridges traditional finance with DeFi innovation, revolutionizing RWA adoption."
+          hashtags=["defi", "evm", "appchain", "rwa", "layer-2", "dapp"]
+          investors=["hashkey", "sequoia", "wintermute", "arrington", "sino"]
+          marketCapitalization=242219999.5
         )
         PortfolioItem(
           isFeatured
@@ -34,6 +44,17 @@ include ../c/mixins
           hashtags=["defi", "oracle", "multi-chain", "architecture", "python"]
           marketCapitalization=526121202
           investors=["coinbase", "chainlink", "c2ventures", "balaji", "g2venture"]
+        )
+        PortfolioItem(
+          isFeatured
+          slug="https://truf.network/"
+          isExternal
+          title="TRUF.network"
+          subtitle="The world’s first decentralized database for real economy."
+          description="TRUF.network is a layer-1 blockchain that redefines how economic data is sourced, managed, and consumed. Its innovation lies in computing and validating economic metrics within a decentralized framework. The network facilitates the delivery of precise, unbiased, and corruption-free financial data feeds while promoting the tokenization of real-world assets (RWAs)."
+          hashtags=["layer-1", "defi", "oracle", "cross-chain", "ai", "python", "go"]
+          investors=["coinbase", "chainlink", "c2ventures", "balaji", "g2venture"]
+          ecosystemPartners=["chainlink", "allora", "allnodes", "everstake", "chirp", "overlay", "balancer", "northwest-nodes", "gt-protocol", "koii", "holdex", "perennial", "panther", "levitate-labs", "kwil", "parcl", "fineco", "naya", "bitscrunch", "linkpool", "validation-cloud", "theoriq", "clickhouse", "cometbft", "frax", "nuon", "nibiru", "arbitrum", "plume", "partisia", "binance", "aerodrome", "solana", "xdc", "polygon", "avalanche", "injective", "big-data-protocol", "landx", "stakin", "matrixed-link", "index-fun", "ampleforth"]
         )
         PortfolioItem(
           isFeatured
@@ -53,17 +74,7 @@ include ../c/mixins
           description="Synnax takes credit intelligence one step further and integrates AI to curate, analyze and, predict market data for decentralized loans. Holdex is assigned to lead product development and engineering team management at Synnax."
           hashtags=["defi", "credit-rating", "ai", "zk"]
           founders="Robert Alcorn, Dario Capodici, Alessio Quaglini"
-          investors=["tonventures", "kenetic", "wintermute", "edessa", "nolimitholdings", "bitscale", "ryzelabs", "mhventures", "hextrust", "moonvault", "gamefi", "typhon", "ausvic", "drops", "everstake"]
-        )
-        PortfolioItem(
-          isFeatured
-          slug="https://ozean.finance/"
-          isExternal
-          title="Ozean"
-          subtitle="The Blockchain for RWA yield."
-          description="Ozean is a permissionless Ethereum Layer 2 with an optional compliance layer. It fosters interoperability and provides essential infrastructure for institutional financial markets."
-          hashtags=["defi", "rwa", "dapp", "optimism"]
-          investors=["hashkey", "sequoia", "wintermute", "arrington", "sino"]
+          investors=["tonventures", "kenetic", "wintermute", "edessa", "nolimitholdings", "bitscale", "ryzelabs", "mhventures", "hextrust", "moonvault", "gamefi", "typhon", "ausvic", "drops", "everstake-capital"]
         )
         PortfolioItem(
           isFeatured
@@ -95,15 +106,6 @@ include ../c/mixins
         )
         PortfolioItem(
           isFeatured
-          slug="https://hextrust.com/"
-          isExternal
-          title="HexTrust"
-          subtitle="Digital asset custodian for ecosystems."
-          description="Hex Trust is a fully-licensed digital asset custodian that provides solutions for protocols, foundations, financial institutions, and the Web3 ecosystem."
-          hashtags=["defi", "asset-custody"]
-        )
-        PortfolioItem(
-          isFeatured
           slug="https://www.ithacaprotocol.io/"
           isExternal
           title="Ithaca Protocol"
@@ -129,6 +131,22 @@ include ../c/mixins
           title="Thirdweb Svelte"
           subtitle="Open-source Svelte SDK for thirdweb, developed by Holdex. It includes out-of-the-box UI components and API integration."
           hashtags=["wallet", "open-source", "typescript"]
+        )
+        PortfolioItem(
+          isFeatured=false
+          slug="https://t.me/odyssey_of_fate_bot?start=zolotokrylin-8fea32e9"
+          isExternal
+          title="Odyssey of Fate"
+          subtitle="Odyssey of Fate is a Telegram mini-game that embarks you on a journey of cunning, risk, and reward as you navigate the turbulent seas of fate, inspired by the epic voyage of Odysseus back to Ithaca."
+          hashtags=["wallet", "telegram", "TON", "options-trading", "education", "user-acquisition"]
+        )
+        PortfolioItem(
+          isFeatured=false
+          slug="https://hextrust.com/"
+          isExternal
+          title="Hex Trust"
+          subtitle="Hex Trust is a fully-licensed digital asset custodian that provides solutions for protocols, foundations, financial institutions, and the Web3 ecosystem."
+          hashtags=["defi", "asset-custody"]
         )
         PortfolioItem(
           isFeatured=false
