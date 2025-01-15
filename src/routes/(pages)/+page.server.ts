@@ -7,7 +7,6 @@ import type { Actions, PageServerLoad } from './$types';
 
 sgMail.setApiKey(config.sendgridApiKey);
 
-//pr init
 export const load: PageServerLoad = async ({ locals }) => {
   const options = await loadMessage(locals.apolloClient, clientConfig.articles.home);
 
@@ -47,6 +46,15 @@ export const actions: Actions = {
 
     if (!name) {
       return fail(400, { email, name, message, missing: { name: true } });
+    }
+
+    if (name.length > 40) {
+      return fail(400, {
+        email,
+        name,
+        message,
+        error: 'Name exceeds the 40 character limit.',
+      });
     }
 
     if (!message) {
