@@ -4,11 +4,10 @@
     export let name: string;
     export let role: string;
     export let description: string;
-    export let additionalDescription: string;
-    export let avatar: string;
+    export let image: string;
     export let link: string;
 
-    $: if (!name || !role || !description || !additionalDescription || !avatar || !link) {
+    $: if (!name || !role || !description || !image || !link) {
         throw new Error('Team member card is missing required props');
     }
   </script>
