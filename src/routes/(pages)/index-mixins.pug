@@ -14,25 +14,6 @@ mixin section-kpis-wrapper
   .section-kpis-wrapper(class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-7.5 max-w-[1028px] w-full")
     block
 
-mixin companiesStrip
-  .companiesStrip(
-    class="flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] w-full"
-  )&attributes(attributes)
-    block
-
-mixin companyLogoStripIndex(logos)
-  if logos !== undefined
-    .company-logo-wrapper(
-      class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle"
-    )
-      .company-logo-strip(
-        class="flex flex-wrap gap-8 justify-center align-middle"
-      )
-        each logo in logos
-          img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
-          img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
-
-
 mixin content-wrapper
   .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block

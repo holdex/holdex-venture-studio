@@ -82,7 +82,14 @@ export const actions: Actions = {
 
       return { success: true };
     } catch (error: unknown) {
-      throw new Error('Failed to send email. Please try again later.');
+      console.error('Error sending email:', error);
+
+      if (error instanceof Error && 'response' in error) {
+        const sgError = error as { response: { statusCode: number; headers: any } };
+        console.error('SendGrid response status:', sgError.response.statusCode);
+      }
+
+      return fail(500, { error: 'Failed to send email. Please try again later.' });
     }
   },
 };
