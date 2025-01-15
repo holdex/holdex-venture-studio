@@ -48,6 +48,15 @@ export const actions: Actions = {
       return fail(400, { email, name, message, missing: { name: true } });
     }
 
+    if (name.length > 40) {
+      return fail(400, {
+        email,
+        name,
+        message,
+        error: 'Name exceeds the 40 character limit.',
+      });
+    }
+
     if (!message) {
       return fail(400, { email, name, message, missing: { message: true } });
     }
@@ -67,10 +76,6 @@ export const actions: Actions = {
         from: config.contactFormSenderEmail,
         subject: `Contact Form Submission from ${escapeHtml(name)}`,
         text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(email)}\nMessage: ${escapeHtml(message)}`,
-        html: `<p><strong>Name:</strong> ${name}</p>
-               <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-               <p><strong>Message:</strong></p>
-               <p>${escapeHtml(message)}</p>`,
       };
 
       await sgMail.send(msg);
