@@ -57,9 +57,9 @@ mixin author
         open="false"
         on:click|preventDefault="{toggleToc}"
         class:active="{tocOpen}"
-        class="flex w-full cursor-pointer flex-col bg-l1 rounded-xl border border-solid border-l4 dark:bg-l2"
+        class="flex w-full cursor-pointer flex-col items-start bg-l1 rounded-xl border border-solid border-l4 dark:bg-l2"
       )
-        summary(class="flex items-center justify-between p-3.75")
+        summary(class="flex items-center justify-between p-3.75 w-full")
           TextParagraph(class="pointer-events-none" textColor="text-t3") Table of Contents
           +if('tocOpen')
             Button(class="pointer-events-none" variant="solo" size="small" icon="{BarsArrowUp}")
@@ -78,3 +78,4 @@ mixin author
                   class!="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-t1 {renderTocPadding(item.level)}"
                 ) ⏤ {@html item.cleanRef}
     BodyRenderer(blocks="{message.blocks}")
+  
