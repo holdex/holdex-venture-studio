@@ -296,7 +296,7 @@ module.exports = {
         6.5: '1.625rem',
         7.5: '2.000rem',
         8.5: '2.125rem',
-        '11/25': '44%', 
+        '11/25': '44%',
         '1/2': '50%',
         10.5: '2.65rem',
         18: '4.624rem',
@@ -367,13 +367,12 @@ module.exports = {
         },
         'navigation-left-right': {
           '0%, 100%': { transform: 'translateX(0)' },
-          '33%, 66%': { transform: 'translateX(-100px)' }
-        }
+          '33%, 66%': { transform: 'translateX(-100px)' },
+        },
       },
       backgroundImage: {
-
         //- Landing Page
-          //- Hero / KPIs
+        //- Hero / KPIs
         'subcontainer-gradient': 'linear-gradient(to bottom, #1A1E29, #10141F)',
         'subcontainer-gradient-light': 'linear-gradient(to bottom, #EAEBEF, #F0F1F5)',
 
