@@ -121,6 +121,19 @@ type Testimonial = {
   data: TestimonialElement;
 };
 
+type TeamMembersBlock = {
+  type: 'teamMembers';
+  data: {
+    members: Array<{
+      name: string;
+      role: string;
+      description: string;
+      image: string;
+      link?: string;
+    }>;
+  };
+};
+
 export type Author = {
   name: string;
   url: string;
@@ -402,6 +415,19 @@ const parseToc = (block: TocBlock) => {
   };
 };
 
+const parseTeamMembers = (block: TeamMembersBlock) => {
+  return {
+    type: 'teamMembers',
+    data: block.data.members.map((member) => ({
+      name: member.name,
+      role: member.role,
+      description: member.description,
+      image: member.image,
+      link: member.link,
+    })),
+  };
+};
+
 const parseList = (block: ListBlock) => {
   const tokens: any[] = [];
   block.data.items.forEach((item) => {
@@ -590,6 +616,7 @@ const htmlParser = HTMLParser({
   toc: parseToc,
   cta: parseCTA,
   testimonial: parseTestimonial,
+  teamMembers: parseTeamMembers,
 });
 
 const parseBlocks = (blocks: any[]) => htmlParser.parse({ blocks });
