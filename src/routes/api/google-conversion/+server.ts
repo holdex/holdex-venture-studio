@@ -16,17 +16,8 @@ import type {
   Schema$TextStyle,
 } from '$lib/types/googleDoc';
 import type { RequestHandler } from './$types';
-import type {
-  Author,
-  CTAElement,
-  TestimonialElement,
-  TeamMembersBlock,
-} from '$components/BodyParser/blocks';
-import type {
-  Parsed$Paragraph,
-  Parsed$ParagraphElement,
-  Parsed$ParagraphItems,
-} from '$lib/types/googleConversion';
+import type { Author, CTAElement, TeamMembersBlock, TestimonialElement } from '$components/BodyParser/blocks';
+import type { Parsed$Paragraph, Parsed$ParagraphElement, Parsed$ParagraphItems } from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
 export const POST: RequestHandler = async ({ request }) => {
