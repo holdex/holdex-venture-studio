@@ -121,8 +121,8 @@ type Testimonial = {
   data: TestimonialElement;
 };
 
-type TeamMembersBlock = {
-  type: 'teamMembers';
+export type TeamMembersBlock = {
+  type: 'teamMember';
   data: {
     members: Array<{
       name: string;

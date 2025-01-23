@@ -16,8 +16,17 @@ import type {
   Schema$TextStyle,
 } from '$lib/types/googleDoc';
 import type { RequestHandler } from './$types';
-import type { Author, CTAElement, TestimonialElement } from '$components/BodyParser/blocks';
-import type { Parsed$Paragraph, Parsed$ParagraphElement, Parsed$ParagraphItems } from '$lib/types/googleConversion';
+import type {
+  Author,
+  CTAElement,
+  TestimonialElement,
+  TeamMembersBlock,
+} from '$components/BodyParser/blocks';
+import type {
+  Parsed$Paragraph,
+  Parsed$ParagraphElement,
+  Parsed$ParagraphItems,
+} from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -91,45 +100,51 @@ function convertToHoldexJson(document: Schema$Document) {
           });
           tableContent.push(trowContent);
         });
-
+        const teamMembers = parseTeamMembersSection(tableContent);
         const cta: CTAElement = parseCTASection(tableContent);
         const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
 
-        if (!_.isEmpty(testimonial)) {
+        if (!_.isEmpty(teamMembers)) {
           newContent.push({
-            type: 'testimonial',
-            data: testimonial,
+            type: 'teamMembers',
+            data: teamMembers,
           });
-        } else if (!_.isEmpty(cta)) {
-          newContent.push({
-            type: 'cta',
-            data: cta,
-          });
-        } else {
-          newContent.push({
-            type: 'table',
-            data: {
-              content: tableContent,
-            },
-          });
+          if (!_.isEmpty(testimonial)) {
+            newContent.push({
+              type: 'testimonial',
+              data: testimonial,
+            });
+          } else if (!_.isEmpty(cta)) {
+            newContent.push({
+              type: 'cta',
+              data: cta,
+            });
+          } else {
+            newContent.push({
+              type: 'table',
+              data: {
+                content: tableContent,
+              },
+            });
+          }
         }
-      }
-      // Table Of Contents
-      else if (tableOfContents) {
-        const { content } = tableOfContents;
+        // Table Of Contents
+        else if (tableOfContents) {
+          const { content } = tableOfContents;
 
-        if (content && content.length > 0) {
-          const tocContent: any[] = [];
-          content.map((el, i) => {
-            if (el.paragraph) {
-              parseParagraph(document, tableOfContents, tocContent, el.paragraph, i);
-            }
-          });
+          if (content && content.length > 0) {
+            const tocContent: any[] = [];
+            content.map((el, i) => {
+              if (el.paragraph) {
+                parseParagraph(document, tableOfContents, tocContent, el.paragraph, i);
+              }
+            });
 
-          newContent.push({
-            type: 'toc',
-            items: tocContent,
-          });
+            newContent.push({
+              type: 'toc',
+              items: tocContent,
+            });
+          }
         }
       }
     });
@@ -202,6 +217,52 @@ function parseTestimonialSection(content: any[]) {
   }
   return testimonial;
 }
+
+function parseTeamMembersSection(content: any[]): TeamMembersBlock | null {
+  const teamMembersBlock: TeamMembersBlock = {
+    type: 'teamMember',
+    data: {
+      members: [],
+    },
+  };
+
+  if (content.length >= 5 && (content[0] as any[]).length === 2) {
+    const contentHead = content[0];
+
+    if (
+      contentHead[0][0]?.type === 'paragraph' &&
+      contentHead[0][0]?.data?.text === 'type' &&
+      contentHead[1][0]?.type === 'paragraph' &&
+      contentHead[1][0]?.data?.text === 'teamMembers'
+    ) {
+      content.forEach(([[first], [second]], i) => {
+        if (first === undefined || first.type !== 'paragraph') return;
+
+        const rowData: Record<string, string> = {};
+        if (second && second.type === 'paragraph') {
+          rowData[first.data.text] = second.data.text;
+        }
+
+        if (rowData.name && rowData.role) {
+          teamMembersBlock.data.members.push({
+            name: rowData.name || '',
+            role: rowData.role || '',
+            description: rowData.description || '',
+            image: rowData.image || '',
+            link: rowData.link || undefined,
+          });
+        }
+      });
+
+      if (teamMembersBlock.data.members.length > 0) {
+        return teamMembersBlock;
+      }
+    }
+  }
+
+  return null;
+}
+
 function getHeaderRowAuthor(content: Schema$ParagraphElement) {
   const author: Author = {} as Author;
   if (content && content.textRun?.textStyle?.link) {
@@ -339,7 +400,7 @@ function getText(element: Schema$ParagraphElement, { isHeader = false, isCtaLink
 
   if (link) {
     if (isCtaLink) {
-      return (link.url || text) as string
+      return (link.url || text) as string;
     }
     return `<a href="${link.url}">${text}</a>`;
   }
@@ -529,7 +590,7 @@ const parseParagraph = (
           (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             : 0) /
-          18 +
+            18 +
           2;
 
         tagContent.push({
