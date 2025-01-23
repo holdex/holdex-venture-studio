@@ -71,7 +71,10 @@ mixin social
               class="w-8 h-8 "
             )
 
-          div(id="secondary-navbar" class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]")
+          div(
+            id="secondary-navbar"
+            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
+          )
             div(
               id="secondary-navbar-section h-full"
               class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 animate-navigation-left-right md-up:animate-none"
@@ -86,8 +89,24 @@ mixin social
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-
-  main: slot 
+  .flex(class="xl-up:w-full justify-center")
+    aside.sidebar(
+      class="hidden xl-up:block w-64 bg-l1 border-r border-solid border-l4 z-10 sticky top-0 h-screen"
+    )
+      nav.sidebar-nav(class="flex flex-col gap-4 p-4")
+        a.sidebar-link(href="{routes.index}" class="text-t1 hover:text-accent1-default") Home
+        a.sidebar-link(href="{routes.about}" class="text-t1 hover:text-accent1-default") About
+        a.sidebar-link(href="{routes.services}" class="text-t1 hover:text-accent1-default") Services
+        a.sidebar-link(href="{routes.contact}" class="text-t1 hover:text-accent1-default") Contact
+    main(class="xl-up:w-full xl-up:max-w-[1028px]"): slot
+    aside.sidebar(
+      class="hidden xl-up:block w-64 bg-l1 border-r border-solid border-l4 z-10 sticky top-0 h-screen"
+    )
+      nav.sidebar-nav(class="flex flex-col gap-4 p-4")
+        a.sidebar-link(href="{routes.index}" class="text-t1 hover:text-accent1-default") Home
+        a.sidebar-link(href="{routes.about}" class="text-t1 hover:text-accent1-default") About
+        a.sidebar-link(href="{routes.services}" class="text-t1 hover:text-accent1-default") Services
+        a.sidebar-link(href="{routes.contact}" class="text-t1 hover:text-accent1-default") Contact
   button(
     class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10"
     on:click!="{() => handleClick(undefined)}"
