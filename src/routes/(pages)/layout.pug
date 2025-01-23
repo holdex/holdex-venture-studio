@@ -83,7 +83,7 @@ mixin right-sidebar
   )
 
 .app-container
-  header(class!="z-10 w-full block relative sticky top-0 xl-up:hidden")
+  header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
@@ -113,11 +113,14 @@ mixin right-sidebar
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-  .flex(class="xl-up:w-full justify-center")
-    +left-sidebar
-    main(class="xl-up:w-full xl-up:max-w-[1028px]")
+  .flex(class=isNewNav ? "xl-up:w-full justify-center" : "")
+    if isNewNav
+      +left-sidebar
+    main(class=isNewNav ? "xl-up:w-full xl-up:max-w-[1028px]" : "")
       slot
-      footer(class="mt-16 xs:mt-8 flex flex-col items-center w-full xl-up:max-w-[1028px]")
+      footer(
+        class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
+      )
         .contact-form(
           class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4"
           id="contact-form"
@@ -206,7 +209,8 @@ mixin right-sidebar
             +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")
             +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")
             +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")
-    +right-sidebar
+    if isNewNav
+      +right-sidebar
   button(
     class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10"
     on:click!="{() => handleClick(undefined)}"

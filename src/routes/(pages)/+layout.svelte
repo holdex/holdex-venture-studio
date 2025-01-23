@@ -119,6 +119,8 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  $: isNewNav = $page.url.searchParams.get('newNav') === 'true';
 </script>
 
 <template lang="pug" src="./layout.pug">
