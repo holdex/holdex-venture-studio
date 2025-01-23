@@ -77,6 +77,11 @@ mixin left-sidebar
       +sidebar-nav-link("{routes.jobs}", "Jobs")
     div(class="h-15.5")
 
+mixin right-sidebar
+  aside.sidebar(
+    class="shrink-0 hidden xl-up:flex flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
+  )
+
 .app-container
   header(class!="z-10 w-full block relative sticky top-0 xl-up:hidden")
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
@@ -201,7 +206,7 @@ mixin left-sidebar
             +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")
             +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")
             +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")
-    +left-sidebar
+    +right-sidebar
   button(
     class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10"
     on:click!="{() => handleClick(undefined)}"
