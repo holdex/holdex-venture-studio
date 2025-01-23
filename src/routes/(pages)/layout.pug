@@ -66,7 +66,7 @@ mixin sidebar-nav-link(href, title)
 
 mixin left-sidebar
   aside.sidebar(
-    class="shrink-0 hidden xl-up:flex flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
+    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-4 w-full shrink-0")
@@ -79,7 +79,7 @@ mixin left-sidebar
 
 mixin right-sidebar
   aside.sidebar(
-    class="shrink-0 hidden xl-up:flex flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
+    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
   )
 
 .app-container
@@ -113,10 +113,9 @@ mixin right-sidebar
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-  .flex(class=isNewNav ? "xl-up:w-full justify-center" : "")
-    if isNewNav
-      +left-sidebar
-    main(class=isNewNav ? "xl-up:w-full xl-up:max-w-[1028px]" : "")
+  .flex(class="{ isNewNav ? 'xl-up:w-full justify-center' : ''}")
+    +left-sidebar
+    main(class="{ isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
       slot
       footer(
         class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
@@ -209,8 +208,7 @@ mixin right-sidebar
             +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")
             +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")
             +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")
-    if isNewNav
-      +right-sidebar
+    +right-sidebar
   button(
     class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10"
     on:click!="{() => handleClick(undefined)}"

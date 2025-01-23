@@ -3,6 +3,13 @@ mixin main-section-standard
   section.main(class="flex flex-col items-center pt-8 xs:pt-6 gap-8 xl-up:pt-18")
     block
 
+// hero section
+mixin section-hero-wrapper
+  .section-hero-wrapper(
+    class="flex flex-col items-center justify-center bg-gray-100 gap-8  smDown:justify-start smDown:items-start max-w-[1028px] smDown:px-4 w-full"
+  )
+    block
+
 // KPIs section
 mixin section-kpis-wrapper
   .section-kpis-wrapper(
