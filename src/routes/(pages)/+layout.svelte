@@ -32,13 +32,7 @@
   let success = false;
   let isBurgerDropdownShown = false;
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
-  let themeIconName: SVGIconName = theme
-    ? theme === 'dark'
-      ? 'sun'
-      : 'moon'
-    : globalThis.window?.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'moon'
-    : 'sun';
+  let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
 
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
@@ -125,6 +119,8 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  $: isNewNav = $page.url.searchParams.get('newNav') === 'true' || false;
 </script>
 
 <template lang="pug" src="./layout.pug">

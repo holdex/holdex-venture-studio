@@ -33,17 +33,8 @@
       font-family: var(--main-font);
     }
   }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      @include colorScheme();
-    }
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root {
-      @include colorScheme('light');
-    }
+  :root {
+    @include colorScheme();
   }
 
   [data-theme='dark'] {
