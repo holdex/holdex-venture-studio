@@ -81,6 +81,11 @@ mixin right-sidebar
   aside.sidebar(
     class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
   )
+    button.w-fit.relative.text-h3-l.mb-4.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
+      on:click!="{() => handleClick(undefined)}"
+      class="xs:text-h3-s bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+    )
+      | Talk to Us!
 
 .app-container
   header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
@@ -113,9 +118,9 @@ mixin right-sidebar
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-  .flex(class="{ isNewNav ? 'xl-up:w-full justify-center' : ''}")
+  .flex(class="{isNewNav ? 'xl-up:w-full justify-center' : ''}")
     +left-sidebar
-    main(class="{ isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
+    main(class="{isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
       slot
       footer(
         class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
