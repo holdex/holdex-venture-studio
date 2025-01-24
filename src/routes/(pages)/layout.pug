@@ -58,6 +58,26 @@ mixin social
     )
     +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(class="!h-5 !w-5 !p-0 text-i1")
 
+mixin sidebar-social
+  .social-icons-nav(
+    class!="sidebar-social w-full gap-8 flex flex-col items-end {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}"
+  )
+    +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://github.com/holdex", "{@html socialIcons.github}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+
 mixin sidebar-nav-link(href, title)
   a.w-fit.relative.text-h3-l.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
     href=href
@@ -79,13 +99,14 @@ mixin left-sidebar
 
 mixin right-sidebar
   aside.sidebar(
-    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
+    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
   )
     button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
       class="xs:text-h3-s bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
     )
       | Talk to Us!
+    +sidebar-social
 
 .app-container
   header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
