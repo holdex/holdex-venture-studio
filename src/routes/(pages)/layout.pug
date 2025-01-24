@@ -107,6 +107,14 @@ mixin right-sidebar
     )
       | Talk to Us!
     +sidebar-social
+    button.h-8.flex.items-center.gap-2(on:click!="{onThemeToggle}" class="group")
+      SVGIcon(
+        name="{themeIconName}"
+        class="w-4.5 h-4.5 stroke-t3 transition-colors group-hover:stroke-accent1-default"
+      )
+      span(
+        class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors group-hover:text-accent1-default"
+      ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
 .app-container
   header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
