@@ -58,8 +58,28 @@ mixin social
     )
     +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(class="!h-5 !w-5 !p-0 text-i1")
 
+mixin sidebar-social
+  .social-icons-nav(
+    class!="sidebar-social w-full gap-8 flex flex-col items-end {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}"
+  )
+    +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://github.com/holdex", "{@html socialIcons.github}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+    +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(
+      class="!h-16 !w-16 !p-0 text-i1"
+    )
+
 mixin sidebar-nav-link(href, title)
-  a.w-fit.relative.text-h3-l.mb-4.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
+  a.w-fit.relative.text-h3-l.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
     href=href
     class="xs:text-h3-s bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
   )= title
@@ -69,7 +89,7 @@ mixin left-sidebar
     class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
-    nav.sidebar-nav(class="flex flex-col gap-4 w-full shrink-0")
+    nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
       +sidebar-nav-link("{routes.about}", "About")
       +sidebar-nav-link("{routes.portfolio}", "Portfolio")
       +sidebar-nav-link("{routes.forStartups}", "For Startups")
@@ -79,8 +99,22 @@ mixin left-sidebar
 
 mixin right-sidebar
   aside.sidebar(
-    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-[58px] pr-8 pl-16"
+    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
   )
+    button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
+      on:click!="{() => handleClick(undefined)}"
+      class="xs:text-h3-s bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+    )
+      | Talk to Us!
+    +sidebar-social
+    button.h-8.flex.items-center.gap-2(on:click!="{onThemeToggle}" class="group")
+      SVGIcon(
+        name="{themeIconName}"
+        class="w-4.5 h-4.5 stroke-t3 transition-colors group-hover:stroke-accent1-default"
+      )
+      span(
+        class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors group-hover:text-accent1-default"
+      ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
 .app-container
   header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
@@ -113,9 +147,9 @@ mixin right-sidebar
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-  .flex(class="{ isNewNav ? 'xl-up:w-full justify-center' : ''}")
+  .flex(class="{isNewNav ? 'xl-up:w-full justify-center' : ''}")
     +left-sidebar
-    main(class="{ isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
+    main(class="{isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
       slot
       footer(
         class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
