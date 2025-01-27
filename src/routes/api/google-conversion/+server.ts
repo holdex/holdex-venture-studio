@@ -106,7 +106,7 @@ function convertToHoldexJson(document: Schema$Document) {
 
         if (!_.isEmpty(teamMembers)) {
           newContent.push({
-            type: 'teamMembers',
+            type: 'teamMember',
             data: teamMembers,
           });
           if (!_.isEmpty(testimonial)) {
