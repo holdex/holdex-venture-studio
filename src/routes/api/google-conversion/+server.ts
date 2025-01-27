@@ -16,8 +16,17 @@ import type {
   Schema$TextStyle,
 } from '$lib/types/googleDoc';
 import type { RequestHandler } from './$types';
-import type { Author, CTAElement, TeamMembersBlock, TestimonialElement } from '$components/BodyParser/blocks';
-import type { Parsed$Paragraph, Parsed$ParagraphElement, Parsed$ParagraphItems } from '$lib/types/googleConversion';
+import type {
+  Author,
+  CTAElement,
+  TeamMembersBlock,
+  TestimonialElement,
+} from '$components/BodyParser/blocks';
+import type {
+  Parsed$Paragraph,
+  Parsed$ParagraphElement,
+  Parsed$ParagraphItems,
+} from '$lib/types/googleConversion';
 import { trimJoinArray } from '$lib/utils';
 
 export const POST: RequestHandler = async ({ request }) => {
@@ -224,7 +233,7 @@ function parseTeamMembersSection(content: any[]): TeamMembersBlock | null {
       contentHead[0][0]?.type === 'paragraph' &&
       contentHead[0][0]?.data?.text === 'type' &&
       contentHead[1][0]?.type === 'paragraph' &&
-      contentHead[1][0]?.data?.text === 'teamMembers'
+      contentHead[1][0]?.data?.text === 'teamMember'
     ) {
       content.forEach(([[first], [second]], i) => {
         if (first === undefined || first.type !== 'paragraph') return;
@@ -435,7 +444,7 @@ const parseParagraphElement = (
     parentContent.push({
       [tag]: getText(element, {
         isHeader: tag !== 'p',
-        isCtaLink: wrappingTable
+        isCtaLink: wrappingTable,
       }),
     });
   }
@@ -475,7 +484,8 @@ const parseParagraph = (
     const listStyle = listTag === 'ol' ? 'ordered' : 'unordered';
 
     if (prevListId === listId) {
-      const list: Parsed$ParagraphItems[] = (_.last(contents)?.data as Parsed$ParagraphItems).items ?? [];
+      const list: Parsed$ParagraphItems[] =
+        (_.last(contents)?.data as Parsed$ParagraphItems).items ?? [];
 
       if (nestingLevel !== undefined) {
         const lastIndex = list.length - 1;
@@ -614,7 +624,9 @@ const parseParagraph = (
           },
         });
       } else {
-        elements?.forEach((element) => parseParagraphElement(document, tag, tagContent, element, wrappingTable));
+        elements?.forEach((element) =>
+          parseParagraphElement(document, tag, tagContent, element, wrappingTable)
+        );
       }
     }
 
