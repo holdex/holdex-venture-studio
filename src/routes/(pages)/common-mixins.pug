@@ -38,7 +38,6 @@ mixin guideCard(href, title, subtitle, className='')
     ) #{title}
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
 
-//pr init
 mixin endorsement(author, role, text, avatar)
   .endorsement.relative(class=-"mt-16")
     span(
@@ -51,10 +50,12 @@ mixin endorsement(author, role, text, avatar)
 
     .author-info.flex.items-center.justify-end.gap-4.mt-4
       .author-details.flex.flex-col.items-end.text-right
-        a(class="font-satoshi text-h5-l smDown:text-h5-s w-fit text-accent1-default transition-colors bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 inline-block underline underline-offset-4"
+        a(
+          class="font-satoshi text-h5-l smDown:text-h5-s w-fit text-accent1-default transition-colors bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 inline-block underline underline-offset-4"
           href="https://linkedin.com/in/jakob-kronbichler-73737746"
-          target="_blank",
-          rel="noopener noreferrer") #{author}
+          target="_blank"
+          rel="noopener noreferrer"
+        ) #{author}
         span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
 
       img(src=avatar alt=author class="h-14 w-14 rounded-xl")
