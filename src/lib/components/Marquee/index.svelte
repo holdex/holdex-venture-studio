@@ -24,8 +24,6 @@
   style:--play={play ? 'running' : 'paused'}
   style:--direction={direction === 'left' ? 'normal' : 'reverse'}
   style:--duration={duration + 's'}
-  style:--pause-on-hover={pauseOnHover ? 'paused' : 'running'}
-  style:--pause-on-click={pauseOnClick ? 'paused' : 'running'}
 >
   <div
     class="flex-none min-w-full z-[1] flex flex-row items-center marquee-animation"
@@ -33,6 +31,10 @@
     style:padding-right="var(--gap, 0)"
     bind:clientWidth={marqueeWidth}
     data-testid="marquee-slot"
+    on:mouseenter={() => (play = !pauseOnHover)}
+    on:mouseleave={() => (play = true)}
+    on:mousedown={() => (play = !pauseOnClick)}
+    on:mouseup={() => (play = true)}
   >
     <slot />
   </div>
@@ -44,15 +46,6 @@
     animation-play-state: var(--play);
     animation-direction: var(--direction);
   }
-
-  :global(.marquee-container:hover .marquee-animation) {
-    animation-play-state: var(--pause-on-hover);
-  }
-
-  :global(.marquee-container:active .marquee-animation) {
-    animation-play-state: var(--pause-on-click);
-  }
-
   @keyframes scroll {
     0% {
       transform: translateX(0%);
