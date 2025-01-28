@@ -17,7 +17,7 @@
 
   let classes =
     'relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
-
+  
   switch (item.type) {
     case 'link':
       break;
@@ -54,7 +54,7 @@
 >
   <slot text={truncated} />
   {#if !isHoldexLink}
-    <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
+    <Icon icon={ArrowTopRightOnSquare} width={20} height={20} colorInherit />
   {/if}
 </a>
 
