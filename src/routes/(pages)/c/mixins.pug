@@ -103,7 +103,9 @@ mixin subheadingText(text)
     h2(class="w-full text-h2-l xs:text-h2-s font-satoshi text-center smDown:text-left")= text
 
 mixin portfolio-product-wrapper
-  .portfolio-product-wrapper(class="w-full grid grid-cols-2 smDown:grid-cols-1 gap-8 smDown:gap-4")&attributes(attributes)
+  .portfolio-product-wrapper(
+    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-8 xl-up:gap-4 gap-8 smDown:gap-4"
+  )&attributes(attributes)
     block
 mixin endorsement-wrapper
   .endorsement-wrapper(
