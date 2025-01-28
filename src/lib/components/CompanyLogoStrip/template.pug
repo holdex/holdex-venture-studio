@@ -24,6 +24,13 @@ mixin companyLogoStrip(logos)
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
           img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
 
+mixin companyLogoStrip1(logos)
+  if logos !== undefined
+    Marquee(pauseOnHover direction="left" speed=150 class="mt-2 w-full" gap="24px")
+      each logo in logos
+        img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
+        img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
+
 mixin portfolioLogos
   -
     const logos = [
@@ -51,10 +58,11 @@ mixin portfolioLogos
     ]
   +if('isIndex')
     companiesStrip(
-      class="xs:gap-4 flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] xs:gap-4 tb:max-w-[794px] smDown:max-w-[604px] w-full"
+      class="flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] xs:gap-4 tb:max-w-[794px] smDown:max-w-[604px] w-full"
     )
       +companyLogoStripIndex(logos)
     +else
       +companyLogoStrip(logos)
+      +companyLogoStrip1(logos)
 
 +portfolioLogos
