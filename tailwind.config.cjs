@@ -359,7 +359,6 @@ module.exports = {
         32: '8rem',
       },
       animation: {
-        'infinite-scroll-companies': 'infinite-scroll 15s linear infinite',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
         'navigation-left-right': 'navigation-left-right 0.6s ease-out forwards',
       },
