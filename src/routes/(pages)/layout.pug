@@ -126,7 +126,7 @@ mixin right-sidebar
           .logo-wrapper(class="relative w-8 h-8 ")
             a(class="relative flex  h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
               name="only-logo"
-              class="w-8 h-8"
+              class="w-8 h-8 "
             )
 
           div(
@@ -149,7 +149,7 @@ mixin right-sidebar
               )
   .flex(class="{isNewNav ? 'xl-up:w-full justify-center' : ''}")
     +left-sidebar
-    main(class="{isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
+    main(class="{isNewNav ? 'w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]' : 'w-full'}")
       slot
       footer(
         class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"

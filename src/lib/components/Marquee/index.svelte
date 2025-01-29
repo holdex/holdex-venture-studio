@@ -28,13 +28,19 @@
   <div
     class="flex-none min-w-full z-[1] flex flex-row items-center marquee-animation"
     style:gap="var(--gap, 0)"
-    style:padding-right="var(--gap, 0)"
+    style:margin-right="var(--gap, 0)"
     bind:clientWidth={marqueeWidth}
     data-testid="marquee-slot"
     on:mouseenter={() => (play = !pauseOnHover)}
     on:mouseleave={() => (play = true)}
     on:mousedown={() => (play = !pauseOnClick)}
     on:mouseup={() => (play = true)}
+  >
+    <slot />
+  </div>
+  <div
+    class="flex-none min-w-full z-[1] flex flex-row items-center marquee-animation"
+    style:gap="var(--gap, 0)"
   >
     <slot />
   </div>
@@ -51,7 +57,7 @@
       transform: translateX(0%);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(calc(-100% - var(--gap)));
     }
   }
 </style>
