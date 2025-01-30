@@ -51,7 +51,7 @@ mixin endorsement(author, role, text, avatar, href="https://linkedin.com/in/jako
     .author-info.flex.items-center.justify-end.gap-4.mt-4
       .author-details.flex.flex-col.items-end.text-right(class="font-satoshi text-h5-l smDown:text-h5-s")
         Link(
-          item="{{type: 'link', href: '" + href + "', text: '" + author + "', title: '" + author + "', iconSize: 20}}"
+          item=`{{type: 'link', href: '${href}', text: '${author}', title: '${author}', iconSize: 20}}`
         )
         
         span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
