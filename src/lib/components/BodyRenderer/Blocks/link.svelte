@@ -54,7 +54,7 @@
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
-  {truncated}
+  <slot text={truncated} />
   {#if !isHoldexLink}
     <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
