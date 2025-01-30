@@ -43,7 +43,7 @@
   $: text = item.text || item.href;
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
-  $: iconSize = item.iconSize || 14;
+  $: iconSize = item.iconSize || 16;
 </script>
 
 {' '}
