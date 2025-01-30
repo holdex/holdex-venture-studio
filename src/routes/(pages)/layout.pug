@@ -149,7 +149,7 @@ mixin right-sidebar
               )
   .flex(class="{isNewNav ? 'xl-up:w-full justify-center' : ''}")
     +left-sidebar
-    main(class="{isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
+    main(class="{isNewNav ? 'w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]' : 'w-full'}")
       slot
       footer(
         class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
