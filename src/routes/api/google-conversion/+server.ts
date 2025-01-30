@@ -100,51 +100,46 @@ function convertToHoldexJson(document: Schema$Document) {
           });
           tableContent.push(trowContent);
         });
+
         const teamMembers = parseTeamMembersSection(tableContent);
         const cta: CTAElement = parseCTASection(tableContent);
         const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
 
         if (!_.isEmpty(teamMembers)) {
+          newContent.push(teamMembers);
+        } else if (!_.isEmpty(testimonial)) {
           newContent.push({
-            type: 'teamMember',
-            data: teamMembers,
+            type: 'testimonial',
+            data: testimonial,
           });
-          if (!_.isEmpty(testimonial)) {
-            newContent.push({
-              type: 'testimonial',
-              data: testimonial,
-            });
-          } else if (!_.isEmpty(cta)) {
-            newContent.push({
-              type: 'cta',
-              data: cta,
-            });
-          } else {
-            newContent.push({
-              type: 'table',
-              data: {
-                content: tableContent,
-              },
-            });
-          }
+        } else if (!_.isEmpty(cta)) {
+          newContent.push({
+            type: 'cta',
+            data: cta,
+          });
+        } else {
+          newContent.push({
+            type: 'table',
+            data: {
+              content: tableContent,
+            },
+          });
         }
-        // Table Of Contents
-        else if (tableOfContents) {
-          const { content } = tableOfContents;
+      } else if (tableOfContents) {
+        const { content } = tableOfContents;
 
-          if (content && content.length > 0) {
-            const tocContent: any[] = [];
-            content.map((el, i) => {
-              if (el.paragraph) {
-                parseParagraph(document, tableOfContents, tocContent, el.paragraph, i);
-              }
-            });
+        if (content && content.length > 0) {
+          const tocContent: any[] = [];
+          content.map((el, i) => {
+            if (el.paragraph) {
+              parseParagraph(document, tableOfContents, tocContent, el.paragraph, i);
+            }
+          });
 
-            newContent.push({
-              type: 'toc',
-              items: tocContent,
-            });
-          }
+          newContent.push({
+            type: 'toc',
+            items: tocContent,
+          });
         }
       }
     });
@@ -235,22 +230,29 @@ function parseTeamMembersSection(content: any[]): TeamMembersBlock | null {
       contentHead[1][0]?.type === 'paragraph' &&
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
-      content.forEach(([[first], [second]], i) => {
-        if (first === undefined || first.type !== 'paragraph') return;
+      let currentMember: Record<string, string> = {};
 
-        const rowData: Record<string, string> = {};
-        if (second && second.type === 'paragraph') {
-          rowData[first.data.text] = second.data.text;
-        }
+      content.forEach(([[first], [second]]) => {
+        if (first?.type !== 'paragraph' || second?.type !== 'paragraph') return;
 
-        if (rowData.name && rowData.role) {
+        const key = first.data.text.toLowerCase();
+        currentMember[key] = second.data.text || '';
+
+        if (
+          currentMember['name'] &&
+          currentMember['role'] &&
+          currentMember['description'] &&
+          currentMember['image']
+        ) {
           teamMembersBlock.data.members.push({
-            name: rowData.name || '',
-            role: rowData.role || '',
-            description: rowData.description || '',
-            image: rowData.image || '',
-            link: rowData.link || undefined,
+            name: currentMember['name'],
+            role: currentMember['role'],
+            description: currentMember['description'],
+            image: currentMember['image'],
+            link: currentMember['link'] || undefined,
           });
+
+          currentMember = {};
         }
       });
 
