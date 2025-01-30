@@ -51,7 +51,7 @@ mixin endorsement(author, role, text, avatar)
     .author-info.flex.items-center.justify-end.gap-4.mt-4
       .author-details.flex.flex-col.items-end.text-right(class="font-satoshi text-h5-l smDown:text-h5-s")
         Link(
-          item="{{type: 'link', href: 'https://linkedin.com/in/jakob-kronbichler-73737746', title: 'Jakob Kronbichler', iconSize: 20}}"
+          item="{{type: 'link', href: 'https://linkedin.com/in/jakob-kronbichler-73737746', text: '" + author + "', title: '" + author + "', iconSize: 20}}"
         )
           TextWrapper(text=author)
             slot
