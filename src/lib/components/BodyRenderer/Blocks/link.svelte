@@ -9,6 +9,7 @@
     text: string;
     href: string;
     title?: string;
+    iconSize?: number;
   };
 
   export let item: Item;
@@ -42,6 +43,7 @@
   $: text = item.text || item.href;
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
+  $: iconSize = item.iconSize || 14;
 </script>
 
 {' '}
@@ -52,9 +54,9 @@
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
-  <slot text={truncated} />
+  {truncated}
   {#if !isHoldexLink}
-    <Icon icon={ArrowTopRightOnSquare} width={20} height={20} colorInherit />
+    <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
 </a>
 
