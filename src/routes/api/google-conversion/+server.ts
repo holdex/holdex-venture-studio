@@ -213,13 +213,8 @@ function parseTestimonialSection(content: any[]) {
   return testimonial;
 }
 
-function parseTeamMembersSection(content: any[]): TeamMembersBlock | null {
-  const teamMembersBlock: TeamMembersBlock = {
-    type: 'teamMember',
-    data: {
-      members: [],
-    },
-  };
+function parseTeamMembersSection(content: any[]): TeamMembersBlock[] {
+  const teamMembersList: TeamMembersBlock[] = [];
 
   if (content.length >= 5 && (content[0] as any[]).length === 2) {
     const contentHead = content[0];
@@ -244,25 +239,28 @@ function parseTeamMembersSection(content: any[]): TeamMembersBlock | null {
           currentMember['description'] &&
           currentMember['image']
         ) {
-          teamMembersBlock.data.members.push({
-            name: currentMember['name'],
-            role: currentMember['role'],
-            description: currentMember['description'],
-            image: currentMember['image'],
-            link: currentMember['link'] || undefined,
+          teamMembersList.push({
+            type: 'teamMember',
+            data: {
+              members: [
+                {
+                  name: currentMember['name'],
+                  role: currentMember['role'],
+                  description: currentMember['description'],
+                  image: currentMember['image'],
+                  link: currentMember['link'] || undefined,
+                },
+              ],
+            },
           });
 
           currentMember = {};
         }
       });
-
-      if (teamMembersBlock.data.members.length > 0) {
-        return teamMembersBlock;
-      }
     }
   }
 
-  return null;
+  return teamMembersList;
 }
 
 function getHeaderRowAuthor(content: Schema$ParagraphElement) {
