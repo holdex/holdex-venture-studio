@@ -75,6 +75,9 @@
     const form = event.currentTarget as HTMLFormElement;
     const data = new FormData(form);
 
+    const currentPage = window.location.pathname;
+    data.append('pageUrl', currentPage);
+
     const response = await fetch(form.action, {
       method: 'POST',
       body: data,
