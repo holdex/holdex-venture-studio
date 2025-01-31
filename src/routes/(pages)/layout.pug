@@ -86,7 +86,7 @@ mixin sidebar-nav-link(href, title)
 
 mixin left-sidebar
   aside.sidebar(
-    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
+    class="hidden xl-up:flex shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
@@ -99,7 +99,7 @@ mixin left-sidebar
 
 mixin right-sidebar
   aside.sidebar(
-    class="{isNewNav ? 'hidden xl-up:flex' : 'hidden'} shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
+    class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
   )
     button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
@@ -117,7 +117,7 @@ mixin right-sidebar
       ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
 .app-container
-  header(class!="z-10 w-full block relative sticky top-0 {isNewNav ? 'xl-up:hidden' : ''}")
+  header(class="z-10 w-full block relative sticky top-0 xl-up:hidden")
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
@@ -147,15 +147,13 @@ mixin right-sidebar
                 type="button"
                 on:click!="{() => handleClick(undefined)}"
               )
-  .flex(class="{isNewNav ? 'xl-up:w-full justify-center' : ''}")
+  .flex(class="xl-up:w-full justify-center")
     +left-sidebar
-    main(class="{isNewNav ? 'w-full xl-up:max-w-[1028px]' : 'w-full'}")
+    main(class="w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]")
       slot
-      footer(
-        class="mt-16 xs:mt-8 flex flex-col items-center { !isNewNav ? 'w-screen' : 'w-full xl-up:max-w-[1028px]' }"
-      )
+      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center w-full xl-up:max-w-[1028px]")
         .contact-form(
-          class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4"
+          class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 md:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4 md:py-4"
           id="contact-form"
         )
           form(
@@ -213,7 +211,7 @@ mixin right-sidebar
               Icon(icon="{CheckCircle}" width="{24}" height="{24}" colorInherit)
               span.succ(class="text-t1 text-cta") Message sent!
         .footer-nav(
-          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 py-4 px-4 max-w-[1240px] w-full"
+          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 md:flex-col md:items-start md:py-6 md:gap-6 py-4 px-4 max-w-[1240px] w-full"
         )
           .logo-wrapper(class="z-1 relative")
             a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
@@ -221,7 +219,7 @@ mixin right-sidebar
               class="w-32"
             )
           ul(
-            class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 tbDown:relative tbDown:gap-4 tbDown:left-0 tbDown:transform-none"
+            class="absolute left-1/2 -translate-x-1/2 main-nav flex items-start gap-8 tbDown:relative tbDown:gap-4 tbDown:left-0 tbDown:transform-none md:relative md:gap-4 md:left-0 md:transform-none"
             role="navigation"
           )
             +link("https://policies.holdex.io/#/terms", "Terms of Use")(
