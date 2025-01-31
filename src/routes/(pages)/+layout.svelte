@@ -70,7 +70,7 @@
       success = false;
     }, 5000);
   };
-
+  //pr init
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
     const data = new FormData(form);
