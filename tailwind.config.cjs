@@ -65,6 +65,7 @@ module.exports = {
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
+      'post-it-yellow': '#FDF5A3',
       l1: 'rgb(var(--l1) / <alpha-value>)',
       l2: 'rgb(var(--l2) / <alpha-value>)',
       l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -280,6 +281,7 @@ module.exports = {
       inter: ['"Inter"'],
       satoshi: ['"Satoshi"'],
       mono: ['"JetBrains Mono"'],
+      handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
       spacing: {

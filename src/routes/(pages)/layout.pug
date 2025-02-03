@@ -95,7 +95,13 @@ mixin left-sidebar
       +sidebar-nav-link("{routes.forStartups}", "For Startups")
       +sidebar-nav-link("{routes.guides}", "Guides")
       +sidebar-nav-link("{routes.jobs}", "Jobs")
-    div(class="h-15.5")
+    div(class="h-15.5 relative")
+      .absolute.bottom-0.-rotate-6.transform
+        .w-48.bg-post-it-yellow.p-4.shadow-lg
+          .space-y-1.font-handwriting.text-black
+            p.font-handwriting Feb 18-20
+            p.font-handwriting Hong Kong
+            p.font-handwriting Meet us at Consensus!
 
 mixin right-sidebar
   aside.sidebar(
