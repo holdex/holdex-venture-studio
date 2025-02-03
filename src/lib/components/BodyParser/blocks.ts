@@ -124,13 +124,11 @@ type Testimonial = {
 export type TeamMembersBlock = {
   type: 'teamMember';
   data: {
-    members: Array<{
-      name: string;
-      role: string;
-      description: string;
-      image: string;
-      link?: string;
-    }>;
+    name: string;
+    role: string;
+    description: string;
+    image: string;
+    link?: string;
   };
 };
 

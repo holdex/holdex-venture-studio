@@ -242,15 +242,11 @@ function parseTeamMembersSection(content: any[]): TeamMembersBlock[] {
           teamMembersList.push({
             type: 'teamMember',
             data: {
-              members: [
-                {
-                  name: currentMember['name'],
-                  role: currentMember['role'],
-                  description: currentMember['description'],
-                  image: currentMember['image'],
-                  link: currentMember['link'] || undefined,
-                },
-              ],
+              name: currentMember['name'],
+              role: currentMember['role'],
+              description: currentMember['description'],
+              image: currentMember['image'],
+              link: currentMember['link'] || undefined,
             },
           });
 
