@@ -62,6 +62,7 @@ module.exports = {
     },
     colors: {
       white: 'white',
+      black: 'black',
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
@@ -313,6 +314,7 @@ module.exports = {
         37: '8.563rem',
         38.5: '9.625rem',
         41: '10.563rem',
+        44: '11rem',
         54: '13.5rem',
         61: '15.25rem',
         70: '17.5rem',
