@@ -53,7 +53,7 @@ mixin endorsement(author, role, text, avatar)
         Link(
           item=`{{type: 'link', href: 'https://linkedin.com/in/jakob-kronbichler-73737746', text: '${author}', title: '${author}', iconSize: 20}}`
         )
-          TextWrapper(text=author)
+          span= author
           
         span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
 

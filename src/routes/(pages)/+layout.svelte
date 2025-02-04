@@ -24,7 +24,6 @@
   import Button from '$components/Button/index.svelte';
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
-  import TextWrapper from '$components/BodyRenderer/Blocks/textWrapper.svelte';
 
   /** vars */
   let email = '';

@@ -82,7 +82,7 @@ mixin sidebar-nav-link(href, title)
   Link(
     item=`{{type: 'navbar', href: '${href}', text: '${title}', title: '${title}', iconSize: 24}}`
   )
-    TextWrapper(text=title)
+    span= title
 
 mixin left-sidebar
   aside.sidebar(
