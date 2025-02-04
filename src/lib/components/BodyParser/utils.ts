@@ -43,7 +43,7 @@ export const regExp = {
   twitter: /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)(?:\/.*)?$/,
   symbols: /^[a-zA-Z0-9 ,.";():&%£’€$#@_=/\-'!*?\\/s]{2,}$/,
   image: /.*\.(gif|jpe?g|bmp|png)$/,
-  holdexLink: /^(https?:\/\/(holdex\.io|localhost:3000)|\/[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)*|[a-zA-Z0-9_-]+(?:\/[a-zA-Z0-9_-]+)*)$/,
+  holdexLink: /^(https?:\/\/(holdex\.io|localhost:3000)|\/?[\w-]+(?:\/[\w-]+)*)$/,
   gistLink: /^(http:\/\/|https:\/\/)(gist\.github\.com\/.*)/,
 };
 
