@@ -17,10 +17,13 @@
   let parentWrapper = getContext('wrapper');
 
   let classes =
-    'relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+    'w-fit relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
   
   switch (item.type) {
     case 'link':
+      break;
+    case 'navbar':
+      classes += ' text-h3-l font-satoshi';
       break;
     default:
       classes += ' text-paragraph-l';
