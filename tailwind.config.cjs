@@ -62,9 +62,11 @@ module.exports = {
     },
     colors: {
       white: 'white',
+      black: 'black',
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
+      'post-it-yellow': '#FDF5A3',
       l1: 'rgb(var(--l1) / <alpha-value>)',
       l2: 'rgb(var(--l2) / <alpha-value>)',
       l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -280,6 +282,7 @@ module.exports = {
       inter: ['"Inter"'],
       satoshi: ['"Satoshi"'],
       mono: ['"JetBrains Mono"'],
+      handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
       spacing: {
@@ -311,6 +314,7 @@ module.exports = {
         37: '8.563rem',
         38.5: '9.625rem',
         41: '10.563rem',
+        44: '11rem',
         54: '13.5rem',
         61: '15.25rem',
         70: '17.5rem',
