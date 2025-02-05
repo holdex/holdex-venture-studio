@@ -78,11 +78,10 @@ mixin sidebar-social
       class="!h-16 !w-16 !p-0 text-i1"
     )
 
-mixin sidebar-nav-link(href, title)
+mixin sidebar-nav-link(index, title)
   Link(
-    item=`{{type: 'navbar', href: '${href}', text: '${title}', title: '${title}', iconSize: 24}}`
-  )
-    span= title
+    item=`{{type: 'navbar', href: routes['${index}'], text: '${title}', title: '${title}', iconSize: 24}}`
+  )= title
 
 mixin left-sidebar
   aside.sidebar(
@@ -90,11 +89,11 @@ mixin left-sidebar
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      +sidebar-nav-link("/about", "About")
-      +sidebar-nav-link("/portfolio", "Portfolio")
-      +sidebar-nav-link("/for-startups", "For Startups")
-      +sidebar-nav-link("/c/guides", "Guides")
-      +sidebar-nav-link("/c/jobs", "Jobs")
+      +sidebar-nav-link("about", "About")
+      +sidebar-nav-link("portfolio", "Portfolio")
+      +sidebar-nav-link("forStartups", "For Startups")
+      +sidebar-nav-link("guides", "Guides")
+      +sidebar-nav-link("jobs", "Jobs")
     div(class="h-15.5")
 
 mixin right-sidebar

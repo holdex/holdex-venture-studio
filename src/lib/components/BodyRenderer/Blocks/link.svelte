@@ -23,7 +23,7 @@
     case 'link':
       break;
     case 'navbar':
-      classes += ' text-h3-l font-satoshi';
+      classes += ' text-h3-l font-satoshi xs:text-h3-s';
       break;
     default:
       classes += ' text-paragraph-l';
