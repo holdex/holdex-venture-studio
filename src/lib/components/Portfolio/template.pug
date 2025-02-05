@@ -79,10 +79,9 @@ article.portfolio-product-card(
     .portfolio-product-header(class="relative flex flex-col w-full gap-4 smDown:gap-2 text-h2-l xs:text-h2-s font-satoshi inline-block")
       Link(
         item=`{{type: 'link', href: slug, text: title, title: title, iconSize: 24}}`
-      )
-        TextWrapper(text=`{title}`)
+      )= `{title}`
+      TextParagraph {subtitle}
 
-    TextParagraph {subtitle}
     +if('isFeatured == true')
       TextParagraph {description}
       .portfolio-metrics(class="w-full flex flex-wrap gap-8 smDown:flex-col smDown:gap-6")
