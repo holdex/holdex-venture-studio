@@ -93,7 +93,7 @@ mixin announcement-banner(href, date, location, content)
         if content
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
 
-mixin sidebar-nav-link(href, title)
+mixin sidebar-nav-link(index, title)
   Link(
     item=`{{type: 'navbar', href: routes['${index}'], text: '${title}', title: '${title}', iconSize: 24}}`
   )= title
