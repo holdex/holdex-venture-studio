@@ -23,8 +23,16 @@ export const actions: Actions = {
     const rawEmail = data.get('email');
     const rawName = data.get('name');
     const rawMessage = data.get('message');
+    const pageUrl = data.get('pageUrl');
 
-    if (!(typeof rawEmail === 'string' && typeof rawName === 'string' && typeof rawMessage === 'string')) {
+    if (
+      !(
+        typeof rawEmail === 'string' &&
+        typeof rawName === 'string' &&
+        typeof rawMessage === 'string' &&
+        typeof pageUrl === 'string'
+      )
+    ) {
       return fail(400, { error: 'Invalid form data types' });
     }
 
@@ -75,7 +83,9 @@ export const actions: Actions = {
         to: config.contactFormRecipientEmail,
         from: config.contactFormSenderEmail,
         subject: `Contact Form Submission from ${escapeHtml(name)}`,
-        text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(email)}\nMessage: ${escapeHtml(message)}`,
+        text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(
+          email
+        )}\nMessage: ${escapeHtml(message)}\nFrom Page: ${escapeHtml(pageUrl)}`,
       };
 
       await sgMail.send(msg);

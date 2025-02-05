@@ -78,7 +78,22 @@ mixin sidebar-social
       class="!h-16 !w-16 !p-0 text-i1"
     )
 
-mixin sidebar-nav-link(index, title)
+mixin announcement-banner(href, date, location, content)
+  a.absolute.bottom-0.-rotate-6.transform(
+    href=href
+    class="hover:-rotate-[4deg] transition-transform duration-300"
+  )
+    .w-44.bg-post-it-yellow.p-4.relative(class="shadow-xl")
+      .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
+      .space-y-1.font-handwriting.text-black
+        if date
+          p.font-handwriting.text-black.text-paragraph-l.leading-none= date
+        if location
+          p.font-handwriting.text-black.text-paragraph-l.leading-none= location
+        if content
+          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
+
+mixin sidebar-nav-link(href, title)
   Link(
     item=`{{type: 'navbar', href: routes['${index}'], text: '${title}', title: '${title}', iconSize: 24}}`
   )= title
@@ -94,7 +109,8 @@ mixin left-sidebar
       +sidebar-nav-link("forStartups", "For Startups")
       +sidebar-nav-link("guides", "Guides")
       +sidebar-nav-link("jobs", "Jobs")
-    div(class="h-15.5")
+    div(class="h-15.5 relative")
+      +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
 
 mixin right-sidebar
   aside.sidebar(
@@ -116,7 +132,7 @@ mixin right-sidebar
       ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
 .app-container
-  header(class="z-10 w-full block relative sticky top-0 xl-up:hidden")
+  header(class="z-10 w-full block sticky top-0 xl-up:hidden")
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(

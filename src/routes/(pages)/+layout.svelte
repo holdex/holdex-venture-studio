@@ -25,7 +25,6 @@
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
-  /** vars */
   let email = '';
   let message = '';
   let name = '';
@@ -38,7 +37,6 @@
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
 
-  /** funcs */
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
@@ -75,6 +73,9 @@
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
     const data = new FormData(form);
+
+    const currentPage = window.location.pathname;
+    data.append('pageUrl', currentPage);
 
     const response = await fetch(form.action, {
       method: 'POST',
@@ -114,7 +115,6 @@
     return !validateEmail(email) && email.length > 0 ? (isError = true) : (isError = false);
   };
 
-  /** react-ibles */
   $: path = $page.url.pathname;
   $: form = $page.form;
   $: if (globalThis.document) {
