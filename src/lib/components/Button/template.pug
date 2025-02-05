@@ -20,8 +20,8 @@ mixin content
     bind:this="{forwardRef}"
     class="{btnClass}"
     href="{href}"
-    target="{isHoldexLink ? '' : '_blank'}"
-    rel="{isHoldexLink ? '' : 'noopener noreferrer'}"
+    target="{isHoldexLink || isInternalLink ? '' : '_blank'}"
+    rel="{isHoldexLink || isInternalLink ? '' : 'noopener noreferrer'}"
   )
     +content
   +else

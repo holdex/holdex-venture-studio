@@ -44,6 +44,7 @@
   $: btnClass = ['btn', variantClass, sizeClass, className, disabledClass].join(' ');
 
   $: isHoldexLink = regExp.holdexLink.test(href || '');
+  $: isInternalLink = regExp.internalLink.test(href || '');
 </script>
 
 <template lang="pug" src="./template.pug">
