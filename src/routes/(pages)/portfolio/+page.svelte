@@ -22,7 +22,6 @@
   import PortfolioItem from '$components/Portfolio/index.svelte';
   import CompanyLogoStrip from '$components/CompanyLogoStrip/index.svelte';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
-  import TextWrapper from '$components/BodyRenderer/Blocks/textWrapper.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';

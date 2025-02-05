@@ -6,6 +6,8 @@
   import Hashtag from '$components/BodyRenderer/Blocks/hashtag.svelte';
   import Icon from '$components/Icons/index.svelte';
   import { ArrowTopRightOnSquare } from '$components/Icons';
+  import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import TextWrapper from '$components/BodyRenderer/Blocks/textWrapper.svelte';
 
   export let isFeatured: boolean;
   export let slug: string;
