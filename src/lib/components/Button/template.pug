@@ -8,7 +8,7 @@ mixin content
       isOutlined="{$$restProps.isOutlined}"
     )
   +if('label')
-    span {label}
+    span(class="text-nowrap shrink-0") {label}
   slot
 
 +if('href')
@@ -20,6 +20,8 @@ mixin content
     bind:this="{forwardRef}"
     class="{btnClass}"
     href="{href}"
+    target="{isHoldexLink || isInternalLink ? '' : '_blank'}"
+    rel="{isHoldexLink || isInternalLink ? '' : 'noopener noreferrer'}"
   )
     +content
   +else
