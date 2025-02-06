@@ -119,12 +119,12 @@ function convertToHoldexJson(document: Schema$Document) {
           tableContent.push(trowContent);
         });
 
-        const teamMembers = parseTeamMembersSection(tableContent);
+        const teamMember = parseTeamMemberSection(tableContent);
         const cta: CTAElement = parseCTASection(tableContent);
         const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
 
-        if (!_.isEmpty(teamMembers)) {
-          newContent.push(teamMembers);
+        if (!_.isEmpty(teamMember)) {
+          newContent.push(teamMember);
         } else if (!_.isEmpty(testimonial)) {
           newContent.push({
             type: 'testimonial',
@@ -263,9 +263,7 @@ function parseTestimonialSection(content: any[]) {
  * @param content - An array representing table rows; each row should contain two cells with paragraph data.
  * @returns An array of team member blocks extracted from the input content. Returns an empty array if the input format is invalid.
  */
-function parseTeamMembersSection(content: any[]): TeamMembersBlock[] {
-  const teamMembersList: TeamMembersBlock[] = [];
-
+function parseTeamMemberSection(content: any[]): TeamMembersBlock | null {
   if (content.length >= 5 && (content[0] as any[]).length === 2) {
     const contentHead = content[0];
 
@@ -276,37 +274,43 @@ function parseTeamMembersSection(content: any[]): TeamMembersBlock[] {
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
       let currentMember: Record<string, string> = {};
+      let link = '';
 
-      content.forEach(([[first], [second]]) => {
-        if (first?.type !== 'paragraph' || second?.type !== 'paragraph') return;
+      for (const [[first], [second]] of content) {
+        if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
 
         const key = first.data.text.toLowerCase();
-        currentMember[key] = second.data.text || '';
+        const value = second.data.text || '';
 
-        if (
-          currentMember['name'] &&
-          currentMember['role'] &&
-          currentMember['description'] &&
-          currentMember['image']
-        ) {
-          teamMembersList.push({
-            type: 'teamMember',
-            data: {
-              name: currentMember['name'],
-              role: currentMember['role'],
-              description: currentMember['description'],
-              image: currentMember['image'],
-              link: currentMember['link'] || undefined,
-            },
-          });
-
-          currentMember = {};
+        if (key === 'link') {
+          link = value;
+          continue;
         }
-      });
+
+        currentMember[key] = value;
+      }
+
+      if (
+        currentMember['name'] &&
+        currentMember['role'] &&
+        currentMember['description'] &&
+        currentMember['image']
+      ) {
+        return {
+          type: 'teamMember',
+          data: {
+            name: currentMember['name'],
+            role: currentMember['role'],
+            description: currentMember['description'],
+            image: currentMember['image'],
+            link: link || undefined,
+          },
+        };
+      }
     }
   }
 
-  return teamMembersList;
+  return null;
 }
 
 /**
