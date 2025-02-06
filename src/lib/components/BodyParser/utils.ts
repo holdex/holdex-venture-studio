@@ -44,7 +44,7 @@ export const regExp = {
   symbols: /^[a-zA-Z0-9 ,.";():&%£’€$#@_=/\-'!*?\\/s]{2,}$/,
   image: /.*\.(gif|jpe?g|bmp|png)$/,
   holdexLink: /^(http:\/\/|https:\/\/)(holdex\.io)/,
-  internalLink: /^(\/|#).*/,
+  internalLink: /^(?:\/|#).*/,
   gistLink: /^(http:\/\/|https:\/\/)(gist\.github\.com\/.*)/,
 };
 
