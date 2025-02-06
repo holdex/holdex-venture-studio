@@ -19,7 +19,7 @@ import type { RequestHandler } from './$types';
 import type {
   Author,
   CTAElement,
-  TeamMembersBlock,
+  TeamMemberBlock,
   TestimonialElement,
 } from '$components/BodyParser/blocks';
 import type {
@@ -263,7 +263,7 @@ function parseTestimonialSection(content: any[]) {
  * @param content - An array representing table rows; each row should contain two cells with paragraph data.
  * @returns An array of team member blocks extracted from the input content. Returns an empty array if the input format is invalid.
  */
-function parseTeamMemberSection(content: any[]): TeamMembersBlock | null {
+function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
   if (content.length >= 5 && (content[0] as any[]).length === 2) {
     const contentHead = content[0];
 
