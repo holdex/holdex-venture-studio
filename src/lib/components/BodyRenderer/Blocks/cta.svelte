@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="border-decoration relative justify-start items-stretch cta flex flex-row xs:flex-col xs:gap-6 gap-4 w-full border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2 border-decoration-{$themeContext}"
+  class="border-decoration w-[710px] -left-[53px] xs:w-full xs:left-0 relative justify-start items-stretch cta flex flex-row xs:flex-col xs:gap-6 gap-4 border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2 border-decoration-{$themeContext}"
 >
   <div class="flex flex-col xs:w-full">
     {#if item.title}
@@ -29,8 +29,6 @@
         class="text-t1"
         variant="primary"
         size="large"
-        target="_blank"
-        rel="noopener"
         href={item.link1.url}
         label={item.link1.text}
       />
@@ -41,8 +39,6 @@
         class="text-t1"
         variant="secondary"
         size="large"
-        target="_blank"
-        rel="noopener"
         href={item.link2.url}
         label={item.link2.text}
       />
