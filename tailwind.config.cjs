@@ -19,7 +19,7 @@ module.exports = {
       'sm-up': '480px',
       'md-up': '768px',
       'lg-up': '992px',
-      'xl-up': '1200px',
+      'xl-up': '1248px',
       '2xl-up': '1440px',
       xl: {
         min: '1680px',
@@ -30,12 +30,12 @@ module.exports = {
         max: '1679px',
       },
       md: {
-        min: '1200px',
+        min: '1248px',
         max: '1439px',
       },
       tb: {
         min: '992px',
-        max: '1199px',
+        max: '1247px',
       },
       sm: {
         min: '768px',
@@ -54,7 +54,7 @@ module.exports = {
         max: '479px',
       },
       tbDown: {
-        raw: '(max-width: 1199px)',
+        raw: '(max-width: 1247px)',
       },
       smDown: {
         raw: '(max-width: 991px)',

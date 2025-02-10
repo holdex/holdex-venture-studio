@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { regExp } from '$components/BodyParser/utils';
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import Icon from '$components/Icons/index.svelte';
 
@@ -41,6 +42,9 @@
   $: iconSize = size === 'small' ? 20 : 24;
 
   $: btnClass = ['btn', variantClass, sizeClass, className, disabledClass].join(' ');
+
+  $: isHoldexLink = regExp.holdexLink.test(href || '');
+  $: isInternalLink = regExp.internalLink.test(href || '');
 </script>
 
 <template lang="pug" src="./template.pug">
