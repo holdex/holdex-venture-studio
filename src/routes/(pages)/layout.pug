@@ -93,22 +93,28 @@ mixin announcement-banner(href, date, location, content)
         if content
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
 
-mixin sidebar-nav-link(index, title)
-  Link(
-    item=`{{type: 'navbar', href: routes['${index}'], text: '${title}', title: '${title}', iconSize: 24}}`
-  )= title
-
 mixin left-sidebar
   aside.sidebar(
     class="hidden xl-up:flex shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      +sidebar-nav-link("about", "About")
-      +sidebar-nav-link("portfolio", "Portfolio")
-      +sidebar-nav-link("forStartups", "For Startups")
-      +sidebar-nav-link("guides", "Guides")
-      +sidebar-nav-link("jobs", "Jobs")
+      Link(
+        item=`{{type: 'navbar', href: routes.about, iconSize: 24}}`
+      ) About
+      Link(
+        item=`{{type: 'navbar', href: routes.portfolio, iconSize: 24}}`
+      ) Portfolio
+      Link(
+        item=`{{type: 'navbar', href: routes.forStartups, iconSize: 24}}`
+      ) For Startups
+      Link(
+        item=`{{type: 'navbar', href: routes.guides, iconSize: 24}}`
+      ) Guides
+      Link(
+        item=`{{type: 'navbar', href: routes.jobs, iconSize: 24}}`
+      ) Jobs
+
     div(class="h-15.5 relative")
       +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
 
