@@ -274,18 +274,12 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
       let currentMember: Record<string, string> = {};
-      let link = '';
 
       for (const [[first], [second]] of content) {
         if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
 
         const key = first.data.text.toLowerCase();
         const value = second.data.text || '';
-
-        if (key === 'link') {
-          link = value;
-          continue;
-        }
 
         currentMember[key] = value;
       }
@@ -303,7 +297,7 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
             role: currentMember['role'],
             description: currentMember['description'],
             image: currentMember['image'],
-            link: link || undefined,
+            link: currentMember['link'] || undefined,
           },
         };
       }
@@ -312,7 +306,6 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
 
   return null;
 }
-
 /**
  * Extracts the author information from a paragraph header element.
  *
