@@ -413,16 +413,16 @@ const parseToc = (block: TocBlock) => {
   };
 };
 
-const parseTeamMembers = (block: TeamMembersBlock) => {
+const parseTeamMember = (block: TeamMemberBlock) => {
   return {
-    type: 'teamMembers',
-    data: block.data.members.map((member) => ({
-      name: member.name,
-      role: member.role,
-      description: member.description,
-      image: member.image,
-      link: member.link,
-    })),
+    type: 'teamMember',
+    data: {
+      name: block.data.name,
+      role: block.data.role,
+      description: block.data.description,
+      image: block.data.image,
+      link: block.data.link,
+    },
   };
 };
 
@@ -614,7 +614,7 @@ const htmlParser = HTMLParser({
   toc: parseToc,
   cta: parseCTA,
   testimonial: parseTestimonial,
-  teamMembers: parseTeamMembers,
+  teamMember: parseTeamMember,
 });
 
 const parseBlocks = (blocks: any[]) => htmlParser.parse({ blocks });
