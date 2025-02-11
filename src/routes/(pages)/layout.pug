@@ -94,12 +94,13 @@ mixin announcement-post-it(href, date, location, content)
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
 
 mixin announcement-banner(href, text)
-  .announcement-banner(class="w-full border-b border-solid border-l4 bg-l2")
-    .banner-content(class="flex items-center justify-center gap-3 max-w-screen-xl-up mx-auto py-2 px-4")
-      a(
-        href=href
-        class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-center"
-      )= text
+  .announcement-banner(
+    class="w-full border-b border-solid border-l4 bg-l2 flex items-center justify-center px-4 py-3 gap-4"
+  )
+    a(
+      href=href
+      class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6"
+    )= text
 
 mixin left-sidebar
   aside.sidebar(
