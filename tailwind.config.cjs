@@ -19,7 +19,7 @@ module.exports = {
       'sm-up': '480px',
       'md-up': '768px',
       'lg-up': '992px',
-      'xl-up': '1200px',
+      'xl-up': '1248px',
       '2xl-up': '1440px',
       xl: {
         min: '1680px',
@@ -30,12 +30,12 @@ module.exports = {
         max: '1679px',
       },
       md: {
-        min: '1200px',
+        min: '1248px',
         max: '1439px',
       },
       tb: {
         min: '992px',
-        max: '1199px',
+        max: '1247px',
       },
       sm: {
         min: '768px',
@@ -54,7 +54,7 @@ module.exports = {
         max: '479px',
       },
       tbDown: {
-        raw: '(max-width: 1199px)',
+        raw: '(max-width: 1247px)',
       },
       smDown: {
         raw: '(max-width: 991px)',
@@ -62,9 +62,11 @@ module.exports = {
     },
     colors: {
       white: 'white',
+      black: 'black',
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
+      'post-it-yellow': '#FDF5A3',
       l1: 'rgb(var(--l1) / <alpha-value>)',
       l2: 'rgb(var(--l2) / <alpha-value>)',
       l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -130,6 +132,13 @@ module.exports = {
       ],
       'subtitle-l': [
         '20px',
+        {
+          lineHeight: '32px',
+          fontWeight: '500',
+        },
+      ],
+      'subtitle-xl': [
+        '24px',
         {
           lineHeight: '32px',
           fontWeight: '500',
@@ -273,6 +282,7 @@ module.exports = {
       inter: ['"Inter"'],
       satoshi: ['"Satoshi"'],
       mono: ['"JetBrains Mono"'],
+      handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
       spacing: {
@@ -280,24 +290,34 @@ module.exports = {
         1.25: '0.3125rem',
         1.75: '0.4375rem',
         2.25: '0.5625rem',
+        2.5: '0.625rem',
         2.75: '0.6875rem',
         3.75: '0.9375rem',
+        4.5: '1.125rem',
         5.5: '1.375rem',
         5.75: '1.4375rem',
         6.5: '1.625rem',
+        7.5: '2.000rem',
         8.5: '2.125rem',
         '11/25': '44%',
         '1/2': '50%',
+        10.5: '2.65rem',
+        15.5: '3.875rem',
+        18: '4.624rem',
         19: '4.75rem',
+        19.5: '4.95rem',
         21: '5.438rem',
         23: '5.75rem',
         25: '6.25rem',
         30: '7.5rem',
         31: '7.75rem',
         37: '8.563rem',
+        38.5: '9.625rem',
         41: '10.563rem',
+        44: '11rem',
         54: '13.5rem',
         61: '15.25rem',
+        70: '17.5rem',
         578: '36.125rem',
         636: '39.75rem',
       },
@@ -326,16 +346,50 @@ module.exports = {
         'button-hover':
           '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
         'button-active':
-          '0px 0px 0px 2px rgba(0, 204, 255, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+          '0px 0px 0px 2px rgba(0, 204, 255, 0.20), 0px 4px 12px rgba(0, 0, 0, var(--shadow-active-ring-alpha)), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+        'button-active-light':
+          '0px 0px 0px 2px rgba(46, 131, 229, 0.20), inset 0px 2px 0px rgba(255, 255, 255, 0.24)',
+        'button-disabled': '0px 4px 8px 0px rgba(0, 0, 0, 0.16)',
         'secondary-button':
-          '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 0px 8px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+          '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 8px 0px rgba(0, 0, 0, var(--shadow-input-alpha)), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
         'secondary-button-hover':
           '0px 0px 0px 2px rgba(0, 0, 0, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
         'secondary-button-active':
           '0px 0px 0px 2px rgba(0, 204, 255, var(--shadow-button-ring-alpha)), 0px 4px 12px rgba(0, 0, 0, 0.24), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
+        'secondary-button-active-light':
+          '0px 0px 0px 2px rgba(46, 131, 229, 0.20), inset 0px 2px 0px rgba(255, 255, 255, 0.04)',
       },
       minHeight: {
         32: '8rem',
+      },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 10s linear infinite',
+        'navigation-left-right': 'navigation-left-right 0.6s ease-out forwards',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - 24px))' },
+        },
+        'navigation-left-right': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '33%, 66%': { transform: 'translateX(-100px)' },
+        },
+      },
+      backgroundImage: {
+        //- Landing Page
+        //- Hero / KPIs
+        'subcontainer-gradient': 'linear-gradient(to bottom, #1A1E29, #10141F)',
+        'subcontainer-gradient-light': 'linear-gradient(to bottom, #EAEBEF, #F0F1F5)',
+
+        'card-1-dark': "url('/cardBg/card-1-bg-dark.png')",
+        'card-2-dark': "url('/cardBg/card-2-bg-dark.png')",
+        'card-3-dark': "url('/cardBg/card-3-bg-dark.png')",
+        'card-4-dark': "url('/cardBg/card-4-bg-dark.png')",
+        'card-1-light': "url('/cardBg/card-1-bg-light.png')",
+        'card-2-light': "url('/cardBg/card-2-bg-light.png')",
+        'card-3-light': "url('/cardBg/card-3-bg-light.png')",
+        'card-4-light': "url('/cardBg/card-4-bg-light.png')",
       },
     },
   },

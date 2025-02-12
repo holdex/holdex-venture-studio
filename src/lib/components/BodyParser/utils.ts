@@ -43,7 +43,9 @@ export const regExp = {
   twitter: /^https?:\/\/twitter\.com\/(?:#!\/)?(\w+)\/status(?:es)?\/(\d+)(?:\/.*)?$/,
   symbols: /^[a-zA-Z0-9 ,.";():&%£’€$#@_=/\-'!*?\\/s]{2,}$/,
   image: /.*\.(gif|jpe?g|bmp|png)$/,
-  holdexLink: /^(http:\/\/|https:\/\/)(holdex\.io)/,
+  holdexLink: /^(http:\/\/|https:\/\/)?(holdex\.io|localhost:3000|\/)/,
+  internalLink: /^(?:\/|#).*/,
+  gistLink: /^(http:\/\/|https:\/\/)(gist\.github\.com\/.*)/,
 };
 
 export const getEmbedSource = (href: string) => {

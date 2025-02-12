@@ -9,6 +9,7 @@
     text: string;
     href: string;
     title?: string;
+    iconSize?: number;
   };
 
   export let item: Item;
@@ -16,9 +17,14 @@
   let parentWrapper = getContext('wrapper');
 
   let classes =
-    'relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
-
-  switch (parentWrapper) {
+    'w-fit relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+  
+  switch (item.type) {
+    case 'link':
+      break;
+    case 'navbar':
+      classes += ' text-h3-l font-satoshi xs:text-h3-s';
+      break;
     default:
       classes += ' text-paragraph-l';
       break;
@@ -40,6 +46,7 @@
   $: text = item.text || item.href;
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
+  $: iconSize = item.iconSize || 16;
 </script>
 
 {' '}
@@ -52,7 +59,7 @@
 >
   <slot text={truncated} />
   {#if !isHoldexLink}
-    <Icon icon={ArrowTopRightOnSquare} width={16} height={16} colorInherit />
+    <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
 </a>
 

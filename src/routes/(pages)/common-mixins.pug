@@ -13,7 +13,7 @@ mixin nav-crumbs
     block
 
 mixin main-section
-  section.main(class="flex flex-col items-center pt-16 xs:pt-8")
+  section.main(class="flex flex-col items-center xl-up:pt-18 pt-16 xs:pt-8")
     block
 
 mixin primary-button(label)
@@ -27,3 +27,33 @@ mixin button-icon-default
     class="relative inline-flex w-10 h-10 z-1 bg-l1 text-t3 border border-solid border-l5 shadow-secondary-button items-center justify-center p-1.75 rounded-2lg hover:text-t1 hover:!border-accent1-active focus:text-t1 focus:!border-accent1-active dark:bg-l3 dark:border-l3 dark:hover:shadow-secondary-button-hover"
   )&attributes(attributes)
     block
+
+mixin guideCard(href, title, subtitle, className='')
+  a.card(
+    class=`group w-full h-full justify-center rounded-xl flex flex-col transition-colors border border-l4 p-8 smDown:px-4 smDown:py-6 gap-4 bg-center bg-cover bg-l1 hover:bg-l2 ${className}`
+    href=href
+  )
+    h2(
+      class="relative text-h2-l xs:text-h2-s font-satoshi inline-block text-t1 group-hover:text-accent1-default"
+    ) #{title}
+    p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
+
+mixin endorsement(author, role, text, avatar)
+  .endorsement.relative(class=-"mt-16")
+    span(
+      class="absolute text-[201px] font-satoshi text-t3 -top-36 -left-25 tb:-left-2 tb:-top-24 tb:text-9xl sm:text-9xl sm:-top-20 sm:left-1 xs:text-9xl xs:-top-18 xs:left-1"
+    ) “
+
+    .endorsement-text
+      blockquote(class="text-paragraph-l text-t2 xs:text-paragraph-s")
+        | #{text}
+
+    .author-info.flex.items-center.justify-end.gap-4.mt-4
+      .author-details.flex.flex-col.items-end.text-right(class="font-satoshi text-h5-l smDown:text-h5-s")
+        Link(
+          item=`{{type: 'link', href: 'https://linkedin.com/in/jakob-kronbichler-73737746', text: '${author}', title: '${author}', iconSize: 20}}`
+        )= author
+          
+        span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
+
+      img(src=avatar alt=author class="h-14 w-14 rounded-xl")

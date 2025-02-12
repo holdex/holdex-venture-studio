@@ -4,9 +4,18 @@
   import { page } from '$app/stores';
   import { isBrowser, routes } from '$lib/config';
   import { onMount } from 'svelte';
+  import { writable } from 'svelte/store';
+  import { setContext } from 'svelte';
 
   /** internal deps */
-  import { socialIcons, Bars3, XMark, ExclamationTriangle, CheckCircle, ChatBubbleBottomCenter } from '$components/Icons';
+  import {
+    socialIcons,
+    Bars3,
+    XMark,
+    ExclamationTriangle,
+    CheckCircle,
+    ChatBubbleBottomCenter,
+  } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import SVGIcon from '$components/Icons/SVGIcon.svelte';
   import { regExp } from '$components/BodyParser/utils';
@@ -14,70 +23,28 @@
   import { scrollToElement } from '$lib/utils';
   import Button from '$components/Button/index.svelte';
   import type { SVGIconName } from '$components/Icons/types';
+  import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
-  /** vars */
   let email = '';
   let message = '';
   let name = '';
   let isError = false;
   let success = false;
-  let scrollY: any;
   let isBurgerDropdownShown = false;
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
-  let themeIconName: SVGIconName = theme
-    ? theme === 'dark'
-      ? 'sun'
-      : 'moon'
-    : globalThis.window?.matchMedia('(prefers-color-scheme: light)').matches
-    ? 'moon'
-    : 'sun';
+  let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
 
-  /** funcs */
+  let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
+  setContext('theme', themeContext);
+
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
+    $themeContext = themeIconName === 'sun' ? 'dark' : 'light';
   };
 
   let lastScrollTop = 0;
-  let secondaryNavScrollLeft = 0
-  let status = true
-  let isLeftEnd = true
-  let isRightEnd = false
-
-  onMount(() => {
-    window.addEventListener("scroll", () => {
-      const st = window.scrollY || document.documentElement.scrollTop;
-      if (st > lastScrollTop) {
-          status = false
-      } else if (st < lastScrollTop) {
-          status = true
-      }
-
-      lastScrollTop = st <= 0 ? 0 : st;
-    }, false);
-  });
-
-  const scrollAction = (node: HTMLElement) => {
-    const hasReachedRightEnd = () => {
-      const navbarSecionElement = document.getElementById("secondary-navbar-section");
-
-      if (!node || !navbarSecionElement) {
-        return 
-      }
-
-      secondaryNavScrollLeft = node?.scrollLeft;
-      isLeftEnd = secondaryNavScrollLeft === 0
-      isRightEnd = secondaryNavScrollLeft + node.clientWidth === navbarSecionElement.clientWidth ? true : false
-    }
-
-    node.addEventListener("scroll", hasReachedRightEnd, false)
-
-    return {
-      destory() {
-        node.removeEventListener("scroll", hasReachedRightEnd)
-      }
-    }
-  }
+  let secondaryNavScrollLeft = 0;
 
   const isActive = (currentUrl: string, path: string, deepEqual = false) => {
     if (deepEqual) {
@@ -106,6 +73,9 @@
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
     const data = new FormData(form);
+
+    const currentPage = window.location.pathname;
+    data.append('pageUrl', currentPage);
 
     const response = await fetch(form.action, {
       method: 'POST',
@@ -145,7 +115,6 @@
     return !validateEmail(email) && email.length > 0 ? (isError = true) : (isError = false);
   };
 
-  /** react-ibles */
   $: path = $page.url.pathname;
   $: form = $page.form;
   $: if (globalThis.document) {
@@ -155,8 +124,6 @@
 
 <template lang="pug" src="./layout.pug">
 </template>
-
-<svelte:window bind:scrollY />
 
 <svelte:head>
   <style lang="scss" src="./layout.scss"></style>

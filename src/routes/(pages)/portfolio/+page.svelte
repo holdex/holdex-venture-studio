@@ -17,8 +17,11 @@
   import MetaTags from '$components/MetaTags/index.svelte';
   import Icon from '$components/Icons/index.svelte';
 
-  import DefaultFeedItem from '$components/Feed/Item/index.svelte';
-  import Feed from '$components/Feed/index.svelte';
+  // import DefaultFeedItem from '$components/Feed/Item/index.svelte';
+  // import Feed from '$components/Feed/index.svelte';
+  import PortfolioItem from '$components/Portfolio/index.svelte';
+  import CompanyLogoStrip from '$components/CompanyLogoStrip/index.svelte';
+  import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
@@ -60,11 +63,12 @@
     });
     isRefetching = false;
   };
+
 </script>
 
 <MetaTags
-  title="Holdex | Web3 based startup studio"
-  description="We empower the next web3 innovators to build and accelerate blockchain adoption."
+  title="Our Portfolio of Startups | Holdex"
+  description="A list of blockchain products Holdex has worked across different verticals including DeFi, lending, KYC, gameFi, DAO, and developer tools, to name a few."
   path={routes.portfolio}
   imagePath="/og/portfolio.png"
 />
