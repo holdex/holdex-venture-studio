@@ -48,6 +48,8 @@
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
   $: iconSize = item.iconSize || 16;
+
+  $: console.log(item.href, isHoldexLink, isInternalLink);
 </script>
 
 {' '}
@@ -55,7 +57,7 @@
   title={item.title ? item.title : ''}
   href={item.href}
   class={classes}
-  target={isHoldexLink && isInternalLink ? '_self' : '_blank'}
+  target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
   <slot text={truncated} />
