@@ -99,21 +99,11 @@ mixin left-sidebar
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      Link(
-        item=`{{type: 'navbar', href: routes.about, iconSize: 24}}`
-      ) About
-      Link(
-        item=`{{type: 'navbar', href: routes.portfolio, iconSize: 24}}`
-      ) Portfolio
-      Link(
-        item=`{{type: 'navbar', href: routes.forStartups, iconSize: 24}}`
-      ) For Startups
-      Link(
-        item=`{{type: 'navbar', href: routes.guides, iconSize: 24}}`
-      ) Guides
-      Link(
-        item=`{{type: 'navbar', href: routes.jobs, iconSize: 24}}`
-      ) Jobs
+      Link(item="{{type: 'heading-link', href: routes.about, iconSize: 24}}") About
+      Link(item="{{type: 'heading-link', href: routes.portfolio, iconSize: 24}}") Portfolio
+      Link(item="{{type: 'heading-link', href: routes.forStartups, iconSize: 24}}") For Startups
+      Link(item="{{type: 'heading-link', href: routes.guides, iconSize: 24}}") Guides
+      Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
       +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
