@@ -46,6 +46,7 @@
   $: text = item.text || item.href;
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
+  $: isInternalLink = regExp.internalLink.test(item.href || '');
   $: iconSize = item.iconSize || 16;
 </script>
 
@@ -58,7 +59,7 @@
   rel="noreferrer"
 >
   <slot text={truncated} />
-  {#if !isHoldexLink}
+  {#if !isHoldexLink && !isInternalLink}
     <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
 </a>
