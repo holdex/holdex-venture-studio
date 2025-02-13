@@ -55,7 +55,7 @@
   title={item.title ? item.title : ''}
   href={item.href}
   class={classes}
-  target={isHoldexLink ? '_self' : '_blank'}
+  target={isHoldexLink && isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
   <slot text={truncated} />
