@@ -2,6 +2,7 @@
   import { regExp } from '$components/BodyParser/utils';
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
+  import { routes } from '$lib/config';
   import { getContext } from 'svelte';
 
   type Item = {
@@ -15,15 +16,22 @@
   export let item: Item;
 
   let parentWrapper = getContext('wrapper');
+  let href = item.href;
+  let index;
 
   let classes =
-    'w-fit relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
-  
+    'w-fit relative inline-block bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+
   switch (item.type) {
     case 'link':
       break;
-    case 'navbar':
+    case 'heading-link':
       classes += ' text-h3-l font-satoshi xs:text-h3-s';
+      break;
+    case 'navbar-link':
+      classes += ' text-h3-l font-satoshi xs:text-h3-s';
+      index = item.href.match(/\{routes\.(\w+)\}/)?.[1] || '';
+      href = routes[index];
       break;
     default:
       classes += ' text-paragraph-l';
@@ -46,19 +54,22 @@
   $: text = item.text || item.href;
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
+  $: isInternalLink = regExp.internalLink.test(item.href || '');
   $: iconSize = item.iconSize || 16;
 </script>
 
 {' '}
 <a
   title={item.title ? item.title : ''}
-  href={item.href}
+  href={href}
   class={classes}
-  target={isHoldexLink ? '_self' : '_blank'}
+  target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
-  <slot text={truncated} />
-  {#if !isHoldexLink}
+  <span class="underline underline-offset-4">
+    <slot text={truncated} />
+  </span>
+  {#if !isHoldexLink && !isInternalLink}
     <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
 </a>
