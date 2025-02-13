@@ -30,7 +30,7 @@
       break;
     case 'navbar-link':
       classes += ' text-h3-l font-satoshi xs:text-h3-s';
-      index = item.href.match(/\{routes\.(\w+)\}/)?.[1] || "";
+      index = item.href.match(/\{routes\.(\w+)\}/)?.[1] || '';
       href = routes[index];
       break;
     default:
