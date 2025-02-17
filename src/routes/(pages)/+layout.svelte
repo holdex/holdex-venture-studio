@@ -26,8 +26,11 @@
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
   let email = '';
+  let status = '';
   let message = '';
   let name = '';
+  let isLeftEnd = false;
+  let isRightEnd = false;
   let isError = false;
   let success = false;
   let isBurgerDropdownShown = false;
