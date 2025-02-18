@@ -61,7 +61,7 @@
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
-  <span class="underline underline-offset-4">
+  <span class="!underline !underline-offset-4" style="all: unset">
     <slot text={truncated} />
   </span>
   {#if !isHoldexLink && !isInternalLink}
