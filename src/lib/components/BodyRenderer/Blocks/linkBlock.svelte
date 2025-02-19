@@ -87,7 +87,7 @@
   }
 
   .fallback-icon {
-    @apply flex items-center justify-center w-10 h-10 rounded-full bg-l3;
+    @apply flex items-center justify-center w-10 h-10 rounded-full bg-l3 ml-4;
   }
 
   .content-wrapper {
@@ -99,7 +99,7 @@
   }
 
   .description {
-    @apply truncate text-t3 text-sm w-[420px];
+    @apply truncate text-t3 text-sm w-full pr-4;
   }
 
   .url-wrapper {
