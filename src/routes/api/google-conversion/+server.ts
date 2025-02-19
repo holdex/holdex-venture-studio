@@ -517,14 +517,14 @@ const parseParagraphElement = (
   }
 };
 
-const parseParagraph = (
+const parseParagraph = async (
   document: Schema$Document,
   body: Schema$Body,
   contents: (Parsed$Paragraph | Parsed$ParagraphElement)[],
   paragraph: Schema$Paragraph,
   i: number,
   wrappingTable = false
-): void => {
+): Promise<void> => {
   if (!body || !body.content) return;
 
   const { lists } = document;
@@ -641,14 +641,30 @@ const parseParagraph = (
               break;
             }
 
-            tagContent.push({
-              type: 'linkTool',
-              data: {
-                url: link,
-                title: content,
-                embed: `api/link.json?url=${link}`,
-              },
-            });
+            try {
+              const response = await fetch(`/api/og?url=${encodeURIComponent(link)}`);
+              const ogData = await response.json();
+
+              tagContent.push({
+                type: 'linkTool',
+                data: {
+                  url: link,
+                  title: ogData.meta?.title || content,
+                  embed: `api/link.json?url=${link}`,
+                  description: ogData.meta?.description || '',
+                  imageUrl: ogData.meta?.image || '',
+                },
+              });
+            } catch (error) {
+              tagContent.push({
+                type: 'linkTool',
+                data: {
+                  url: link,
+                  title: content,
+                  embed: `api/link.json?url=${link}`,
+                },
+              });
+            }
 
             break;
           }
@@ -658,7 +674,7 @@ const parseParagraph = (
           (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             : 0) /
-            18 +
+          18 +
           2;
 
         tagContent.push({

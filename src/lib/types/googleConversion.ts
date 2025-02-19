@@ -23,6 +23,8 @@ export type Parsed$Paragraph = {
     embed?: string;
     title?: string;
     items?: Parsed$ParagraphItems[];
+    description?: string;
+    imageUrl?: string;
     file?: {
       url?: string;
     };

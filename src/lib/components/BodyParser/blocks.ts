@@ -107,6 +107,8 @@ type LinkToolBlock = {
   data: {
     url: string;
     title?: string;
+    imageUrl?: string;
+    description?: string;
     embed: string;
   };
 };
@@ -570,7 +572,7 @@ const parseLinkTool = (block: LinkToolBlock) => {
   } else {
     return {
       type: 'linkTool',
-      data: block.data,
+      data: block.data
     };
   }
 };
@@ -616,6 +618,7 @@ const htmlParser = HTMLParser({
   testimonial: parseTestimonial,
   teamMember: parseTeamMember,
 });
+
 
 const parseBlocks = (blocks: any[]) => htmlParser.parse({ blocks });
 
