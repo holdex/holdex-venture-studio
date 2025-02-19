@@ -13,6 +13,7 @@
   import Table from './Blocks/table.svelte';
   import CTA from './Blocks/cta.svelte';
   import Testimonial from './Blocks/testimonial.svelte';
+  import LinkBlock from './Blocks/linkBlock.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
 
   export let item: any;
