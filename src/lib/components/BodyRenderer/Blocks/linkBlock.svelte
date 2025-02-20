@@ -4,9 +4,11 @@
   import Icon from '$components/Icons/index.svelte';
   import { regExp } from '$components/BodyParser/utils';
 
+  let isLoading = false;
+
   // TODO: Move fetch logic to server-side once API integration is complete
-  // ======================================================================
   async function fetchOg(url: string) {
+    isLoading = true;
     try {
       const response = await fetch(`/api/og?url=${encodeURIComponent(url)}`);
       if (!response.ok) {
@@ -15,6 +17,8 @@
       item = await response.json();
     } catch (error: any) {
       console.error(error?.message || 'An unexpected error occurred');
+    } finally {
+      isLoading = false;
     }
   }
 
@@ -49,36 +53,48 @@
 
 <a
   href={url}
-  target="_blank"
+  title={title ? title : ''}
+  target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
   class="link-card {theme === 'dark' ? 'dark-hover' : 'light-hover'}"
 >
   <div class="linkblock-wrapper">
-    <div class="image-container">
-      {#if imageUrl}
-        <div class="preview-wrapper">
-          <img src={imageUrl} alt="Link preview" class="preview-image" />
-        </div>
-      {:else}
-        <div class="fallback-icon">
-          <Icon icon={Link} class="text-t3" width={24} height={24} />
-        </div>
-      {/if}
-    </div>
-    <div class="content-wrapper">
-      <h3 class="title">{title}</h3>
-      {#if description}
-        <p class="description">{description}</p>
-      {/if}
-      <div class="url-wrapper">
-        <div class="url-content">
-          <span class="truncate">{truncateUrl(url)}</span>
-          {#if !isHoldexLink}
-            <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
-          {/if}
+    {#if isLoading}
+      <div class="skeleton-wrapper">
+        <div class="skeleton-image animate-pulse" />
+        <div class="skeleton-content">
+          <div class="skeleton-title animate-pulse" />
+          <div class="skeleton-description animate-pulse" />
+          <div class="skeleton-url animate-pulse" />
         </div>
       </div>
-    </div>
+    {:else}
+      <div class="image-container">
+        {#if imageUrl}
+          <div class="preview-wrapper">
+            <img src={imageUrl} alt="Link preview" class="preview-image" />
+          </div>
+        {:else}
+          <div class="fallback-icon">
+            <Icon icon={Link} class="text-t3" width={24} height={24} />
+          </div>
+        {/if}
+      </div>
+      <div class="content-wrapper">
+        <h3 class="title">{title}</h3>
+        {#if description}
+          <p class="description">{description}</p>
+        {/if}
+        <div class="url-wrapper">
+          <div class="url-content">
+            <span class="truncate">{truncateUrl(url)}</span>
+            {#if !isHoldexLink}
+              <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
+            {/if}
+          </div>
+        </div>
+      </div>
+    {/if}
   </div>
 </a>
 
@@ -130,5 +146,43 @@
 
   .url-content {
     @apply underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25;
+  }
+
+  .skeleton-wrapper {
+    @apply flex items-center gap-4 w-full h-full;
+  }
+
+  .skeleton-image {
+    @apply w-[128px] h-[88px] rounded-lg bg-l3;
+  }
+
+  .skeleton-content {
+    @apply flex flex-col gap-2 flex-1;
+  }
+
+  .skeleton-title {
+    @apply h-4 w-1/2 rounded bg-l3;
+  }
+
+  .skeleton-description {
+    @apply h-4 w-3/4 rounded bg-l3;
+  }
+
+  .skeleton-url {
+    @apply h-4 w-1/4 rounded bg-l3 mt-1;
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
   }
 </style>
