@@ -27,12 +27,19 @@ const getCacheControl = () => {
 };
 
 const fetchOpenGraph = async (targetUrl: string): Promise<OpenGraphResponse> => {
+  // Validate URL format and allowed domains
+  const url = new URL(targetUrl);
+  if (!['http:', 'https:'].includes(url.protocol)) {
+    throw new Error('Invalid URL protocol');
+  }
+
   const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36';
   const { result } = await ogs({
     url: targetUrl,
+    timeout: 5000,
     fetchOptions: {
-      headers: { 'user-agent': userAgent }
-    }
+      headers: { 'user-agent': userAgent },
+    },
   });
 
   return {
@@ -59,7 +66,14 @@ export const GET: RequestHandler = async ({ url, setHeaders }) => {
   try {
     const response = await fetchOpenGraph(targetUrl);
     return json(response);
-  } catch (error) {
+  } catch (error: any) {
+    console.error(`Error fetching OG data for ${targetUrl}:`, error);
+    if (error instanceof TypeError) {
+      return json(defaultResponse, { status: 400 });
+    }
+    if (error.code === 'ETIMEDOUT') {
+      return json(defaultResponse, { status: 504 });
+    }
     return json(defaultResponse);
   }
 };

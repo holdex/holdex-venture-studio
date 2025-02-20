@@ -517,14 +517,14 @@ const parseParagraphElement = (
   }
 };
 
-const parseParagraph = async (
+const parseParagraph = (
   document: Schema$Document,
   body: Schema$Body,
   contents: (Parsed$Paragraph | Parsed$ParagraphElement)[],
   paragraph: Schema$Paragraph,
   i: number,
   wrappingTable = false
-): Promise<void> => {
+): void => {
   if (!body || !body.content) return;
 
   const { lists } = document;

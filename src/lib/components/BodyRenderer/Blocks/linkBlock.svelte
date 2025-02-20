@@ -6,10 +6,22 @@
 
   let isLoading = false;
 
+  const isValidUrl = (url: string) => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
   // TODO: Move fetch logic to server-side once API integration is complete
   async function fetchOg(url: string) {
     isLoading = true;
     try {
+      if (!url || !isValidUrl(url)) {
+        throw new Error('Invalid URL provided');
+      }
       const response = await fetch(`/api/og?url=${encodeURIComponent(url)}`);
       if (!response.ok) {
         throw new Error(`${response.statusText}`);
