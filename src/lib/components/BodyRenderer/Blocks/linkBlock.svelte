@@ -89,7 +89,9 @@
           <div class="url-content">
             <span class="truncate">{truncateUrl(url)}</span>
             {#if !isHoldexLink}
-              <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
+              <div class="url-icon-wrapper">
+                <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
+              </div>
             {/if}
           </div>
         </div>
@@ -117,7 +119,7 @@
   }
 
   .preview-wrapper {
-    @apply flex justify-center items-center rounded-xl;
+    @apply flex justify-center items-center rounded-xl pl-1;
   }
 
   .preview-image {
@@ -145,11 +147,15 @@
   }
 
   .url-content {
-    @apply underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25;
+    @apply flex border-b bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25;
+  }
+
+  .url-icon-wrapper {
+    @apply relative left-[1px] bottom-[1.5px];
   }
 
   .skeleton-wrapper {
-    @apply flex items-center gap-4 w-full h-full;
+    @apply flex items-center gap-4 w-full h-full pl-1;
   }
 
   .skeleton-image {
