@@ -1,21 +1,43 @@
 <script lang="ts">
-  import { getContext } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import { ArrowTopRightOnSquare, Link } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { regExp } from '$components/BodyParser/utils';
-  export let item: any;
+
+  // TODO: Move fetch logic to server-side once API integration is complete
+  // ======================================================================
+  async function fetchOg(url: string) {
+    try {
+      const response = await fetch(`/api/og?url=${encodeURIComponent(url)}`);
+      if (!response.ok) {
+        throw new Error(`${response.statusText}`);
+      }
+      item = await response.json();
+    } catch (error: any) {
+      console.error(error?.message || 'An unexpected error occurred');
+    }
+  }
+
+  onMount(() => {
+    fetchOg(item?.url);
+  });
+  // ======================================================================
+
+  type OpenGraphResponse = {
+    url: string;
+    title: string;
+    description: string;
+    imageUrl: string | null;
+    embed: string;
+  };
+
   let theme = getContext('theme');
+  export let item: OpenGraphResponse;
 
-  // $: url = item?.title ?? '';
-  // $: title = item?.title ?? '';
-  // $: imageUrl = item?.imageUrl ?? '';
-
-  // TODO: Replace with actual data from item prop
-  $: url = 'https://holdex.io/for-startups';
-  $: title = 'Holdex';
-  $: imageUrl = 'https://holdex.io/og/for-startups.png';
-  $: description = 'Learn about our partnership recipe that empowers the company success';
-
+  $: url = item?.url ?? '';
+  $: title = item?.title ?? '';
+  $: imageUrl = item?.imageUrl ?? '';
+  $: description = item?.description ?? '';
   $: isHoldexLink = regExp.holdexLink.test(url);
 
   const truncateUrl = (url: string) => {
@@ -83,7 +105,7 @@
   }
 
   .preview-image {
-    @apply w-[128px] h-[88px] rounded-lg;
+    @apply w-[128px] h-[88px] rounded-lg object-cover;
   }
 
   .fallback-icon {
@@ -95,7 +117,7 @@
   }
 
   .title {
-    @apply truncate font-bold text-t1 text-sm;
+    @apply truncate font-bold text-t1 text-sm w-full pr-4;
   }
 
   .description {

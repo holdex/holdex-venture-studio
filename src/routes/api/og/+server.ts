@@ -1,48 +1,65 @@
 import ogs from 'open-graph-scraper';
+import { isDev } from "$lib/config";
+import { isStage } from "$lib/server/config";
 import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
+import { formatUrlToTitle } from '$lib/utils';
 
-interface OpenGraphResponse {
-  success: number;
-  meta: {
-    title?: string;
-    site_name?: string;
-    description?: string;
-    image?: string | null;
+type OpenGraphResponse = {
+  url: string;
+  title: string;
+  description: string;
+  imageUrl: string | null;
+  embed: string;
+};
+
+const createDefaultResponse = (targetUrl: string | null): OpenGraphResponse => ({
+  url: targetUrl || '',
+  title: targetUrl ? formatUrlToTitle(targetUrl) : '',
+  description: '',
+  imageUrl: null,
+  embed: targetUrl ? `api/link.json?url=${targetUrl}` : '',
+});
+
+const getCacheControl = () => {
+  if (isDev) return 'no-cache';
+  return isStage ? 'max-age=0, s-maxage=500' : 'max-age=0, s-maxage=3600';
+};
+
+const fetchOpenGraph = async (targetUrl: string): Promise<OpenGraphResponse> => {
+  const userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36';
+  const { result } = await ogs({
+    url: targetUrl,
+    fetchOptions: {
+      headers: { 'user-agent': userAgent }
+    }
+  });
+
+  return {
+    url: targetUrl,
+    title: result.ogTitle || formatUrlToTitle(targetUrl),
+    description: result.ogDescription || '',
+    imageUrl: result.ogImage?.[0]?.url || null,
+    embed: `api/link.json?url=${targetUrl}`,
   };
-  link: string;
-}
+};
 
-export const GET: RequestHandler = async ({ url }) => {
+export const GET: RequestHandler = async ({ url, setHeaders }) => {
   const targetUrl = url.searchParams.get('url');
+  const defaultResponse = createDefaultResponse(targetUrl);
 
   if (!targetUrl) {
-    return json({ success: 0, meta: {}, link: '' }, { status: 400 });
+    return json(defaultResponse, { status: 400 });
   }
 
+  setHeaders({
+    'Cache-Control': getCacheControl(),
+  });
+
   try {
-    const options = {
-      url: targetUrl,
-      followRedirect: true,
-      maxRedirects: 5,
-      timeout: 10000,
-    };
-
-    const { result } = await ogs(options);
-
-    const response: OpenGraphResponse = {
-      success: 1,
-      meta: {
-        title: result.ogTitle,
-        site_name: result.ogSiteName,
-        description: result.ogDescription,
-        image: result.ogImage?.[0]?.url || null,
-      },
-      link: targetUrl,
-    };
-
+    const response = await fetchOpenGraph(targetUrl);
     return json(response);
   } catch (error) {
-    return json({ success: 0, meta: {}, link: targetUrl });
+    return json(defaultResponse);
   }
 };
