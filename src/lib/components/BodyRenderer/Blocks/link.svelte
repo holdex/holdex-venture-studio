@@ -23,8 +23,10 @@
     case 'link':
       break;
     case 'heading-link':
-    case 'article-heading-link':
       classes += ' text-h3-l font-satoshi xs:text-h3-s';
+      break;
+    case 'article-heading-link':
+      classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
       break;
     default:
       classes += ' text-paragraph-l';
