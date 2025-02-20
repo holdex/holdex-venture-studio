@@ -48,7 +48,7 @@
   };
 
   let theme = getContext('theme');
-  export let item: OpenGraphResponse;
+  let item: OpenGraphResponse;
 
   $: url = item?.url ?? '';
   $: title = item?.title ?? '';
