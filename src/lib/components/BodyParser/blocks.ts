@@ -107,8 +107,6 @@ type LinkToolBlock = {
   data: {
     url: string;
     title?: string;
-    imageUrl?: string;
-    description?: string;
     embed: string;
   };
 };
