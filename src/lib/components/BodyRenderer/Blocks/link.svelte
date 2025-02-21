@@ -17,13 +17,16 @@
   let parentWrapper = getContext('wrapper');
 
   let classes =
-    'w-fit relative inline-block underline underline-offset-4 bg-accent1-default/15 text-accent1-default  transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
+    'w-fit relative inline-block bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
 
   switch (item.type) {
     case 'link':
       break;
     case 'heading-link':
       classes += ' text-h3-l font-satoshi xs:text-h3-s';
+      break;
+    case 'article-heading-link':
+      classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
       break;
     default:
       classes += ' text-paragraph-l';
@@ -58,7 +61,9 @@
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
 >
-  <slot text={truncated} />
+  <span class="!underline !underline-offset-4" style="all: unset">
+    <slot text={truncated} />
+  </span>
   {#if !isHoldexLink && !isInternalLink}
     <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
   {/if}
