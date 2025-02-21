@@ -15,7 +15,6 @@
     }
   };
 
-  // TODO: Move fetch logic to server-side once API integration is complete
   async function fetchOg(url: string) {
     isLoading = true;
     try {
@@ -37,7 +36,6 @@
   onMount(() => {
     fetchOg(item?.url);
   });
-  // ======================================================================
 
   type OpenGraphResponse = {
     url: string;

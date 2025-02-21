@@ -641,22 +641,6 @@ const parseParagraph = (
               break;
             }
 
-            // TODO: activate this once ready to testing with the google-conversion API.
-            // try {
-            //   const response = await fetch(`/api/og?url=${encodeURIComponent(link)}`);
-            //   const ogData = await response.json();
-
-            //   tagContent.push({
-            //     type: 'linkTool',
-            //     data: {
-            //       url: link,
-            //       title: ogData.meta?.title || content,
-            //       embed: `api/link.json?url=${link}`,
-            //       description: ogData.meta?.description || '',
-            //       imageUrl: ogData.meta?.image || '',
-            //     },
-            //   });
-            // } catch (error) {
             tagContent.push({
               type: 'linkTool',
               data: {
@@ -665,7 +649,6 @@ const parseParagraph = (
                 embed: `api/link.json?url=${link}`,
               },
             });
-            // }
 
             break;
           }
@@ -675,7 +658,7 @@ const parseParagraph = (
           (paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             ? paragraph?.paragraphStyle?.indentFirstLine?.magnitude
             : 0) /
-          18 +
+            18 +
           2;
 
         tagContent.push({
