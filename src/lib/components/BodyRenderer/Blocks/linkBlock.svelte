@@ -42,7 +42,6 @@
     title: string;
     description: string;
     imageUrl: string | null;
-    embed: string;
   };
 
   let theme = getContext('theme');

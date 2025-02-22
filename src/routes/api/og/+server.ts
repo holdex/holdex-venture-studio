@@ -10,7 +10,6 @@ type OpenGraphResponse = {
   title: string;
   description: string;
   imageUrl: string | null;
-  embed: string;
 };
 
 const createDefaultResponse = (targetUrl: string | null): OpenGraphResponse => ({
@@ -18,7 +17,6 @@ const createDefaultResponse = (targetUrl: string | null): OpenGraphResponse => (
   title: targetUrl ? formatUrlToTitle(targetUrl) : '',
   description: '',
   imageUrl: null,
-  embed: targetUrl ? `api/link.json?url=${targetUrl}` : '',
 });
 
 const getCacheControl = () => {
@@ -47,7 +45,6 @@ const fetchOpenGraph = async (targetUrl: string): Promise<OpenGraphResponse> => 
     title: result.ogTitle || formatUrlToTitle(targetUrl),
     description: result.ogDescription || '',
     imageUrl: result.ogImage?.[0]?.url || null,
-    embed: `api/link.json?url=${targetUrl}`,
   };
 };
 
