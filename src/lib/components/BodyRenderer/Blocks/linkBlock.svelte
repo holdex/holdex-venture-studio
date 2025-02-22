@@ -70,15 +70,11 @@
   <div class="flex items-center gap-4 w-full h-full">
     {#if isLoading}
       <div class="flex items-center gap-4 w-full h-full pl-1">
-        <div
-          class="w-[128px] h-[88px] rounded-lg bg-l3 pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
-        />
+        <div class="w-[128px] h-[88px] rounded-lg bg-l3 animate-pulse" />
         <div class="flex flex-col gap-2 flex-1">
-          <div class="h-4 w-1/2 rounded bg-l3 pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite" />
-          <div class="h-4 w-3/4 rounded bg-l3 pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite" />
-          <div
-            class="h-4 w-1/4 rounded bg-l3 mt-1 pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
-          />
+          <div class="h-4 w-1/2 rounded bg-l3 animate-pulse" />
+          <div class="h-4 w-3/4 rounded bg-l3 animate-pulse" />
+          <div class="h-4 w-1/4 rounded bg-l3 mt-1 animate-pulse" />
         </div>
       </div>
     {:else}
@@ -120,6 +116,10 @@
 </a>
 
 <style lang="scss">
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   @keyframes pulse {
     0%,
     100% {
