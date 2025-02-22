@@ -42,3 +42,17 @@ export function parseCommunityCoverImage(community: Community): string {
 export const trimJoinArray = (target: string[]): string => {
   return target.join(' ').replace(/\s([.,])/g, '$1');
 };
+
+export const formatUrlToTitle = (url: string): string => {
+  try {
+    const domain = new URL(url).hostname
+      .replace('www.', '')
+      .split('.')[0]
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+    return domain;
+  } catch {
+    return url;
+  }
+};
