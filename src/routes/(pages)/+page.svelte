@@ -8,6 +8,7 @@
   import { signature } from '$components/Icons';
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
+  import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
   export let data: PageData;
 
