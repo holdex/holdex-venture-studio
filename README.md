@@ -1,16 +1,36 @@
 # Welcome to Holdex
 
-> Before you begin align yourself with [contributing guidelines](https://github.com/holdex/developers/blob/main/.github/CONTRIBUTING.md).
+> Thanks for joining the Holdex project! Before diving in, please review our [contributing guidelines](https://github.com/holdex/developers/blob/main/.github/CONTRIBUTING.md) to ensure smooth collaboration..
+
 
 ## Developing
 
-Once you've installed dependencies with `npm install` (or `npm install` or `yarn`), start a development server:
+To get started, follow these steps:
+
+1. Install Dependencies
+
+ After cloning the repository, install the required dependencies:
+
+  ```bash
+npm install
+# or use yarn
+yarn
+```
+
+2. Start the Development Server
+
+Launch a local development server with:
 
 ```bash
 npm run dev
-# or start the server and open the app in a new browser tab
+```
+
+Alternatively, start the server and open the app in a new browser tab:
+
+```bash
 npm run dev -- --open
 ```
+
 
 ## Building
 
@@ -22,15 +42,19 @@ npm run build
 
 ## Environment Options
 
-Our localhost runs the stage environment by default. You can switch it to run the production environment as you test things out and then switch back to staging.
+By default, the localhost runs in the staging environment. You can switch to the production environment for testing and revert back as needed.
 
-You can do this in the `.env` file by setting the value to true:
+### How to Switch Environments
+
+1. Open the .env file in the project root.
+
+2. Set the following variable to toggle the production API:
 
 ```bash
 PUB_USE_PRODUCTION_API=true;
 ```
 
-and use the
+3. Run the clean development command to apply changes:
 
 ```bash
 npm run clean-dev
