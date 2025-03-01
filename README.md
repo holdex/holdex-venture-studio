@@ -1,5 +1,6 @@
 # Welcome to Holdex
 
+
 > Thank you for joining the Holdex project! Before diving in, please review our [contributing guidelines](https://github.com/holdex/developers/blob/main/.github/CONTRIBUTING.md) to ensure smooth collaboration.
 
 
