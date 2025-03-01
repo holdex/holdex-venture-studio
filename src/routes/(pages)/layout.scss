@@ -15,3 +15,10 @@
 .col-mw {
   @apply min-w-[150px] max-w-[200px];
 }
+
+.sidebar-social {
+  .social-icon {
+    height: 53.33px;
+    width: 53.33px;
+  }
+}

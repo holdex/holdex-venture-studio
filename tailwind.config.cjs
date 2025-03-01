@@ -19,7 +19,7 @@ module.exports = {
       'sm-up': '480px',
       'md-up': '768px',
       'lg-up': '992px',
-      'xl-up': '1200px',
+      'xl-up': '1248px',
       '2xl-up': '1440px',
       xl: {
         min: '1680px',
@@ -30,12 +30,12 @@ module.exports = {
         max: '1679px',
       },
       md: {
-        min: '1200px',
+        min: '1248px',
         max: '1439px',
       },
       tb: {
         min: '992px',
-        max: '1199px',
+        max: '1247px',
       },
       sm: {
         min: '768px',
@@ -54,7 +54,7 @@ module.exports = {
         max: '479px',
       },
       tbDown: {
-        raw: '(max-width: 1199px)',
+        raw: '(max-width: 1247px)',
       },
       smDown: {
         raw: '(max-width: 991px)',
@@ -62,9 +62,11 @@ module.exports = {
     },
     colors: {
       white: 'white',
+      black: 'black',
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
+      'post-it-yellow': '#FDF5A3',
       l1: 'rgb(var(--l1) / <alpha-value>)',
       l2: 'rgb(var(--l2) / <alpha-value>)',
       l3: 'rgb(var(--l3) / <alpha-value>)',
@@ -280,6 +282,7 @@ module.exports = {
       inter: ['"Inter"'],
       satoshi: ['"Satoshi"'],
       mono: ['"JetBrains Mono"'],
+      handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
       spacing: {
@@ -299,6 +302,7 @@ module.exports = {
         '11/25': '44%',
         '1/2': '50%',
         10.5: '2.65rem',
+        15.5: '3.875rem',
         18: '4.624rem',
         19: '4.75rem',
         19.5: '4.95rem',
@@ -308,9 +312,12 @@ module.exports = {
         30: '7.5rem',
         31: '7.75rem',
         37: '8.563rem',
+        38.5: '9.625rem',
         41: '10.563rem',
+        44: '11rem',
         54: '13.5rem',
         61: '15.25rem',
+        70: '17.5rem',
         578: '36.125rem',
         636: '39.75rem',
       },
@@ -356,7 +363,6 @@ module.exports = {
         32: '8rem',
       },
       animation: {
-        'infinite-scroll-companies': 'infinite-scroll 15s linear infinite',
         'infinite-scroll': 'infinite-scroll 10s linear infinite',
         'navigation-left-right': 'navigation-left-right 0.6s ease-out forwards',
       },

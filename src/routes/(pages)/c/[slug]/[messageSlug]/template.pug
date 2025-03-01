@@ -16,7 +16,7 @@ mixin author
 +main-section
   +header-wrapper(class="flex-col gap-8 xs:gap-4")
     +nav-crumbs
-      +crumbItemLink("/", "Home")
+      +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemLink("/c", "Studio")
       +crumbDelimiter
@@ -78,4 +78,3 @@ mixin author
                   class!="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-t1 {renderTocPadding(item.level)}"
                 ) ⏤ {@html item.cleanRef}
     BodyRenderer(blocks="{message.blocks}")
-  
