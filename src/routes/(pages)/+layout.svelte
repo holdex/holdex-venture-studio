@@ -3,9 +3,10 @@
   /** external deps */
   import { page } from '$app/stores';
   import { isBrowser, routes } from '$lib/config';
-  import { onMount } from 'svelte';
+  import { onMount, onDestroy } from 'svelte';
   import { writable } from 'svelte/store';
   import { setContext } from 'svelte';
+  import { browser } from '$app/environment';
 
   /** internal deps */
   import {
@@ -45,6 +46,15 @@
 
   let lastScrollTop = 0;
   let secondaryNavScrollLeft = 0;
+
+  let windowHeight = browser ? window.innerHeight : 0;
+  let useHeader = windowHeight < 768;
+  let isLayoutReady = false;
+
+  const handleResize = () => {
+    windowHeight = window.innerHeight;
+    useHeader = windowHeight < 768;
+  };
 
   const isActive = (currentUrl: string, path: string, deepEqual = false) => {
     if (deepEqual) {
@@ -120,6 +130,20 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  onMount(() => {
+    if (browser) {
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      isLayoutReady = true;
+    }
+  });
+
+  onDestroy(() => {
+    if (browser) {
+      window.removeEventListener('resize', handleResize);
+    }
+  });
 </script>
 
 <template lang="pug" src="./layout.pug">

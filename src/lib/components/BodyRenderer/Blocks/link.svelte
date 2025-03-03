@@ -3,6 +3,7 @@
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import { getContext } from 'svelte';
+  import { goto } from '$app/navigation';
 
   type Item = {
     type: string;
@@ -51,6 +52,13 @@
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
   $: iconSize = item.iconSize || 16;
+
+  const handleClick = (e: MouseEvent, href: string) => {
+    if (isHoldexLink || isInternalLink) {
+      e.preventDefault();
+      goto(href);
+    }
+  };
 </script>
 
 {' '}
@@ -60,6 +68,7 @@
   class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
+  on:click={(e) => handleClick(e, item.href)}
 >
   <span class="!underline !underline-offset-4" style="all: unset">
     <slot text={truncated} />
