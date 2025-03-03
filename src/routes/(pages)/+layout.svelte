@@ -133,7 +133,7 @@
   onMount(() => {
     if (browser) {
       window.addEventListener('resize', handleResize);
-      handleResize(); // Initial check
+      handleResize();
     }
   });
 
