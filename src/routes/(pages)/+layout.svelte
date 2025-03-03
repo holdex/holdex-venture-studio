@@ -49,6 +49,7 @@
 
   let windowHeight = browser ? window.innerHeight : 0;
   let useHeader = windowHeight < 768;
+  let isLayoutReady = false;
 
   const handleResize = () => {
     windowHeight = window.innerHeight;
@@ -134,6 +135,7 @@
     if (browser) {
       window.addEventListener('resize', handleResize);
       handleResize();
+      isLayoutReady = true;
     }
   });
 
