@@ -63,7 +63,7 @@ class Parser {
       ...((postedThread as CommunityPostedThreadConnectionEdge).node as DefaultMessage),
       messageSlug: (postedThread as CommunityPostedThreadConnectionEdge).messageSlug,
       communitySlug: communitySlug || rest.slug,
-      viewsCount: (postedThread as CommunityPostedThreadConnectionEdge).viewsCount || 0,
+      viewsCount: (postedThread as CommunityPostedThreadConnectionEdge)?.viewsCount || 0,
       allReplies: (postedThread as CommunityPostedThreadConnectionEdge).allReplies,
     };
 
@@ -77,7 +77,7 @@ class Parser {
       messageSlug: (postedIn as MessagePostedInCommunityConnectionEdge).messageSlug,
       communitySlug:
         communitySlug || (postedIn as MessagePostedInCommunityConnectionEdge).node?.slug || '',
-      viewsCount: (postedIn as MessagePostedInCommunityConnectionEdge).viewsCount || 0,
+      viewsCount: (postedIn as MessagePostedInCommunityConnectionEdge)?.viewsCount || 0,
       allReplies: (postedIn as MessagePostedInCommunityConnectionEdge).allReplies,
     };
 
