@@ -38,7 +38,7 @@ mixin guideCard(href, title, subtitle, className='')
     ) #{title}
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
 
-mixin endorsement(author, role, text, avatar)
+mixin endorsement(author, role, text, avatar, link)
   .endorsement.relative(class=-"mt-16")
     span(
       class="absolute text-[201px] font-satoshi text-t3 -top-36 -left-25 tb:-left-2 tb:-top-24 tb:text-9xl sm:text-9xl sm:-top-20 sm:left-1 xs:text-9xl xs:-top-18 xs:left-1"
@@ -51,9 +51,9 @@ mixin endorsement(author, role, text, avatar)
     .author-info.flex.items-center.justify-end.gap-4.mt-4
       .author-details.flex.flex-col.items-end.text-right(class="font-satoshi text-h5-l smDown:text-h5-s")
         Link(
-          item=`{{type: 'link', href: 'https://linkedin.com/in/jakob-kronbichler-73737746', text: '${author}', title: '${author}', iconSize: 20}}`
+          item=`{{type: 'link', href: '${link}', text: '${author}', title: '${author}', iconSize: 20}}`
         )= author
-          
+
         span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
 
       img(src=avatar alt=author class="h-14 w-14 rounded-xl")
