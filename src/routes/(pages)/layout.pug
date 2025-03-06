@@ -171,15 +171,13 @@ mixin header
               )
       +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "📣 Meet us at Consensus in Hong Kong, Feb 18-20!")
 
-.app-container(class="{!isLayoutReady ? 'invisible' : ''}")
+.app-container
   +header(class="{useHeader ? '' : 'xl-up:hidden'}")
   .flex(class="xl-up:w-full justify-center")
     +left-sidebar(class="{useHeader ? '!hidden' : ''}")
     main(class="w-full {useHeader ? 'w-full' : 'xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]'}")
       slot
-      footer(
-        class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center {useHeader ? 'w-full' : 'xl-up:max-w-[1028px]'}"
-      )
+      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center {useHeader ? 'w-full' : 'xl-up:max-w-[1028px]'}")
         .contact-form(
           class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 md:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4 md:py-4"
           id="contact-form"
