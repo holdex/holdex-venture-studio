@@ -105,6 +105,7 @@ mixin announcement-banner(href, text)
 mixin left-sidebar
   aside.sidebar(
     class="hidden xl-up:flex shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
+    class!=attributes.class
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
@@ -120,6 +121,7 @@ mixin left-sidebar
 mixin right-sidebar
   aside.sidebar(
     class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
+    class!=attributes.class
   )
     button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
@@ -136,8 +138,8 @@ mixin right-sidebar
         class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors group-hover:text-accent1-default"
       ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
-.app-container
-  header(class="z-10 w-full block sticky top-0 xl-up:hidden")
+mixin header
+  header(class="z-10 w-full block sticky top-0" class!=attributes.class)&attributes(attributes)
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
@@ -169,11 +171,13 @@ mixin right-sidebar
               )
       +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "📣 Meet us at Consensus in Hong Kong, Feb 18-20!")
 
+.app-container
+  +header
   .flex(class="xl-up:w-full justify-center")
     +left-sidebar
     main(class="w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]")
       slot
-      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center w-full xl-up:max-w-[1028px]")
+      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center xl-up:max-w-[1028px]")
         .contact-form(
           class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 md:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4 md:py-4"
           id="contact-form"

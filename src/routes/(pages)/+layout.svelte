@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { setContext } from 'svelte';
+  import { browser } from '$app/environment';
 
   /** internal deps */
   import {
@@ -138,4 +139,18 @@
   .scrollbar-hide 
     -ms-overflow-style: none  /* IE and Edge */
     scrollbar-width: none  /* Firefox */
+
+  @media (min-height: 768px) and (min-width: 1248px)
+    :global(header)
+      display: none !important
+    
+    :global(.sidebar)
+      display: flex !important
+
+  @media (max-height: 767px) 
+    :global(.sidebar)
+      display: none !important
+    
+    :global(header)
+      display: block !important
 </style>
