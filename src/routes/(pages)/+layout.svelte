@@ -3,7 +3,7 @@
   /** external deps */
   import { page } from '$app/stores';
   import { isBrowser, routes } from '$lib/config';
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { setContext } from 'svelte';
   import { browser } from '$app/environment';
