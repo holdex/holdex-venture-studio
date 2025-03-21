@@ -176,7 +176,7 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-    .mobile-header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center tb-up:hidden")
+    .mobile-second-header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center tb-up:hidden")
       div(class="border-b border-solid border-l4 bg-l1 py-0")
         div(
           class="pl-4 flex items-center justify-between mx-auto sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
@@ -188,11 +188,11 @@ mixin header
             )
 
           div(
-            id="secondary-navbar"
+            id="right-content"
             class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-1 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)] [@media(min-width:420px)]:justify-end"
           )
             div(
-              id="secondary-navbar-section h-full"
+              id="right-content-section h-full"
               class!="flex px-2 xs-up:px-3 sm-up:px-4 gap-x-8 items-center justify-end gap-4 w-max from-l1 to-transparent sm-up:w-full py-2 sm-up:py-4 animate-navigation-left-right md-up:animate-none"
             )
               +social

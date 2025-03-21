@@ -78,7 +78,6 @@
     if (!browser) return;
 
     const currentScrollY = window.scrollY;
-    console.log('currentScrollY', currentScrollY);
     const scrollThreshold = 5;
 
     if (currentScrollY > lastScrollY + scrollThreshold) {
