@@ -38,6 +38,9 @@
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
 
+  let headerVisible = true;
+  let lastScrollY = 0;
+
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
@@ -70,6 +73,35 @@
       success = false;
     }, 5000);
   };
+
+  const handleScroll = () => {
+    if (!browser) return;
+
+    const currentScrollY = window.scrollY;
+    const scrollThreshold = 5;
+
+    if (currentScrollY > lastScrollY + scrollThreshold) {
+      headerVisible = false;
+    } else if (currentScrollY < lastScrollY - scrollThreshold) {
+      headerVisible = true;
+    }
+
+    if (currentScrollY < 60) {
+      headerVisible = true;
+    }
+
+    lastScrollY = currentScrollY;
+  };
+
+  onMount(() => {
+    if (browser) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  });
 
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
