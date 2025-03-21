@@ -38,8 +38,8 @@
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
 
-  let headerVisible = true; // Track header visibility
-  let lastScrollY = 0; // Track last scroll position
+  let headerVisible = true;
+  let lastScrollY = 0;
 
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
@@ -78,11 +78,16 @@
     if (!browser) return;
 
     const currentScrollY = window.scrollY;
+    console.log('currentScrollY', currentScrollY);
     const scrollThreshold = 5;
 
     if (currentScrollY > lastScrollY + scrollThreshold) {
       headerVisible = false;
     } else if (currentScrollY < lastScrollY - scrollThreshold) {
+      headerVisible = true;
+    }
+
+    if (currentScrollY < 60) {
       headerVisible = true;
     }
 
