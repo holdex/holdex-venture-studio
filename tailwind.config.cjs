@@ -18,6 +18,7 @@ module.exports = {
       'xs-up': '375px',
       'sm-up': '480px',
       'md-up': '768px',
+      'tb-up': '870px',
       'lg-up': '992px',
       'xl-up': '1248px',
       '2xl-up': '1440px',
