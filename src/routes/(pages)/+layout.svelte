@@ -38,6 +38,9 @@
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
 
+  let headerVisible = true; // Track header visibility
+  let lastScrollY = 0; // Track last scroll position
+
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
@@ -70,6 +73,38 @@
       success = false;
     }, 5000);
   };
+
+  // Handle scroll behavior for mobile navigation
+  const handleScroll = () => {
+    if (!browser) return;
+
+    const currentScrollY = window.scrollY;
+    const scrollThreshold = 5; // Define a balanced threshold for scroll detection
+
+    // Determine scroll direction
+    if (currentScrollY > lastScrollY + scrollThreshold) {
+      // Scrolling down - hide header when threshold is exceeded
+      headerVisible = false;
+    } else if (currentScrollY < lastScrollY - scrollThreshold) {
+      // Scrolling up - show header when threshold is exceeded
+      headerVisible = true;
+    }
+
+    // Update scroll position
+    lastScrollY = currentScrollY;
+  };
+
+  onMount(() => {
+    if (browser) {
+      // Add scroll event listener
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      // Clean up on component destroy
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  });
 
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;

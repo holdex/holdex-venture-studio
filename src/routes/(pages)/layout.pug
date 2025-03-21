@@ -139,7 +139,11 @@ mixin right-sidebar
       ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
 mixin header
-  header(class="z-10 w-full block sticky top-0" class!=attributes.class)&attributes(attributes)
+  header(
+    class="z-10 w-full block sticky top-0 transition-transform duration-300"
+    class!="{headerVisible ? 'translate-y-0' : '-translate-y-full lg-up:translate-y-0'}"
+    class!=attributes.class
+  )&attributes(attributes)
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
