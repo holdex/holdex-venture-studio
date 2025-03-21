@@ -74,32 +74,25 @@
     }, 5000);
   };
 
-  // Handle scroll behavior for mobile navigation
   const handleScroll = () => {
     if (!browser) return;
 
     const currentScrollY = window.scrollY;
-    const scrollThreshold = 5; // Define a balanced threshold for scroll detection
+    const scrollThreshold = 5;
 
-    // Determine scroll direction
     if (currentScrollY > lastScrollY + scrollThreshold) {
-      // Scrolling down - hide header when threshold is exceeded
       headerVisible = false;
     } else if (currentScrollY < lastScrollY - scrollThreshold) {
-      // Scrolling up - show header when threshold is exceeded
       headerVisible = true;
     }
 
-    // Update scroll position
     lastScrollY = currentScrollY;
   };
 
   onMount(() => {
     if (browser) {
-      // Add scroll event listener
       window.addEventListener('scroll', handleScroll, { passive: true });
 
-      // Clean up on component destroy
       return () => {
         window.removeEventListener('scroll', handleScroll);
       };
