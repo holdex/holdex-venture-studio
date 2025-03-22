@@ -62,7 +62,7 @@ export const routes = {
   forStartups: '/for-startups',
   studio: '/c',
   jobs: '/c/jobs',
-  guides: '/c/guides',
+  research: '/c/guides',
   category: (category: string | undefined) => `/c/${category}`,
   message: (category: string | undefined, message: string | undefined) =>
     `/c/${category}/${message}`,
