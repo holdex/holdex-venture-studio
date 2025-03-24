@@ -28,8 +28,8 @@ mixin main-nav
     +link("{routes.forStartups}", "For Startups")(
       class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
     )
-    +link("{routes.guides}", "Guides")(
-      class!="{isActive(path, routes.guides, true) ? 'before:!bg-accent1-default' : ''}"
+    +link("{routes.research}", "Research")(
+      class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
     )
     +link("{routes.jobs}", "Jobs")(
       class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
@@ -112,7 +112,7 @@ mixin left-sidebar
       Link(item="{{type: 'heading-link', href: routes.about, iconSize: 24}}") About
       Link(item="{{type: 'heading-link', href: routes.portfolio, iconSize: 24}}") Portfolio
       Link(item="{{type: 'heading-link', href: routes.forStartups, iconSize: 24}}") For Startups
-      Link(item="{{type: 'heading-link', href: routes.guides, iconSize: 24}}") Guides
+      Link(item="{{type: 'heading-link', href: routes.research, iconSize: 24}}") Research
       Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
