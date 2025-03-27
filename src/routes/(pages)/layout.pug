@@ -81,9 +81,10 @@ mixin sidebar-social
 mixin announcement-post-it(href, date, location, content)
   a.absolute.bottom-0.-rotate-6.transform(
     href=href
+    target="_blank"
     class="hover:-rotate-[4deg] transition-transform duration-300"
   )
-    .w-44.bg-post-it-yellow.p-4.relative(class="shadow-xl")
+    .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
       .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
       .space-y-1.font-handwriting.text-black
         if date
@@ -91,7 +92,7 @@ mixin announcement-post-it(href, date, location, content)
         if location
           p.font-handwriting.text-black.text-paragraph-l.leading-none= location
         if content
-          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
+          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
 
 mixin announcement-banner(href, text)
   .announcement-banner(
@@ -99,6 +100,7 @@ mixin announcement-banner(href, text)
   )
     a(
       href=href
+      target="_blank"
       class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6"
     )= text
 
@@ -116,7 +118,7 @@ mixin left-sidebar
       Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
-      //- +announcement-post-it("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
+      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
 
 mixin right-sidebar
   aside.sidebar(
@@ -202,7 +204,7 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-      //- +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "📣 Meet us at Consensus in Hong Kong, Feb 18-20!")
+    +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web3 Festival, Apr 6-9!")
 
 .app-container
   +header
