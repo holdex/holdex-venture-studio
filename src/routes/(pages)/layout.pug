@@ -116,7 +116,7 @@ mixin left-sidebar
       Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
-      //- +announcement-post-it("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
+      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at HK Web 3 Festival!")
 
 mixin right-sidebar
   aside.sidebar(
@@ -202,7 +202,7 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-      //- +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "📣 Meet us at Consensus in Hong Kong, Feb 18-20!")
+      +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web 3 Festival, Apr 6-9!")
 
 .app-container
   +header
