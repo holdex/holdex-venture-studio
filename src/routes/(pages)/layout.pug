@@ -83,7 +83,7 @@ mixin announcement-post-it(href, date, location, content)
     href=href
     class="hover:-rotate-[4deg] transition-transform duration-300"
   )
-    .w-44.bg-post-it-yellow.p-4.relative(class="shadow-xl")
+    .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
       .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
       .space-y-1.font-handwriting.text-black
         if date
@@ -91,7 +91,7 @@ mixin announcement-post-it(href, date, location, content)
         if location
           p.font-handwriting.text-black.text-paragraph-l.leading-none= location
         if content
-          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
+          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="text-[29.5px]")= content
 
 mixin announcement-banner(href, text)
   .announcement-banner(
@@ -116,7 +116,7 @@ mixin left-sidebar
       Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
-      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at HK Web 3 Festival!")
+      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
 
 mixin right-sidebar
   aside.sidebar(
@@ -202,7 +202,7 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-      +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web 3 Festival, Apr 6-9!")
+    +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web3 Festival, Apr 6-9!")
 
 .app-container
   +header
