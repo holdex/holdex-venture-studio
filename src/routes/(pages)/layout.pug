@@ -81,6 +81,7 @@ mixin sidebar-social
 mixin announcement-post-it(href, date, location, content)
   a.absolute.bottom-0.-rotate-6.transform(
     href=href
+    target="_blank"
     class="hover:-rotate-[4deg] transition-transform duration-300"
   )
     .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
@@ -99,6 +100,7 @@ mixin announcement-banner(href, text)
   )
     a(
       href=href
+      target="_blank"
       class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6"
     )= text
 
