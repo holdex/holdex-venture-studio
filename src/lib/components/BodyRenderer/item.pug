@@ -71,5 +71,13 @@
       CTA(item="{item.data}")
     Case(value="testimonial")
       Testimonial(item="{item.data}")
+    Case(value="teamMember")
+      TeamMemberCard(
+        name="{item.data.name}"
+        role="{item.data.role}"
+        description="{item.data.description}"
+        image="{item.data.image}"
+        link="{item.data.link}"
+      )
   +else
     TextWrapper(text="{item}")
