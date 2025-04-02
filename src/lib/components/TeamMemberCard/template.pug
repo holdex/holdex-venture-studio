@@ -7,13 +7,17 @@ article.flex.flex-col.w-full(class="smDown:flex-col smDown:items-start")
     )
     div
       span(class="text-h4-s xs-up:text-h5-s flex flex-wrap flex-col xs-up:flex-row")
-        a(
-          href="{link}"
-          class="relative text-h4-s xs:text-h5-s font-satoshi inline-block w-fit underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-          target="_blank"
-          rel="noopener noreferrer"
-        )
-          | {name}
+        +if('link && link.length > 0')
+          a(
+            href="{link}"
+            class="relative text-h4-s xs:text-h5-s font-satoshi inline-block w-fit underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+            target="_blank"
+            rel="noopener noreferrer"
+          )
+            | {name}
+          +else
+            span(class="text-h4-s xs:text-h5-s font-satoshi")
+              | {name}
         span(class="text-h4-s text-t2 xs:text-h5-s font-satoshi")
           | &#160;—&#160; {role}
       p(class="text-paragraph-l mt-2 xs:mt-0 text-t2 xs:text-paragraph-s")
