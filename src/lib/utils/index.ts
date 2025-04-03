@@ -25,10 +25,11 @@ function findPos(obj: any) {
 
 export const sanitizeHtml = (s: string) => insane(s, {}, true);
 
-export function parseCommunityCoverImage(community: Community): string {
+export function parseCommunityCoverImage(community: Community): string | undefined {
   switch (community.slug) {
-    case 'announcements':
     case 'jobs':
+      return undefined;
+    case 'announcements':
     case 'learn':
     case 'case-studies':
     case 'founders-club':
@@ -49,7 +50,7 @@ export const formatUrlToTitle = (url: string): string => {
       .replace('www.', '')
       .split('.')[0]
       .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
     return domain;
   } catch {
