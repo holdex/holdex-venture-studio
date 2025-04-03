@@ -25,18 +25,20 @@ function findPos(obj: any) {
 
 export const sanitizeHtml = (s: string) => insane(s, {}, true);
 
-export function parseCommunityCoverImage(community: Community): string | undefined {
+export function parseCommunityCoverImage(community: Community): string {
   switch (community.slug) {
     case 'jobs':
-      return undefined;
+      return `/og/jobs.png`;
     case 'announcements':
+      return `/og/announcements.png`;
     case 'learn':
+      return `/og/guides.png`;
     case 'case-studies':
-    case 'founders-club':
+      return `/og/case-studies.png`;
     case 'companies':
-      return `https://storage.googleapis.com/holdex-public/categories/${community.slug}.png`;
+      return `/og/portfolio.png`;
     default:
-      return community?.logoUrl;
+      return `/og/index.png`;
   }
 }
 
