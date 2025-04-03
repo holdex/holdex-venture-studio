@@ -151,6 +151,14 @@ export type TestimonialElement = {
   content: string;
 };
 
+export type EndorsementElement = {
+  picture: null | Link;
+  name: string;
+  title: string;
+  content: string;
+  link: string;
+};
+
 type Link = {
   url: string;
   text: string;
