@@ -120,7 +120,7 @@
   title="{community.tagline} | Holdex"
   description={sanitizeHtml(community.tagline)}
   path={routes.category(community.slug)}
-  imageUrl={communityCover}
+  imagePath={communityCover}
   pageName={community.name}
 />
 
