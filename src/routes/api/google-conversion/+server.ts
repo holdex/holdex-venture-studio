@@ -21,7 +21,6 @@ import type {
   CTAElement,
   TeamMemberBlock,
   TestimonialElement,
-  EndorsementElement,
 } from '$components/BodyParser/blocks';
 import type {
   Parsed$Paragraph,
@@ -57,9 +56,8 @@ export const POST: RequestHandler = async ({ request }) => {
  * content types:
  * - For paragraphs, it delegates processing to the `parseParagraph` function.
  * - For tables, it builds a nested content structure from table cells and attempts to extract team member
- *   data via `parseTeamMembersSection`, call-to-action (CTA) details via `parseCTASection`,
- *   endorsements via 'parseEndorsementsSection, or testimonials  via `parseTestimonialSection`.
- *   The extracted content is added based on a prioritized check.
+ *   data via `parseTeamMembersSection`, call-to-action (CTA) details via `parseCTASection`, or testimonials
+ *   via `parseTestimonialSection`. The extracted content is added based on a prioritized check.
  * - For table of contents, it processes each paragraph entry to form a TOC block.
  *
  * The function returns a newly assembled array of content blocks structured for Holdex consumption.
@@ -124,7 +122,6 @@ function convertToHoldexJson(document: Schema$Document) {
         const teamMember = parseTeamMemberSection(tableContent);
         const cta: CTAElement = parseCTASection(tableContent);
         const testimonial: TestimonialElement = parseTestimonialSection(tableContent);
-        const endorsement: EndorsementElement = parseEndorsementSection(tableContent);
 
         if (!_.isEmpty(teamMember)) {
           newContent.push(teamMember);
@@ -137,11 +134,6 @@ function convertToHoldexJson(document: Schema$Document) {
           newContent.push({
             type: 'cta',
             data: cta,
-          });
-        } else if (!_.isEmpty(endorsement)) {
-          newContent.push({
-            type: 'endorsement',
-            data: endorsement,
           });
         } else {
           newContent.push({
@@ -258,54 +250,6 @@ function parseTestimonialSection(content: any[]) {
 }
 
 /**
- * Parses a endorsement section from the provided content array.
- *
- * This function extracts endorsement data from a specific two-dimensional array structure. It expects the content array to have exactly 6 rows,
- * each containing 2 elements. The header row must include a paragraph with the text "type" as its first element and a paragraph with the text "endorsement" as its second element.
- * For each subsequent row, the function interprets the first element as the key and the second element as the corresponding value.
- *
- * The extracted key-value pairs are used to populate a EndorsementElement object with the following properties:
- * - name: The name of the person giving the endorsement.
- * - title: The title or role of the person.
- * - content: The endorsement text.
- * - picture: An object containing the person's name (as text) and the URL of their picture.
- * - link: a URL to a page of the person giving the endorsement.
- *
- * If the content does not meet the expected structure, an empty EndorsementElement is returned.
- *
- * @param content - An array representing rows of endorsement data, where each row is an array of two elements with paragraph objects.
- * @returns A populated EndorsementElement object if the expected structure is met; otherwise, an empty EndorsementElement.
- */
-function parseEndorsementSection(content: any[]) {
-  const endorsement: EndorsementElement = {} as EndorsementElement;
-  if (content.length === 6 && (content[0] as any[]).length === 2) {
-    const contentHead = content[0];
-    if (
-      contentHead[0][0].type === 'paragraph' &&
-      contentHead[0][0].data.text === 'type' &&
-      contentHead[1][0].type === 'paragraph' &&
-      contentHead[1][0].data.text === 'endorsement'
-    ) {
-      const data: any = {};
-      content.forEach(([[first], [second]], i) => {
-        if (first === undefined || first.type !== 'paragraph') return;
-        if (second === undefined || second.type !== 'paragraph') data[first.data.text] = '';
-        else data[first.data.text] = second.data.text;
-      });
-      endorsement.name = data['name'];
-      endorsement.title = data['title'];
-      endorsement.content = data['content'];
-      endorsement.picture = {
-        text: data['name'],
-        url: data['picture'],
-      };
-      endorsement.link = data['link'];
-    }
-  }
-  return endorsement;
-}
-
-/**
  * Parses a team members section from table content and returns an array of team member blocks.
  *
  * The function expects the input to be an array of table rows, where each row is an array consisting of two cells.
@@ -329,7 +273,7 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
       contentHead[1][0]?.type === 'paragraph' &&
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
-      const currentMember: Record<string, string> = {};
+      let currentMember: Record<string, string> = {};
 
       for (const [[first], [second]] of content) {
         if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
