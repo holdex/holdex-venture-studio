@@ -215,6 +215,7 @@ function parseCTASection(content: any[]) {
  * - title: The title or role of the person.
  * - content: The testimonial text.
  * - picture: An object containing the person's name (as text) and the URL of their picture.
+ * - link: A URL to a page of the person giving the testimonial.
  *
  * If the content does not meet the expected structure, an empty TestimonialElement is returned.
  *
@@ -223,7 +224,7 @@ function parseCTASection(content: any[]) {
  */
 function parseTestimonialSection(content: any[]) {
   const testimonial: TestimonialElement = {} as TestimonialElement;
-  if (content.length === 5 && (content[0] as any[]).length === 2) {
+  if (content.length === 6 && (content[0] as any[]).length === 2) {
     const contentHead = content[0];
     if (
       contentHead[0][0].type === 'paragraph' &&
@@ -244,6 +245,7 @@ function parseTestimonialSection(content: any[]) {
         text: data['name'],
         url: data['picture'],
       };
+      testimonial.link = data['link'];
     }
   }
   return testimonial;
@@ -273,7 +275,7 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
       contentHead[1][0]?.type === 'paragraph' &&
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
-      let currentMember: Record<string, string> = {};
+      const currentMember: Record<string, string> = {};
 
       for (const [[first], [second]] of content) {
         if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
