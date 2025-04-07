@@ -15,6 +15,7 @@
   import Testimonial from './Blocks/testimonial.svelte';
   import LinkBlock from './Blocks/linkBlock.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
+  import TeamMemberCard from '$components/TeamMemberCard/index.svelte';
 
   export let item: any;
   export let isTableCell = false;

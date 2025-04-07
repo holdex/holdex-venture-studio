@@ -6,6 +6,7 @@
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { setContext } from 'svelte';
+  import { browser } from '$app/environment';
 
   /** internal deps */
   import {
@@ -40,6 +41,9 @@
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
 
+  let headerVisible = true;
+  let lastScrollY = 0;
+
   const onThemeToggle = () => {
     themeIconName = themeIconName === 'moon' ? 'sun' : 'moon';
     localStorage.setItem('theme', themeIconName === 'moon' ? 'light' : 'dark');
@@ -72,6 +76,35 @@
       success = false;
     }, 5000);
   };
+
+  const handleScroll = () => {
+    if (!browser) return;
+
+    const currentScrollY = window.scrollY;
+    const scrollThreshold = 5;
+
+    if (currentScrollY > lastScrollY + scrollThreshold) {
+      headerVisible = false;
+    } else if (currentScrollY < lastScrollY - scrollThreshold) {
+      headerVisible = true;
+    }
+
+    if (currentScrollY < 60) {
+      headerVisible = true;
+    }
+
+    lastScrollY = currentScrollY;
+  };
+
+  onMount(() => {
+    if (browser) {
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  });
 
   const onContactFormSumbit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
@@ -141,4 +174,18 @@
   .scrollbar-hide 
     -ms-overflow-style: none  /* IE and Edge */
     scrollbar-width: none  /* Firefox */
+
+  @media (min-height: 768px) and (min-width: 1248px)
+    :global(header)
+      display: none !important
+    
+    :global(.sidebar)
+      display: flex !important
+
+  @media (max-height: 767px) 
+    :global(.sidebar)
+      display: none !important
+    
+    :global(header)
+      display: block !important
 </style>
