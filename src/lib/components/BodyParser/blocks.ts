@@ -149,13 +149,6 @@ export type TestimonialElement = {
   name: string;
   title: string;
   content: string;
-};
-
-export type EndorsementElement = {
-  picture: null | Link;
-  name: string;
-  title: string;
-  content: string;
   link: string;
 };
 
