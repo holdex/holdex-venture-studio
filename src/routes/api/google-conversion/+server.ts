@@ -275,7 +275,7 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
       contentHead[1][0]?.type === 'paragraph' &&
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
-      const currentMember: Record<string, string> = {};
+      let currentMember: Record<string, string> = {};
 
       for (const [[first], [second]] of content) {
         if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
