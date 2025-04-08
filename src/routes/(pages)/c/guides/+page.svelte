@@ -89,10 +89,10 @@
 </script>
 
 <MetaTags
-  title="Guides | Holdex"
+  title="Research in Web3 created by Holdex Team"
   description="Product and business crypto guides for someone who truly understands the power of blockchain."
-  path={routes.guides}
-  imagePath="/og/index.png"
+  path={routes.research}
+  imagePath="/og/guides.png"
 />
 
 <template lang="pug" src="./template.pug">

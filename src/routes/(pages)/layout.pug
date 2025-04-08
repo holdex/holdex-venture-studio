@@ -2,7 +2,7 @@ include ./common-mixins
 
 mixin link(href, title)
   li(
-    class="flex relative items-center text-cta transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 sm-up:before:bottom-[-1rem] before:bottom-[-0.5rem] before:w-full before:bg-transparent before:h-0.5"
+    class="flex relative items-center text-cta transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 tb-up:before:bottom-[-1rem] before:bottom-[-0.5rem] before:w-full before:bg-transparent before:h-0.5"
   )&attributes(attributes): a(
     class="text-inherit"
     href=href
@@ -28,8 +28,8 @@ mixin main-nav
     +link("{routes.forStartups}", "For Startups")(
       class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
     )
-    +link("{routes.guides}", "Guides")(
-      class!="{isActive(path, routes.guides, true) ? 'before:!bg-accent1-default' : ''}"
+    +link("{routes.research}", "Research")(
+      class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
     )
     +link("{routes.jobs}", "Jobs")(
       class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
@@ -42,8 +42,8 @@ mixin mobile-nav
 
 mixin social
   .social-icons-nav(
-    class!="gap-4 flex items-start {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}"
-  )
+    class!="gap-3 md-up:gap-4 flex items-start {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}"
+  )&attributes(attributes)
     +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
       class="!h-5 !w-5 !p-0 text-i1"
     )
@@ -81,9 +81,10 @@ mixin sidebar-social
 mixin announcement-post-it(href, date, location, content)
   a.absolute.bottom-0.-rotate-6.transform(
     href=href
+    target="_blank"
     class="hover:-rotate-[4deg] transition-transform duration-300"
   )
-    .w-44.bg-post-it-yellow.p-4.relative(class="shadow-xl")
+    .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
       .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
       .space-y-1.font-handwriting.text-black
         if date
@@ -91,7 +92,7 @@ mixin announcement-post-it(href, date, location, content)
         if location
           p.font-handwriting.text-black.text-paragraph-l.leading-none= location
         if content
-          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2= content
+          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
 
 mixin announcement-banner(href, text)
   .announcement-banner(
@@ -99,27 +100,30 @@ mixin announcement-banner(href, text)
   )
     a(
       href=href
+      target="_blank"
       class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6"
     )= text
 
 mixin left-sidebar
   aside.sidebar(
     class="hidden xl-up:flex shrink-0 flex-col items-start justify-between w-70 sticky top-0 h-screen py-16 pr-8 pl-16"
+    class!=attributes.class
   )
     a(class="relative flex h-10 w-38.5" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
       Link(item="{{type: 'heading-link', href: routes.about, iconSize: 24}}") About
       Link(item="{{type: 'heading-link', href: routes.portfolio, iconSize: 24}}") Portfolio
       Link(item="{{type: 'heading-link', href: routes.forStartups, iconSize: 24}}") For Startups
-      Link(item="{{type: 'heading-link', href: routes.guides, iconSize: 24}}") Guides
+      Link(item="{{type: 'heading-link', href: routes.research, iconSize: 24}}") Research
       Link(item="{{type: 'heading-link', href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
-      +announcement-post-it("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "Feb 18-20", "Hong Kong", "Meet us at Consensus!")
+      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
 
 mixin right-sidebar
   aside.sidebar(
     class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
+    class!=attributes.class
   )
     button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
@@ -136,78 +140,79 @@ mixin right-sidebar
         class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors group-hover:text-accent1-default"
       ) {themeIconName === 'moon' ? 'Dark Mode' : 'Light Mode'}
 
-.app-container
-  header(class="z-10 w-full block sticky top-0 xl-up:hidden")
+mixin header
+  header(
+    class="z-10 w-full block sticky top-0 transition-transform duration-300"
+    class!="{headerVisible ? 'translate-y-0' : '-translate-y-full tb-up:translate-y-0'}"
+    class!=attributes.class
+  )&attributes(attributes)
     .header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center ")
       div(class="border-b border-solid border-l4 bg-l1 py-0 ")
         div(
-          class="pl-4 flex items-center justify-between gap-2 mx-auto sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
+          class="tb-up:pl-4 flex items-center justify-between mx-auto sm-up:w-full xl-up:max-w-screen-xl-up h-[48px] tb-up:h-[64px]"
         )
-          .logo-wrapper(class="relative w-8 h-8 ")
-            a(class="relative flex  h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
+          .logo-wrapper(class="relative w-8 h-8 hidden tb-up:block")
+            a(class="relative flex h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
               name="only-logo"
               class="w-8 h-8 "
             )
-      div(
-        id="secondary-navbar"
-        use:scrollAction
-        class!="border-b border-solid border-l4 z-[98] bg-l1 {status ? 'opacity-1' : 'opacity-0 translate-y-[-57px]'} overflow-x-scroll scrollbar-hide"
-      )
-        div(
-          id="secondary-navbar-section"
-          class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 { !isLeftEnd ? 'mobile:before:bg-gradient-to-r mobile:before:absolute mobile:before:left-0 mobile:before:w-24 mobile:before:h-10 mobile:before:z-10' : ''} { !isRightEnd ? 'mobile:after:bg-gradient-to-l mobile:after:absolute mobile:after:right-0 mobile:after:w-24 mobile:after:h-10 mobile:after:z-10' : ''}"
-        )
-          //- .nav-wrapper(class="main-nav flex items-center gap-8 lg-up:ml-40")
-          +main-nav(class="gap-6")
-          .social-icons-nav(
-            class!="gap-4 flex items-start {themeIconName === 'moon' ? 'text-tw-tweet-color-gray' : 'text-t3'}"
+          div(
+            id="secondary-navbar"
+            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex tb-up:pl-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
           )
-            +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")(
-              class="!h-5 !w-5 !p-0"
+            div(
+              id="secondary-navbar-section h-full"
+              class!="px-4 flex gap-x-8 items-center justify-between tb-up:mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 tb-up:py-4 animate-navigation-left-right md-up:animate-none"
             )
-            +social-link("https://github.com/holdex", "{@html socialIcons.github}")(
-              class="!h-5 !w-5 !p-0"
+              +main-nav(class="gap-4 sm-up:gap-6")
+              +social(class="hidden tb-up:flex")
+          .flex.items-center.gap-2(class="md-up:gap-4 pr-4 pl-2 tb-up:pl-0")
+            +button-icon-default(
+              type="button"
+              on:click!="{onThemeToggle}"
+              class="h-8 w-8 tb-up:h-10 tb-up:w-10"
             )
-            +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")(
-              class="!h-5 !w-5 !p-0"
+              SVGIcon(name="{themeIconName}" class="w-5 stroke-current")
+            +primary-button("Partner With Us")(
+              class="sticky hidden tb-up:block"
+              type="button"
+              on:click!="{() => handleClick(undefined)}"
             )
-            +social-link("https://discord.gg/sEuyYf5euF", "{@html socialIcons.discord}")(
-              class="!h-5 !w-5 !p-0"
-            )
-            +social-link("https://t.me/holdex", "{@html socialIcons.telegram}")(
-              class="!h-5 !w-5 !p-0"
+    .mobile-second-header-wrapper(class="w-full whitespace-nowrap lg-up:justify-center tb-up:hidden")
+      div(class="border-b border-solid border-l4 bg-l1 py-0")
+        div(
+          class="pl-4 flex items-center justify-between mx-auto sm-up:w-full xl-up:max-w-screen-xl-up h-[64px]"
+        )
+          .logo-wrapper(class="relative w-8 h-8 ")
+            a(class="relative flex h-6.5 tbDown:w-30 tbDown:h-8" href="{routes.index}"): SVGIcon(
+              name="only-logo"
+              class="w-6 h-6 tbDown:w-8 tbDown:h-8 "
             )
 
-  button(
-    class="w-[56px] h-[56px] sm-up:hidden bg-accent1-default text-t4 rounded-xl flex justify-center items-center fixed bottom-3 right-[14px] z-10"
-    on:click!="{() => handleClick(undefined)}"
-  )
-    Icon(icon="{ChatBubbleBottomCenter}" width="{32}" height="{32}" isOutlined)
-      div(
-        id="secondary-navbar"
-        class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
-      )
-        div(
-          id="secondary-navbar-section h-full"
-          class!="px-4 flex gap-x-8 items-center justify-between mx-auto gap-4 w-max from-l1 to-transparent sm-up:w-full xl-up:max-w-screen-xl-up py-2 sm-up:py-4 animate-navigation-left-right md-up:animate-none"
-        )
-          +main-nav(class="gap-6")
-          +social
-        .flex.items-center.gap-2(class="md-up:gap-4")
-          +button-icon-default(type="button" on:click!="{onThemeToggle}")
-            SVGIcon(name="{themeIconName}" class="w-5 stroke-current")
-          +primary-button("Partner With Us")(
-            class="sticky hidden sm-up:block"
-            type="button"
-            on:click!="{() => handleClick(undefined)}"
+          div(
+            id="right-content"
+            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex pl-2 pr-1 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)] [@media(min-width:420px)]:justify-end"
           )
-    +announcement-banner("https://holdex.io/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there", "📣 Meet us at Consensus in Hong Kong, Feb 18-20!")
+            div(
+              id="right-content-section h-full"
+              class!="flex px-2 xs-up:px-3 sm-up:px-4 gap-x-8 items-center justify-end gap-4 w-max from-l1 to-transparent sm-up:w-full py-2 sm-up:py-4 animate-navigation-left-right md-up:animate-none"
+            )
+              +social
+          .flex.items-center.gap-2.pr-4.pl-1(class="md-up:gap-4")
+            +primary-button("Partner With Us")(
+              class="sticky"
+              type="button"
+              on:click!="{() => handleClick(undefined)}"
+            )
+    +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web3 Festival, Apr 6-9!")
 
+.app-container
+  +header
   .flex(class="xl-up:w-full justify-center")
     +left-sidebar
     main(class="w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]")
       slot
-      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center w-full xl-up:max-w-[1028px]")
+      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center xl-up:max-w-[1028px]")
         .contact-form(
           class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 md:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4 md:py-4"
           id="contact-form"
