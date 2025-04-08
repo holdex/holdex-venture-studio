@@ -22,7 +22,6 @@ module.exports = {
       'lg-up': '992px',
       'xl-up': '1248px',
       '2xl-up': '1440px',
-      '3xl-up': '1560px',
       xl: {
         min: '1680px',
         limit: '1920px',
