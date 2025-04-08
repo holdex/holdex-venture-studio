@@ -149,6 +149,7 @@ export type TestimonialElement = {
   name: string;
   title: string;
   content: string;
+  link: string;
 };
 
 type Link = {
