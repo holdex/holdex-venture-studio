@@ -275,7 +275,7 @@ function parseTeamMemberSection(content: any[]): TeamMemberBlock | null {
       contentHead[1][0]?.type === 'paragraph' &&
       contentHead[1][0]?.data?.text === 'teamMember'
     ) {
-      let currentMember: Record<string, string> = {};
+      const currentMember: Record<string, string> = {};
 
       for (const [[first], [second]] of content) {
         if (first?.type !== 'paragraph' || second?.type !== 'paragraph') continue;
@@ -583,10 +583,13 @@ const parseParagraph = (
   else if (tag && elements) {
     const tagContent: (Parsed$Paragraph | Parsed$ParagraphElement)[] = [];
 
-    if (elements.length === 2 && isLink(elements) && !wrappingTable) {
-      const { textStyle, content } = elements[0].textRun as Schema$TextRun;
-      const { url, headingId } = textStyle?.link as Schema$Link;
+    const filteredElements = elements.filter((el) => {
+      return el.textRun?.content !== ' ';
+    });
 
+    if (filteredElements.length === 2 && isLink(filteredElements) && !wrappingTable) {
+      const { textStyle, content } = filteredElements[0].textRun as Schema$TextRun;
+      const { url, headingId } = textStyle?.link as Schema$Link;
       if (url) {
         const link = textStyle?.link?.url as string;
 
