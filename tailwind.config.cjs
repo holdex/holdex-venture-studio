@@ -43,7 +43,7 @@ module.exports = {
         max: '991px',
       },
       xs: {
-        min: '320px',
+        min: '300px',
         max: '767px',
       },
       xxs: {
