@@ -26,10 +26,9 @@
       <div
         class="author-details flex flex-col items-end text-right font-satoshi text-h5-l smDown:text-h5-s"
       >
-        <svelte:component
-          this={Link}
+        <Link
           item={{ type: 'link', href: item.link, text: item.name, title: item.name, iconSize: 20 }}
-          >{item.name}</svelte:component
+          >{item.name}</Link
         >
         <span class="text-h5-l smDown:text-h5-s w-fit">{item.title}</span>
       </div>
