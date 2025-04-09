@@ -12,11 +12,10 @@
   import Chart from './Blocks/chart.svelte';
   import Table from './Blocks/table.svelte';
   import CTA from './Blocks/cta.svelte';
-  import Testimonial from './Blocks/testimonial.svelte';
-  import Endorsement from './Blocks/endorsement.svelte';
   import LinkBlock from './Blocks/linkBlock.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
   import TeamMemberCard from '$components/TeamMemberCard/index.svelte';
+  import Testimonial from '$components/Testimonial/index.svelte';
 
   export let item: any;
   export let isTableCell: boolean;

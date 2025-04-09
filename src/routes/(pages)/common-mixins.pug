@@ -38,13 +38,13 @@ mixin guideCard(href, title, subtitle, className='')
     ) #{title}
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
 
-mixin endorsement(author, role, text, avatar, link)
-  .endorsement.relative(class=-"mt-16")
+mixin testimonial(author, role, text, avatar, link)
+  .testimonial.relative(class=-"mt-16")
     span(
       class="absolute text-[201px] font-satoshi text-t3 -top-36 -left-25 tb:-left-2 tb:-top-24 tb:text-9xl sm:text-9xl sm:-top-20 sm:left-1 xs:text-9xl xs:-top-18 xs:left-1"
     ) “
 
-    .endorsement-text
+    .testimonial-text
       blockquote(class="text-paragraph-l text-t2 xs:text-paragraph-s max-w-[604px]")
         | !{text}
 

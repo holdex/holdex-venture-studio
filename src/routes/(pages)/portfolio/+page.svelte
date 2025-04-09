@@ -63,7 +63,6 @@
     });
     isRefetching = false;
   };
-
 </script>
 
 <MetaTags

@@ -596,13 +596,6 @@ const parseTestimonial = (block: Testimonial) => {
   };
 };
 
-const parseEndorsement = (block: EndorsementElement) => {
-  return {
-    type: 'endorsement',
-    data: block,
-  };
-};
-
 const htmlParser = HTMLParser({
   header: parseHeading,
   quote: parseQuote,
@@ -622,7 +615,6 @@ const htmlParser = HTMLParser({
   toc: parseToc,
   cta: parseCTA,
   testimonial: parseTestimonial,
-  endorsement: parseEndorsement,
   teamMember: parseTeamMember,
 });
 
