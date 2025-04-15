@@ -10,7 +10,7 @@
 </script>
 
 <div
-  class="testimonial-wrapper flex flex-col gap-4 w-full my-12 items-center smDown:items-start xl-up:py-10 xl-up:px-28 pt-8 smDown:px-4"
+  class="testimonial-wrapper flex flex-col gap-4 w-full my-12 items-center smDown:items-start xl-up:py-10 pt-8 smDown:px-4"
 >
   <div class="testimonial relative">
     <span
