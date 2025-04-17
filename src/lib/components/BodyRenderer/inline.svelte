@@ -18,7 +18,7 @@
   };
 
   export let item: Item;
- //remove text wrapper
+
   function trimText(text: string) {
     if (text.endsWith('( ')) {
       text = text.trim();
