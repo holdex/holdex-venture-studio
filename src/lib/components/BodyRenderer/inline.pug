@@ -1,11 +1,11 @@
 Switch(condition="{item.type}")
   Case(value="link")
-    Link(item="{item}" let:text) {@html text}
+    Link(item="{item}" let:text) {@html sanitizeHtml(text)}
       slot
   Case(value="hashtag")
-    Hashtag(item="{item}" link="/c?filter={encodeURIComponent(item.text.toLowerCase().slice(1))}") {@html item.text}
+    Hashtag(item="{item}" link="/c?filter={encodeURIComponent(item.text.toLowerCase().slice(1))}") {@html sanitizeHtml(item.text)}
   Case(value="code")
-    code.rounded-lg.bg-l2.py-0.px-2.text-code.font-mono {@html item.text}
+    code.rounded-lg.bg-l2.py-0.px-2.text-code.font-mono {@html sanitizeHtml(item.text)}
   Case(value="price-ticker")
     PriceTicker(ticker="{item.text}")
   //- Case(value="mention")
@@ -16,5 +16,5 @@ Switch(condition="{item.type}")
   Case(value="image") 
     Image(item="{item}")
   Case(value="text") {@html escape(trimText(item.text))}
-  Case(value="inline") {@html item.text}
+  Case(value="inline") {@html sanitizeHtml(item.text)}
 

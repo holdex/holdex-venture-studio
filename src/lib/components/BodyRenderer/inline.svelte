@@ -8,6 +8,7 @@
   import Hashtag from './Blocks/hashtag.svelte';
   import PriceTicker from './Blocks/priceTicker.svelte';
   import { setContext } from 'svelte';
+  import { sanitizeHtml } from '$lib/utils';
 
   type Item = {
     type: string;

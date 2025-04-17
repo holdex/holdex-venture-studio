@@ -15,6 +15,7 @@
   import LinkBlock from './Blocks/linkBlock.svelte';
   import { parseTableCell } from '../BodyParser/blocks';
   import TeamMemberCard from '$components/TeamMemberCard/index.svelte';
+  import { sanitizeHtml } from '$lib/utils';
 
   export let item: any;
   export let isTableCell: boolean;
