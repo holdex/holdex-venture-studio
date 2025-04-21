@@ -3,7 +3,7 @@
   import Popover from '$components/Popover/index.svelte';
 
   export let ticker: string;
-
+  // fix ticker
   let change = 0.1;
   let price = 1000;
   let loading = false;
