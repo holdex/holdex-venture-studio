@@ -68,7 +68,6 @@
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
-  $: iconSize = item.iconSize || 16;
 
   const handleClick = (e: MouseEvent, href: string) => {
     if (isHoldexLink || isInternalLink) {
@@ -85,7 +84,6 @@
   class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
-  style="--icon-size: {iconSize}px"
   on:click={(e) => handleClick(e, item.href)}
 >
   <span class="!underline !underline-offset-4" style="all: unset">
@@ -99,9 +97,9 @@
   a[href^="http"]:not([href*="holdex.io"]):after 
     content: ''
     display: inline-block
-    width: var(--icon-size)
-    height: var(--icon-size)
-    margin-left: 8px
+    width: 1em
+    height: 1em
+    margin-left: 0.5em
     vertical-align: middle
     background-color: currentColor
     -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
