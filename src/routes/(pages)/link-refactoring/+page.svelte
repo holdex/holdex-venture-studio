@@ -42,15 +42,18 @@
   These links are rendered using the Link component:
 
   <Link item={link} let:text>{text}</Link>
-  <Link item={link2} let:text class="text-h3-l font-satoshi xs:text-h3-s">{text}</Link>
-  <Link item={link3} let:text class="text-h3-l font-satoshi xs:text-h3-s mb-4">{text}</Link>
-  <Link item={link4} let:text class="text-h3-l font-satoshi xs:text-h3-s mb-4">{text}</Link>
-  
-  These links are rendered using the direct <a> HTML element:
-  <br>
-  <h1>Heading h1 <a href="/about">About internal page</a></h1>
-  <h2>Heading h2 <a href="https://google.com">Google external page</a></h2>
-  <p>
-    Link inside paragraph <a href="https://google.com">Google external page</a>
-  </p>
+  <Link item={link2} let:text>{text}</Link>
+  <Link item={link3} let:text>{text}</Link>
+  <Link item={link4} let:text>{text}</Link>
+
+  These links are rendered using the direct
+  <a>
+    HTML element:
+    <br />
+    <h1>Heading h1 <a href="/about">About internal page</a></h1>
+    <h2>Heading h2 <a href="https://google.com">Google external page</a></h2>
+    <p>
+      Link inside paragraph <a href="https://google.com">Google external page</a>
+    </p>
+  </a>
 </div>
