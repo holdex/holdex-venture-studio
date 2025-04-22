@@ -77,7 +77,7 @@ article.portfolio-product-card(
 )
   .portfolio-product-body(class="flex flex-col w-full gap-8 smDown:gap-6")
     .portfolio-product-header(class="relative flex flex-col w-full gap-4 smDown:gap-2")
-      Link(item="{{type: 'heading-link', href: slug, text: title, title: title, iconSize: 24}}")= `{title}`
+      Link(item="{{type: 'heading-link', href: slug, text: title, title: title, iconSize: 24}}" class="text-h3-l font-satoshi xs:text-h3-s")= `{title}`
       TextParagraph {subtitle}
 
     +if('isFeatured == true')
