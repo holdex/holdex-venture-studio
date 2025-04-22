@@ -45,7 +45,26 @@
     return truncatedUrl;
   };
 
+  function normalizeHref(href: string) {
+    if (typeof window === 'undefined') return href;
+
+    try {
+      const currentHost = window.location.host;
+      const url = new URL(href, window.location.origin); 
+      if (url.host === currentHost) {
+        
+        return url.pathname + url.search + url.hash;
+      }
+
+      return href;
+    } catch (e) {
+      // For relative links like "/about", just return as-is
+      return href;
+    }
+  }
+
   $: text = item.text || item.href;
+  $: href = normalizeHref(item.href)
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
@@ -62,7 +81,7 @@
 {' '}
 <a
   title={item.title ? item.title : ''}
-  href={item.href}
+  {href}
   class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
