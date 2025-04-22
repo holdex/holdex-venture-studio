@@ -46,7 +46,7 @@
   <Link item={link3} let:text>{text}</Link>
   <Link item={link4} let:text>{text}</Link>
 
-  These links are rendered using the direct <code>&lt;a&gt;</code> HTML element:
+  These links are rendered using the direct <code>&lt;a&gt;</code> HTML element::
   <br />
   <h1>Heading h1 <a href="/about">About internal page</a></h1>
   <h2>Heading h2 <a href="https://google.com">Google external page</a></h2>
