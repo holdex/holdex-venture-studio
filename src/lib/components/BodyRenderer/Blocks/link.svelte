@@ -1,7 +1,5 @@
 <script lang="ts">
   import { regExp } from '$components/BodyParser/utils';
-  import { ArrowTopRightOnSquare } from '$components/Icons';
-  import Icon from '$components/Icons/index.svelte';
   import { getContext } from 'svelte';
   import { goto } from '$app/navigation';
 
@@ -49,11 +47,28 @@
     return truncatedUrl;
   };
 
+  function normalizeHref(href: string) {
+    if (typeof window === 'undefined') return href;
+
+    try {
+      const currentHost = window.location.host;
+      const url = new URL(href, window.location.origin);
+      if (url.host === currentHost) {
+        return url.pathname + url.search + url.hash;
+      }
+
+      return href;
+    } catch (e) {
+      // For relative links like "/about", just return as-is
+      return href;
+    }
+  }
+
   $: text = item.text || item.href;
+  $: href = normalizeHref(item.href);
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
-  $: iconSize = item.iconSize || 16;
 
   const handleClick = (e: MouseEvent, href: string) => {
     if (isHoldexLink || isInternalLink) {
@@ -66,7 +81,7 @@
 {' '}
 <a
   title={item.title ? item.title : ''}
-  href={item.href}
+  {href}
   class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
@@ -75,12 +90,22 @@
   <span class="!underline !underline-offset-4" style="all: unset">
     <slot text={truncated} />
   </span>
-  {#if !isHoldexLink && !isInternalLink}
-    <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
-  {/if}
 </a>
 
 <style lang="sass">
   a :global(*)
     @apply text-inherit
+  a[href^="http"]:after 
+    content: ''
+    display: inline-block
+    width: 1em
+    height: 1em
+    margin-left: 0.2em
+    vertical-align: middle
+    background-color: currentColor
+    -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
+    mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
+    -webkit-mask-size: contain
+    mask-size: contain
+
 </style>

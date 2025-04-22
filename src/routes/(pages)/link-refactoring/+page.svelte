@@ -39,8 +39,18 @@
 </script>
 
 <div class="m-auto w-[500px] mt-[50px] flex flex-col gap-4">
+  These links are rendered using the Link component:
+
   <Link item={link} let:text>{text}</Link>
   <Link item={link2} let:text>{text}</Link>
   <Link item={link3} let:text>{text}</Link>
   <Link item={link4} let:text>{text}</Link>
+  
+  These links are rendered using the direct <a> HTML element:
+  <br>
+  <h1>Heading h1 <a href="/about">About internal page</a></h1>
+  <h2>Heading h2 <a href="https://google.com">Google external page</a></h1>
+  <p>
+    Link inside paragraph <a href="https://google.com">Google external page</a>
+  </p>
 </div>
