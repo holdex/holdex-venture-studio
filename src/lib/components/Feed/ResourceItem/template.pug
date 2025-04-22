@@ -1,5 +1,5 @@
 article.block(class!="{className}")
-  Link(item=`{{type: 'article-heading-link', href: '/c/'+message.communitySlug+'/'+message.messageSlug, iconSize: 24}}` class="text-h3-l font-satoshi xs:text-h3-s mb-4") {message.title}
+  Link(item=`{{type: 'article-heading-link', href: '/c/'+message.communitySlug+'/'+message.messageSlug, iconSize: 24}}`) {message.title}
   TextParagraph.mb-4(class="text-t2") {message.subtitle}
   +if('message.hashtags && message.hashtags.length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none

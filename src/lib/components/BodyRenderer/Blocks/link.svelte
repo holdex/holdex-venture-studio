@@ -13,21 +13,20 @@
 
   export let item: Item;
   let className: string = ''
-  export { className as class };
-
-  // switch (item.type) {
-  //   case 'link':
-  //     break;
-  //   case 'heading-link':
-  //     classes += ' text-h3-l font-satoshi xs:text-h3-s';
-  //     break;
-  //   case 'article-heading-link':
-  //     classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
-  //     break;
-  //   default:
-  //     classes += ' text-paragraph-l';
-  //     break;
-  // }
+  
+  switch (item.type) {
+    case 'link':
+      break;
+    case 'heading-link':
+      className += ' text-h3-l font-satoshi xs:text-h3-s';
+      break;
+    case 'article-heading-link':
+      className += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
+      break;
+    default:
+      className += ' text-paragraph-l';
+      break;
+  }
 
   let truncateUrl = (url: string) => {
     let textWithoutPrefix = url.replace(/^https?:\/\//, '');
