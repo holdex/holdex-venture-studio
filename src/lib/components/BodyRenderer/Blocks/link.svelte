@@ -50,9 +50,8 @@
 
     try {
       const currentHost = window.location.host;
-      const url = new URL(href, window.location.origin); 
+      const url = new URL(href, window.location.origin);
       if (url.host === currentHost) {
-        
         return url.pathname + url.search + url.hash;
       }
 
@@ -64,7 +63,7 @@
   }
 
   $: text = item.text || item.href;
-  $: href = normalizeHref(item.href)
+  $: href = normalizeHref(item.href);
   $: truncated = text.includes('http') ? truncateUrl(text) : text;
   $: isHoldexLink = regExp.holdexLink.test(item.href);
   $: isInternalLink = regExp.internalLink.test(item.href || '');
