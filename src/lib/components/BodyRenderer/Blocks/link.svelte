@@ -98,7 +98,7 @@
     display: inline-block
     width: 1em
     height: 1em
-    margin-left: 0.5em
+    margin-left: 0.2em
     vertical-align: middle
     background-color: currentColor
     -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
