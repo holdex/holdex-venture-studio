@@ -1,7 +1,5 @@
 <script lang="ts">
   import { regExp } from '$components/BodyParser/utils';
-  import { ArrowTopRightOnSquare } from '$components/Icons';
-  import Icon from '$components/Icons/index.svelte';
   import { getContext } from 'svelte';
   import { goto } from '$app/navigation';
 
@@ -68,17 +66,28 @@
   class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
+  style="--icon-size: {iconSize}px"
   on:click={(e) => handleClick(e, item.href)}
 >
   <span class="!underline !underline-offset-4" style="all: unset">
     <slot text={truncated} />
   </span>
-  {#if !isHoldexLink && !isInternalLink}
-    <Icon icon={ArrowTopRightOnSquare} width={iconSize} height={iconSize} colorInherit />
-  {/if}
 </a>
 
 <style lang="sass">
   a :global(*)
     @apply text-inherit
+  a[href^="http"]:not([href*="holdex.io"]):not([href*="localhost:3000"]):after 
+    content: ''
+    display: inline-block
+    width: var(--icon-size)
+    height: var(--icon-size)
+    margin-left: 8px
+    vertical-align: middle
+    background-color: currentColor
+    -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
+    mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
+    -webkit-mask-size: contain
+    mask-size: contain
+
 </style>
