@@ -15,8 +15,6 @@
   let className: string = ''
   export { className as class };
 
-  let parentWrapper = getContext('wrapper');
-
   let classes =
     'w-fit relative inline-block bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
 

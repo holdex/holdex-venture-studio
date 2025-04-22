@@ -49,7 +49,7 @@
   These links are rendered using the direct <a> HTML element:
   <br>
   <h1>Heading h1 <a href="/about">About internal page</a></h1>
-  <h2>Heading h2 <a href="https://google.com">Google external page</a></h1>
+  <h2>Heading h2 <a href="https://google.com">Google external page</a></h2>
   <p>
     Link inside paragraph <a href="https://google.com">Google external page</a>
   </p>
