@@ -94,7 +94,7 @@
 <style lang="sass">
   a :global(*)
     @apply text-inherit
-  a[href^="http"]:not([href*="holdex.io"]):after 
+  a[href^="http"]:after 
     content: ''
     display: inline-block
     width: 1em
