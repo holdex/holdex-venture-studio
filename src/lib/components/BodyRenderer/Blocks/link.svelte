@@ -15,22 +15,19 @@
   let className: string = ''
   export { className as class };
 
-  let classes =
-    'w-fit relative inline-block bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
-
-  switch (item.type) {
-    case 'link':
-      break;
-    case 'heading-link':
-      classes += ' text-h3-l font-satoshi xs:text-h3-s';
-      break;
-    case 'article-heading-link':
-      classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
-      break;
-    default:
-      classes += ' text-paragraph-l';
-      break;
-  }
+  // switch (item.type) {
+  //   case 'link':
+  //     break;
+  //   case 'heading-link':
+  //     classes += ' text-h3-l font-satoshi xs:text-h3-s';
+  //     break;
+  //   case 'article-heading-link':
+  //     classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
+  //     break;
+  //   default:
+  //     classes += ' text-paragraph-l';
+  //     break;
+  // }
 
   let truncateUrl = (url: string) => {
     let textWithoutPrefix = url.replace(/^https?:\/\//, '');
@@ -80,7 +77,7 @@
 <a
   title={item.title ? item.title : ''}
   {href}
-  class={classes}
+  class= {`link ${className}`}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
