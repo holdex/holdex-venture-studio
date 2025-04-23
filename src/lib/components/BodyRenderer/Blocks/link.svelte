@@ -12,21 +12,6 @@
   };
 
   export let item: Item;
-  let className: string = ''
-  
-  switch (item.type) {
-    case 'link':
-      break;
-    case 'heading-link':
-      className += ' text-h3-l font-satoshi xs:text-h3-s';
-      break;
-    case 'article-heading-link':
-      className += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
-      break;
-    default:
-      className += ' text-paragraph-l';
-      break;
-  }
 
   let truncateUrl = (url: string) => {
     let textWithoutPrefix = url.replace(/^https?:\/\//, '');
@@ -76,7 +61,7 @@
 <a
   title={item.title ? item.title : ''}
   {href}
-  class= {`link ${className}`}
+  class= "link"
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
