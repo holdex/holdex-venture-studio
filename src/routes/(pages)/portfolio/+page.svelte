@@ -91,7 +91,7 @@
     name: 'Alessio Quaglini',
     title: 'Co-founder & CEO at Hex Trust',
     content:
-      "A partnership such as <a title='this one' href='https://hextrust.com/resources-collection/hex-trust-partners-with-holdex-to-bring-a-new-level-of-confidence-and-security-to-decentralized-fundraising' class='link s-CCQuTxjDzH6o' target='_blank' rel='noreferrer'><span class='!underline !underline-offset-4 s-CCQuTxjDzH6o' style='all: unset;'>this one</span><!--<Index>--></a> is something we're incredibly proud to be part of.",
+      "A partnership such as <a title='this one' href='https://hextrust.com/resources-collection/hex-trust-partners-with-holdex-to-bring-a-new-level-of-confidence-and-security-to-decentralized-fundraising' class='link s-CCQuTxjDzH6o' target='_blank' rel='noreferrer'><span class='!underline !underline-offset-4 s-CCQuTxjDzH6o' style='all: unset;'>this one</span></a> is something we're incredibly proud to be part of.",
     link: 'https://www.linkedin.com/in/alessioquaglini/',
     picture: {
       url: 'endorsements/alessio-quaglini.jpeg',
