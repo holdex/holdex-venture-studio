@@ -74,7 +74,7 @@
 <style lang="sass">
   a :global(*)
     @apply text-inherit
-  a[href^="http"]:after 
+  :global(a.link[href^="http"]::after) 
     content: ''
     display: inline-block
     width: 1em
