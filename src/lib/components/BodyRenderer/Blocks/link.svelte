@@ -4,9 +4,9 @@
   import { goto } from '$app/navigation';
 
   type Item = {
-    type: string;
     text: string;
     href: string;
+    type?: string;
     title?: string;
     iconSize?: number;
   };
