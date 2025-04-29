@@ -30,7 +30,7 @@
           item={{ type: 'link', href: item.link, text: item.name, title: item.name, iconSize: 20 }}
           >{item.name}</Link
         >
-        <span class="text-h5-l smDown:text-h5-s w-fit">{item.title}</span>
+        <span class="text-h5-l smDown:text-h5-s w-fit font-inherit">{item.title}</span>
       </div>
       <img src={picture} alt={item.name} class="h-14 w-14 rounded-xl" />
     </div>
