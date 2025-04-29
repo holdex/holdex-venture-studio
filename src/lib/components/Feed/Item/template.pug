@@ -1,12 +1,12 @@
 article.block.flex.items-center.gap-4(class!="{className}") 
   .feed-icon.relative.block.w-32.h-24.border.border-solid.border-l4.rounded-xl.bg-l2(class!="xs:w-24")
-    a(href="/c/{message.communitySlug}/{message.messageSlug}")
+    a.plain-link(href="/c/{message.communitySlug}/{message.messageSlug}")
       img.relative.block.w-full.h-full.object-center.rounded-xl.object-cover(
         alt="{message.title}"
         src="{message.cover || '/default-cover.png'}"
       )
   .feed-content.flex.items-start.justify-center.flex-col
-    a.transition-colors.block(
+    a.transition-colors.block.plain-link(
       href="/c/{message.communitySlug}/{message.messageSlug}"
       class!="hover:text-accent1-default"
     )

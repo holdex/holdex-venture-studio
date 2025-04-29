@@ -1,36 +1,16 @@
 <script lang="ts">
   import { regExp } from '$components/BodyParser/utils';
-  import { getContext } from 'svelte';
   import { goto } from '$app/navigation';
 
   type Item = {
-    type: string;
     text: string;
     href: string;
+    type?: string;
     title?: string;
     iconSize?: number;
   };
 
   export let item: Item;
-
-  let parentWrapper = getContext('wrapper');
-
-  let classes =
-    'w-fit relative inline-block bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25';
-
-  switch (item.type) {
-    case 'link':
-      break;
-    case 'heading-link':
-      classes += ' text-h3-l font-satoshi xs:text-h3-s';
-      break;
-    case 'article-heading-link':
-      classes += ' text-h3-l font-satoshi xs:text-h3-s mb-4';
-      break;
-    default:
-      classes += ' text-paragraph-l';
-      break;
-  }
 
   let truncateUrl = (url: string) => {
     let textWithoutPrefix = url.replace(/^https?:\/\//, '');
@@ -80,7 +60,6 @@
 <a
   title={item.title ? item.title : ''}
   {href}
-  class={classes}
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
@@ -93,17 +72,4 @@
 <style lang="sass">
   a :global(*)
     @apply text-inherit
-  a[href^="http"]:after 
-    content: ''
-    display: inline-block
-    width: 1em
-    height: 1em
-    margin-left: 0.2em
-    vertical-align: middle
-    background-color: currentColor
-    -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
-    mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
-    -webkit-mask-size: contain
-    mask-size: contain
-
 </style>
