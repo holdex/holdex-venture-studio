@@ -65,7 +65,7 @@
 
   .plain-link {
     @apply bg-transparent hover:bg-transparent focus:bg-transparent font-inherit text-inherit;
-    display: inline !important;
+    display: inline;
   }
 
   a.plain-link::after {
