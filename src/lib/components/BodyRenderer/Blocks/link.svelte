@@ -1,6 +1,5 @@
 <script lang="ts">
   import { regExp } from '$components/BodyParser/utils';
-  import { getContext } from 'svelte';
   import { goto } from '$app/navigation';
 
   type Item = {
@@ -61,7 +60,6 @@
 <a
   title={item.title ? item.title : ''}
   {href}
-  class= "link"
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
@@ -74,17 +72,4 @@
 <style lang="sass">
   a :global(*)
     @apply text-inherit
-  :global(a.link[href^="http"]::after) 
-    content: ''
-    display: inline-block
-    width: 1em
-    height: 1em
-    margin-left: 0.2em
-    vertical-align: middle
-    background-color: currentColor
-    -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
-    mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center
-    -webkit-mask-size: contain
-    mask-size: contain
-
 </style>
