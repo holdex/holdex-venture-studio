@@ -110,12 +110,17 @@ mixin left-sidebar
     class!=attributes.class
   )
     a(class="relative flex h-10 w-38.5 plain-link" href="{routes.index}"): SVGIcon(name="logo" class="")
-    nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0 text-h3-l font-satoshi xs:text-h3-s")
-      Link(item="{{href: routes.about, iconSize: 24}}") About
-      Link(item="{{href: routes.portfolio, iconSize: 24}}") Portfolio
-      Link(item="{{href: routes.forStartups, iconSize: 24}}") For Startups
-      Link(item="{{href: routes.research, iconSize: 24}}") Research
-      Link(item="{{href: routes.jobs, iconSize: 24}}") Jobs
+    nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
+      h3
+        Link(item="{{href: routes.about, iconSize: 24}}") About
+      h3
+        Link(item="{{href: routes.portfolio, iconSize: 24}}") Portfolio
+      h3
+        Link(item="{{href: routes.forStartups, iconSize: 24}}") For Startups
+      h3
+        Link(item="{{href: routes.research, iconSize: 24}}") Research
+      h3
+        Link(item="{{href: routes.jobs, iconSize: 24}}") Jobs
 
     div(class="h-15.5 relative")
     //  +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
@@ -125,11 +130,12 @@ mixin right-sidebar
     class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-[58px] pl-8 pr-16"
     class!=attributes.class
   )
-    button.w-fit.relative.text-h3-l.my-1.font-satoshi.underline.underline-offset-4.text-accent1-default.transition-colors(
+    button.w-fit.relative.underline.underline-offset-4.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
-      class="xs:text-h3-s bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
+      class="bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25"
     )
-      | Talk to Us!
+      h3
+        | Talk to Us!
     +sidebar-social
     button.h-8.flex.items-center.gap-2(on:click!="{onThemeToggle}" class="group")
       SVGIcon(
@@ -223,7 +229,7 @@ mixin header
             action="/"
             on:submit|preventDefault="{onContactFormSumbit}"
           )
-            h4(class="text-h4-l xs:text-h4-s font-satoshi mb-4") Contact Us
+            h4(class="mb-4") Contact Us
             p(class="text-paragraph-l xs:text-paragraph-s text-t2 mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
             .input-group(class="mb-4")
               textarea(

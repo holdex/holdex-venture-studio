@@ -2,7 +2,7 @@
   import PermaLink from './permalink.svelte';
 </script>
 
-<h5 class="text-h5-l">
+<h5>
   <PermaLink id={$$props.data.id}>
     <slot />
   </PermaLink>
