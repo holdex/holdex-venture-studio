@@ -49,7 +49,7 @@
     @apply font-inherit inline-block w-fit relative bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25;
   }
 
-  a[href^="http"]::after {
+  a[href^='http']::after {
     content: '';
     display: inline-block;
     width: 1em;
@@ -77,27 +77,28 @@
   }
 
   h1 {
-    @apply text-h1-l xs:text-h1-s font-satoshi
+    @apply text-h1-l xs:text-h1-s font-satoshi;
   }
 
   h2 {
-    @apply text-h2-l xs:text-h2-s font-satoshi
+    @apply text-h2-l xs:text-h2-s font-satoshi;
   }
 
-  h3 {
-    @apply text-h3-l xs:text-h3-s font-satoshi
+  h3,
+  .sidebar-nav {
+    @apply text-h3-l xs:text-h3-s font-satoshi;
   }
 
   h4 {
-    @apply text-h4-l xs:text-h4-s font-satoshi
+    @apply text-h4-l xs:text-h4-s font-satoshi;
   }
 
   h5 {
-    @apply text-h5-l xs:text-h5-s font-satoshi
+    @apply text-h5-l xs:text-h5-s font-satoshi;
   }
 
   h6 {
-    @apply text-h6-l xs:text-h6-s font-satoshi
+    @apply text-h6-l xs:text-h6-s font-satoshi;
   }
 
   p {

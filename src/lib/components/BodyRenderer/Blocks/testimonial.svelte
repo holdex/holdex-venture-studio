@@ -26,8 +26,7 @@
       <div
         class="author-details flex flex-col items-end text-right font-satoshi text-h5-l smDown:text-h5-s"
       >
-        <Link
-          item={{ type: 'link', href: item.link, text: item.name, title: item.name, iconSize: 20 }}
+        <Link item={{ type: 'link', href: item.link, text: item.name, title: item.name }}
           >{item.name}</Link
         >
         <span class="text-h5-l smDown:text-h5-s w-fit font-inherit">{item.title}</span>

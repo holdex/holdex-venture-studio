@@ -77,7 +77,7 @@ article.portfolio-product-card(
 )
   .portfolio-product-body(class="flex flex-col w-full gap-8 smDown:gap-6")
     h3(class="relative flex flex-col w-full gap-4 smDown:gap-2")
-      Link(item="{{href: slug, text: title, title: title, iconSize: 24}}")= `{title}`
+      Link(item="{{href: slug, text: title, title: title}}")= `{title}`
       TextParagraph {subtitle}
 
     +if('isFeatured == true')
