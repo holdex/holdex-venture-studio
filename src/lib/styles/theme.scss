@@ -99,6 +99,10 @@
   h6 {
     @apply text-h6-l xs:text-h6-s font-satoshi
   }
+
+  p {
+    @apply text-paragraph-l
+  }
 }
 
 @layer utilities {

@@ -15,11 +15,11 @@
 >
   <div class="flex flex-col xs:w-full">
     {#if item.title}
-      <p class="text-paragraph-l text-t1 font-bold">{item.title}</p>
+      <p class="text-t1 font-bold">{item.title}</p>
     {/if}
 
     {#if item.description}
-      <p class="text-paragraph-l text-t3">{item.description}</p>
+      <p class="text-t3">{item.description}</p>
     {/if}
   </div>
 
