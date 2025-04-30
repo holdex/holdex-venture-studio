@@ -45,7 +45,7 @@ mixin wrap-subcontainer(kpiValue, kpiDescription)
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
   p(class="text-subtitle-l text-center mb-1 xs:mt-1 text-t2")
     | #{normalTextBefore}
-    Link(item=`{{type: 'link', href: '${link}', iconSize: 24}}`)= underlinedText
+    Link(item=`{{href: '${link}'}}`)= underlinedText
     | #{normalTextAfter}
 
 mixin section-learn-wrapper
