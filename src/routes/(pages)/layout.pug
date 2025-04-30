@@ -111,11 +111,11 @@ mixin left-sidebar
   )
     a(class="relative flex h-10 w-38.5 plain-link" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      Link(item="{{href: routes.about, iconSize: 24}}") About
-      Link(item="{{href: routes.portfolio, iconSize: 24}}") Portfolio
-      Link(item="{{href: routes.forStartups, iconSize: 24}}") For Startups
-      Link(item="{{href: routes.research, iconSize: 24}}") Research
-      Link(item="{{href: routes.jobs, iconSize: 24}}") Jobs
+      Link(item="{{href: routes.about}}") About
+      Link(item="{{href: routes.portfolio}}") Portfolio
+      Link(item="{{href: routes.forStartups}}") For Startups
+      Link(item="{{href: routes.research}}") Research
+      Link(item="{{href: routes.jobs}}") Jobs
 
     div(class="h-15.5 relative")
     //  +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
