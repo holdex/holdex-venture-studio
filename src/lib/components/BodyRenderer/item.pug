@@ -51,7 +51,7 @@
       +if("item.service === 'gist'")
         EmbedGist(item="{item}")
         +elseif("item.service === 'twitter'")
-          svelte:element(this="p" class="p-el text-paragraph-l text-t2")
+          svelte:element(this="p" class="p-el text-t2")
             InlineBlock(item="{{type: 'link', href: item.source}}")
         +else
           Embed(item="{item}")

@@ -88,9 +88,9 @@ mixin announcement-post-it(href, date, location, content)
       .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
       .space-y-1.font-handwriting.text-black
         if date
-          p.font-handwriting.text-black.text-paragraph-l.leading-none= date
+          p.font-handwriting.text-black.leading-none= date
         if location
-          p.font-handwriting.text-black.text-paragraph-l.leading-none= location
+          p.font-handwriting.text-black.leading-none= location
         if content
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
 
@@ -225,7 +225,7 @@ mixin header
             on:submit|preventDefault="{onContactFormSumbit}"
           )
             h4(class="mb-4") Contact Us
-            p(class="text-paragraph-l xs:text-paragraph-s text-t2 mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
+            p(class="xs:text-paragraph-s text-t2 mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
             .input-group(class="mb-4")
               textarea(
                 rows="{5}"

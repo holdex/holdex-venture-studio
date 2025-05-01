@@ -88,13 +88,13 @@ mixin feedRenderer
   +if('isSearchMode')
     +if('totalCount > 0')
       .result-label-wrapper(class="flex items-center flex-wrap gap-3")
-        p(class="text-paragraph-l font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
+        p(class="font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
         +button-icon-small("{XMark}")(
           on:click!="{() => handleSort($page.url, 'CREATED_AT')}"
         )
       block
       +else
-        p(class="text-paragraph-l text-t1 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
+        p(class="text-t1 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
     +else
       block
 
