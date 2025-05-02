@@ -18,22 +18,23 @@ mixin social-link(href, content)
   )&attributes(attributes)= content
 
 mixin main-nav
-  ul(class="flex items-start gap-4 xl-up:gap-8" role="navigation")&attributes(attributes)
-    +link("{routes.about}", "About")(
-      class!="{isActive(path, routes.about, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.portfolio}", "Portfolio")(
-      class!="{isActive(path, routes.portfolio, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.forStartups}", "For Startups")(
-      class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.research}", "Research")(
-      class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.jobs}", "Jobs")(
-      class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
-    )
+  nav
+    ul(class="flex items-start gap-4 xl-up:gap-8" role="navigation")&attributes(attributes)
+      +link("{routes.about}", "About")(
+        class!="{isActive(path, routes.about, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.portfolio}", "Portfolio")(
+        class!="{isActive(path, routes.portfolio, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.forStartups}", "For Startups")(
+        class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.research}", "Research")(
+        class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.jobs}", "Jobs")(
+        class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
+      )
     //- +link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 
 mixin mobile-nav
@@ -110,12 +111,18 @@ mixin left-sidebar
     class!=attributes.class
   )
     a(class="relative flex h-10 w-38.5 plain-link" href="{routes.index}"): SVGIcon(name="logo" class="")
-    nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      Link(item="{{href: routes.about}}") About
-      Link(item="{{href: routes.portfolio}}") Portfolio
-      Link(item="{{href: routes.forStartups}}") For Startups
-      Link(item="{{href: routes.research}}") Research
-      Link(item="{{href: routes.jobs}}") Jobs
+    nav
+      ul.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
+        li.font-inherit
+          Link(item="{{href: routes.about}}") About
+        li.font-inherit
+          Link(item="{{href: routes.portfolio}}") Portfolio
+        li.font-inherit 
+          Link(item="{{href: routes.forStartups}}") For Startups
+        li.font-inherit
+          Link(item="{{href: routes.research}}") Research
+        li.font-inherit
+          Link(item="{{href: routes.jobs}}") Jobs
 
     div(class="h-15.5 relative")
     //  +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
