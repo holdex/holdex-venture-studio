@@ -110,17 +110,17 @@ mixin left-sidebar
     class!=attributes.class
   )
     a(class="relative flex h-10 w-38.5 plain-link" href="{routes.index}"): SVGIcon(name="logo" class="")
-    nav.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
-      ul
-        li
+    nav
+      ul.sidebar-nav(class="flex flex-col gap-8 w-full shrink-0")
+        li.font-inherit
           Link(item="{{href: routes.about}}") About
-        li
+        li.font-inherit
           Link(item="{{href: routes.portfolio}}") Portfolio
-        li 
+        li.font-inherit 
           Link(item="{{href: routes.forStartups}}") For Startups
-        li
+        li.font-inherit
           Link(item="{{href: routes.research}}") Research
-        li
+        li.font-inherit
           Link(item="{{href: routes.jobs}}") Jobs
 
     div(class="h-15.5 relative")
