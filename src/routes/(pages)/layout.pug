@@ -18,22 +18,23 @@ mixin social-link(href, content)
   )&attributes(attributes)= content
 
 mixin main-nav
-  ul(class="flex items-start gap-4 xl-up:gap-8" role="navigation")&attributes(attributes)
-    +link("{routes.about}", "About")(
-      class!="{isActive(path, routes.about, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.portfolio}", "Portfolio")(
-      class!="{isActive(path, routes.portfolio, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.forStartups}", "For Startups")(
-      class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.research}", "Research")(
-      class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
-    )
-    +link("{routes.jobs}", "Jobs")(
-      class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
-    )
+  nav
+    ul(class="flex items-start gap-4 xl-up:gap-8" role="navigation")&attributes(attributes)
+      +link("{routes.about}", "About")(
+        class!="{isActive(path, routes.about, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.portfolio}", "Portfolio")(
+        class!="{isActive(path, routes.portfolio, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.forStartups}", "For Startups")(
+        class!="{isActive(path, routes.forStartups, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.research}", "Research")(
+        class!="{isActive(path, routes.research, true) ? 'before:!bg-accent1-default' : ''}"
+      )
+      +link("{routes.jobs}", "Jobs")(
+        class!="{isActive(path, routes.jobs) ? 'before:!bg-accent1-default' : ''}"
+      )
     //- +link("/c?filter=partners", "Partners")(class!="{isFilterActive($page.url,'/c', 'partners') ? '!text-accent1-default before:!bg-accent1-default' : ''}")
 
 mixin mobile-nav
