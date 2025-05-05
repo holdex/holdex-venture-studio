@@ -63,7 +63,6 @@
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
-  class="underline underline-offset-4"
 >
   <slot text={truncated} />
 </a>

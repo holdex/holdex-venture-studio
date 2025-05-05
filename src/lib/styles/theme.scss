@@ -46,7 +46,7 @@
   }
 
   a {
-    @apply font-inherit inline-block w-fit relative bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25;
+    @apply font-inherit inline-block w-fit relative bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25 underline underline-offset-4;
   }
 
   a[href^='http']::after {
