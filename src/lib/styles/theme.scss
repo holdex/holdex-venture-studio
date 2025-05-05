@@ -64,7 +64,7 @@
   }
 
   .plain-link {
-    @apply bg-transparent hover:bg-transparent focus:bg-transparent font-inherit text-inherit;
+    @apply bg-transparent hover:bg-transparent focus:bg-transparent font-inherit text-inherit no-underline;
     display: inline;
   }
 
