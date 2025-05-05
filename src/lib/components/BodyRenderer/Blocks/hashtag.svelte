@@ -11,7 +11,7 @@
 
   let classes = `relative inline-block text-accent1-default transition-colors ${
     link
-      ? 'underline underline-offset-4 bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25'
+      ? 'bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25'
       : 'bg-transparent hover:bg-transparent'
   }`;
 
