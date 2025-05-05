@@ -7,8 +7,6 @@ article.block(class!="{className}")
       +each('message.hashtags as tag, index')
         +if('index !== 0')
           li.text-paragraph-l(class="text-t3/50") &bull;
-        li.underline.underline-offset-4.text-accent1-default.text-inter.h-8.text-paragraph-l(
-          class="bg-accent1-default/15"
-        )
+        li.text-inter.h-8.text-paragraph-l
           Hashtag(item="{tag}" link="/c?filter={tag}") 
             | {'#'}{tag}
