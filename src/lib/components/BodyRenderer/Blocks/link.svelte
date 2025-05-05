@@ -63,10 +63,9 @@
   target={isHoldexLink || isInternalLink ? '_self' : '_blank'}
   rel="noreferrer"
   on:click={(e) => handleClick(e, item.href)}
+  class="underline underline-offset-4"
 >
-  <span class="!underline !underline-offset-4" style="all: unset">
-    <slot text={truncated} />
-  </span>
+  <slot text={truncated} />
 </a>
 
 <style lang="sass">
