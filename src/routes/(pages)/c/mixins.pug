@@ -42,17 +42,14 @@ mixin short-links
 
 mixin short-link(href, icon, title)
   a.short-link(
-    class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default"
+    class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default plain-link"
     href=href
   )
     Icon(icon=icon width="{20}" height="{20}" colorInherit)
     span= title
 
 mixin inline-link(href, title)
-  a.short-link(
-    class="relative underline underline-offset-4 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-    href=href
-  )&attributes(attributes)
+  a.short-link.text-paragraph-l(href=href)&attributes(attributes)
     span= title
 
 mixin button-secondary-small(label)
