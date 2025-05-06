@@ -14,7 +14,7 @@
   let theme = getContext('theme');
 </script>
 
-<a class="exclude embed-link underline-not {$theme}" {href} target="_blank" rel="nofollow">
+<a class="exclude embed-link underline-not plain-link {$theme}" {href} target="_blank" rel="nofollow">
   {#if image}
     <span class="embed-link__image" class:relative={html}>
       <img src={image.url} alt="Website" />
