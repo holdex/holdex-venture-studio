@@ -14,7 +14,7 @@
 <div class="flex">
   <a
     href={url}
-    class="avatar @apply h-9 w-9 mr-2.5 exclude {$theme}"
+    class="avatar @apply h-9 w-9 mr-2.5 exclude plain-link {$theme}"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -22,7 +22,7 @@
   </a>
   <a
     href={url}
-    class="author no-underline text-inherit transition-[color] duration-[0.3s] ease-[ease-in-out] exclude {$theme}"
+    class="author no-underline text-inherit transition-[color] duration-[0.3s] ease-[ease-in-out] exclude plain-link {$theme}"
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -41,7 +41,7 @@
   </a>
   <a href={url} class="brand exclude" target="_blank" rel="noopener noreferrer">
     <img
-      class="icon w-[1.25em] h-[1.25em] object-contain twicon"
+      class="icon w-[1.25em] h-[1.25em] object-contain twicon plain-link"
       title="View on Twitter"
       alt="twitter"
       src="/tweet/twitter.png"

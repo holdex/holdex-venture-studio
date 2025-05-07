@@ -1,5 +1,6 @@
 <script lang="ts">
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import LinkBlock from '$components/BodyRenderer/Blocks/linkBlock.svelte';
 
   type Item = {
     text: string;
@@ -42,11 +43,15 @@
   <h3><Link item={link3} let:text>{text}</Link></h3>
   <h3><Link item={link4} let:text>{text}</Link></h3>
 
-  These links are rendered using the direct <code>&lt;a&gt;</code> HTML element:
+  These links are rendered using the direct<code>&lt;a&gt;</code> HTML element:
   <br />
   <h1>Heading h1 <a href="/about">About internal page</a></h1>
   <h2>Heading h2 <a href="https://google.com">Google external page</a></h2>
   <p>
     Link inside paragraph <a href="https://google.com">Google external page</a>
   </p>
+  <p class="mb-2">Link Block Component</p>
+  <LinkBlock
+    item={{ title: 'link', url: 'http://holdex.io', description: 'link block', imageUrl: null }}
+  />
 </div>
