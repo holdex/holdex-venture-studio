@@ -1,5 +1,6 @@
 <script lang="ts">
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import LinkBlock from '$components/BodyRenderer/Blocks/linkBlock.svelte';
 
   type Item = {
     text: string;
@@ -49,4 +50,6 @@
   <p>
     Link inside paragraph <a href="https://google.com">Google external page</a>
   </p>
+  <p class='mb-2'>Link Block Component</p>
+  <LinkBlock item={{title: "link", url: 'http://holdex.io', description: 'link block', imageUrl: null}}/>
 </div>
