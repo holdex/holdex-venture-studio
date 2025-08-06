@@ -51,7 +51,6 @@
   "dependencies": {
     "@apollo/client": "^3.13.9",
     "@github/details-dialog-element": "^3.1.4",
-    "@sendgrid/mail": "^8.1.5",
     "apexcharts": "^5.3.2",
     "dotenv": "^17.2.1",
     "editorjs-html": "^3.4.2",
@@ -62,6 +61,7 @@
     "node-fetch": "^3.3.2",
     "numeral": "^2.0.6",
     "open-graph-scraper": "^6.10.0",
+    "resend": "^4.8.0",
     "rimraf": "^4.4.1",
     "rollbar": "^2.26.4",
     "tailwindcss": "^3.4.1"
