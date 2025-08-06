@@ -134,7 +134,7 @@
     message = '';
     applyAction(result);
 
-    if (result.type !== 'failure') {
+    if (result.type === 'success') {
       displaySuccess();
     } else {
       displayFailed();
