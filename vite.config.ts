@@ -1,4 +1,4 @@
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import viteRollbar from './src/builder/rollbar';
