@@ -16,6 +16,7 @@
     ExclamationTriangle,
     CheckCircle,
     ChatBubbleBottomCenter,
+    XCircle,
   } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import SVGIcon from '$components/Icons/SVGIcon.svelte';
@@ -31,6 +32,7 @@
   let name = '';
   let isError = false;
   let success = false;
+  let failed = false;
   let isBurgerDropdownShown = false;
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
   let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
@@ -71,6 +73,13 @@
     success = true;
     setInterval(() => {
       success = false;
+    }, 5000);
+  };
+
+  const displayFailed = () => {
+    failed = true;
+    setInterval(() => {
+      failed = false;
     }, 5000);
   };
 
@@ -124,7 +133,12 @@
     email = '';
     message = '';
     applyAction(result);
-    displaySuccess();
+
+    if (result.type !== 'failure') {
+      displaySuccess();
+    } else {
+      displayFailed();
+    }
   };
 
   const setBodyClass = (state: boolean) => {

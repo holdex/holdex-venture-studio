@@ -95,8 +95,7 @@ export const actions: Actions = {
       console.error('Error sending email:', error);
 
       if (error instanceof Error && 'response' in error) {
-        const sgError = error as { response: { statusCode: number; headers: any } };
-        console.error('SendGrid response status:', sgError.response.statusCode);
+        console.error('SendGrid response:', (error as any).response?.body);
       }
 
       return fail(500, { error: 'Failed to send email. Please try again later.' });
