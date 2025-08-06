@@ -1,6 +1,9 @@
 {
   "name": "holdex-venture-studio",
   "version": "0.0.1",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "pre-dev": "node pull-env.js",
     "dev": "npm run pre-dev && npm run generate && vite dev",

@@ -1,6 +1,11 @@
 {
   "version": 2,
   "trailingSlash": false,
+  "build": {
+    "env": {
+      "NODE_VERSION": "20"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",

@@ -71,14 +71,14 @@
 
   const displaySuccess = () => {
     success = true;
-    setInterval(() => {
+    setTimeout(() => {
       success = false;
     }, 5000);
   };
 
   const displayFailed = () => {
     failed = true;
-    setInterval(() => {
+    setTimeout(() => {
       failed = false;
     }, 5000);
   };
