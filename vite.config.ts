@@ -24,9 +24,11 @@ export default defineConfig({
       enforce: 'post',
       closeBundle: async () => {
         console.log('sourcemap-cleanup: deleting all .map files');
-        rimraf('./.svelte-kit/**/*.map').catch((err: any) => {
-          if (err) console.error(err);
-        });
+        try {
+          await rimraf('./.svelte-kit/**/*.map');
+        } catch (err) {
+          console.error(err);
+        }
       },
     },
   ],
