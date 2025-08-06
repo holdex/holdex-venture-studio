@@ -269,7 +269,7 @@ mixin header
               span() Invalid email address
             Button(
               label="Submit"
-              class="dark:bg-l2 mobile:!w-full"
+              class="mobile:!w-full"
               disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
               isSubmitBtn="true"
             )
