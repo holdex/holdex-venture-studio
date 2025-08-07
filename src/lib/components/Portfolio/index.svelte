@@ -111,7 +111,6 @@
     'streaming',
     'lending',
     'index',
-    'nodejs',
     'wallet',
     'open-source',
     'typescript',
@@ -139,6 +138,12 @@
     'TON',
     'user-acquisition',
     'education',
+    'productivity',
+    'chrome-extension',
+    'developers',
+    'marketing',
+    'KOLs',
+    'influencers',
   ];
 </script>
 
