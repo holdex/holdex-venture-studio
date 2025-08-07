@@ -117,7 +117,7 @@ mixin left-sidebar
           Link(item="{{href: routes.about}}") About
         li.font-inherit
           Link(item="{{href: routes.portfolio}}") Portfolio
-        li.font-inherit 
+        li.font-inherit
           Link(item="{{href: routes.forStartups}}") For Startups
         li.font-inherit
           Link(item="{{href: routes.research}}") Research
@@ -269,7 +269,7 @@ mixin header
               span() Invalid email address
             Button(
               label="Submit"
-              class="dark:bg-l2 mobile:!w-full"
+              class="mobile:!w-full"
               disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
               isSubmitBtn="true"
             )
@@ -278,6 +278,11 @@ mixin header
             )
               Icon(icon="{CheckCircle}" width="{24}" height="{24}" colorInherit)
               span.succ(class="text-t1 text-cta") Message sent!
+            .feedback-toast(
+              class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-16 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {failed ? 'flex' : 'hidden'}"
+            )
+              Icon(icon="{XCircle}" width="{24}" height="{24}" class="text-red-500" colorInherit)
+              span.fail(class="text-t1 text-cta") Failed to send email.
         .footer-nav(
           class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:flex-col md:items-start md:py-6 md:gap-6 py-4 px-4 max-w-[1240px] w-full"
         )
