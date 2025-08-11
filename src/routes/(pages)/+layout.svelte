@@ -27,6 +27,9 @@
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
+  export let data;
+  const { banner } = data;
+
   let email = '';
   let message = '';
   let name = '';
@@ -169,7 +172,7 @@
   }
 </script>
 
-<template lang="pug" src="./layout.pug">
+<template lang="pug" src="./layout.pug" locals={banner}>
 </template>
 
 <svelte:head>

@@ -125,7 +125,7 @@ mixin left-sidebar
           Link(item="{{href: routes.jobs}}") Jobs
 
     div(class="h-15.5 relative")
-    //  +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
+      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
 
 mixin right-sidebar
   aside.sidebar(
@@ -211,8 +211,8 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-    // +announcement-banner("https://x.com/HoldexIo/status/1903294773970211241", "📣 Join us at the Hong Kong Web3 Festival, Apr 6-9!")
-
+    if "{data.banner.show}"
+      +announcement-banner("{data.banner.href}", "{data.banner.text}")
 .app-container
   +header
   .flex(class="xl-up:w-full justify-center")
