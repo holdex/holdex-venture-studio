@@ -171,7 +171,7 @@
   }
 
   const isExternalLink = (href: string) => {
-    return regExp.holdexLink.test(href) || regExp.internalLink.test(href);
+    return !(regExp.holdexLink.test(href) || regExp.internalLink.test(href));
   };
 
   $: banner = data?.announcement?.banner
