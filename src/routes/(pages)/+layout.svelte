@@ -169,6 +169,26 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  $: banner = data &&
+    data.announcement && {
+      ...data.announcement.banner,
+      target:
+        regExp.holdexLink.test(data.announcement.banner.href) ||
+        regExp.internalLink.test(data.announcement.banner.href)
+          ? '_self'
+          : '_blank',
+    };
+
+  $: postIt = data &&
+    data.announcement && {
+      ...data.announcement.post_it,
+      target:
+        regExp.holdexLink.test(data.announcement.post_it.href) ||
+        regExp.internalLink.test(data.announcement.post_it.href)
+          ? '_self'
+          : '_blank',
+    };
 </script>
 
 <template lang="pug" src="./layout.pug">
