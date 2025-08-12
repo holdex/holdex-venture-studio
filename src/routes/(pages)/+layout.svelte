@@ -170,25 +170,37 @@
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
 
-  $: banner = data &&
-    data.announcement && {
-      ...data.announcement.banner,
-      target:
-        regExp.holdexLink.test(data.announcement.banner.href) ||
-        regExp.internalLink.test(data.announcement.banner.href)
-          ? '_self'
-          : '_blank',
-    };
+  const isExternalLink = (href: string) => {
+    return regExp.holdexLink.test(href) || regExp.internalLink.test(href);
+  };
 
-  $: postIt = data &&
-    data.announcement && {
-      ...data.announcement.post_it,
-      target:
-        regExp.holdexLink.test(data.announcement.post_it.href) ||
-        regExp.internalLink.test(data.announcement.post_it.href)
-          ? '_self'
-          : '_blank',
-    };
+  $: banner = data?.announcement?.banner
+    ? {
+        ...data.announcement.banner,
+        target:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
+
+  $: postIt = data?.announcement?.post_it
+    ? {
+        ...data.announcement.post_it,
+        target:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
 </script>
 
 <template lang="pug" src="./layout.pug">

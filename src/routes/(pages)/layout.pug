@@ -81,10 +81,11 @@ mixin sidebar-social
       class="!h-16 !w-16 !p-0 text-i1"
     )
 
-mixin announcement-post-it(href, date, location, content, target)
+mixin announcement-post-it(href, date, location, content, target, rel)
   a.absolute.bottom-0.-rotate-6.transform.plain-link(
     href=href
     target=target
+    rel=rel
     class="hover:-rotate-[4deg] transition-transform duration-300"
   )
     .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
@@ -97,7 +98,7 @@ mixin announcement-post-it(href, date, location, content, target)
         if content
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
 
-mixin announcement-banner(href, text, target)
+mixin announcement-banner(href, text, target, rel)
   if text && href
     .announcement-banner(
       class="w-full border-b border-solid border-l4 bg-l2 flex items-center justify-center px-4 py-3 gap-4"
@@ -105,6 +106,7 @@ mixin announcement-banner(href, text, target)
       a(
         href=href
         target=target
+        rel=rel
         class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6 plain-link"
       )= text
 
@@ -129,7 +131,7 @@ mixin left-sidebar
 
     div(class="h-15.5 relative")
       +if("postIt.show")
-        +announcement-post-it("{postIt.href}", "{postIt.date}", "{postIt.location}", "{postIt.content}", "{postIt.target}")
+        +announcement-post-it("{postIt.href}", "{postIt.date}", "{postIt.location}", "{postIt.content}", "{postIt.target}", "{postIt.rel}")
 
 mixin right-sidebar
   aside.sidebar(
@@ -216,7 +218,7 @@ mixin header
               on:click!="{() => handleClick(undefined)}"
             )
     +if("banner.show")
-      +announcement-banner("{banner.href}", "{banner.text}", "{banner.target}")
+      +announcement-banner("{banner.href}", "{banner.text}", "{banner.target}", "{banner.rel}")
 .app-container
   +header
   .flex(class="xl-up:w-full justify-center")
