@@ -28,7 +28,6 @@
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
   export let data;
-  const { banner } = data;
 
   let email = '';
   let message = '';
@@ -172,7 +171,7 @@
   }
 </script>
 
-<template lang="pug" src="./layout.pug" locals={banner}>
+<template lang="pug" src="./layout.pug">
 </template>
 
 <svelte:head>

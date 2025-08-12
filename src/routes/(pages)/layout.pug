@@ -96,14 +96,15 @@ mixin announcement-post-it(href, date, location, content)
           p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
 
 mixin announcement-banner(href, text)
-  .announcement-banner(
-    class="w-full border-b border-solid border-l4 bg-l2 flex items-center justify-center px-4 py-3 gap-4"
-  )
-    a(
-      href=href
-      target="_blank"
-      class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6 plain-link"
-    )= text
+  if text && href
+    .announcement-banner(
+      class="w-full border-b border-solid border-l4 bg-l2 flex items-center justify-center px-4 py-3 gap-4"
+    )
+      a(
+        href=href
+        target="_blank"
+        class="text-t1 text-paragraph-s hover:text-accent1-default transition-colors text-start sm-up:text-center w-full text-wrap leading-6 plain-link"
+      )= text
 
 mixin left-sidebar
   aside.sidebar(
@@ -125,7 +126,8 @@ mixin left-sidebar
           Link(item="{{href: routes.jobs}}") Jobs
 
     div(class="h-15.5 relative")
-      +announcement-post-it("https://x.com/HoldexIo/status/1903294773970211241", "Apr 6-9", "Hong Kong", "Meet us at Web3 Festival!")
+      +if('data.announcement.post_it.show')
+        +announcement-post-it("{data.announcement.post_it.href}", "{data.announcement.post_it.date}", "{data.announcement.post_it.location}", "{data.announcement.post_it.content}")
 
 mixin right-sidebar
   aside.sidebar(
@@ -211,8 +213,8 @@ mixin header
               type="button"
               on:click!="{() => handleClick(undefined)}"
             )
-    if "{data.banner.show}"
-      +announcement-banner("{data.banner.href}", "{data.banner.text}")
+    +if('data.announcement.banner.show')
+      +announcement-banner("{data.announcement.banner.href}", "{data.announcement.banner.text}")
 .app-container
   +header
   .flex(class="xl-up:w-full justify-center")

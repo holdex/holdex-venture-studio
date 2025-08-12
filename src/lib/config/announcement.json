@@ -1,0 +1,14 @@
+{
+  "banner": {
+    "show": true,
+    "href": "/schedule-meeting",
+    "text": "📣 Join us at Coinfest Asia 2025, Aug 21-22!"
+  },
+  "post_it": {
+    "show": true,
+    "href": "/schedule-meeting",
+    "date": "Aug 21-22",
+    "location": "Bali",
+    "content": "Meet us at Coinfest Asia 2025!"
+  }
+}

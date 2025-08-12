@@ -2,7 +2,7 @@ import { VERCEL_URL } from '$env/static/private';
 import config from '$lib/config';
 import { dev, building } from '$app/environment';
 import type { LayoutServerLoad } from './$types';
-import banner from '$lib/config/banner.json';
+import announcement from '$lib/config/announcement.json';
 
 export const load: LayoutServerLoad = () => {
   let url = '';
@@ -19,6 +19,6 @@ export const load: LayoutServerLoad = () => {
 
   return {
     deploymentUrl: url,
-    banner,
+    announcement,
   };
 };
