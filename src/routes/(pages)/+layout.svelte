@@ -27,6 +27,8 @@
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
+  export let data;
+
   let email = '';
   let message = '';
   let name = '';
@@ -167,6 +169,38 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  const isExternalLink = (href: string) => {
+    return !(regExp.holdexLink.test(href) || regExp.internalLink.test(href));
+  };
+
+  $: banner = data?.announcement?.banner
+    ? {
+        ...data.announcement.banner,
+        target:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
+
+  $: postIt = data?.announcement?.post_it
+    ? {
+        ...data.announcement.post_it,
+        target:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
 </script>
 
 <template lang="pug" src="./layout.pug">

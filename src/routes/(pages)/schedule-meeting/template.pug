@@ -1,0 +1,10 @@
+include ../common-mixins
+include ../c/mixins
++main-section
+  +header-wrapper.flex-col.gap-8(class="xs:gap-4")
+    +nav-crumbs
+      +crumbItemLink("/", "Holdex")
+      +crumbDelimiter
+      +crumbItemText("Schedule Meeting")
+    h1.text-title-l.font-satoshi.text-center(class="smDown:text-left xs:text-h1-s") Schedule Meeting
+    .w-full(id="my-cal-inline-30min")

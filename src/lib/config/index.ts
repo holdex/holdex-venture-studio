@@ -60,6 +60,7 @@ export const routes = {
   apply: '/apply',
   portfolio: '/portfolio',
   forStartups: '/for-startups',
+  scheduleMeeting: '/schedule-meeting',
   studio: '/c',
   jobs: '/c/jobs',
   research: '/c/guides',
