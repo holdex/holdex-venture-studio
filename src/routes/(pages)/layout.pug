@@ -96,7 +96,7 @@ mixin announcement-post-it(href, date, location, content, target, rel)
         if location
           p.font-handwriting.text-black.leading-none= location
         if content
-          p.font-handwriting.text-black.text-h2-l.font-normal.pt-2(class="!text-[29.5px]")= content
+          p.font-handwriting.text-black.text-h2-l.leading-none.font-normal.pt-2(class="!text-[29.5px]")= content
 
 mixin announcement-banner(href, text, target, rel)
   if text && href
