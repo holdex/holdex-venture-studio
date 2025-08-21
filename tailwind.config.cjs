@@ -155,49 +155,49 @@ module.exports = {
       'h1-l': [
         '48px',
         {
-          lineHeight: '64px',
+          lineHeight: '78px',
           fontWeight: '900',
         },
       ],
       'h1-s': [
         '42px',
         {
-          lineHeight: '48px',
+          lineHeight: '68px',
           fontWeight: '900',
         },
       ],
       'h2-l': [
         '32px',
         {
-          lineHeight: '32px',
+          lineHeight: '52px',
           fontWeight: '900',
         },
       ],
       'h2-s': [
         '28px',
         {
-          lineHeight: '32px',
+          lineHeight: '45px',
           fontWeight: '900',
         },
       ],
       'h3-l': [
         '28px',
         {
-          lineHeight: '32px',
+          lineHeight: '45px',
           fontWeight: '900',
         },
       ],
       'h3-s': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '39px',
           fontWeight: '900',
         },
       ],
       'h4-l': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '39px',
           fontWeight: '900',
         },
       ],
@@ -218,63 +218,63 @@ module.exports = {
       'h5-s': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h6-l': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h6-s': [
         '16px',
         {
-          lineHeight: '16px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'paragraph-l': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '400',
         },
       ],
       'paragraph-s': [
         '16px',
         {
-          lineHeight: '32px',
+          lineHeight: '26px',
           fontWeight: '400',
         },
       ],
       cta: [
         '14px',
         {
-          lineHeight: '32px',
+          lineHeight: '23px',
           fontWeight: '700',
         },
       ],
       footnote: [
         '14px',
         {
-          lineHeight: '20px',
+          lineHeight: '23px',
           fontWeight: '500',
         },
       ],
       caption: [
         '12px',
         {
-          lineHeight: '16px',
+          lineHeight: '19px',
           fontWeight: '500',
         },
       ],
       code: [
         '14px',
         {
-          lineHeight: '32px',
+          lineHeight: '23px',
           fontWeight: '600',
         },
       ],

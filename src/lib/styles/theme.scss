@@ -95,8 +95,7 @@
     @apply text-h2-l xs:text-h2-s font-satoshi;
   }
 
-  h3,
-  .sidebar-nav {
+  h3 {
     @apply text-h3-l xs:text-h3-s font-satoshi;
   }
 
@@ -114,6 +113,10 @@
 
   p {
     @apply text-paragraph-l;
+  }
+
+  .sidebar-nav {
+    @apply text-h3-l xs:text-h3-s leading-[32px] font-satoshi;
   }
 }
 

@@ -6,16 +6,12 @@
           +each("item.items as hItem")
             InlineBlock(item="{hItem}")
         +else
-          svelte:element(
-            this="{item.level}"
-            class="heading py-2.5"
-            id="{item.id}"
-          )
+          svelte:element(this="{item.level}" class="heading" id="{item.id}")
             +each("item.items as hItem")
               InlineBlock(item="{hItem}")
     Case(value="paragraph")
-      +if('isTableCell')
-        +each('item.items as cell')
+      +if("isTableCell")
+        +each("item.items as cell")
           InlineBlock(item="{cell}" isTableCell)
         +else
           svelte:element(this="p" class="w-full break-words p-el text-paragraph-l text-t2")
