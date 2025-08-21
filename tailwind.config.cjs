@@ -169,21 +169,21 @@ module.exports = {
       'h2-l': [
         '32px',
         {
-          lineHeight: '51.6px',
+          lineHeight: '32px',
           fontWeight: '900',
         },
       ],
       'h2-s': [
         '28px',
         {
-          lineHeight: '45px',
+          lineHeight: '32px',
           fontWeight: '900',
         },
       ],
       'h3-l': [
         '28px',
         {
-          lineHeight: '45px',
+          lineHeight: '32px',
           fontWeight: '900',
         },
       ],
@@ -239,14 +239,14 @@ module.exports = {
       'paragraph-l': [
         '18px',
         {
-          lineHeight: '29px',
+          lineHeight: '32px',
           fontWeight: '400',
         },
       ],
       'paragraph-s': [
         '16px',
         {
-          lineHeight: '29px',
+          lineHeight: '32px',
           fontWeight: '400',
         },
       ],
@@ -298,7 +298,6 @@ module.exports = {
         5.5: '1.375rem',
         5.75: '1.4375rem',
         6.5: '1.625rem',
-        7.25: '1.8125rem',
         7.5: '2.000rem',
         8.5: '2.125rem',
         '11/25': '44%',
