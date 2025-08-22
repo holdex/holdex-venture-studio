@@ -125,9 +125,9 @@ module.exports = {
         },
       ],
       'title-s': [
-        '48px',
+        '42px',
         {
-          lineHeight: '48px',
+          lineHeight: '52px',
           fontWeight: '900',
         },
       ],
