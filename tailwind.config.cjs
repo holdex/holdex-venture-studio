@@ -127,7 +127,7 @@ module.exports = {
       'title-s': [
         '42px',
         {
-          lineHeight: '52px',
+          lineHeight: '48px',
           fontWeight: '900',
         },
       ],
