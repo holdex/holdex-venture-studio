@@ -1,6 +1,6 @@
 mixin companyLogoStripIndex(logos)
   if logos !== undefined
-    .company-logo-wrapper(class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle")
+    .company-logo-wrapper(class="mt-2 w-full flex flex-wrap gap-6 justify-around align-middle grayscale")
       .company-logo-strip(class="flex flex-wrap gap-8 justify-center align-middle")
         each logo in logos
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
@@ -8,7 +8,7 @@ mixin companyLogoStripIndex(logos)
 
 mixin companyLogoStrip(logos)
   if logos !== undefined
-    Marquee(pauseOnHover direction="left" speed=150 class="mt-2 w-full" gap="24px")
+    Marquee(pauseOnHover direction="left" speed=150 class="mt-2 w-full grayscale" gap="24px")
       each logo in logos
         img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
         img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)
@@ -40,7 +40,7 @@ mixin portfolioLogos
       { lightPath: '/portfolioLogo/light/amplify.png', darkPath: '/portfolioLogo/dark/amplify.png', name: 'Amplify' },
       { lightPath: '/portfolioLogo/light/coins-and-skins.png', darkPath: '/portfolioLogo/dark/coins-and-skins.png', name: 'Coins and Skins' }
     ]
-  +if('isIndex')
+  +if("isIndex")
     companiesStrip(
       class="flex items-center justify-center smDown:justify-start smDown:items-start max-w-[1028px] xs:gap-4 tb:max-w-[794px] smDown:max-w-[604px] w-full"
     )
