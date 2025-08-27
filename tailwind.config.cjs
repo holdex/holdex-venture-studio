@@ -120,7 +120,7 @@ module.exports = {
       'title-l': [
         '56px',
         {
-          lineHeight: '64px',
+          lineHeight: '91px',
           fontWeight: '900',
         },
       ],
@@ -141,14 +141,14 @@ module.exports = {
       'subtitle-xl': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '39px',
           fontWeight: '500',
         },
       ],
       'subtitle-s': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '500',
         },
       ],
@@ -293,6 +293,7 @@ module.exports = {
         2.25: '0.5625rem',
         2.5: '0.625rem',
         2.75: '0.6875rem',
+        3.625: '0.906rem',
         3.75: '0.9375rem',
         4.5: '1.125rem',
         5.5: '1.375rem',
@@ -303,6 +304,7 @@ module.exports = {
         8.5: '2.125rem',
         '11/25': '44%',
         '1/2': '50%',
+        10.875: '2.71875rem',
         10.5: '2.65rem',
         14.5: '3.625rem',
         15.5: '3.875rem',

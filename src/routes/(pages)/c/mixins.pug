@@ -1,6 +1,6 @@
 mixin content-wrapper-portfolio
   .content-wrapper(
-    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
   )&attributes(attributes)
     block
 
@@ -70,9 +70,9 @@ mixin button-icon-small(icon)
     else
       Icon(icon=icon width="{20}" height="{20}" colorInherit)
 
-mixin messageHeader(title, subtitle, cover=null)
+mixin messageHeader(title, subtitle, cover = null)
   h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-title-s")&attributes(attributes)= title
-  if cover && cover !== ''
+  if cover && cover !== ""
     img(
       src=cover
       alt=title
@@ -82,8 +82,8 @@ mixin messageHeader(title, subtitle, cover=null)
     p(class="text-subtitle-xl text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
 
 mixin feedRenderer
-  +if('isSearchMode')
-    +if('totalCount > 0')
+  +if("isSearchMode")
+    +if("totalCount > 0")
       .result-label-wrapper(class="flex items-center flex-wrap gap-3")
         p(class="font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
         +button-icon-small("{XMark}")(
@@ -101,6 +101,6 @@ mixin subheadingText(text)
 
 mixin portfolio-product-wrapper
   .portfolio-product-wrapper(
-    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-8 xl-up:gap-4 gap-8 smDown:gap-4"
+    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-7.25 xl-up:gap-4 gap-7.25 smDown:gap-4"
   )&attributes(attributes)
     block
