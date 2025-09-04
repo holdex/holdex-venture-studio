@@ -59,7 +59,7 @@ mixin author
         class:active="{tocOpen}"
         class="flex w-full cursor-pointer flex-col bg-l1 rounded-xl border border-solid border-l4 dark:bg-l2"
       )
-        summary(class="flex items-center justify-between p-3.75 w-full")
+        summary(class="flex items-center justify-between px-3.75 py-3.625 w-full")
           TextParagraph(class="pointer-events-none" textColor="text-t3") Table of Contents
           +if("tocOpen")
             Button(class="pointer-events-none" variant="solo" size="small" icon="{BarsArrowUp}")

@@ -11,7 +11,7 @@
 </script>
 
 <div
-  class="border-decoration w-[710px] -left-[53px] xs:w-full xs:left-0 relative justify-start items-stretch cta flex flex-row xs:flex-col xs:gap-6 gap-4 border border-solid border-l4 rounded-xl p-4 bg-l1 dark:bg-l2 border-decoration-{$themeContext}"
+  class="border-decoration w-[710px] -left-[53px] xs:w-full xs:left-0 relative justify-start items-stretch cta flex flex-row xs:flex-col xs:gap-6 gap-4 border border-solid border-l4 rounded-xl px-4 py-3.625 bg-l1 dark:bg-l2 border-decoration-{$themeContext}"
 >
   <div class="flex flex-col xs:w-full">
     {#if item.title}
