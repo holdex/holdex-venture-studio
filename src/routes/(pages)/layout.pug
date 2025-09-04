@@ -11,7 +11,7 @@ mixin link(href, title)
 
 mixin social-link(href, content)
   a(
-    class="flex flex-col items-center justify-center w-8 h-8 p-1 transition-colors hover:text-accent1-default plain-link"
+    class="flex flex-col items-center justify-center w-7.25 h-7.25 xs:w-6 xs:h-6 xs:m-1 transition-colors hover:text-accent1-default plain-link"
     href=href
     target="_blank"
     rel="noopener noreferrer"
@@ -138,9 +138,9 @@ mixin right-sidebar
     class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-14.5 pl-7.25 pr-14.5"
     class!=attributes.class
   )
-    button.w-fit.relative.underline.underline-offset-4.text-accent1-default.transition-colors(
+    button.w-fit.relative.underline.underline-offset-1.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
-      class="underline-offset-7.25 bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 text-h3-l xs:text-h3-s font-satoshi"
+      class="bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 text-h3-l font-satoshi leading-[29px]"
     )
       | Talk to Us!
     +sidebar-social
@@ -225,9 +225,9 @@ mixin header
     +left-sidebar
     main(class="w-full xl-up:w-[calc(100%-560px)] 2xl-up:max-w-[1028px]")
       slot
-      footer(class="mt-16 xs:mt-8 md:mt-8 flex flex-col items-center xl-up:max-w-[1028px]")
+      footer(class="mt-14.5 xs:mt-8 flex flex-col items-center xl-up:max-w-[1028px]")
         .contact-form(
-          class="w-full relative flex mt-3.75 sm:mt-2.25 tb:mt-3.75 xs:mt-10.5 md:mt-10.5 flex-col items-center border-t border-b border-solid border-l4 py-8 px-4 xs:py-4 md:py-4"
+          class="w-full relative flex flex-col items-center border-t border-b border-solid border-l4 py-7.25 px-4 xs:py-4"
           id="contact-form"
         )
           form(
@@ -236,19 +236,19 @@ mixin header
             action="/"
             on:submit|preventDefault="{onContactFormSumbit}"
           )
-            h4(class="mb-4") Contact Us
-            p(class="xs:text-paragraph-s text-t2 mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
+            h4(class="text-h4-l xs:text-h4-s py-3.625 xs:pt-0 xs:pb-4") Contact Us
+            p(class="xs:text-paragraph-s text-t2 mb-7.25 xs:mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
             .input-group(class="mb-4")
               textarea(
                 rows="{5}"
                 required
                 maxlength="160"
                 bind:value="{message}"
-                class="relative w-full border border-solid border-l4 block min-h-32 h-32 bg-l1 shadow-input rounded-xl p-2.5 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-2.5 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 name="message"
                 placeholder="How can we help you?"
               )
-            .input-group(class="mb-6 xs:mb-4 gap-4 flex xs:flex-col")
+            .input-group(class="mb-7.25 xs:mb-4 gap-4 flex xs:flex-col")
               input(
                 type="text"
                 name="name"
@@ -269,16 +269,17 @@ mixin header
                 placeholder="Your email address"
               )
             p(
-              class="text-rating-c text-footnote font-inter flex items-center mb-6 xs:mb-4 gap-2 py-2.5  {isError ? 'flex' : 'hidden'}"
+              class="text-rating-c text-footnote font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-2.5  {isError ? 'flex' : 'hidden'}"
             )
               Icon(icon="{ExclamationTriangle}" width="{17.26}" height="{15.62}" colorInherit)
               span() Invalid email address
-            Button(
-              label="Submit"
-              class="mobile:!w-full"
-              disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
-              isSubmitBtn="true"
-            )
+            div(class="py-[8.5px] xs:py-0")
+              Button(
+                label="Submit"
+                class="mobile:!w-full !h-[41px] xs:!h-[37px]"
+                disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
+                isSubmitBtn="true"
+              )
             .feedback-toast(
               class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'flex' : 'hidden'}"
             )
@@ -290,7 +291,7 @@ mixin header
               Icon(icon="{XCircle}" width="{24}" height="{24}" class="text-red-500" colorInherit)
               span.fail(class="text-t1 text-cta") Failed to send email.
         .footer-nav(
-          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:flex-col md:items-start md:py-6 md:gap-6 py-4 px-4 max-w-[1240px] w-full"
+          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:flex-col md:items-start md:py-6 md:gap-6 py-7.25 px-4 max-w-[1240px] w-full"
         )
           .logo-wrapper(class="z-1 relative")
             a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8 plain-link" href="{routes.index}"): SVGIcon(
