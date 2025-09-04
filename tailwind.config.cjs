@@ -141,14 +141,14 @@ module.exports = {
       'subtitle-xl': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '39px',
           fontWeight: '500',
         },
       ],
       'subtitle-s': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '500',
         },
       ],
@@ -183,7 +183,7 @@ module.exports = {
       'h3-l': [
         '28px',
         {
-          lineHeight: '45px',
+          lineHeight: '43.5px',
           fontWeight: '900',
         },
       ],
@@ -293,6 +293,7 @@ module.exports = {
         2.25: '0.5625rem',
         2.5: '0.625rem',
         2.75: '0.6875rem',
+        3.625: '0.90625rem',
         3.75: '0.9375rem',
         4.5: '1.125rem',
         5.5: '1.375rem',
