@@ -116,10 +116,10 @@
   }
 
   .sidebar-nav {
-    @apply text-h3-l xs:text-h3-s font-satoshi;
+    @apply text-h3-l leading-[29px] font-satoshi;
 
     a {
-      @apply underline-offset-7.25;
+      @apply underline-offset-1;
     }
   }
 }
