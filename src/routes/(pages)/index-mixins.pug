@@ -6,7 +6,7 @@ mixin main-section-standard
 // hero section
 mixin section-hero-wrapper
   .section-hero-wrapper(
-    class="flex flex-col items-center justify-center bg-gray-100 gap-8 smDown:justify-start smDown:items-start max-w-[1028px] smDown:px-4 w-full"
+    class="flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-4 smDown:justify-start smDown:items-start max-w-[1028px] smDown:px-4 w-full"
   )
     block
 
@@ -43,14 +43,14 @@ mixin wrap-subcontainer(kpiValue, kpiDescription)
       p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
-  p(class="text-subtitle-l text-center mb-1 xs:mt-1 text-t2")
+  p(class="text-subtitle-l text-center text-t2")
     | #{normalTextBefore}
     Link(item=`{{href: '${link}'}}`)= underlinedText
     | #{normalTextAfter}
 
 mixin section-learn-wrapper
   .section-learn-wrapper(
-    class="flex flex-col lg:items-center smDown:items-start lg:pt-16 tb:px-4 md:px-16 xs:px-4 pt-8 gap-4 max-w-[1028px] w-full md:max-w-[1160px] sm:max-w-[604px] smDown:px-4"
+    class="mt-7.25 xs:mt-4 flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-8 smDown:justify-start smDown:items-start max-w-[1028px] smDown:px-4 w-full"
   )
     block
 // services section

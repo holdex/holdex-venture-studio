@@ -120,7 +120,7 @@ module.exports = {
       'title-l': [
         '56px',
         {
-          lineHeight: '64px',
+          lineHeight: '58px',
           fontWeight: '900',
         },
       ],
@@ -134,7 +134,7 @@ module.exports = {
       'subtitle-l': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '500',
         },
       ],
