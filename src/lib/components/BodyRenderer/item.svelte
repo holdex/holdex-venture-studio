@@ -16,10 +16,51 @@
   import { parseTableCell } from '../BodyParser/blocks';
   import TeamMemberCard from '$components/TeamMemberCard/index.svelte';
 
+  import { onMount, tick } from 'svelte';
+
   export let item: any;
   export let isTableCell: boolean;
   export let index: number;
 
+  let headingElement: HTMLElement | undefined;
+
+  onMount(async () => {
+    if (item.level === 'h1' || item.level === 'h2' || item.level === 'h3') {
+      await tick();
+      setTimeout(() => checkSingleLine(), 100);
+    }
+  });
+
+  function checkSingleLine() {
+    if (
+      item.type === 'heading' &&
+      (item.level === 'h1' || item.level === 'h2' || item.level === 'h3') &&
+      headingElement
+    ) {
+      const tempElement = document.createElement(item.level);
+      tempElement.innerHTML = headingElement.innerHTML;
+      tempElement.style.position = 'absolute';
+      tempElement.style.visibility = 'hidden';
+      tempElement.style.whiteSpace = 'nowrap';
+      tempElement.style.width = 'auto';
+
+      tempElement.className = headingElement.className.replace('!pt-0', '').trim();
+
+      document.body.appendChild(tempElement);
+      const singleLineHeight = tempElement.offsetHeight;
+
+      document.body.removeChild(tempElement);
+
+      const actualHeight = headingElement.offsetHeight;
+
+      const tolerance = 5;
+      const isSingleLine = actualHeight <= singleLineHeight + tolerance;
+
+      if (isSingleLine) {
+        headingElement.classList.add('!pt-0');
+      }
+    }
+  }
 </script>
 
 <template lang="pug" src="./item.pug">
