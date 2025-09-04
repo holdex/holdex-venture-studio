@@ -2,11 +2,11 @@
   Switch(condition="{item.type}")
     Case(value="heading")
       +if("item.level === 'h1'")
-        svelte:element(this="h1" class="heading" id="{item.id}")
+        svelte:element(this="h1" class="heading py-3.625" id="{item.id}")
           +each("item.items as hItem")
             InlineBlock(item="{hItem}")
         +else
-          svelte:element(this="{item.level}" class="heading" id="{item.id}")
+          svelte:element(this="{item.level}" class="heading py-3.625" id="{item.id}")
             +each("item.items as hItem")
               InlineBlock(item="{hItem}")
     Case(value="paragraph")

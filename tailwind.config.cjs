@@ -155,7 +155,7 @@ module.exports = {
       'h1-l': [
         '48px',
         {
-          lineHeight: '78px',
+          lineHeight: '58px',
           fontWeight: '900',
         },
       ],
@@ -169,7 +169,7 @@ module.exports = {
       'h2-l': [
         '32px',
         {
-          lineHeight: '52px',
+          lineHeight: '43.5px',
           fontWeight: '900',
         },
       ],
@@ -197,7 +197,7 @@ module.exports = {
       'h4-l': [
         '24px',
         {
-          lineHeight: '39px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
@@ -246,7 +246,7 @@ module.exports = {
       'paragraph-s': [
         '16px',
         {
-          lineHeight: '26px',
+          lineHeight: '29px',
           fontWeight: '400',
         },
       ],
