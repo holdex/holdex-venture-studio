@@ -57,7 +57,7 @@
       const isSingleLine = actualHeight <= singleLineHeight + tolerance;
 
       if (isSingleLine) {
-        headingElement.classList.add('!pt-0');
+        headingElement.style.paddingTop = '0px';
       }
     }
   }

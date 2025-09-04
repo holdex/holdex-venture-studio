@@ -162,7 +162,7 @@ module.exports = {
       'h1-s': [
         '42px',
         {
-          lineHeight: '68px',
+          lineHeight: '48px',
           fontWeight: '900',
         },
       ],
@@ -176,7 +176,7 @@ module.exports = {
       'h2-s': [
         '28px',
         {
-          lineHeight: '45px',
+          lineHeight: '34px',
           fontWeight: '900',
         },
       ],
@@ -190,7 +190,7 @@ module.exports = {
       'h3-s': [
         '24px',
         {
-          lineHeight: '39px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
@@ -204,21 +204,21 @@ module.exports = {
       'h4-s': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'h5-l': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h5-s': [
         '18px',
         {
-          lineHeight: '29px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
