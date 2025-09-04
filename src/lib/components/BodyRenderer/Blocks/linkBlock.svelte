@@ -70,7 +70,7 @@
   <div class="flex items-center gap-4 w-full h-full">
     {#if isLoading}
       <div class="flex items-center gap-4 w-full h-full pl-1">
-        <div class="w-[128px] h-[88px] rounded-lg bg-l3 animate-pulse" />
+        <div class="w-[128px] h-[87px] rounded-lg bg-l3 animate-pulse" />
         <div class="flex flex-col gap-2 flex-1">
           <div class="h-4 w-1/2 rounded bg-l3 animate-pulse" />
           <div class="h-4 w-3/4 rounded bg-l3 animate-pulse" />
