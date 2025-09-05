@@ -10,7 +10,13 @@ mixin companyLogoStripIndex(logos)
 
 mixin companyLogoStrip(logos)
   if logos !== undefined
-    Marquee(pauseOnHover direction="left" speed=150 class="mt-2 w-full grayscale" gap="24px")
+    Marquee(
+      pauseOnHover
+      direction="left"
+      speed=150
+      class="my-3.625 xs:my-3.25 w-full grayscale"
+      gap="24px"
+    )
       each logo in logos
         img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
         img(class="company-logo hidden dark:block h-6 mobile:h-5" src=logo.darkPath alt=logo.name)

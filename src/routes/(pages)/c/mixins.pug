@@ -19,7 +19,7 @@ mixin crumbItemText(name)
 
 //- Filter options
 mixin filter-options
-  ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
+  ul.filter-options(class="relative flex items-start my-3.625 smDown:my-3.25 border border-solid border-l4 rounded-xl")
     +filter-option-item("{() => handleSort($page.url, 'CREATED_AT')}", "By Time")(
       class!="border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}"
     )
@@ -68,11 +68,11 @@ mixin button-icon-small(icon)
     if block
       block
     else
-      Icon(icon=icon width="{20}" height="{20}" colorInherit)
+      Icon(icon=icon width="{17}" height="{17}" colorInherit)
 
-mixin messageHeader(title, subtitle, cover=null)
+mixin messageHeader(title, subtitle, cover = null)
   h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-title-s")&attributes(attributes)= title
-  if cover && cover !== ''
+  if cover && cover !== ""
     img(
       src=cover
       alt=title
@@ -82,8 +82,8 @@ mixin messageHeader(title, subtitle, cover=null)
     p(class="text-subtitle-xl text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
 
 mixin feedRenderer
-  +if('isSearchMode')
-    +if('totalCount > 0')
+  +if("isSearchMode")
+    +if("totalCount > 0")
       .result-label-wrapper(class="flex items-center flex-wrap gap-3")
         p(class="font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
         +button-icon-small("{XMark}")(
@@ -96,11 +96,11 @@ mixin feedRenderer
       block
 
 mixin subheadingText(text)
-  .subheadingWrapper(class="py-4")
+  .subheadingWrapper(class="py-3.625 smDown:py-3.25")
     h2(class="w-full text-center smDown:text-left")= text
 
 mixin portfolio-product-wrapper
   .portfolio-product-wrapper(
-    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-8 xl-up:gap-4 gap-8 smDown:gap-4"
+    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-x-8 2xl-up:gap-y-7.25 xl-up:gap-x-4 xl-up:gap-y-4 gap-x-8 gap-y-7.25 smDown:gap-4"
   )&attributes(attributes)
     block
