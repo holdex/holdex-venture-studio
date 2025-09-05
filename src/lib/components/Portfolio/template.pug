@@ -1,5 +1,5 @@
 mixin metricContainer(className='')
-  .metric(class=`font-satoshi flex flex-col gap-4 ${className}`)
+  .metric(class=`font-satoshi flex flex-col gap-3.625 ${className}`)
     block
 
 mixin metricTitle(title)
@@ -25,7 +25,7 @@ mixin metricValueLogos(duration)
 
 mixin logoImg(value)
   img(
-    class="logo-img h-8 mobile:h-6 filter invert dark:invert-0"
+    class="logo-img h-7.25 mobile:h-6 filter invert dark:invert-0"
     src="/portfolioLogo/investor/" + value + ".svg"
     alt=value
   )
@@ -73,16 +73,16 @@ mixin metric(type, value=null, borrowersAnimationDuration=null, investorsAnimati
           block
 
 article.portfolio-product-card(
-  class="group w-full h-full rounded-xl flex flex-col bg-l1 border border-l4 p-8 smDown:px-4 smDown:py-6 justify-between {isFeatured ? 'gap-16 smDown:gap-12' : 'gap-6'}"
+  class="group w-full h-full rounded-xl flex flex-col bg-l1 border border-l4 px-8 py-7.25 smDown:px-4 smDown:py-6 justify-between {isFeatured ? 'gap-16 smDown:gap-12' : 'gap-6'}"
 )
   .portfolio-product-body(class="flex flex-col w-full gap-7.25 smDown:gap-4")
-    h3(class="relative flex flex-col w-full gap-4 smDown:gap-2")
+    h3(class="relative flex flex-col w-full gap-3.625 smDown:gap-3.25 leading-[29px] text-underline-offset-1")
       Link(item="{{href: slug, text: title, title: title}}")= `{title}`
       TextParagraph {subtitle}
 
     +if('isFeatured == true')
       TextParagraph {description}
-      .portfolio-metrics(class="w-full flex flex-wrap gap-8 smDown:flex-col smDown:gap-6")
+      .portfolio-metrics(class="w-full flex flex-wrap gap-7.25 smDown:flex-col smDown:gap-6")
         +if('totalLoansOriginated')
           +metric('totalLoansOriginated', '{formattedTotalLoansOriginated}')
         +if('totalValueLocked')
@@ -111,7 +111,7 @@ article.portfolio-product-card(
   +if('JSON.parse(hashtags) && JSON.parse(hashtags).length > 0')
     ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
       +each('JSON.parse(hashtags) as tag, index')
-        li(class="text-inter h-8 text-paragraph-l smDown:text-paragraph-s")
+        li(class="text-inter h-7.25 text-paragraph-l smDown:text-paragraph-s")
           Hashtag(
             item="{tag}"
             link="{emptyTags.indexOf(tag) !== -1 ? undefined : `/c?filter=${tag}`}"
