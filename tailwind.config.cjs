@@ -115,6 +115,9 @@ module.exports = {
       'tw-tweet-avatar-border': 'rgb(var(--tweet-avatar-border) / <alpha-value>)',
       'tw-tweet-btn-border': 'rgb(var(--tweet-btn-border) / <alpha-value>)',
     },
+    lineHeight: {
+      '14.5': '14.5px',
+    },
     fontSize: {
       ...defaultTheme.fontSize,
       'title-l': [
