@@ -76,10 +76,9 @@ article.portfolio-product-card(
   class="group w-full h-full rounded-xl flex flex-col bg-l1 border border-l4 px-8 py-7.25 smDown:px-4 smDown:py-6 justify-between {isFeatured ? 'gap-16 smDown:gap-12' : 'gap-6'}"
 )
   .portfolio-product-body(class="flex flex-col w-full gap-7.25 smDown:gap-4")
-    h3(
-      class="portfolio-product-title relative flex flex-col w-full gap-3.625 smDown:gap-3.25 leading-[29px] text-underline-offset-1"
-    )
-      Link(item="{{href: slug, text: title, title: title}}")= `{title}`
+    div(class="relative flex flex-col w-full gap-3.625 smDown:gap-3.25")
+      h3(class="portfolio-product-title leading-[29px]")
+        Link(item="{{href: slug, text: title, title: title}}")= `{title}`
       TextParagraph {subtitle}
 
     +if("isFeatured == true")
