@@ -63,8 +63,8 @@
   a[href^='http']::after {
     content: '';
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 0.9em;
+    height: 0.9em;
     margin-left: 0.2em;
     vertical-align: middle;
     background-color: currentColor;
@@ -120,6 +120,12 @@
 
     a {
       @apply underline-offset-1;
+    }
+  }
+
+  .portfolio-product-title {
+    a {
+      @apply underline-offset-1 h-[29px];
     }
   }
 }
