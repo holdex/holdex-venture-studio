@@ -1,6 +1,8 @@
 mixin companyLogoStripIndex(logos)
   if logos !== undefined
-    .company-logo-wrapper(class="my-7.25 w-full flex flex-wrap justify-around align-middle grayscale")
+    .company-logo-wrapper(
+      class="my-7.25 xs:my-4 w-full flex flex-wrap justify-around align-middle grayscale"
+    )
       .company-logo-strip(class="flex flex-wrap gap-x-8 gap-y-7.25 justify-center align-middle")
         each logo in logos
           img(class="company-logo dark:hidden h-6 mobile:h-5" src=logo.lightPath alt=logo.name)
