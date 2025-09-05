@@ -19,7 +19,7 @@ mixin crumbItemText(name)
 
 //- Filter options
 mixin filter-options
-  ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
+  ul.filter-options(class="relative flex items-start my-3.625 smDown:my-3.25 border border-solid border-l4 rounded-xl")
     +filter-option-item("{() => handleSort($page.url, 'CREATED_AT')}", "By Time")(
       class!="border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}"
     )
@@ -68,7 +68,7 @@ mixin button-icon-small(icon)
     if block
       block
     else
-      Icon(icon=icon width="{20}" height="{20}" colorInherit)
+      Icon(icon=icon width="{17}" height="{17}" colorInherit)
 
 mixin messageHeader(title, subtitle, cover=null)
   h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-title-s")&attributes(attributes)= title
