@@ -120,7 +120,7 @@ module.exports = {
       'title-l': [
         '56px',
         {
-          lineHeight: '58px',
+          lineHeight: '72.5px',
           fontWeight: '900',
         },
       ],
@@ -155,7 +155,7 @@ module.exports = {
       'h1-l': [
         '48px',
         {
-          lineHeight: '72.5px',
+          lineHeight: '58px',
           fontWeight: '900',
         },
       ],
