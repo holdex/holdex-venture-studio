@@ -244,7 +244,7 @@ mixin header
                 required
                 maxlength="160"
                 bind:value="{message}"
-                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-2.5 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-3.625 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 name="message"
                 placeholder="How can we help you?"
               )
@@ -255,7 +255,7 @@ mixin header
                 required
                 maxlength="40"
                 bind:value="{name}"
-                class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 placeholder="Your name and company"
               )
               input(
@@ -265,11 +265,11 @@ mixin header
                 bind:value="{email}"
                 name="email"
                 on:blur="{displayError(email)}"
-                class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 placeholder="Your email address"
               )
             p(
-              class="text-rating-c text-footnote font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-2.5  {isError ? 'flex' : 'hidden'}"
+              class="text-rating-c text-footnote leading-14.5 font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-3.625  {isError ? 'flex' : 'hidden'}"
             )
               Icon(icon="{ExclamationTriangle}" width="{17.26}" height="{15.62}" colorInherit)
               span() Invalid email address
