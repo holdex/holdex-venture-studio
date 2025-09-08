@@ -90,13 +90,13 @@ mixin announcement-post-it(href, date, location, content, target, rel)
   )
     .w-45.bg-post-it-yellow.pr-3.py-4.pl-4.relative(class="shadow-xl")
       .absolute.w-full.h-9.top-0.left-0(class="bg-black/[0.02]")
-      .space-y-1.font-handwriting.text-black
+      .space-y-1
         if date
           p.font-handwriting.text-black.leading-none= date
         if location
           p.font-handwriting.text-black.leading-none= location
         if content
-          p.font-handwriting.text-black.text-h2-l.leading-none.font-normal.pt-2(class="!text-[29.5px]")= content
+          p.font-handwriting.text-black.font-normal.pt-2.leading-none(class="!text-[29.5px]")= content
 
 mixin announcement-banner(href, text, target, rel)
   if text && href
