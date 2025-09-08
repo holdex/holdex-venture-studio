@@ -52,9 +52,12 @@
     pageFilter.length > 0
       ? `Search "${pageFilter}"`
       : pageQ.length > 0
-        ? `Search Results for "${pageQ}"`
-        : 'Holdex | Web3 based startup studio';
-
+$: metaTitle =
+  pageFilter.length > 0
+    ? `Search "${pageFilter}"`
+    : pageQ.length > 0
+      ? `Search Results for "${pageQ}"`
+      : 'At Holdex, we help innovators build the next Web3 products';
   $: metaDescription =
     pageFilter.length > 0 || pageQ.length > 0
       ? `A list of "${pageFilter || pageQ}" articles.`
