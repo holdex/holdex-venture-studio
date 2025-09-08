@@ -244,7 +244,7 @@ mixin header
                 required
                 maxlength="160"
                 bind:value="{message}"
-                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-2.5 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-3.625 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 name="message"
                 placeholder="How can we help you?"
               )
@@ -255,7 +255,7 @@ mixin header
                 required
                 maxlength="40"
                 bind:value="{name}"
-                class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 placeholder="Your name and company"
               )
               input(
@@ -265,11 +265,11 @@ mixin header
                 bind:value="{email}"
                 name="email"
                 on:blur="{displayError(email)}"
-                class="relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-2.25 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
                 placeholder="Your email address"
               )
             p(
-              class="text-rating-c text-footnote font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-2.5  {isError ? 'flex' : 'hidden'}"
+              class="text-rating-c text-footnote leading-14.5 font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-3.625  {isError ? 'flex' : 'hidden'}"
             )
               Icon(icon="{ExclamationTriangle}" width="{17.26}" height="{15.62}" colorInherit)
               span() Invalid email address
@@ -291,7 +291,7 @@ mixin header
               Icon(icon="{XCircle}" width="{24}" height="{24}" class="text-red-500" colorInherit)
               span.fail(class="text-t1 text-cta") Failed to send email.
         .footer-nav(
-          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:flex-col md:items-start md:py-6 md:gap-6 py-7.25 px-4 max-w-[1240px] w-full"
+          class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:py-6 md:gap-6 py-7.25 px-4 max-w-[860px] w-full"
         )
           .logo-wrapper(class="z-1 relative")
             a(class="relative flex w-25 h-6.5 tbDown:w-30 tbDown:h-8 plain-link" href="{routes.index}"): SVGIcon(
@@ -299,7 +299,7 @@ mixin header
               class="w-32"
             )
           ul(
-            class="main-nav flex items-start flex-wrap gap-6 tbDown:relative tbDown:gap-4 tbDown:left-0 tbDown:transform-none md:relative md:gap-4 md:left-0 md:transform-none"
+            class="main-nav flex items-start flex-wrap gap-8 smDown:relative smDown:gap-4 smDown:left-0 smDown:transform-none"
             role="navigation"
           )
             +link("https://drive.google.com/drive/folders/1WCNbcOVex2gTNBv8eUGI9KPwfqt0-7xo", "Media Kit")(
@@ -318,7 +318,7 @@ mixin header
               target="_blank"
               rel="noreferrer"
             )
-          .social-icons(class="flex items-center justify-end gap-4 z-1 relative")
+          .social-icons(class="flex items-center justify-end gap-4 z-1 relative lg-up:hidden")
             +social-link("https://www.linkedin.com/company/holdexlimited/", "{@html socialIcons.linkedin}")
             +social-link("https://github.com/holdex", "{@html socialIcons.github}")
             +social-link("https://twitter.com/HoldexIo", "{@html socialIcons.twitter}")

@@ -253,7 +253,7 @@ module.exports = {
       cta: [
         '14px',
         {
-          lineHeight: '23px',
+          lineHeight: '29px',
           fontWeight: '700',
         },
       ],
@@ -309,6 +309,7 @@ module.exports = {
         '11/25': '44%',
         '1/2': '50%',
         10.5: '2.65rem',
+        10.875: '2.71875rem',
         14.5: '3.625rem',
         15.5: '3.875rem',
         18: '4.5rem',
