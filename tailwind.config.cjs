@@ -155,7 +155,7 @@ module.exports = {
       'h1-l': [
         '48px',
         {
-          lineHeight: '58px',
+          lineHeight: '72.5px',
           fontWeight: '900',
         },
       ],
