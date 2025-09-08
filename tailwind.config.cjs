@@ -120,7 +120,7 @@ module.exports = {
       'title-l': [
         '56px',
         {
-          lineHeight: '58px',
+          lineHeight: '72.5px',
           fontWeight: '900',
         },
       ],
