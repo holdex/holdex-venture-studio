@@ -115,9 +115,6 @@ module.exports = {
       'tw-tweet-avatar-border': 'rgb(var(--tweet-avatar-border) / <alpha-value>)',
       'tw-tweet-btn-border': 'rgb(var(--tweet-btn-border) / <alpha-value>)',
     },
-    lineHeight: {
-      '14.5': '14.5px',
-    },
     fontSize: {
       ...defaultTheme.fontSize,
       'title-l': [
@@ -289,6 +286,9 @@ module.exports = {
       handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
+      lineHeight: {
+        14.5: '14.5px',
+      },
       spacing: {
         0.75: '0.1875rem',
         1.25: '0.3125rem',
