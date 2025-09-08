@@ -101,7 +101,7 @@
 
 <MetaTags
   title="Our Portfolio of Startups | Holdex"
-  description="A list of blockchain products Holdex has worked across different verticals including DeFi, lending, KYC, gameFi, DAO, and developer tools, to name a few."
+  description="Companies that drive the adoption of decentralized technologies and inclusive DeFi services."
   path={routes.portfolio}
   imagePath="/og/portfolio.png"
 />
