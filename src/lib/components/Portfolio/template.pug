@@ -8,20 +8,9 @@ mixin metricTitle(title)
 mixin metricValue(value)
   h4.metric-value(class="text-t1")= value
 
-mixin metricValueLogos(duration)
-  .logo-wrapper(
-    class="w-full overflow-hidden flex flex-nowrap gap-6 [mask-image:_linear-gradient(to_right,transparent_0,_black_40px,_black_calc(100%-40px),transparent_100%)]"
-  )
-    .logo-strip(
-      style=`animation-duration: ${duration}s;`
-      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
-    )
-      block
-    .logo-strip(
-      style=`animation-duration: ${duration}s;`
-      class="flex gap-6 min-w-max justify-around align-middle group-hover:animate-infinite-scroll smDown:animate-infinite-scroll"
-    )
-      block
+mixin metricValueLogos
+  Marquee(pauseOnHover direction="left" speed=100 class="w-full" gap="24px")
+    block
 
 mixin logoImg(value)
   img(
@@ -30,7 +19,7 @@ mixin logoImg(value)
     alt=value
   )
 
-mixin metric(type, value = null, borrowersAnimationDuration = null, investorsAnimationDuration = null, ecosystemPartnersAnimationDuration = null)
+mixin metric(type, value = null)
   case type
     when "totalLoansOriginated"
       +metricContainer("smDown:gap-2 min-w-[180px]")
@@ -59,17 +48,17 @@ mixin metric(type, value = null, borrowersAnimationDuration = null, investorsAni
     when "borrowers"
       +metricContainer("w-full")
         +metricTitle("Borrowers")
-        +metricValueLogos(borrowersAnimationDuration)
+        +metricValueLogos
           block
     when "investors"
       +metricContainer("w-full")
         +metricTitle("Investors")
-        +metricValueLogos(investorsAnimationDuration)
+        +metricValueLogos
           block
     when "ecosystemPartners"
       +metricContainer("w-full")
         +metricTitle("Ecosystem Partners")
-        +metricValueLogos(ecosystemPartnersAnimationDuration)
+        +metricValueLogos
           block
 
 article.portfolio-product-card(
@@ -97,16 +86,16 @@ article.portfolio-product-card(
         +if("founders")
           +metric("founders", "{founders}")
         +if("borrowers")
-          +metric("borrowers", null, "{borrowersAnimationDuration}")
-            +each("JSON.parse(borrowers).concat(JSON.parse(borrowers)) as borrower")
+          +metric("borrowers")
+            +each("JSON.parse(borrowers) as borrower")
               +logoImg("{borrower}")
         +if("investors")
-          +metric("investors", null, null, "{investorsAnimationDuration}")
-            +each("JSON.parse(investors).concat(JSON.parse(investors)) as investor")
+          +metric("investors")
+            +each("JSON.parse(investors) as investor")
               +logoImg("{investor}")
         +if("ecosystemPartners")
-          +metric("ecosystemPartners", null, null, null, "{ecosystemPartnersAnimationDuration}")
-            +each("JSON.parse(ecosystemPartners).concat(JSON.parse(ecosystemPartners)) as ecosystemPartner")
+          +metric("ecosystemPartners")
+            +each("JSON.parse(ecosystemPartners) as ecosystemPartner")
               +logoImg("{ecosystemPartner}") 
 
   +if("JSON.parse(hashtags) && JSON.parse(hashtags).length > 0")

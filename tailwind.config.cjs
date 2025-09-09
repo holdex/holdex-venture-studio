@@ -377,14 +377,9 @@ module.exports = {
         32: '8rem',
       },
       animation: {
-        'infinite-scroll': 'infinite-scroll 10s linear infinite',
         'navigation-left-right': 'navigation-left-right 0.6s ease-out forwards',
       },
       keyframes: {
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(calc(-100% - 24px))' },
-        },
         'navigation-left-right': {
           '0%, 100%': { transform: 'translateX(0)' },
           '33%, 66%': { transform: 'translateX(-100px)' },
