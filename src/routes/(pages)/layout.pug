@@ -2,7 +2,7 @@ include ./common-mixins
 
 mixin link(href, title)
   li(
-    class="flex relative items-center text-cta transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 tb-up:before:bottom-[-1rem] before:bottom-[-0.5rem] before:w-full before:bg-transparent before:h-0.5"
+    class="flex relative items-center text-cta transition-colors hover:text-accent1-default before:content-['] before:absolute before:left-0 tb-up:before:bottom-[-1.078125rem] before:bottom-[-0.59375rem] before:w-full before:bg-transparent before:h-0.5"
   )&attributes(attributes): a(
     class="text-inherit plain-link"
     href=href
@@ -171,7 +171,7 @@ mixin header
             )
           div(
             id="secondary-navbar"
-            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex tb-up:pl-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
+            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex tb-up:pl-4 h-full [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
           )
             div(
               id="secondary-navbar-section h-full"
