@@ -116,16 +116,18 @@
   }
 
   .sidebar-nav {
-    @apply text-h3-l leading-[29px] font-satoshi;
+    @apply text-h3-l font-satoshi;
 
     a {
-      @apply underline-offset-1;
+      @apply underline-offset-7.25;
     }
   }
 
-  .portfolio-product-title {
+  .item-title {
+    @apply font-satoshi;
+
     a {
-      @apply underline-offset-1 h-[29px];
+      @apply md-up:underline-offset-7.25;
     }
   }
 }

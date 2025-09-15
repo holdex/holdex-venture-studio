@@ -117,7 +117,7 @@ mixin left-sidebar
   )
     a(class="relative flex h-10 w-38.5 plain-link" href="{routes.index}"): SVGIcon(name="logo" class="")
     nav
-      ul.sidebar-nav(class="flex flex-col gap-7.25 w-full shrink-0")
+      ul.sidebar-nav(class="flex flex-col gap-3.625 w-full shrink-0")
         li(class="font-inherit")
           Link(item="{{href: routes.about}}") About
         li(class="font-inherit")
@@ -138,9 +138,9 @@ mixin right-sidebar
     class="hidden xl-up:flex shrink-0 flex-col items-end justify-between w-70 sticky top-0 h-screen py-14.5 pl-7.25 pr-14.5"
     class!=attributes.class
   )
-    button.w-fit.relative.underline.underline-offset-1.text-accent1-default.transition-colors(
+    button.w-fit.relative.underline.text-accent1-default.transition-colors(
       on:click!="{() => handleClick(undefined)}"
-      class="bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 text-h3-l font-satoshi leading-[29px]"
+      class="bg-accent1-default/15 hover:bg-accent1-default/25 focus:bg-accent1-default/25 text-h3-l font-satoshi underline-offset-7.25"
     )
       | Talk to Us!
     +sidebar-social
@@ -171,7 +171,7 @@ mixin header
             )
           div(
             id="secondary-navbar"
-            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex tb-up:pl-4 [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
+            class!="relative z-[11] bg-l1 overflow-x-scroll scrollbar-hide w-full flex tb-up:pl-4 h-full [mask-image:_linear-gradient(to_right,transparent_0,_black_24px,_black_calc(100%-24px),transparent_100%)]"
           )
             div(
               id="secondary-navbar-section h-full"
