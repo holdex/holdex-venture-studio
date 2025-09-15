@@ -63,8 +63,8 @@
   a[href^='http']::after {
     content: '';
     display: inline-block;
-    width: 0.9em;
-    height: 0.9em;
+    width: 1em;
+    height: 1em;
     margin-left: 0.2em;
     vertical-align: middle;
     background-color: currentColor;
