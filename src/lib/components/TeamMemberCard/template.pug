@@ -1,24 +1,19 @@
 article.flex.flex-col.w-full(class="smDown:flex-col smDown:items-start")
   div
     img.rounded-xl.object-cover(
-      class="float-left mr-3.625 border border-l6 w-14.5 h-14.5"
+      class="float-left mr-3.625 border border-l6 w-15 h-14.5"
       src="{image}"
       alt="{name}"
     )
     div
       span(class="flex flex-wrap flex-col xs-up:flex-row")
         +if("link && link.length > 0")
-          a(
-            href="{link}"
-            class="xs:text-h5-l text-h4-l font-satoshi"
-            target="_blank"
-            rel="noopener noreferrer"
-          )
+          a(href="{link}" class="text-h5-l font-satoshi" target="_blank" rel="noopener noreferrer")
             | {name}
           +else
-            span(class="xs:text-h5-l text-h4-l font-satoshi")
+            span(class="text-h5-l font-satoshi")
               | {name}
-        span(class="xs:text-h5-l text-h4-l text-t2 font-satoshi")
+        span(class="text-h5-l text-t2 font-satoshi")
           | &#160;—&#160; {role}
-      p(class="mt-1.8125 text-t2 text-paragraph-s")
+      p(class="text-t2 text-paragraph-l")
         | {description}
