@@ -3,7 +3,7 @@ article.block(class!="{className}")
     Link(item="{{href: '/c/'+message.communitySlug+'/'+message.messageSlug}}") {message.title}
   TextParagraph(class="text-t2") {message.subtitle}
   +if('message.hashtags && message.hashtags.length > 0')
-    ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none(class="py-3.625")
+    ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none(class="pt-3.625")
       +each('message.hashtags as tag, index')
         +if('index !== 0')
           li.text-paragraph-l(class="text-t3/50") &bull;
