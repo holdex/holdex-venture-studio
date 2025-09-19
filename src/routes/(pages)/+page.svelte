@@ -9,6 +9,7 @@
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
 
   export let data: PageData;
 
@@ -27,7 +28,6 @@
   $: gradientStyle = sanitizeStyle(
     'background-image: linear-gradient(165deg, #393F4F 20%, #10141F 40%); padding: 0.0625rem;'
   );
-  
 </script>
 
 <MetaTags

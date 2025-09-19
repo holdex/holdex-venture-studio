@@ -6,7 +6,10 @@ include ./common-mixins
   +section-hero-wrapper
     +nav-crumbs
       +crumbItemLink("/", "Holdex")
-    h1.text-title-l.font-satoshi.text-center(class="py-3.625 smDown:py-0 xs:text-left xs:text-title-s" id="{message.id}")
+    PageTitle(
+        className="text-title-l font-satoshi text-center py-3.625 smDown:py-0 xs:text-left xs:text-title-s"
+        id="{message.id}"
+      )
       | At&nbsp;
       span.underline.font-satoshi Holdex
       | , we help innovators build the next Web3 products
