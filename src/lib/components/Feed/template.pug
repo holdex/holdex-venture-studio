@@ -12,8 +12,8 @@
             message="{parseMessage(messageNode.node)}"
           )
         +elseif("feedType === 'resource'")
-          JobFeedItem.totalCount.border-l4(
-            class="{index === 0 ? '' : 'mt-7.25 xs:mt-4'} {index !== -1 ? 'border-b xs:pb-4' : ''} pb-7.25"
+          ResourceFeedItem(
+            class="border-l4 py-7.25 border-b last:border-b-0"
             message="{parseMessage(messageNode.node)}"
           )
 
