@@ -73,9 +73,7 @@ mixin button-icon-small(icon)
       Icon(icon=icon width="{17}" height="{17}" colorInherit)
 
 mixin messageHeader(title, subtitle, cover = null)
-  PageTitle(
-    className="text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s"
-  )&attributes(attributes)= title
+  PageTitle&attributes(attributes)= title
   if cover && cover !== ""
     img(
       src=cover

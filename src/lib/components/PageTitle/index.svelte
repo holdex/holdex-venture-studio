@@ -8,6 +8,9 @@
   let isMultiLine = false;
   let isChecked = false;
 
+  const defaultClasses =
+    'text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s';
+
   onMount(async () => {
     await tick();
     checkSingleLine();
@@ -22,7 +25,7 @@
       tempElement.style.whiteSpace = 'nowrap';
       tempElement.style.width = 'auto';
 
-      tempElement.className = className.replace(/!?pt-[\d.]+/g, '').trim();
+      tempElement.className = `${defaultClasses} ${className}`.replace(/!?pt-[\d.]+/g, '').trim();
 
       document.body.appendChild(tempElement);
       const singleLineHeight = tempElement.offsetHeight;
@@ -38,8 +41,8 @@
   }
 
   $: finalClassName = isChecked
-    ? `${className} ${isMultiLine ? '' : '!pt-0'}`.trim()
-    : `${className} !pt-0`.trim();
+    ? `${defaultClasses} ${className} ${isMultiLine ? '' : '!pt-0'}`.trim()
+    : `${defaultClasses} ${className} !pt-0`.trim();
 </script>
 
 <h1 class={finalClassName} {id} bind:this={headingElement}>
