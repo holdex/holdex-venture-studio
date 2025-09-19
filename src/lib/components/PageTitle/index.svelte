@@ -41,8 +41,8 @@
   }
 
   $: finalClassName = isChecked
-    ? `${defaultClasses} ${className} ${isMultiLine ? '' : '!pt-0'}`.trim()
-    : `${defaultClasses} ${className} !pt-0`.trim();
+    ? `${defaultClasses} ${className} ${isMultiLine ? '' : '!pb-0'}`.trim()
+    : `${defaultClasses} ${className} !pb-0`.trim();
 </script>
 
 <h1 class={finalClassName} {id} bind:this={headingElement}>
