@@ -6,6 +6,9 @@ include ../c/mixins
       +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemText("For Startups")
-    h1.text-title-l.font-satoshi.text-center(class="py-3.625 smDown:py-0 smDown:text-left xs:text-title-s" id="{message.id}") {message.title}
+    PageTitle(
+      className="text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s"
+      id="{message.id}"
+    ) {message.title}
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
