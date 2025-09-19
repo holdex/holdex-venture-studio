@@ -1,6 +1,6 @@
-+if('totalCount > 0')
++if("totalCount > 0")
   .feed-articles.relative.block.w-full
-    +each('edges as messageNode, index (messageNode.node.id)')
+    +each("edges as messageNode, index (messageNode.node.id)")
       +if("feedType === 'default'")
         DefaultFeedItem(
           class="{index === 0 ? '' : 'mt-7.25 xs:mt-4'}"
@@ -13,11 +13,11 @@
           )
         +elseif("feedType === 'resource'")
           JobFeedItem.totalCount.border-l4(
-            class="{index === 0 ? '' : 'mt-7.25 xs:mt-4'} {index !== -1 ? 'border-b xs:pb-4' : ''} pb-7.25"
+            class="{index !== -1 ? 'border-b xs:pb-4' : ''} py-7.25"
             message="{parseMessage(messageNode.node)}"
           )
 
-  +if('pageInfo && pageInfo.hasNextPage')
+  +if("pageInfo && pageInfo.hasNextPage")
     .btn-wrapper.flex.justify-center.w-full(class="py-3.625 smDown:py-3.25")
       Button(
         label="Load more"
