@@ -3,6 +3,7 @@
   import MetaTags from '$components/MetaTags/index.svelte';
   import Parser, { type Message } from '$components/BodyParser';
   import BodyRenderer from '$components/BodyRenderer/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
 

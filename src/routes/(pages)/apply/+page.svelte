@@ -5,6 +5,7 @@
   import { routes } from '$lib/config';
   import MetaTags from '$components/MetaTags/index.svelte';
   import Icon from '$components/Icons/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
 </script>
 
 <template lang="pug" src="./template.pug">

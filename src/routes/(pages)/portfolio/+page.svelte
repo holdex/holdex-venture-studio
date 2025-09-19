@@ -16,6 +16,7 @@
   } from '$components/Icons';
   import MetaTags from '$components/MetaTags/index.svelte';
   import Icon from '$components/Icons/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
 
   // import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   // import Feed from '$components/Feed/index.svelte';

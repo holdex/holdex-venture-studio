@@ -1,5 +1,6 @@
 <script lang="ts">
   import MetaTags from '$components/MetaTags/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
   import { routes } from '$lib/config';
   import { onMount } from 'svelte';
 
@@ -41,17 +42,17 @@
     Cal.ns['30min']('inline', {
       elementOrSelector: '#my-cal-inline-30min',
       config: { layout: 'month_view' },
-      calLink: 'zolotokrylin/30min'
+      calLink: 'zolotokrylin/30min',
     });
 
     Cal.ns['30min']('ui', {
       theme: 'dark',
       cssVarsPerTheme: {
         light: { 'cal-brand': '#11141E' },
-        dark: { 'cal-brand': '#ffffff' }
+        dark: { 'cal-brand': '#ffffff' },
       },
       hideEventTypeDetails: false,
-      layout: 'month_view'
+      layout: 'month_view',
     });
   });
 </script>
@@ -61,6 +62,5 @@
   description="Schedule a meeting with us to discuss your startup's needs"
   path={routes.scheduleMeeting}
 />
-
 
 <template lang="pug" src="./template.pug"></template>
