@@ -7,10 +7,16 @@ import {
   PUB_ANALYTICS_KEY,
   PUB_GA4_KEY,
   PUB_HEAP_APP_ID,
+  PUB_HOLDEX_UTILS_API_URL,
   PUB_ABOUT_ARTICLE_ID,
   PUB_HOME_ARTICLE_ID,
   PUB_FOR_STARTUPS_ARTICLE_ID,
-  PUB_HOLDEX_UTILS_API_URL,
+  PUB_ABOUT_ARTICLE_ID_PROD,
+  PUB_HOME_ARTICLE_ID_PROD,
+  PUB_FOR_STARTUPS_ARTICLE_ID_PROD,
+  PUB_ABOUT_ARTICLE_ID_STAGE,
+  PUB_HOME_ARTICLE_ID_STAGE,
+  PUB_FOR_STARTUPS_ARTICLE_ID_STAGE,
 } from '$env/static/public';
 import { dev, browser } from '$app/environment';
 
@@ -50,6 +56,11 @@ const prodConfig: Config = {
   ...baseConfig,
   env: 'development',
   apiUrl: 'https://stellate.holdex.io',
+  articles: {
+    home: PUB_HOME_ARTICLE_ID_PROD,
+    about: PUB_ABOUT_ARTICLE_ID_PROD,
+    startups: PUB_FOR_STARTUPS_ARTICLE_ID_PROD,
+  },
 };
 
 const config = PUB_USE_PRODUCTION_API === 'true' ? prodConfig : baseConfig;
