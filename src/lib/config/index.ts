@@ -14,9 +14,6 @@ import {
   PUB_ABOUT_ARTICLE_ID_PROD,
   PUB_HOME_ARTICLE_ID_PROD,
   PUB_FOR_STARTUPS_ARTICLE_ID_PROD,
-  PUB_ABOUT_ARTICLE_ID_STAGE,
-  PUB_HOME_ARTICLE_ID_STAGE,
-  PUB_FOR_STARTUPS_ARTICLE_ID_STAGE,
 } from '$env/static/public';
 import { dev, browser } from '$app/environment';
 
