@@ -7,6 +7,7 @@
   import BodyRenderer from '$components/BodyRenderer/index.svelte';
   import Icon from '$components/Icons/index.svelte';
   import MetaTags from '$components/MetaTags/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import Button from '$components/Button/index.svelte';
 
