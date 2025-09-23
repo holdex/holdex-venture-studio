@@ -20,11 +20,13 @@ To create a production version of your app:
 npm run build
 ```
 
-## Environment Options
+## Environment Configuration
+
+### Development Environment
 
 Our localhost runs the stage environment by default. You can switch it to run the production environment as you test things out and then switch back to staging.
 
-You can do this in the `.env` file by setting the value to true:
+To switch to production data, update your `.env` file:
 
 ```bash
 PUB_USE_PRODUCTION_API=true;
@@ -35,3 +37,9 @@ and use the
 ```bash
 npm run clean-dev
 ```
+
+### Preview Environment
+
+Preview uses production data by default (`PUB_USE_PRODUCTION_API=true`) to help catch UI bugs during PR reviews before they reach production. This ensures you see exactly what users will see.
+
+For new component development that requires staging data, you can temporarily override this in your branch's environment configuration.
