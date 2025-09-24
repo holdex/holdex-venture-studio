@@ -3,7 +3,6 @@
   import { Switch, Case } from '$components/Switch';
 
   import InlineBlock from './inline.svelte';
-  import TextWrapper from './Blocks/textWrapper.svelte';
   import NestedList from './Blocks/nestedList.svelte';
   import Image from './Blocks/image.svelte';
   import Embed from './Blocks/embed.svelte';
@@ -17,26 +16,51 @@
   import { parseTableCell } from '../BodyParser/blocks';
   import TeamMemberCard from '$components/TeamMemberCard/index.svelte';
 
+  import { onMount, tick } from 'svelte';
+
   export let item: any;
   export let isTableCell = false;
   export let index: number;
 
-  let bindHeading = (level: string) => {
-    switch (level) {
-      case 'h1':
-        return 'text-h1-l xs:text-h1-s';
-      case 'h2':
-        return 'text-h2-l xs:text-h2-s';
-      case 'h3':
-        return 'text-h3-l xs:text-h3-s';
-      case 'h4':
-        return 'text-h4-l xs:text-h4-s';
-      case 'h5':
-        return 'text-h5-l xs:text-h5-s';
-      case 'h6':
-        return 'text-h6-l xs:text-h6-s';
+  let headingElement: HTMLElement | undefined;
+
+  onMount(async () => {
+    if (item.level === 'h1' || item.level === 'h2' || item.level === 'h3') {
+      await tick();
+      setTimeout(() => checkSingleLine(), 100);
     }
-  };
+  });
+
+  function checkSingleLine() {
+    if (
+      item.type === 'heading' &&
+      (item.level === 'h1' || item.level === 'h2' || item.level === 'h3') &&
+      headingElement
+    ) {
+      const tempElement = document.createElement(item.level);
+      tempElement.innerHTML = headingElement.innerHTML;
+      tempElement.style.position = 'absolute';
+      tempElement.style.visibility = 'hidden';
+      tempElement.style.whiteSpace = 'nowrap';
+      tempElement.style.width = 'auto';
+
+      tempElement.className = headingElement.className.replace('!pt-0', '').trim();
+
+      document.body.appendChild(tempElement);
+      const singleLineHeight = tempElement.offsetHeight;
+
+      document.body.removeChild(tempElement);
+
+      const actualHeight = headingElement.offsetHeight;
+
+      const tolerance = 5;
+      const isSingleLine = actualHeight <= singleLineHeight + tolerance;
+
+      if (isSingleLine) {
+        headingElement.style.paddingTop = '0px';
+      }
+    }
+  }
 </script>
 
 <template lang="pug" src="./item.pug">

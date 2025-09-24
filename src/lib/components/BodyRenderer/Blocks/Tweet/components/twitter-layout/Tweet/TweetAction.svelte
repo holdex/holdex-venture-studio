@@ -36,7 +36,7 @@
 <template lang="pug">
   .border-t.border-tw-tweet-border
     .flex(class="mt-[0.2rem]") 
-      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.like.exclude(
+      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.like.exclude.plain-link(
         class="transition-[color] duration-[0.3s] ease-[ease-in-out] py-2.5 {$theme}"
         href="{tweetUrl}"
         title="Like"
@@ -51,7 +51,7 @@
         )
           p {likeCount}
 
-      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.exclude(
+      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.exclude.plain-link(
         class="transition-[color] duration-[0.3s] ease-[ease-in-out] py-2.5 {$theme}"
         href="{tweetUrl}"
         title="Like"
@@ -65,7 +65,7 @@
         )
           p Reply
 
-      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.exclude(
+      a.text-tw-tweet-link-color.block.text-sm.no-underline.px-5.exclude.plain-link(
         class="transition-[color] duration-[0.3s] ease-[ease-in-out] py-2.5 {$theme}"
         href="{tweetUrl}"
         title="Like"
@@ -80,7 +80,7 @@
           p Copy Link
 
     .flex.items-center.justify-center
-      a.flex.items-center.justify-center.h-8.not-italic.font-bold.leading-8.text-sm.no-underline.px-5.text-tw-tweet-link-color.bg-tw-tweet-btn-color.border.border-tw-tweet-btn-border(
+      a.flex.items-center.justify-center.h-8.not-italic.font-bold.leading-8.text-sm.no-underline.px-5.text-tw-tweet-link-color.bg-tw-tweet-btn-color.border.border-tw-tweet-btn-border.plain-link(
         class="w-[95%] mb-[15px] rounded-[999px] transition-[color] duration-[0.3s] ease-[ease-in-out] py-2.5 hover:bg-transparent"
         href="{tweetUrl}"
         title="Read replies to tweet"

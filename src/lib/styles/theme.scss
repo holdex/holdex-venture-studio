@@ -25,8 +25,19 @@
 @layer base {
   html {
     --main-font: 'Inter';
-    font-family: #{var(--main-font)}, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family:
+      #{var(--main-font)},
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      Oxygen,
+      Ubuntu,
+      Cantarell,
+      'Open Sans',
+      'Helvetica Neue',
+      sans-serif;
 
     * {
       box-sizing: border-box;
@@ -43,6 +54,81 @@
 
   [data-theme='light'] {
     @include colorScheme('light');
+  }
+
+  a {
+    @apply font-inherit inline-block w-fit relative bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25 underline underline-offset-4;
+  }
+
+  a[href^='http']::after {
+    content: '';
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.2em;
+    vertical-align: middle;
+    background-color: currentColor;
+    -webkit-mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center;
+    mask: url('/icons/arrow-top-right-on-square.svg') no-repeat center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+  }
+
+  .plain-link {
+    @apply bg-transparent hover:bg-transparent focus:bg-transparent font-inherit text-inherit no-underline;
+    display: inline;
+  }
+
+  a.plain-link::after {
+    content: unset;
+    display: none;
+    background: none;
+    -webkit-mask: none;
+    mask: none;
+  }
+
+  h1 {
+    @apply text-h1-l xs:text-h1-s font-satoshi;
+  }
+
+  h2 {
+    @apply text-h2-l xs:text-h2-s font-satoshi;
+  }
+
+  h3 {
+    @apply text-h3-l xs:text-h3-s font-satoshi;
+  }
+
+  h4 {
+    @apply text-h4-l xs:text-h4-s font-satoshi;
+  }
+
+  h5 {
+    @apply text-h5-l xs:text-h5-s font-satoshi;
+  }
+
+  h6 {
+    @apply text-h6-l xs:text-h6-s font-satoshi;
+  }
+
+  p {
+    @apply text-paragraph-l;
+  }
+
+  .sidebar-nav {
+    @apply text-h3-l font-satoshi;
+
+    a {
+      @apply underline-offset-7.25;
+    }
+  }
+
+  .item-title {
+    @apply font-satoshi;
+
+    a {
+      @apply md-up:underline-offset-7.25;
+    }
   }
 }
 

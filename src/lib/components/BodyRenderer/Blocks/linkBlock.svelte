@@ -65,16 +65,16 @@
   title={title ? title : ''}
   target={isHoldexLink ? '_self' : '_blank'}
   rel="noreferrer"
-  class="block w-full h-[96px] border-solid border border-l4 rounded-xl shadow-accent1-default overflow-hidden active:border-accent1-default focus:border-accent1-default hover:bg-l3 dark:hover:bg-l3 transition-colors duration-100 ease-in-out"
+  class="block w-full bg-l2 h-[87px] border-solid border border-l4 rounded-xl shadow-accent1-default overflow-hidden active:border-accent1-default focus:border-accent1-default hover:bg-l3 dark:hover:bg-l3 transition-colors duration-100 ease-in-out plain-link"
 >
   <div class="flex items-center gap-4 w-full h-full">
     {#if isLoading}
       <div class="flex items-center gap-4 w-full h-full pl-1">
-        <div class="w-[128px] h-[88px] rounded-lg bg-l3 animate-pulse" />
+        <div class="w-[128px] h-[87px] rounded-lg bg-l3 animate-pulse" />
         <div class="flex flex-col gap-2 flex-1">
-          <div class="h-4 w-1/2 rounded bg-l3 animate-pulse" />
-          <div class="h-4 w-3/4 rounded bg-l3 animate-pulse" />
-          <div class="h-4 w-1/4 rounded bg-l3 mt-1 animate-pulse" />
+          <div class="h-[14.5px] w-1/2 rounded bg-l3 animate-pulse" />
+          <div class="h-[14.5px] w-3/4 rounded bg-l3 animate-pulse" />
+          <div class="h-[14.5px] w-1/4 rounded bg-l3 mt-1 animate-pulse" />
         </div>
       </div>
     {:else}
@@ -84,7 +84,7 @@
             <img
               src={imageUrl}
               alt="Link preview"
-              class="w-[128px] h-[88px] rounded-lg object-cover"
+              class="w-[128px] h-[79px] rounded-lg object-cover"
             />
           </div>
         {:else}
@@ -93,22 +93,23 @@
           </div>
         {/if}
       </div>
-      <div class="flex flex-col gap-1 justify-center overflow-hidden">
-        <h3 class="truncate font-bold text-t1 text-sm w-full pr-4">{title}</h3>
+      <div class="flex flex-col justify-center overflow-hidden py-3.625">
+        <h3 class="truncate font-bold text-t1 text-sm/14.5 tracking-[-0.01em] w-full pr-4">
+          {title}
+        </h3>
         {#if description}
-          <p class="truncate text-t3 text-sm w-full pr-4">{description}</p>
+          <p class="truncate text-t3 text-sm/14.5 tracking-[-0.01em] w-full pr-4 mt-1">
+            {description}
+          </p>
         {/if}
-        <div class="w-full text-sm flex items-center">
-          <div
-            class="flex border-b bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-          >
-            <span class="truncate">{truncateUrl(url)}</span>
-            {#if !isHoldexLink}
-              <div class="relative left-[1px] bottom-[1.5px]">
-                <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
-              </div>
+        <div
+          class="mt-[9.5px] w-fit flex bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25 h-[14.5px]"
+        >
+          <span class="truncate text-sm/14.5 underline underline-offset-1 inline-flex items-end">
+            {truncateUrl(url)}{#if !isHoldexLink}
+              <Icon icon={ArrowTopRightOnSquare} width={12} height={12} colorInherit />
             {/if}
-          </div>
+          </span>
         </div>
       </div>
     {/if}

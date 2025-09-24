@@ -1,9 +1,9 @@
 include ../../common-mixins
 include ../mixins
 
-+if('storeData')
++if("storeData")
   +main-section
-    +header-wrapper(class="flex-col gap-8 xs:gap-4 !mb-0")
+    +header-wrapper(class="!mb-0")
       +nav-crumbs
         +crumbItemLink("/", "Holdex")
         +crumbDelimiter
@@ -15,9 +15,9 @@ include ../mixins
       +content-wrapper(class="xs:!px-0")
         +if("community.slug !== 'jobs'")
           +filter-options
-        +if('community.hashtags && community.hashtags.totalCount > 0')
+        +if("community.hashtags && community.hashtags.totalCount > 0")
           ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
-            +each('sortHashtags(community.hashtags.edges) as tag (tag.node.id)')
+            +each("sortHashtags(community.hashtags.edges) as tag (tag.node.id)")
               Hashtag(
                 tag="{'#'}{tag.node.id}"
                 class="{isHashtagActive(pageFilter, tag.node.id)}"

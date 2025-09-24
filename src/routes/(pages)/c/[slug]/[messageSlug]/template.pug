@@ -2,11 +2,11 @@ include ../../../common-mixins
 include ../../mixins
 
 mixin author
-  +if('message.docAuthors.length > 0')
-    +each('message.docAuthors as author, i')
-      +if('i !== 0')
+  +if("message.docAuthors.length > 0")
+    +each("message.docAuthors as author, i")
+      +if("i !== 0")
         span.mr-2 ,
-      +inline-link("{author.url}",'{author.name}')(
+      +inline-link("{author.url}", "{author.name}")(
         class="xs:text-paragraph-s"
         target="_blank"
         rel="noreferrer"
@@ -14,19 +14,19 @@ mixin author
     +else {message._author.name}
 
 +main-section
-  +header-wrapper(class="flex-col gap-8 xs:gap-4")
+  +header-wrapper
     +nav-crumbs
       +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemLink("/c", "Studio")
       +crumbDelimiter
-      +crumbItemLink("/c/{storeData.community.slug}","{storeData.community.name}")
-    +if('message.cover')
+      +crumbItemLink("/c/{storeData.community.slug}", "{storeData.community.name}")
+    +if("message.cover")
       +messageHeader("{message.title}", "{message.subtitle}", "{message.cover}")
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
     .text-container(
-      class="flex flex-row w-full items-center justify-between py-[31px] border-y border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
+      class="flex flex-row w-full items-center justify-between py-7 border-y border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
     ) 
       .text-content(class!="flex flex-col items-start")
         TextParagraph(textColor="text-t3")
@@ -43,36 +43,36 @@ mixin author
         //-     span {formatNumber(message.allReplies.totalCount, '0,0a')}
       .text-content(class!="flex flex-col smDown:gap-4")
         TextParagraph(class="flex flex-wrap justify-end smDown:justify-start" textColor="text-t3") #[span.mr-1 By] #[+author]
-        +if('message.isGoogleDoc')
+        +if("message.isGoogleDoc")
           .edit-wrapper(class="flex gap-2 justify-end smDown:justify-start")
             TextParagraph(class="flex" textColor="text-t3") Have a suggestion?
-            +inline-link("{message.isGoogleDoc}",'Edit Article')(
+            +inline-link("{message.isGoogleDoc}", "Edit Article")(
               class="xs:text-paragraph-s"
               target="_blank"
               rel="noreferrer"
             )
   +content-wrapper
-    +if('message.tocs && message.tocs.length > 0')
+    +if("message.tocs && message.tocs.length > 0")
       details(
         open="false"
         on:click|preventDefault="{toggleToc}"
         class:active="{tocOpen}"
         class="flex w-full cursor-pointer flex-col bg-l1 rounded-xl border border-solid border-l4 dark:bg-l2"
       )
-        summary(class="flex items-center justify-between p-3.75 w-full")
+        summary(class="flex items-center justify-between px-3.75 py-3.625 w-full")
           TextParagraph(class="pointer-events-none" textColor="text-t3") Table of Contents
-          +if('tocOpen')
+          +if("tocOpen")
             Button(class="pointer-events-none" variant="solo" size="small" icon="{BarsArrowUp}")
             +else
               Button(class="pointer-events-none" variant="solo" size="small" icon="{BarsArrowDown}")
-        +if('tocOpen')
+        +if("tocOpen")
           .details-content(
             transition:slide|local
             on:outroend="{handleOutroEnd}"
             class="relative p-3.75 border-t border-solid border-l4"
           )
             ul.toc-block
-              +each('message.tocs as item')
+              +each("message.tocs as item")
                 li(
                   on:click!="{() => handleClick($page.url, item.id)}"
                   class!="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-t1 {renderTocPadding(item.level)}"

@@ -1,24 +1,19 @@
 article.flex.flex-col.w-full(class="smDown:flex-col smDown:items-start")
   div
-    img.w-16.h-16.rounded-xl.object-cover(
-      class="float-left mr-4 border border-l6"
+    img.rounded-xl.object-cover(
+      class="float-left mr-3.625 border border-l6 w-15 h-14.5"
       src="{image}"
       alt="{name}"
     )
     div
-      span(class="text-h4-s xs-up:text-h5-s flex flex-wrap flex-col xs-up:flex-row")
-        +if('link && link.length > 0')
-          a(
-            href="{link}"
-            class="relative text-h4-s xs:text-h5-s font-satoshi inline-block w-fit underline underline-offset-4 bg-accent1-default/15 text-accent1-default transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-            target="_blank"
-            rel="noopener noreferrer"
-          )
+      span(class="flex flex-wrap flex-col xs-up:flex-row")
+        +if("link && link.length > 0")
+          a(href="{link}" class="text-h5-l font-satoshi" target="_blank" rel="noopener noreferrer")
             | {name}
           +else
-            span(class="text-h4-s xs:text-h5-s font-satoshi")
+            span(class="text-h5-l font-satoshi")
               | {name}
-        span(class="text-h4-s text-t2 xs:text-h5-s font-satoshi")
+        span(class="text-h5-l text-t2 font-satoshi")
           | &#160;—&#160; {role}
-      p(class="text-paragraph-l mt-2 xs:mt-0 text-t2 xs:text-paragraph-s")
+      p(class="text-t2 text-paragraph-l")
         | {description}

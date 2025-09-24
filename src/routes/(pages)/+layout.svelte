@@ -16,6 +16,7 @@
     ExclamationTriangle,
     CheckCircle,
     ChatBubbleBottomCenter,
+    XCircle,
   } from '$components/Icons';
   import Icon from '$components/Icons/index.svelte';
   import SVGIcon from '$components/Icons/SVGIcon.svelte';
@@ -26,6 +27,8 @@
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
 
+  export let data;
+
   let email = '';
   let status = '';
   let message = '';
@@ -34,6 +37,7 @@
   let isRightEnd = false;
   let isError = false;
   let success = false;
+  let failed = false;
   let isBurgerDropdownShown = false;
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
   let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
@@ -72,8 +76,15 @@
 
   const displaySuccess = () => {
     success = true;
-    setInterval(() => {
+    setTimeout(() => {
       success = false;
+    }, 5000);
+  };
+
+  const displayFailed = () => {
+    failed = true;
+    setTimeout(() => {
+      failed = false;
     }, 5000);
   };
 
@@ -127,7 +138,12 @@
     email = '';
     message = '';
     applyAction(result);
-    displaySuccess();
+
+    if (result.type === 'success') {
+      displaySuccess();
+    } else {
+      displayFailed();
+    }
   };
 
   const setBodyClass = (state: boolean) => {
@@ -156,6 +172,38 @@
   $: if (globalThis.document) {
     document.documentElement.dataset.theme = themeIconName === 'moon' ? 'light' : 'dark';
   }
+
+  const isExternalLink = (href: string) => {
+    return !(regExp.holdexLink.test(href) || regExp.internalLink.test(href));
+  };
+
+  $: banner = data?.announcement?.banner
+    ? {
+        ...data.announcement.banner,
+        target:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.banner?.href && isExternalLink(data.announcement.banner.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
+
+  $: postIt = data?.announcement?.post_it
+    ? {
+        ...data.announcement.post_it,
+        target:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? '_blank'
+            : '_self',
+        rel:
+          data.announcement.post_it?.href && isExternalLink(data.announcement.post_it.href)
+            ? 'noopener noreferrer'
+            : undefined,
+      }
+    : undefined;
 </script>
 
 <template lang="pug" src="./layout.pug">

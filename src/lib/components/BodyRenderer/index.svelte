@@ -10,9 +10,6 @@
 {/each}
 
 <style lang="sass">
-	:global(.heading + ol), 
-	:global(.heading + ul),
-	:global(.heading + .video-player),
-	:global(.heading + p)
-		@apply -mt-8 xs:-mt-4
+	:global(.heading + *)
+		@apply -mt-7.25 xs:-mt-4
 </style>
