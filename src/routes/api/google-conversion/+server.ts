@@ -160,6 +160,24 @@ function convertToHoldexJson(document: Schema$Document) {
           });
         }
       }
+      // Table Of Contents
+      else if (tableOfContents) {
+        const { content } = tableOfContents;
+
+        if (content && content.length > 0) {
+          const tocContent: any[] = [];
+          content.map((el, i) => {
+            if (el.paragraph) {
+              parseParagraph(document, tableOfContents, tocContent, el.paragraph, i);
+            }
+          });
+
+          newContent.push({
+            type: 'toc',
+            items: tocContent,
+          });
+        }
+      }
     });
   }
 

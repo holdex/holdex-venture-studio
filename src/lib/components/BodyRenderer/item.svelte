@@ -19,7 +19,7 @@
   import { onMount, tick } from 'svelte';
 
   export let item: any;
-  export let isTableCell: boolean;
+  export let isTableCell = false;
   export let index: number;
 
   let headingElement: HTMLElement | undefined;

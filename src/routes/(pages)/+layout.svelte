@@ -30,8 +30,11 @@
   export let data;
 
   let email = '';
+  let status = '';
   let message = '';
   let name = '';
+  let isLeftEnd = false;
+  let isRightEnd = false;
   let isError = false;
   let success = false;
   let failed = false;
