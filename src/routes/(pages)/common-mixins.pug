@@ -1,10 +1,10 @@
 mixin content-wrapper
-  .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
+  .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block
 
 mixin header-wrapper
   .header-wrapper(
-    class="flex items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
   )&attributes(attributes)
     block
 
@@ -13,7 +13,7 @@ mixin nav-crumbs
     block
 
 mixin main-section
-  section.main(class="flex flex-col items-center xl-up:pt-18 pt-16 xs:pt-8")
+  section.main(class="flex flex-col items-center xl-up:pt-18 pt-14.5 xs:pt-8")
     block
 
 mixin primary-button(label)
@@ -28,32 +28,10 @@ mixin button-icon-default
   )&attributes(attributes)
     block
 
-mixin guideCard(href, title, subtitle, className='')
+mixin guideCard(href, title, subtitle, className = "")
   a.card(
-    class=`group w-full h-full justify-center rounded-xl flex flex-col transition-colors border border-l4 p-8 smDown:px-4 smDown:py-6 gap-4 bg-center bg-cover bg-l1 hover:bg-l2 ${className}`
+    class=`group w-full h-full justify-center rounded-xl flex flex-col transition-colors border border-l4 px-8 py-7.25 smDown:p-6.5 gap-3.625 xs:gap-4 bg-center bg-cover bg-l1 hover:bg-l2 plain-link ${className}`
     href=href
   )
-    h2(
-      class="relative text-h2-l xs:text-h2-s font-satoshi inline-block text-t1 group-hover:text-accent1-default"
-    ) #{title}
+    h2(class="relative inline-block text-t1 group-hover:text-accent1-default") #{title}
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
-
-mixin endorsement(author, role, text, avatar, link)
-  .endorsement.relative(class=-"mt-16")
-    span(
-      class="absolute text-[201px] font-satoshi text-t3 -top-36 -left-25 tb:-left-2 tb:-top-24 tb:text-9xl sm:text-9xl sm:-top-20 sm:left-1 xs:text-9xl xs:-top-18 xs:left-1"
-    ) “
-
-    .endorsement-text
-      blockquote(class="text-paragraph-l text-t2 xs:text-paragraph-s max-w-[604px]")
-        | !{text}
-
-    .author-info.flex.items-center.justify-end.gap-4.mt-4
-      .author-details.flex.flex-col.items-end.text-right(class="font-satoshi text-h5-l smDown:text-h5-s")
-        Link(
-          item=`{{type: 'link', href: '${link}', text: '${author}', title: '${author}', iconSize: 20}}`
-        )= author
-
-        span(class="text-h5-l smDown:text-h5-s w-fit") #{role}
-
-      img(src=avatar alt=author class="h-14 w-14 rounded-xl")

@@ -3,22 +3,22 @@
     +each('edges as messageNode, index (messageNode.node.id)')
       +if("feedType === 'default'")
         DefaultFeedItem(
-          class="{index === 0 ? '' : 'mt-8 xs:mt-4'}"
+          class="{index === 0 ? '' : 'mt-7.25 xs:mt-4'}"
           message="{parseMessage(messageNode.node)}"
         )
         +elseif("feedType === 'portfolio'")
           PortfolioFeedItem(
-            class="{index === 0 ? '' : 'mt-8 xs:mt-4'}"
+            class="{index === 0 ? '' : 'mt-7.25 xs:mt-4'}"
             message="{parseMessage(messageNode.node)}"
           )
         +elseif("feedType === 'resource'")
-          JobFeedItem.totalCount.border-l4.pb-8(
-            class="{index === 0 ? '' : 'mt-8 xs:mt-4'} {index !== -1 ? 'border-b xs:pb-4' : ''}"
+          ResourceFeedItem(
+            class="border-l4 py-7.25 border-b last:border-b-0"
             message="{parseMessage(messageNode.node)}"
           )
 
   +if('pageInfo && pageInfo.hasNextPage')
-    .btn-wrapper.flex.justify-center.w-full.py-3
+    .btn-wrapper.flex.justify-center.w-full(class="py-3.625 smDown:py-3.25")
       Button(
         label="Load more"
         class="mobile:!w-full"
@@ -27,4 +27,4 @@
         onClick!="{() => loadMore(pageInfo.endCursor)}"
       )
   +else
-    p.text-paragraph-l.text-t3.w-full.text-center No articles found.
+    p.text-t3.w-full.text-center No articles found.

@@ -4,7 +4,7 @@
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import PortfolioFeedItem from '$components/Feed/PortfolioItem/index.svelte';
-  import JobFeedItem from '$components/Feed/ResourceItem/index.svelte';
+  import ResourceFeedItem from '$components/Feed/ResourceItem/index.svelte';
   import type {
     Message,
     PostedMessagesConnectionEdge,

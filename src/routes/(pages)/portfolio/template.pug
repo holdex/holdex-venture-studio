@@ -1,13 +1,13 @@
 include ../common-mixins
 include ../c/mixins
-+if('storeData')
++if("storeData")
   +main-section
-    +header-wrapper.flex-col.gap-8(class="xs:gap-4")
+    +header-wrapper
       +nav-crumbs
         +crumbItemLink("/", "Holdex")
         +crumbDelimiter
         +crumbItemText("Portfolio")
-      +messageHeader("Portfolio", "Meet Holdex's portfolio companies that drive the adoption of decentralized technologies and inclusive DeFi services.")()
+      +messageHeader("Portfolio", "Companies that drive the adoption of decentralized technologies and inclusive DeFi services.")()
       CompanyLogoStrip
     +content-wrapper-portfolio
       +feedRenderer
@@ -36,8 +36,7 @@ include ../c/mixins
           marketCapitalization=242219999.5
         )
 
-      +endorsement-wrapper
-        +endorsement("Jakob Kronbichler", "CEO & Co-Founder at Clearpool", "Since day one, Holdex has spearheaded the product development and launch of the Clearpool protocol. Thanks to Holdex's team efforts, our product has facilitated over $650 million in loans in the two years since its launch.", "endorsements/jakob-kronbichler.png", "https://www.linkedin.com/in/jakob-kronbichler-73737746")
+      Testimonial(item="{testimonial_jakob}")
 
       +portfolio-product-wrapper
         PortfolioItem(
@@ -55,7 +54,7 @@ include ../c/mixins
           slug="https://truf.network/"
           isExternal
           title="TRUF.network"
-          subtitle="The world’s first decentralized database for real economy."
+          subtitle="The world's first decentralized database for real economy."
           description="TRUF.network is a layer-1 blockchain that redefines how economic data is sourced, managed, and consumed. Its innovation lies in computing and validating economic metrics within a decentralized framework. The network facilitates the delivery of precise, unbiased, and corruption-free financial data feeds while promoting the tokenization of real-world assets (RWAs)."
           hashtags=["layer-1", "defi", "oracle", "cross-chain", "ai", "python", "go"]
           investors=["coinbase", "chainlink", "c2ventures", "balaji", "g2venture"]
@@ -111,16 +110,14 @@ include ../c/mixins
         )
         PortfolioItem(
           isFeatured
-          slug="https://www.ithacaprotocol.io/"
-          isExternal
+          slug="c/companies/ithaca-protocol"
           title="Ithaca Protocol"
           subtitle="A non-custodial, composable option protocol."
           description="Ithaca consistently ranks in the top 3 of DefiLlama options volume. Through its auction-based matching engine, users can instantly deploy options, structured products, and lending markets, while building custom risk strategies with automated market making."
           hashtags=["defi", "options-trading"]
         )
 
-      +endorsement-wrapper
-        +endorsement("Dimitrios Kavvathas", "Founder at Ithaca Protocol", "Holdex played a key role in building our Telegram mini-app and in developing and executing a revamped user acquisition strategy. Ithaca Protocol has benefited tremendously from their invaluable venture-building expertise!", "endorsements/dimitrios-kavvathas.jpeg", "https://www.linkedin.com/in/dimitrios-kavvathas-3bb3654/")
+      Testimonial(item="{testimonial_dimitrios}")
 
       +subheadingText("More Projects")
       +portfolio-product-wrapper
@@ -158,9 +155,9 @@ include ../c/mixins
           hashtags=["defi", "asset-custody"]
         )
 
-        +endorsement-wrapper(class="lg-up:col-span-2")
-          +endorsement("Alessio Quaglini", "Co-founder & CEO at Hex Trust", "A partnership such as <Link item={{type: 'link', text: 'this one', title: 'this one', href: 'https://hextrust.com/resources-collection/hex-trust-partners-with-holdex-to-bring-a-new-level-of-confidence-and-security-to-decentralized-fundraising'}}>this one</Link> is something we're incredibly proud to be part of.", "endorsements/alessio-quaglini.jpeg", "https://www.linkedin.com/in/alessioquaglini/")
+      Testimonial(item="{testimonial_alessio}")
 
+      +portfolio-product-wrapper
         PortfolioItem(
           isFeatured=false
           slug="c/companies/finoverse"
@@ -182,6 +179,21 @@ include ../c/mixins
           title="Nostrocket"
           subtitle="Separation of Business and State."
           hashtags=["social-dapp", "nostr"]
+        )
+        PortfolioItem(
+          isFeatured=false
+          slug="c/companies/github-wizard-chrome-extension"
+          title="GitHub Wizard"
+          subtitle="Streamline your GitHub issue and PR management workflow with GitHub Wizard, a powerful Chrome extension tailored for developers and project managers who follow Holdex flow."
+          hashtags=["productivity", "chrome-extension", "developers"]
+        )
+        PortfolioItem(
+          isFeatured=false
+          slug="https://readyinfluencer.holdex.io/"
+          isExternal
+          title="Ready Influencer"
+          subtitle="Connect with the right crypto micro-influencers to amplify your project's reach without the premium costs."
+          hashtags=["marketing", "KOLs", "influencers"]
         )
         PortfolioItem(
           isFeatured=false

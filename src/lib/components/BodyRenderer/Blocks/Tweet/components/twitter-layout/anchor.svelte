@@ -32,7 +32,7 @@
   target="_blank"
   rel="noopener noreferrer"
   title={title || href}
-  class="inline-block no-underline hover:underline exclude text-tw-tweet-link-color {$theme}"
+  class="plain-link hover:underline exclude text-tw-tweet-link-color {$theme}"
 >
   {beautifyHref(value)}
 </a>

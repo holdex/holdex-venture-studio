@@ -17,7 +17,7 @@
 <div class="text-sm flex">
   {#if createdAt}
     <a
-      class="inter text-tw-tweet-color-gray no-underline not-italic font-medium text-sm leading-5 focus:underline exclude hover:text-tw-tweet-link-color-hover {$theme}"
+      class="inter text-tw-tweet-color-gray no-underline not-italic font-medium text-sm leading-5 focus:underline exclude hover:text-tw-tweet-link-color-hover plain-link {$theme}"
       href={tweetUrl}
       target="_blank"
       rel="noopener noreferrer"

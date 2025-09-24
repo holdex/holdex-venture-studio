@@ -1,13 +1,12 @@
 article.block(class!="{className}")
-  Link(item=`{{type: 'article-heading-link', href: '/c/'+message.communitySlug+'/'+message.messageSlug, iconSize: 24}}`) {message.title}
-  TextParagraph.mb-4(class="text-t2") {message.subtitle}
+  h3(class="item-title mb-3.625 smDown:mb-3.25")
+    Link(item="{{href: '/c/'+message.communitySlug+'/'+message.messageSlug}}") {message.title}
+  TextParagraph(class="text-t2") {message.subtitle}
   +if('message.hashtags && message.hashtags.length > 0')
-    ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none
+    ul.relative.flex.items-start.gap-2.flex-wrap.w-full.list-none(class="pt-7.25")
       +each('message.hashtags as tag, index')
         +if('index !== 0')
           li.text-paragraph-l(class="text-t3/50") &bull;
-        li.underline.underline-offset-4.text-accent1-default.text-inter.h-8.text-paragraph-l(
-          class="bg-accent1-default/15"
-        )
+        li.text-inter.text-paragraph-l(class="h-7.25")
           Hashtag(item="{tag}" link="/c?filter={tag}") 
             | {'#'}{tag}

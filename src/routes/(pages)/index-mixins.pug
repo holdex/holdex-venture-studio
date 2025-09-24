@@ -1,24 +1,24 @@
 // main section used only in main page
 mixin main-section-standard
-  section.main(class="flex flex-col items-center pt-8 xs:pt-6 gap-8 xl-up:pt-18")
+  section.main(class="flex flex-col items-center pt-14.5 xs:pt-8 gap-7.25 xl-up:pt-18")
     block
 
 // hero section
 mixin section-hero-wrapper
   .section-hero-wrapper(
-    class="flex flex-col items-center justify-center bg-gray-100 gap-8  smDown:justify-start smDown:items-start max-w-[1028px] smDown:px-4 w-full"
+    class="section-hero-wrapper flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-4 xs:justify-start xs:items-start max-w-[1028px] sm:max-w-[794px] xs:max-w-[604px] xs:px-4 sm:px-8 w-full"
   )
     block
 
 // KPIs section
 mixin section-kpis-wrapper
   .section-kpis-wrapper(
-    class="smDown:px-4 flex flex-col items-center justify-center bg-gray-100 gap-7.5 max-w-[1028px] w-full"
+    class="xs:px-4 sm:px-8 flex flex-col items-center justify-center bg-gray-100 gap-7.25 max-w-[1028px] w-full"
   )
     block
 
 mixin content-wrapper
-  .content-wrapper(class="flex items-start flex-col gap-8 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
+  .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block
 
 mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainerGradientClass)
@@ -27,10 +27,10 @@ mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainer
     style=backgroundStyle
   )
     div(class="h-full rounded-base-radius " + bgClass + " p-2 gap-4")
-      div(class="rounded-underbase bg-gradient-to-r py-10" style=gradientStyle)
+      div(class="rounded-underbase bg-gradient-to-r py-7.25" style=gradientStyle)
         div(class="h-full rounded-xl " + bgClass + " gap-4")
           div(
-            class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-10 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3"
+            class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-7.25 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3"
           )
             +wrap-subcontainer("$1,500M+", "Transactional Value")
             +wrap-subcontainer("$900M+", "Combined Market Cap")
@@ -38,19 +38,19 @@ mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainer
 
 mixin wrap-subcontainer(kpiValue, kpiDescription)
   div(class="rounded-underbase bg-gradient-to-r")
-    div(class="h-full rounded-underbase w-full p-8")
+    div(class="h-full rounded-underbase w-full px-8 py-7.25")
       h3(class="text-h3-l font-medium text-accent1-default font-satoshi text-center") #{kpiValue}
-      p(class="text-subtitle-s font-inter mt-3 text-center") #{kpiDescription}
+      p(class="text-subtitle-s font-inter mt-3.625 text-center") #{kpiDescription}
 
 mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
-  p(class="text-subtitle-l text-center mb-1 xs:mt-1 text-t2")
+  p(class="text-subtitle-l text-center text-t2")
     | #{normalTextBefore}
-    Link(item=`{{type: 'link', href: '${link}', iconSize: 24}}`)= underlinedText
+    Link(item=`{{href: '${link}'}}`)= underlinedText
     | #{normalTextAfter}
 
 mixin section-learn-wrapper
   .section-learn-wrapper(
-    class="flex flex-col lg:items-center smDown:items-start lg:pt-16 tb:px-4 md:px-16 xs:px-4 pt-8 gap-4 max-w-[1028px] w-full md:max-w-[1160px] sm:max-w-[604px] smDown:px-4"
+    class="smDown:max-w-[604px] tb:max-w-[794px] mt-7.25 xs:mt-4 flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-6.5 smDown:justify-start smDown:items-start max-w-[1028px] xs:px-4 w-full"
   )
     block
 // services section

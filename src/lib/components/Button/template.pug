@@ -12,7 +12,7 @@ mixin content
   slot
 
 +if('href')
-  a.no-underline(
+  a.plain-link(
     {...$$restProps}
     use:forwardAction
     disabled="{disabled}"

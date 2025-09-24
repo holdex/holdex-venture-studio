@@ -2,10 +2,10 @@ import { loadMessage } from '$lib/models/message';
 import config from '$lib/server/config';
 import { default as clientConfig } from '$lib/config';
 import { fail } from '@sveltejs/kit';
-import sgMail from '@sendgrid/mail';
 import type { Actions, PageServerLoad } from './$types';
+import { Resend } from 'resend';
 
-sgMail.setApiKey(config.sendgridApiKey);
+const resend = new Resend(config.resendApiKey);
 
 export const load: PageServerLoad = async ({ locals }) => {
   const options = await loadMessage(locals.apolloClient, clientConfig.articles.home);
@@ -79,24 +79,25 @@ export const actions: Actions = {
     }
 
     try {
-      const msg = {
-        to: config.contactFormRecipientEmail,
+      const { data, error } = await resend.emails.send({
         from: config.contactFormSenderEmail,
+        to: [config.contactFormRecipientEmail],
         subject: `Contact Form Submission from ${escapeHtml(name)}`,
         text: `You have received a new message:\n\nName: ${escapeHtml(name)}\nEmail: ${escapeHtml(
           email
         )}\nMessage: ${escapeHtml(message)}\nFrom Page: ${escapeHtml(pageUrl)}`,
-      };
+      });
 
-      await sgMail.send(msg);
+      if (error) {
+        throw new Error(`Email sending failed: ${error.message || JSON.stringify(error)}`);
+      }
 
       return { success: true };
     } catch (error: unknown) {
       console.error('Error sending email:', error);
 
       if (error instanceof Error && 'response' in error) {
-        const sgError = error as { response: { statusCode: number; headers: any } };
-        console.error('SendGrid response status:', sgError.response.statusCode);
+        console.error('Resend response:', (error as any).response?.body);
       }
 
       return fail(500, { error: 'Failed to send email. Please try again later.' });

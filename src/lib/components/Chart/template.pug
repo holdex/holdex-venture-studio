@@ -49,7 +49,7 @@ mixin legend-item(label, value)
     +if('isLoading')
       span.block.bg-l3.rounded-2sm.h-8.w-32
       +else
-        span.text-h6-l.font-satoshi(class="xs:text-h6-s")= value
+        h6(class="inline")= value
 
 .chart.relative.w-full.bg-l2.border.border-solid.border-l4.rounded-xl.h-96.flex.justify-between.flex-col(
   class="xs:h-[480px]"
@@ -63,7 +63,7 @@ mixin legend-item(label, value)
           class="before:content-[''] before:absolute before:rounded-2sm before:bg-l4 before:h-4 before:w-16 before:left-1.75 before:top-1.75"
         )
         +else
-          span.text-h3-l(class="xs:text-h3-s") ${formatNumber(info.price, '0,0[.]000000')}
+          h3(class="inline") ${formatNumber(info.price, '0,0[.]000000')}
           span.relative.block.bg-l3.border.border-solid.border-l5.rounded-full.text-caption.text-t3(
             class="p-1.75"
           ) 

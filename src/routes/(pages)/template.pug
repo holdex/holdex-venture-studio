@@ -6,30 +6,30 @@ include ./common-mixins
   +section-hero-wrapper
     +nav-crumbs
       +crumbItemLink("/", "Holdex")
-    h1.text-title-l.font-satoshi.text-center(class="smDown:text-left xs:text-h1-s" id="{message.id}")
+    PageTitle(id="{message.id}")
       | At&nbsp;
       span.underline.font-satoshi Holdex
-      | , we're helping innovators build the next Web3 products
-    p.text-subtitle-l.font-inter.text-center.text-t2(class="w-full smDown:text-left lg-up:max-w-[620px]")
+      | , we help innovators build the next Web3 products
+    p.text-subtitle-l.font-inter.text-center.text-t2(class="w-full xs:text-left lg-up:max-w-[620px]")
       | We are your end-to-end technical partner that builds products, designs, grows teams, and transforms bold ideas into reality
   +section-kpis-wrapper
     +wrap-section(true, "background-image: linear-gradient(176deg, #1C202D 20%, #10141F 30%); padding: 0.0625rem;", "bg-l1", "background-image: linear-gradient(165deg, #393F4F 20%, #10141F 40%); padding: 0.0625rem;", "bg-subcontainer-gradient")
     +wrap-section(false, "background-image: linear-gradient(to bottom right, #D8D9E0 30%, #F0F1F5 45%); padding: 0.0625rem;", "bg-l2", "background-image: linear-gradient(to bottom right, #CACDD8 30%, #F0F1F5 40%); padding: 0.0625rem;", "bg-subcontainer-gradient-light")
-    +cta('The results of ', 'our incubated projects', ' speak for themselves', '/portfolio')
+    +cta("The results of ", "our incubated projects", " speak for themselves", "/portfolio")
     CompanyLogoStrip(isIndex)
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
     p.text-t1 { @html signature }
 
   +section-learn-wrapper
-    h2.text-title-l.font-satoshi.text-center(class="smDown:text-left xs:text-h1-s")
+    h2.text-title-l.font-satoshi.text-center(
+      class="py-3.625 smDown:py-0 smDown:text-left xs:text-title-s"
+    )
       | Learn
-    p.text-subtitle-l.font-inter.text-center.text-t2(class="w-full smDown:text-left mb-6 smDown:mb-7.5")
-      | Pioneering the Launch of Sustainable Applications That Drive
-      br
-      | Long-Term Financial Freedom
+    p.text-subtitle-l.font-inter.text-center.text-t2(class="w-full smDown:text-left max-w-[612px]")
+      | Pioneering the Launch of Sustainable Applications That Drive Long-Term Financial Freedom
     .cards-wrapper(
-      class="w-full grid grid-cols-2 smDown:grid-cols-1 gap-8 smDown:gap-8 auto-rows-max mt-2 mb-8 smDown:mb-7.5 smDown:mt-0"
+      class="w-full grid grid-cols-2 smDown:grid-cols-1 gap-8 smDown:gap-6.5 auto-rows-max my-3.625 smDown:my-0"
     )
       +guideCard("/c/learn/article-top-web3-security-auditors", "Best Web3 Security Auditors", "Discover the top auditors ensuring the safety and integrity of blockchain and decentralized applications.", "bg-card-1-light dark:bg-card-1-dark")
       +guideCard("/c?filter=defi", "Defi Guides", "Explore the exciting world of decentralized finance with our guides and information to empower your journey", "bg-card-2-light dark:bg-card-2-dark")

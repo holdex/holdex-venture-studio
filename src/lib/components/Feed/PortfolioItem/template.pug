@@ -15,8 +15,6 @@ a(
         +each('message.hashtags as tag')
           Hashtag(tag="{'#'}{tag}" disabled)
     .feed-body(class="flex flex-col gap-4 xs:gap-2 justify-end relative z-1 flex-grow")
-      h2(
-        class="relative w-full text-h2-l xs:text-h2-s font-satoshi block whitespace-nowrap overflow-hidden text-ellipsis"
-      ) {message.title}
+      h2(class="relative w-full block whitespace-nowrap overflow-hidden text-ellipsis") {message.title}
       +if('message.subtitle')
         p {message.subtitle}

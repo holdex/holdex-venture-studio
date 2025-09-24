@@ -120,12 +120,12 @@ module.exports = {
       'title-l': [
         '56px',
         {
-          lineHeight: '64px',
+          lineHeight: '72.5px',
           fontWeight: '900',
         },
       ],
       'title-s': [
-        '48px',
+        '42px',
         {
           lineHeight: '48px',
           fontWeight: '900',
@@ -134,28 +134,28 @@ module.exports = {
       'subtitle-l': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '500',
         },
       ],
       'subtitle-xl': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '39px',
           fontWeight: '500',
         },
       ],
       'subtitle-s': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '500',
         },
       ],
       'h1-l': [
         '48px',
         {
-          lineHeight: '64px',
+          lineHeight: '58px',
           fontWeight: '900',
         },
       ],
@@ -169,112 +169,112 @@ module.exports = {
       'h2-l': [
         '32px',
         {
-          lineHeight: '32px',
+          lineHeight: '43.5px',
           fontWeight: '900',
         },
       ],
       'h2-s': [
         '28px',
         {
-          lineHeight: '32px',
+          lineHeight: '34px',
           fontWeight: '900',
         },
       ],
       'h3-l': [
         '28px',
         {
-          lineHeight: '32px',
+          lineHeight: '43.5px',
           fontWeight: '900',
         },
       ],
       'h3-s': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'h4-l': [
         '24px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h4-s': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'h5-l': [
         '20px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h5-s': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'h6-l': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '900',
         },
       ],
       'h6-s': [
         '16px',
         {
-          lineHeight: '16px',
+          lineHeight: '26px',
           fontWeight: '900',
         },
       ],
       'paragraph-l': [
         '18px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '400',
         },
       ],
       'paragraph-s': [
         '16px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '400',
         },
       ],
       cta: [
         '14px',
         {
-          lineHeight: '32px',
+          lineHeight: '29px',
           fontWeight: '700',
         },
       ],
       footnote: [
         '14px',
         {
-          lineHeight: '20px',
+          lineHeight: '23px',
           fontWeight: '500',
         },
       ],
       caption: [
         '12px',
         {
-          lineHeight: '16px',
+          lineHeight: '19px',
           fontWeight: '500',
         },
       ],
       code: [
         '14px',
         {
-          lineHeight: '32px',
+          lineHeight: '23px',
           fontWeight: '600',
         },
       ],
@@ -286,28 +286,38 @@ module.exports = {
       handwriting: ['"IntrudingCat"', ...defaultTheme.fontFamily.sans],
     },
     extend: {
+      lineHeight: {
+        14.5: '14.5px',
+      },
       spacing: {
         0.75: '0.1875rem',
         1.25: '0.3125rem',
         1.75: '0.4375rem',
+        1.8125: '0.453125rem',
         2.25: '0.5625rem',
         2.5: '0.625rem',
         2.75: '0.6875rem',
+        3.25: '0.8125rem',
+        3.625: '0.90625rem',
         3.75: '0.9375rem',
         4.5: '1.125rem',
         5.5: '1.375rem',
         5.75: '1.4375rem',
         6.5: '1.625rem',
+        7.25: '1.8125rem',
         7.5: '2.000rem',
         8.5: '2.125rem',
         '11/25': '44%',
         '1/2': '50%',
         10.5: '2.65rem',
+        10.875: '2.71875rem',
+        14.5: '3.625rem',
         15.5: '3.875rem',
-        18: '4.624rem',
+        18: '4.5rem',
         19: '4.75rem',
         19.5: '4.95rem',
-        21: '5.438rem',
+        21: '5.25rem',
+        21.75: '5.438rem',
         23: '5.75rem',
         25: '6.25rem',
         30: '7.5rem',
@@ -322,6 +332,9 @@ module.exports = {
         70: '17.5rem',
         578: '36.125rem',
         636: '39.75rem',
+      },
+      textUnderlineOffset: {
+        7.25: '7.25px',
       },
       opacity: {
         15: '0.15',
@@ -365,14 +378,9 @@ module.exports = {
         32: '8rem',
       },
       animation: {
-        'infinite-scroll': 'infinite-scroll 10s linear infinite',
         'navigation-left-right': 'navigation-left-right 0.6s ease-out forwards',
       },
       keyframes: {
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(calc(-100% - 24px))' },
-        },
         'navigation-left-right': {
           '0%, 100%': { transform: 'translateX(0)' },
           '33%, 66%': { transform: 'translateX(-100px)' },

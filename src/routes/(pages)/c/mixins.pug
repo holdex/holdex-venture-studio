@@ -1,12 +1,12 @@
 mixin content-wrapper-portfolio
   .content-wrapper(
-    class="flex flex-col gap-8 items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-8 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
   )&attributes(attributes)
     block
 
 mixin crumbItemLink(href, name)
   li: a(
-    class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-accent1-default"
+    class="text-paragraph-l xs:text-paragraph-s text-t3 transition-colors hover:text-accent1-default plain-link"
     href=href
     title=name
   ): span= name
@@ -19,7 +19,9 @@ mixin crumbItemText(name)
 
 //- Filter options
 mixin filter-options
-  ul.filter-options(class="relative flex items-start my-3 border border-solid border-l4 rounded-xl")
+  ul.filter-options(
+    class="relative flex items-start my-3.625 smDown:my-3.25 border border-solid border-l4 rounded-xl"
+  )
     +filter-option-item("{() => handleSort($page.url, 'CREATED_AT')}", "By Time")(
       class!="border-r border-solid border-l4 rounded-l-underbase {pageFilter !== 'NET_UP_VOTES' ? '!bg-l3 !text-accent1-default' : ''}"
     )
@@ -42,17 +44,14 @@ mixin short-links
 
 mixin short-link(href, icon, title)
   a.short-link(
-    class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default"
+    class="flex items-center gap-2 text-cta text-t1 transition-colors hover:text-accent1-default plain-link"
     href=href
   )
     Icon(icon=icon width="{20}" height="{20}" colorInherit)
     span= title
 
 mixin inline-link(href, title)
-  a.short-link(
-    class="relative underline underline-offset-4 bg-accent1-default/15 text-accent1-default text-paragraph-l transition-colors hover:bg-accent1-default/25 focus:bg-accent1-default/25"
-    href=href
-  )&attributes(attributes)
+  a.short-link.text-paragraph-l(href=href)&attributes(attributes)
     span= title
 
 mixin button-secondary-small(label)
@@ -71,44 +70,39 @@ mixin button-icon-small(icon)
     if block
       block
     else
-      Icon(icon=icon width="{20}" height="{20}" colorInherit)
+      Icon(icon=icon width="{17}" height="{17}" colorInherit)
 
-mixin messageHeader(title, subtitle, cover=null)
-  h1(class="text-title-l font-satoshi text-center smDown:text-left xs:text-h1-s")&attributes(attributes)= title
-  if cover && cover !== ''
+mixin messageHeader(title, subtitle, cover = null)
+  PageTitle&attributes(attributes)= title
+  if cover && cover !== ""
     img(
       src=cover
       alt=title
       class="w-full h-auto object-contain box-border border border-solid border-l4 rounded-xl"
     )
   if subtitle
-    p(class="text-subtitle-xl text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
+    p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
 
 mixin feedRenderer
-  +if('isSearchMode')
-    +if('totalCount > 0')
+  +if("isSearchMode")
+    +if("totalCount > 0")
       .result-label-wrapper(class="flex items-center flex-wrap gap-3")
-        p(class="text-paragraph-l font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
+        p(class="font-bold") #[span(class="text-t3 font-medium") Showing results for] {pageQ || '#' + pageFilter}
         +button-icon-small("{XMark}")(
           on:click!="{() => handleSort($page.url, 'CREATED_AT')}"
         )
       block
       +else
-        p(class="text-paragraph-l text-t1 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
+        p(class="text-t1 w-full text-center font-bold") #[span(class="text-t3 font-medium") No articles found for] {pageQ || '#' + pageFilter}.
     +else
       block
 
 mixin subheadingText(text)
-  .subheadingWrapper(class="py-4")
-    h2(class="w-full text-h2-l xs:text-h2-s font-satoshi text-center smDown:text-left")= text
+  .subheadingWrapper(class="py-3.625 smDown:py-3.25")
+    h2(class="w-full text-center smDown:text-left")= text
 
 mixin portfolio-product-wrapper
   .portfolio-product-wrapper(
-    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-8 xl-up:gap-4 gap-8 smDown:gap-4"
-  )&attributes(attributes)
-    block
-mixin endorsement-wrapper
-  .endorsement-wrapper(
-    class="flex flex-col gap-4 w-full my-12 items-center smDown:items-start xl-up:py-10 xl-up:px-28 tb:p-20 pt-8 smDown:px-4"
+    class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-x-8 2xl-up:gap-y-7.25 xl-up:gap-x-4 xl-up:gap-y-4 gap-x-8 gap-y-7.25 smDown:gap-4"
   )&attributes(attributes)
     block

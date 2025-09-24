@@ -7,6 +7,7 @@
   import Icon from '$components/Icons/index.svelte';
   import { ArrowTopRightOnSquare } from '$components/Icons';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import Marquee from '$components/Marquee/index.svelte';
 
   export let isFeatured: boolean;
   export let slug: string;
@@ -43,9 +44,6 @@
   let formattedReservesInUsd: string | undefined;
   let formattedTotalFunding: string | undefined;
   let formattedmarketCapitalization: string | undefined;
-  let borrowersAnimationDuration: number | undefined;
-  let investorsAnimationDuration: number | undefined;
-  let ecosystemPartnersAnimationDuration: number | undefined;
 
   $: {
     if (totalLoansOriginated !== undefined) {
@@ -62,15 +60,6 @@
     }
     if (marketCapitalization !== undefined) {
       formattedmarketCapitalization = parseNumber(marketCapitalization);
-    }
-    if (borrowers !== undefined) {
-      borrowersAnimationDuration = JSON.parse(borrowers).length * 2;
-    }
-    if (investors !== undefined) {
-      investorsAnimationDuration = JSON.parse(investors).length * 2;
-    }
-    if (ecosystemPartners !== undefined) {
-      ecosystemPartnersAnimationDuration = JSON.parse(ecosystemPartners).length * 2;
     }
   }
 
@@ -111,7 +100,6 @@
     'streaming',
     'lending',
     'index',
-    'nodejs',
     'wallet',
     'open-source',
     'typescript',
@@ -139,6 +127,12 @@
     'TON',
     'user-acquisition',
     'education',
+    'productivity',
+    'chrome-extension',
+    'developers',
+    'marketing',
+    'KOLs',
+    'influencers',
   ];
 </script>
 

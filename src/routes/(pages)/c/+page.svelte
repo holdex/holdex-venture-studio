@@ -16,6 +16,7 @@
   } from '$components/Icons';
   import MetaTags from '$components/MetaTags/index.svelte';
   import Icon from '$components/Icons/index.svelte';
+  import PageTitle from '$components/PageTitle/index.svelte';
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import Feed from '$components/Feed/index.svelte';
@@ -52,15 +53,15 @@
     pageFilter.length > 0
       ? `Search "${pageFilter}"`
       : pageQ.length > 0
-      ? `Search Results for "${pageQ}"`
-      : 'Holdex | Web3 based startup studio';
+        ? `Search Results for "${pageQ}"`
+        : 'At Holdex, we help innovators build the next Web3 products';
 
   $: metaDescription =
     pageFilter.length > 0 || pageQ.length > 0
       ? `A list of "${pageFilter || pageQ}" articles.`
       : 'We empower the next web3 innovators to build and accelerate blockchain adoption.';
 
-  metaTitle = metaTitle || 'At Holdex, we’re helping innovators build the next web3 products';
+  metaTitle = metaTitle || 'At Holdex, we help innovators build the next web3 products';
   metaDescription =
     metaDescription || 'Discover blockchain resources, opportunities, and insights with Holdex.';
 
