@@ -26,14 +26,6 @@ const config = {
       $styles: 'src/lib/styles',
       $components: 'src/lib/components',
     },
-    typescript: {
-      config(config) {
-        delete config.compilerOptions.importsNotUsedAsValues;
-        delete config.compilerOptions.preserveValueImports;
-        config.compilerOptions.verbatimModuleSyntax = true;
-        return config;
-      },
-    },
   },
 };
 
