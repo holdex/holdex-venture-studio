@@ -6,6 +6,14 @@ include ../c/mixins
       +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemText("For Startups")
-    PageTitle(id="{message.id}") {message.title}
+    +if("themeIconName !== 'moon'")
+      +section-hero-pages("/headerPages/for-startups.png")
+        PageTitle(id="{message.id}") 
+          | {message.title}
+          div(class="text-paragraph-l smDown:text-left text-center mx-auto smDown:px-0 px-[20%]") We give startups a builder’s edge with hands-on expertise and founder-level support to accelerate your journey.
+    +if("themeIconName === 'moon'")
+      +section-hero-pages()
+        PageTitle(id="{message.id}") 
+          | {message.title}
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
