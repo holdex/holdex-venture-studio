@@ -37,6 +37,9 @@
 
   export let data: PageData;
 
+  $: theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
+  $: themeIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
+
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
