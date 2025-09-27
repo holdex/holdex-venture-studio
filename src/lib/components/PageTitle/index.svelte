@@ -48,3 +48,5 @@
 <h1 class={finalClassName} {id} bind:this={headingElement}>
   <slot />
 </h1>
+ 
+<slot name="subtitle" />
