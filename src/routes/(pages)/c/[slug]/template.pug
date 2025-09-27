@@ -10,8 +10,10 @@ include ../mixins
         +crumbItemLink("/c", "Studio")
         +crumbDelimiter
         +crumbItemText("{community.name}")
-      +if("community.slug !== 'jobs'")
+      //- another pages
+      +if("community.slug !== 'jobs' && community.slug !== 'learn'")
         +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
+      //- jobs pages
       +if("community.slug === 'jobs'")
         +if("themeIconName !== 'moon'")
           +section-hero-pages("/headerPages/jobs.png")
@@ -22,6 +24,18 @@ include ../mixins
             +section-hero-pages()
               PageTitle(id="{community.id}") 
                 | {community.name}
+                div(class="text-paragraph-l smDown:text-left text-center mx-auto") For passionate enthusiasts who are eager to build our decentralized future!  
+      //- learn pages
+      +if("community.slug === 'learn'")
+        +if("themeIconName !== 'moon'")
+          +section-hero-pages("/headerPages/learn.png")
+            PageTitle(id="{community.id}") 
+              | {community.name}
+              div(class="text-paragraph-l smDown:text-left text-center mx-auto") Crypto beginner guides and battle tested knowledge  
+        +if("themeIconName === 'moon'")
+            +section-hero-pages()
+              PageTitle(id="{community.id}") 
+                | {community.name}  
       +content-wrapper(class="xs:!px-0")
         +if("community.slug !== 'jobs'")
           +filter-options
