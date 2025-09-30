@@ -1,0 +1,56 @@
+// main section used only in main page
+mixin main-section-standard
+  section.main(class="flex flex-col items-center pt-14.5 xs:pt-8 gap-7.25 xl-up:pt-18")
+    block
+
+// hero section
+mixin section-hero-wrapper
+  .section-hero-wrapper(
+    class="section-hero-wrapper flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-4 xs:justify-start xs:items-start max-w-[1028px] sm:max-w-[794px] xs:max-w-[604px] xs:px-4 sm:px-8 w-full"
+  )
+    block
+
+// KPIs section
+mixin section-kpis-wrapper
+  .section-kpis-wrapper(
+    class="xs:px-4 sm:px-8 flex flex-col items-center justify-center bg-gray-100 gap-7.25 max-w-[1028px] w-full"
+  )
+    block
+
+mixin content-wrapper
+  .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
+    block
+
+mixin wrap-section(isDark, backgroundStyle, bgClass, gradientStyle, subcontainerGradientClass)
+  section(
+    class=(isDark ? "hidden dark:block" : "block dark:hidden") + " rounded-base-radius bg-gradient-to-r"
+    style=backgroundStyle
+  )
+    div(class="h-full rounded-base-radius " + bgClass + " p-2 gap-4")
+      div(class="rounded-underbase bg-gradient-to-r py-7.25" style=gradientStyle)
+        div(class="h-full rounded-xl " + bgClass + " gap-4")
+          div(
+            class="h-full rounded-xl " + subcontainerGradientClass + " px-12 py-7.25 gap-4 xs-up:grid xs-up:grid-cols-1 sm-up:grid sm-up:grid-cols-1 md-up:grid-cols-3 lg-up:grid-cols-3 xl-up:grid-cols-3"
+          )
+            +wrap-subcontainer("$1,500M+", "Transactional Value")
+            +wrap-subcontainer("$900M+", "Combined Market Cap")
+            +wrap-subcontainer("100,000+", "Users Served")
+
+mixin wrap-subcontainer(kpiValue, kpiDescription)
+  div(class="rounded-underbase bg-gradient-to-r")
+    div(class="h-full rounded-underbase w-full px-8 py-7.25")
+      h3(class="text-h3-l font-medium text-accent1-default font-satoshi text-center") #{kpiValue}
+      p(class="text-subtitle-s font-inter mt-3.625 text-center") #{kpiDescription}
+
+mixin cta(normalTextBefore, underlinedText, normalTextAfter, link)
+  p(class="text-subtitle-l text-center text-t2")
+    | #{normalTextBefore}
+    Link(item=`{{href: '${link}'}}`)= underlinedText
+    | #{normalTextAfter}
+
+mixin section-learn-wrapper
+  .section-learn-wrapper(
+    class="smDown:max-w-[604px] tb:max-w-[794px] mt-7.25 xs:mt-4 flex flex-col items-center justify-center bg-gray-100 gap-7.25 xs:gap-6.5 smDown:justify-start smDown:items-start max-w-[1028px] xs:px-4 w-full"
+  )
+    block
+// services section

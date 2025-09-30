@@ -23,7 +23,7 @@
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
-  import { routes } from '$lib/config';
+  import { routesv2 } from '$lib/config';
   import { parseQueryFilter } from '../util';
   import { parseCommunityCoverImage, sanitizeHtml } from '$lib/utils';
 
@@ -36,6 +36,9 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
+
+  $: theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
+  $: themeIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
 
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
@@ -120,7 +123,7 @@
 <MetaTags
   title="{community.tagline} | Holdex"
   description={sanitizeHtml(community.tagline)}
-  path={routes.category(community.slug)}
+  path={routesv2.category(community.slug)}
   imagePath={communityCover}
   pageName={community.name}
 />

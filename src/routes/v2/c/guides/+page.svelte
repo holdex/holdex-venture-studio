@@ -2,6 +2,7 @@
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { routesv2 } from '$lib/config';
   import Parser from '$components/BodyParser';
   import {
     feedEmptyIcon,
@@ -14,34 +15,25 @@
     UserGroup,
   } from '$components/Icons';
   import MetaTags from '$components/MetaTags/index.svelte';
-  import Hashtag from '$components/Hashtag/index.svelte';
   import Icon from '$components/Icons/index.svelte';
   import PageTitle from '$components/PageTitle/index.svelte';
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import Feed from '$components/Feed/index.svelte';
+  import TextParagraph from '$components/TextParagraph/index.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
-  import { routes } from '$lib/config';
   import { parseQueryFilter } from '../util';
-  import { parseCommunityCoverImage, sanitizeHtml } from '$lib/utils';
 
-  import type {
-    Community,
-    Hashtag as HashtagType,
-    HashtagsConnectionEdge,
-    Message,
-  } from '$lib/types/api';
+  import type { Message } from '$lib/types/api';
   import type { PageData } from './$types';
 
   export let data: PageData;
 
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
-  $: community = storeData?.community as Community;
-  $: communityCover = parseCommunityCoverImage(community);
-  $: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
+  $: ({ edges, totalCount, pageInfo } = storeData?.postedMessages || {
     edges: [],
     totalCount: 0,
     pageInfo: null,
@@ -71,26 +63,6 @@
     return q || (filter && !['CREATED_AT', 'NET_UP_VOTES'].includes(filter));
   };
 
-  let sortHashtags = (s: HashtagsConnectionEdge[]) => {
-    let values = s
-      .filter((a) => (a.node as HashtagType).postedMessagesTotalCount > 1)
-      .slice(0)
-      .sort(
-        (a, b) =>
-          (b.node as HashtagType).postedMessagesTotalCount -
-          (a.node as HashtagType).postedMessagesTotalCount
-      );
-
-    return values;
-  };
-
-  let isHashtagActive = (filter: string, tag: string) => {
-    if (!filter) return '';
-    return filter.toLowerCase() === tag.toLowerCase()
-      ? '!text-t1 !bg-l3 before:!border-accent1-default !shadow-tag-active'
-      : '';
-  };
-
   let handleSort = (url: URL, filter: string) => {
     const newUrl = url;
 
@@ -118,11 +90,10 @@
 </script>
 
 <MetaTags
-  title="{community.tagline} | Holdex"
-  description={sanitizeHtml(community.tagline)}
-  path={routes.category(community.slug)}
-  imagePath={communityCover}
-  pageName={community.name}
+  title="Research in Web3 created by Holdex Team"
+  description="Product and business crypto guides for someone who truly understands the power of blockchain."
+  path={routesv2.research}
+  imagePath="/og/guides.png"
 />
 
 <template lang="pug" src="./template.pug">
