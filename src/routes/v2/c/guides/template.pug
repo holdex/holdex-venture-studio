@@ -1,0 +1,31 @@
+include ../../common-mixins
+include ../../c/mixins
+
++if("storeData")
+  +main-section
+    +header-wrapper
+      +nav-crumbs
+        +crumbItemLink("/", "Holdex")
+        +crumbDelimiter
+        +crumbItemLink("/c", "Studio")
+        +crumbDelimiter
+        +crumbItemText("Research")
+      +messageHeader("Research", "Explore the thrilling realm of Web3 with Holdex's engaging insights on products and market trends—your guide to the future of the Internet!")()
+      .card-wrapper(
+        class="w-full grid grid-cols-2 smDown:grid-cols-1 gap-x-8 gap-y-7.25 smDown:gap-4 auto-rows-max"
+      )
+        +guideCard("/c/learn/article-top-web3-security-auditors", "Best Web3 Security Auditors", "Navigating the Web3 Security Landscape and Unveiling Top Auditors' Unique Approaches", "bg-card-1-light dark:bg-card-1-dark")
+        +guideCard("/c?filter=defi", "Defi Guides", "Explore the exciting world of decentralized finance with our guides and information to empower your journey", "bg-card-2-light dark:bg-card-2-dark")
+        +guideCard("/for-startups", "For Startups", "Learn about our partnership recipe that empowers the company success", "bg-card-3-light dark:bg-card-3-dark")
+        +guideCard("/c/learn/what-is-defi", "What is DeFi?", "Beginners guide to DeFi meaning, history, DeFi blockchains and apps. CeFi vs DeFi. The future of DeFi.", "bg-card-4-light dark:bg-card-4-dark")
+
+    +content-wrapper
+      +feedRenderer
+        Feed(
+          feedType="resource"
+          edges="{edges}"
+          totalCount="{totalCount}"
+          isRefetching="{isRefetching}"
+          pageInfo="{pageInfo}"
+          loadMore="{loadMore}"
+        )

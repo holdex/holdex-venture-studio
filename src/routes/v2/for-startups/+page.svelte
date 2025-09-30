@@ -9,16 +9,19 @@
 
   export let data: PageData;
 
+  $: theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
+  $: themeIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
+
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
   $: message = Parser.parse(storeData?.message as Message);
 </script>
 
 <MetaTags
-  title={message.title}
-  description={message.subtitle}
-  path={routes.about}
-  imagePath="/og/about.png"
+  title="For Startups"
+  description="Learn about our partnership recipe that empowers the company success"
+  path={routes.forStartups}
+  imagePath="/og/for-startups.png"
 />
 
 <template lang="pug" src="./template.pug">

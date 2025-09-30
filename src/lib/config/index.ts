@@ -77,6 +77,21 @@ export const routes = {
     `/c/${category}/${message}`,
 };
 
+export const routesv2 = {
+  index: '/v2',
+  about: '/v2/about',
+  apply: '/v2/apply',
+  portfolio: '/v2/portfolio',
+  forStartups: '/v2/for-startups',
+  scheduleMeeting: '/v2/schedule-meeting',
+  studio: '/v2/c',
+  jobs: '/v2/c/jobs',
+  research: '/v2/c/guides',
+  category: (category: string | undefined) => `/v2/c/${category}`,
+  message: (category: string | undefined, message: string | undefined) =>
+    `/v2/c/${category}/${message}`,
+};
+
 export const isDev = dev;
 export const isBrowser = browser;
 export default config;

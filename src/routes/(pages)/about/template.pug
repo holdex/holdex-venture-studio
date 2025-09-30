@@ -6,14 +6,6 @@ include ../c/mixins
       +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemText("About")
-    +if("themeIconName !== 'moon'")
-      +section-hero-pages("/headerPages/about.png")
-        PageTitle(id="{message.id}") 
-          | {message.title}
-          div(class="text-paragraph-l smDown:text-left text-center mx-auto") We partner with startups and growth-stage companies to design, build and ship in Web3
-    +if("themeIconName === 'moon'")
-      +section-hero-pages()
-        PageTitle(id="{message.id}") 
-          | {message.title}
+    PageTitle(id="{message.id}") About Holdex
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")

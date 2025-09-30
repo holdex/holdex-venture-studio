@@ -2,6 +2,7 @@
   /* eslint-disable @typescript-eslint/no-unused-vars */
   import { goto } from '$app/navigation';
   import { page } from '$app/stores';
+  import { routesv2 } from '$lib/config';
   import Parser from '$components/BodyParser';
   import {
     feedEmptyIcon,
@@ -14,7 +15,6 @@
     UserGroup,
   } from '$components/Icons';
   import MetaTags from '$components/MetaTags/index.svelte';
-  import Hashtag from '$components/Hashtag/index.svelte';
   import Icon from '$components/Icons/index.svelte';
   import PageTitle from '$components/PageTitle/index.svelte';
 
@@ -23,32 +23,47 @@
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
-  import { routes } from '$lib/config';
-  import { parseQueryFilter } from '../util';
-  import { parseCommunityCoverImage, sanitizeHtml } from '$lib/utils';
+  import { parseQueryFilter } from './util';
 
-  import type {
-    Community,
-    Hashtag as HashtagType,
-    HashtagsConnectionEdge,
-    Message,
-  } from '$lib/types/api';
+  import type { Message } from '$lib/types/api';
   import type { PageData } from './$types';
 
   export let data: PageData;
 
+  const escapeHtml = (unsafe: string): string =>
+    unsafe
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
-  $: community = storeData?.community as Community;
-  $: communityCover = parseCommunityCoverImage(community);
-  $: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
+  $: ({ edges, totalCount, pageInfo } = storeData?.postedMessages || {
     edges: [],
     totalCount: 0,
     pageInfo: null,
   });
-  $: pageFilter = getPageFilter($page.url);
-  $: pageQ = getPageQ($page.url);
+  $: pageFilter = escapeHtml(getPageFilter($page.url) || '');
+  $: pageQ = escapeHtml(getPageQ($page.url) || '');
   $: isSearchMode = checkSearchMode($page.url);
+
+  $: metaTitle =
+    pageFilter.length > 0
+      ? `Search "${pageFilter}"`
+      : pageQ.length > 0
+        ? `Search Results for "${pageQ}"`
+        : 'At Holdex, we help innovators build the next Web3 products';
+
+  $: metaDescription =
+    pageFilter.length > 0 || pageQ.length > 0
+      ? `A list of "${pageFilter || pageQ}" articles.`
+      : 'We empower the next web3 innovators to build and accelerate blockchain adoption.';
+
+  metaTitle = metaTitle || 'At Holdex, we help innovators build the next web3 products';
+  metaDescription =
+    metaDescription || 'Discover blockchain resources, opportunities, and insights with Holdex.';
 
   let parseMessage = (message: Message, category: string) => {
     return Parser.parseViaCategory(message, category);
@@ -69,26 +84,6 @@
     const filter = url.searchParams.get('filter');
 
     return q || (filter && !['CREATED_AT', 'NET_UP_VOTES'].includes(filter));
-  };
-
-  let sortHashtags = (s: HashtagsConnectionEdge[]) => {
-    let values = s
-      .filter((a) => (a.node as HashtagType).postedMessagesTotalCount > 1)
-      .slice(0)
-      .sort(
-        (a, b) =>
-          (b.node as HashtagType).postedMessagesTotalCount -
-          (a.node as HashtagType).postedMessagesTotalCount
-      );
-
-    return values;
-  };
-
-  let isHashtagActive = (filter: string, tag: string) => {
-    if (!filter) return '';
-    return filter.toLowerCase() === tag.toLowerCase()
-      ? '!text-t1 !bg-l3 before:!border-accent1-default !shadow-tag-active'
-      : '';
   };
 
   let handleSort = (url: URL, filter: string) => {
@@ -118,12 +113,10 @@
 </script>
 
 <MetaTags
-  title="{community.tagline} | Holdex"
-  description={sanitizeHtml(community.tagline)}
-  path={routes.category(community.slug)}
-  imagePath={communityCover}
-  pageName={community.name}
+  title={metaTitle}
+  description={metaDescription}
+  path={$page.url.pathname}
+  imagePath="/og/index.png"
 />
 
-<template lang="pug" src="./template.pug">
-</template>
+<template lang="pug" src="./template.pug"></template>

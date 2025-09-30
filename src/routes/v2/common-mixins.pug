@@ -1,0 +1,37 @@
+mixin content-wrapper
+  .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
+    block
+
+mixin header-wrapper
+  .header-wrapper(
+    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+  )&attributes(attributes)
+    block
+
+mixin nav-crumbs
+  nav.crumbs: ul(class="flex items-center gap-3")
+    block
+
+mixin main-section
+  section.main(class="flex flex-col items-center xl-up:pt-18 pt-14.5 xs:pt-8")
+    block
+
+mixin primary-button(label)
+  button(
+    class="relative z-1 bg-accent1-default text-t4 text-cta shadow-button flex items-center justify-center py-1 px-4 rounded-xl transition-all focus:bg-accent1-default hover:bg-accent1-active dark:hover:shadow-button-hover disabled:cursor-not-allowed disabled:bg-l3 disabled:text-t3 disabled:shadow-none "
+  )&attributes(attributes)
+    span= label
+
+mixin button-icon-default
+  button(
+    class="relative inline-flex w-10 h-10 z-1 bg-l1 text-t3 border border-solid border-l5 shadow-secondary-button items-center justify-center p-1.75 rounded-2lg hover:text-t1 hover:!border-accent1-active focus:text-t1 focus:!border-accent1-active dark:bg-l3 dark:border-l3 dark:hover:shadow-secondary-button-hover"
+  )&attributes(attributes)
+    block
+
+mixin guideCard(href, title, subtitle, className = "")
+  a.card(
+    class=`group w-full h-full justify-center rounded-xl flex flex-col transition-colors border border-l4 px-8 py-7.25 smDown:p-6.5 gap-3.625 xs:gap-4 bg-center bg-cover bg-l1 hover:bg-l2 plain-link ${className}`
+    href=href
+  )
+    h2(class="relative inline-block text-t1 group-hover:text-accent1-default") #{title}
+    p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}

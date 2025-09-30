@@ -1,0 +1,21 @@
+include ../common-mixins
+include ../c/mixins
++main-section
+  +header-wrapper
+    +nav-crumbs
+      +crumbItemLink("/", "Holdex")
+      +crumbDelimiter
+      +crumbItemText("About")
+    +if("themeIconName !== 'moon'")
+      +section-hero-pages("/headerPages/about.png")
+        PageTitle(id="{message.id}") 
+          | {message.title}
+          div(
+            class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto px-[120px] smDown:px-0"
+          ) We partner with startups and growth-stage companies to design, build and ship in Web3
+    +if("themeIconName === 'moon'")
+      +section-hero-pages
+        PageTitle(id="{message.id}") 
+          | {message.title}
+  +content-wrapper
+    BodyRenderer(blocks="{message.blocks}")

@@ -9,9 +9,6 @@
 
   export let data: PageData;
 
-  $: theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
-  $: themeIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
-
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
   $: message = Parser.parse(storeData?.message as Message);

@@ -106,3 +106,8 @@ mixin portfolio-product-wrapper
     class="w-full grid grid-cols-2 smDown:grid-cols-1 2xl-up:gap-x-8 2xl-up:gap-y-7.25 xl-up:gap-x-4 xl-up:gap-y-4 gap-x-8 gap-y-7.25 smDown:gap-4"
   )&attributes(attributes)
     block
+
+mixin section-hero-pages(imageUrl)
+  - var bgAttachmentClass = "bg-local smDown:h-[20rem] h-[32rem] smDown:bg-center bg-cover rounded-2xl w-full flex items-center flex-col justify-end";
+  div(class=imageUrl ? bgAttachmentClass : "" style=imageUrl ? `background-image:url('${imageUrl}')` : "")
+    block
