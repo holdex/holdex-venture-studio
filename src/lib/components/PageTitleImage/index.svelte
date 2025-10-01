@@ -9,7 +9,7 @@
   let isChecked = false;
 
   const defaultClasses =
-    'text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s dark:text-white text-white';
+    'absolute bottom-0 left-1/2 -translate-x-1/2 text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s dark:text-white text-white w-full smDown:p-2';
 
   onMount(async () => {
     await tick();

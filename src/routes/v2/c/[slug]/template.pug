@@ -15,7 +15,7 @@ include ../mixins
         +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
         //- jobs pages
       +if("community.slug === 'jobs'")
-        +section-hero-pages("/headerPages/jobs.png")
+        +section-hero-pages("/headerPages/jobs.png", "/headerPages/effect.png")
           PageTitleImage(id="{community.id}") 
             | {community.name}
             div(
@@ -23,7 +23,7 @@ include ../mixins
             ) For passionate enthusiasts who are eager to build our decentralized future!
       //- learn pages
       +if("community.slug === 'learn'")
-        +section-hero-pages("/headerPages/learn.png")
+        +section-hero-pages("/headerPages/learn.png", "/headerPages/effect.png")
           PageTitleImage(id="{community.id}") 
             | {community.name}
             div(class="smDown:text-paragraph-l text-h4-l font-normalsmDown:text-left text-center mx-auto") Crypto beginner guides and battle tested knowledge
