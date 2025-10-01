@@ -6,16 +6,11 @@ include ../c/mixins
       +crumbItemLink("/", "Holdex")
       +crumbDelimiter
       +crumbItemText("About")
-    +if("themeIconName !== 'moon'")
-      +section-hero-pages("/headerPages/about.png")
-        PageTitle(id="{message.id}") 
-          | {message.title}
-          div(
-            class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto px-[120px] smDown:px-0"
-          ) We partner with startups and growth-stage companies to design, build and ship in Web3
-    +if("themeIconName === 'moon'")
-      +section-hero-pages
-        PageTitle(id="{message.id}") 
-          | {message.title}
+    +section-hero-pages("/headerPages/about.png")
+      PageTitleImage(id="{message.id}") 
+        | {message.title}
+        div(
+          class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal smDown:text-left text-center mx-auto px-[120px] smDown:px-0 dark:text-white text-white"
+        ) We partner with startups and growth-stage companies to design, build and ship in Web3
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
