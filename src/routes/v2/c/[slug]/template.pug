@@ -18,7 +18,9 @@ include ../mixins
         +section-hero-pages("/headerPages/jobs.png")
           PageTitleImage(id="{community.id}") 
             | {community.name}
-            div(class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto") For passionate enthusiasts who are eager to build our decentralized future!
+            div(
+              class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto smDown:mb-0 mb-3"
+            ) For passionate enthusiasts who are eager to build our decentralized future!
       //- learn pages
       +if("community.slug === 'learn'")
         +section-hero-pages("/headerPages/learn.png")
