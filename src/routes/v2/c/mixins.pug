@@ -108,6 +108,6 @@ mixin portfolio-product-wrapper
     block
 
 mixin section-hero-pages(imageUrl)
-  - var bgAttachmentClass = "bg-local smDown:h-[20rem] h-[32rem] smDown:bg-center bg-cover rounded-2xl w-full flex items-center flex-col justify-end";
+  - var bgAttachmentClass = "bg-local smDown:h-[20rem] h-[32rem] smDown:bg-center bg-cover rounded-2xl w-full flex items-center flex-col justify-end smDown:p-2";
   div(class=imageUrl ? bgAttachmentClass : "" style=imageUrl ? `background-image:url('${imageUrl}')` : "")
     block
