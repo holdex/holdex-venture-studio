@@ -43,7 +43,7 @@
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
-  $: communityCover = parseCommunityCoverImage(community);
+  $: communityCover = parseCommunityCoverImage(community, true);
   $: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
     edges: [],
     totalCount: 0,
