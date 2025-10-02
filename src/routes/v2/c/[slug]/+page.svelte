@@ -16,7 +16,7 @@
   import MetaTags from '$components/MetaTags/index.svelte';
   import Hashtag from '$components/Hashtag/index.svelte';
   import Icon from '$components/Icons/index.svelte';
-  import PageTitle from '$components/PageTitle/index.svelte';
+  import PageTitleImage from '$components/PageTitleImage/index.svelte';
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import Feed from '$components/Feed/index.svelte';

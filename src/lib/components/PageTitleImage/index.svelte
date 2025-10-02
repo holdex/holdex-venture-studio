@@ -9,10 +9,12 @@
   let isChecked = false;
 
   const defaultClasses =
-    'text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s';
+    'text-title-l font-satoshi text-center py-3.625 smDown:py-0 smDown:text-left xs:text-title-s dark:text-white text-white';
 
   onMount(async () => {
     await tick();
+    const result = await tick();
+    console.log(result, 'result tick');
     checkSingleLine();
   });
 
@@ -48,3 +50,5 @@
 <h1 class={finalClassName} {id} bind:this={headingElement}>
   <slot />
 </h1>
+
+<slot name="subtitle" />
