@@ -104,7 +104,7 @@
   title="Our Portfolio of Startups | Holdex"
   description="Companies that drive the adoption of decentralized technologies and inclusive DeFi services."
   path={routes.portfolio}
-  imagePath="/og/portfolio.png"
+  imagePath="/og/v2/portfolio.png"
 />
 
 <template lang="pug" src="./template.pug">

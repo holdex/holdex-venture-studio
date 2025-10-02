@@ -25,10 +25,14 @@ function findPos(obj: any) {
 
 export const sanitizeHtml = (s: string) => insane(s, {}, true);
 
-export function parseCommunityCoverImage(community: Community): string {
+export function parseCommunityCoverImage(community: Community, v2: boolean = false): string {
+  let url = `/og/index.png`;
+
   switch (community.slug) {
     case 'jobs':
-      return `/og/jobs.png`;
+      url = `/og/jobs.png`;
+      if (v2) url = `/og/v2/jobs.png`;
+      return url;
     case 'announcements':
       return `/og/announcements.png`;
     case 'learn':
@@ -36,9 +40,12 @@ export function parseCommunityCoverImage(community: Community): string {
     case 'case-studies':
       return `/og/case-studies.png`;
     case 'companies':
-      return `/og/portfolio.png`;
+      url = `/og/portfolio.png`;
+      if (v2) url = `/og/v2/portfolio.png`;
+      return url;
     default:
-      return `/og/index.png`;
+      if (v2) url = `/og/v2/index.png`;
+      return url;
   }
 }
 
