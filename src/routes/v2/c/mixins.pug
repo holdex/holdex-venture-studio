@@ -83,6 +83,17 @@ mixin messageHeader(title, subtitle, cover = null)
   if subtitle
     p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
 
+mixin messageHeaderEffect(title, subtitle, cover = null)
+  PageTitle&attributes(attributes)= title
+  if cover && cover !== ""
+    div(class="relative")
+    div(class="relative") 
+      div(class="absolute top-0 left-0 w-full h-full") 
+        img(src="/headerPages/effect.png" alt="effect" class="rounded-2xl w-full max-h-[544px] h-full")
+      img(src=cover alt=title class="rounded-2xl w-full max-h-[544px]")
+  if subtitle
+    p(class="text-subtitle-l text-t2 text-center smDown:text-left xs:text-subtitle-s w-full")= subtitle
+
 mixin feedRenderer
   +if("isSearchMode")
     +if("totalCount > 0")
@@ -111,6 +122,6 @@ mixin section-hero-pages(imageUrl, effectUrl)
   div(class="relative")
     div(class="relative") 
       div(class="absolute top-0 left-0 w-full h-full") 
-        img(src=effectUrl alt="effect" class="rounded-2xl w-full max-h-[544px]")
+        img(src=effectUrl alt="effect" class="rounded-2xl w-full max-h-[544px] h-full")
       img(src=imageUrl alt="image" class="rounded-2xl w-full max-h-[544px]")
     block
