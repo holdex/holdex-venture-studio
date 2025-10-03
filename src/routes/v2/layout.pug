@@ -244,7 +244,7 @@ mixin header
                 required
                 maxlength="160"
                 bind:value="{message}"
-                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-3.625 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-[#1c1f29] shadow-input rounded-xl p-3.625 text-footnote text-white transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-[#A2A7B8] hover:border-accent1-default autofill:fill-t1 autofill:hover:text-[#A2A7B8]"
                 name="message"
                 placeholder="How can we help you?"
               )
@@ -255,7 +255,7 @@ mixin header
                 required
                 maxlength="40"
                 bind:value="{name}"
-                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-[#1c1f29] shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-white transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-[#A2A7B8] hover:border-accent1-default autofill:fill-t1 autofill:hover:text-[#A2A7B8]"
                 placeholder="Your name and company"
               )
               input(
@@ -265,7 +265,7 @@ mixin header
                 bind:value="{email}"
                 name="email"
                 on:blur="{displayError(email)}"
-                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-[#1c1f29] shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-white transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-[#A2A7B8] hover:border-accent1-default autofill:fill-t1 autofill:hover:text-[#A2A7B8]"
                 placeholder="Your email address"
               )
             p(
@@ -276,7 +276,7 @@ mixin header
             div(class="py-[8.5px] xs:py-0")
               Button(
                 label="Submit"
-                class="mobile:!w-full !h-[41px] xs:!h-[37px]"
+                class="mobile:!w-full !h-[41px] xs:!h-[37px] !bg-[#1c1f29] !text-[#A2A7B8]"
                 disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
                 isSubmitBtn="true"
               )
