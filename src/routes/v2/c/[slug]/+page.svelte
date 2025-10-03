@@ -95,7 +95,7 @@
   };
 
   let handleSort = (url: URL, filter: string) => {
-    const newUrl = url;
+    const newUrl = new URL(url);
 
     newUrl.searchParams.delete('q');
     newUrl.searchParams.set('filter', filter);
