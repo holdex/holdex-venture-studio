@@ -60,6 +60,9 @@ module.exports = {
       smDown: {
         raw: '(max-width: 991px)',
       },
+      smUp: {
+        raw: '(min-width: 992px)',
+      },
     },
     colors: {
       white: 'white',

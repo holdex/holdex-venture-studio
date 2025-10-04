@@ -25,9 +25,7 @@ mixin author
       +section-hero-pages("{message.cover}", "/headerPages/effect.png")
         PageTitleImage(id="{message.id}") 
           | {message.title}
-          div(
-            class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto smDown:mb-0 mb-3"
-          ) {message.subtitle}
+          div(class="smDown:text-paragraph-l text-h4-l font-normal text-center mx-auto smDown:mb-0 mb-3") {message.subtitle}
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
     .text-container(

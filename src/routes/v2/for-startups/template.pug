@@ -9,8 +9,6 @@ include ../c/mixins
     +section-hero-pages("/headerPages/for-startups.png", "/headerPages/effect.png")
       PageTitleImage(id="{message.id}") 
         | {message.title}
-        div(
-          class="smDown:text-paragraph-l text-h4-l font-normal smDown:text-left text-center mx-auto px-[120px] smDown:px-0"
-        ) We give startups a builder’s edge with hands-on expertise and founder-level support to accelerate your journey.
+        div(class="smDown:text-paragraph-l text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0") We give startups a builder’s edge with hands-on expertise and founder-level support to accelerate your journey.
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
