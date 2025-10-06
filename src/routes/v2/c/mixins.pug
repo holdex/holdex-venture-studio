@@ -108,9 +108,18 @@ mixin portfolio-product-wrapper
     block
 
 mixin section-hero-pages(imageUrl, effectUrl)
-  div(class="relative")
-    div(class="relative") 
-      div(class="absolute top-0 left-0 w-full h-full") 
-        img(src=effectUrl alt="effect" class="rounded-2xl w-full max-h-[544px] h-full")
-      img(src=imageUrl alt="image" class="rounded-2xl w-full max-h-[544px]")
+  div(class="relative w-full sm:min-h-[544px] sm:aspect-[1028/544]")
+    div(class="relative  w-full h-full") 
+      div(class="absolute inset-0") 
+        img(
+          src=effectUrl
+          alt="effect"
+          class="rounded-2xl w-full max-h-[544px] h-full sm:min-h-[544px] sm:aspect-[1028/544]"
+        )
+      img(
+        src=imageUrl
+        alt="image"
+        class="rounded-2xl w-full max-h-[544px] sm:min-h-[544px] sm:aspect-[1028/544]"
+      )
+    div(class="absolute inset-0 flex items-center justify-center p-4")
     block
