@@ -16,13 +16,13 @@ include ../mixins
         //- jobs pages
       +if("community.slug === 'jobs'")
         +section-hero-pages("/headerPages/jobs.png", "/headerPages/effect.png")
-          PageTitleImage(id="{community.id}") 
+          ArticleHeaderImage(id="{community.id}") 
             | {community.name}
             div(class="smDown:text-paragraph-l text-h4-l font-normal text-center mx-auto smDown:mb-0 mb-3") For passionate enthusiasts who are eager to build our decentralized future!
       //- learn pages
       +if("community.slug === 'learn'")
         +section-hero-pages("/headerPages/learn.png", "/headerPages/effect.png")
-          PageTitleImage(id="{community.id}") 
+          ArticleHeaderImage(id="{community.id}") 
             | {community.name}
             div(class="smDown:text-paragraph-l text-h4-l font-normal text-center mx-auto smDown:mb-0 mb-3") Crypto beginner guides and battle tested knowledge
       +content-wrapper(class="xs:!px-0")

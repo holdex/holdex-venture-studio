@@ -14,7 +14,6 @@
   onMount(async () => {
     await tick();
     const result = await tick();
-    console.log(result, 'result tick');
     checkSingleLine();
   });
 
