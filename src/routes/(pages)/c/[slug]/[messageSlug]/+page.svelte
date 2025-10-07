@@ -8,6 +8,7 @@
   import Icon from '$components/Icons/index.svelte';
   import MetaTags from '$components/MetaTags/index.svelte';
   import PageTitle from '$components/PageTitle/index.svelte';
+  import ArticleHeaderImage from '$components/ArticleHeaderImage/index.svelte';
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import Button from '$components/Button/index.svelte';
 
@@ -65,6 +66,9 @@
   let handleClick = (url: URL, item: string) => {
     scrollTarget = { url, item };
   };
+
+  // detect version from url query parameter
+  $: isV2 = $page.url.searchParams.get('v2') === 'true';
 </script>
 
 <MetaTags
