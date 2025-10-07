@@ -23,7 +23,7 @@
   title="For Startups"
   description="Learn about our partnership recipe that empowers the company success"
   path={routes.forStartups}
-  imagePath="/og/for-startups.png"
+  imagePath={isV2 ? '/og/v2/for-startups.png' : '/og/for-startups.png'}
 />
 
 <template lang="pug" src="./template.pug">
