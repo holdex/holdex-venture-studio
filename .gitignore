@@ -11,4 +11,3 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 src/lib/types/api.ts
-pnpm-lock.yaml
