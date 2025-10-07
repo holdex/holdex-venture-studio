@@ -17,6 +17,7 @@
   import Hashtag from '$components/Hashtag/index.svelte';
   import Icon from '$components/Icons/index.svelte';
   import PageTitle from '$components/PageTitle/index.svelte';
+  import ArticleHeaderImage from '$components/ArticleHeaderImage/index.svelte';
 
   import DefaultFeedItem from '$components/Feed/Item/index.svelte';
   import Feed from '$components/Feed/index.svelte';
@@ -36,11 +37,12 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
-
+  // detect version from url query parameter
+  $: isV2 = $page.url.searchParams.get('v2') === 'true';
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
-  $: communityCover = parseCommunityCoverImage(community);
+  $: communityCover = parseCommunityCoverImage(community, isV2);
   $: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
     edges: [],
     totalCount: 0,

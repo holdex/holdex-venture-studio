@@ -1,5 +1,6 @@
 include ../../common-mixins
 include ../mixins
+include ../../index-mixins
 
 +if("storeData")
   +main-section
@@ -10,8 +11,22 @@ include ../mixins
         +crumbItemLink("/c", "Studio")
         +crumbDelimiter
         +crumbItemText("{community.name}")
-      +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
-
+      +if("!isV2 && (community.slug !== 'jobs' || community.slug !== 'learn')")
+        +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
+      +if("isV2 && community.slug === 'jobs'")
+        +section-hero-pages("/headerPages/jobs.png", "/headerPages/effect.png")
+          ArticleHeaderImage(id="{community.id}") 
+            | {community.name}
+            div(
+              class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
+            ) For passionate enthusiasts who are eager to build our decentralized future!
+      +if("isV2 && community.slug === 'learn'")
+        +section-hero-pages("/headerPages/learn.png", "/headerPages/effect.png")
+          ArticleHeaderImage(id="{community.id}") 
+            | {community.name}
+            div(
+              class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
+            ) Crypto beginner guides and battle tested knowledge
       +content-wrapper(class="xs:!px-0")
         +if("community.slug !== 'jobs'")
           +filter-options
