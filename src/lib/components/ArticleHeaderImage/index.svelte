@@ -13,7 +13,6 @@
 
   onMount(async () => {
     await tick();
-    const result = await tick();
     checkSingleLine();
   });
 
