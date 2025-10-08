@@ -2,11 +2,17 @@ mixin content-wrapper
   .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block
 
-mixin header-wrapper
-  .header-wrapper(
-    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
-  )&attributes(attributes)
-    block
+mixin header-wrapper(isV2 = false)
+  +if("!isV2")
+    .header-wrapper(
+      class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start smDown:items-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+    )&attributes(attributes)
+      block
+    +else
+      .header-wrapper(
+        class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+      )&attributes(attributes)
+      block
 
 mixin nav-crumbs
   nav.crumbs: ul(class="flex items-center gap-3")
