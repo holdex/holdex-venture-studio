@@ -23,7 +23,7 @@
   title={message.title}
   description={message.subtitle}
   path={routes.about}
-  imagePath={isV2 ? '/og/v2/about.png' : '/og/about.png'}
+  imagePath={'/og/about.png'}
 />
 
 <template lang="pug" src="./template.pug">
