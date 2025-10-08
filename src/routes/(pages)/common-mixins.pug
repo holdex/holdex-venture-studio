@@ -11,7 +11,7 @@ mixin header-wrapper
   )&attributes(attributes)
     block
 
-mixin header-wrapper-center
+mixin header-wrapper-v2
   .header-wrapper(
     class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center mb-7.25 xs:mb-4 smDown:justify-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
   )&attributes(attributes)
@@ -46,7 +46,7 @@ mixin guideCard(href, title, subtitle, className = "")
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
 
 // hero pages section
-mixin section-hero-pages(imageUrl, effectUrl)
+mixin section-hero-image(imageUrl, effectUrl)
   div(class="relative w-full tb:min-h-auto tb:aspect-[1028/544]")
     div(class="relative w-full h-full") 
       div(class="absolute inset-0") 
