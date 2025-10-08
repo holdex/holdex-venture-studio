@@ -2,6 +2,9 @@ mixin content-wrapper
   .content-wrapper(class="flex items-start flex-col gap-7.25 xs:gap-4 max-w-[604px] w-full xs:px-4")&attributes(attributes)
     block
 
+mixin line-break
+  hr(class="w-[604px] h-0.5 border-t border-solid border-l4 my-[30px]")
+
 mixin header-wrapper(isV2 = false)
   +if("!isV2")
     .header-wrapper(

@@ -17,5 +17,7 @@ include ../index-mixins
             div(
               class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
             ) We partner with startups and growth-stage companies to design, build and ship in Web3
+  +if("isV2")
+    +line-break
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
