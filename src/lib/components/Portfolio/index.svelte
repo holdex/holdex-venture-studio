@@ -142,7 +142,6 @@
     'asset-management',
     'retail',
     'data',
-];
   ];
 </script>
 
