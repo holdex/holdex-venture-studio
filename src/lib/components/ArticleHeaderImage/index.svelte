@@ -9,11 +9,10 @@
   let isChecked = false;
 
   const defaultClasses =
-    'smDown:relative smDown:top-0 absolute bottom-0 left-1/2 -translate-x-1/2 text-title-l font-satoshi text-center py-3.625 smDown:py-0 xs:text-title-s dark:text-white smDown:text-black text-white w-full smDown:p-2';
+    'smDown:relative smDown:top-0 absolute bottom-0 left-1/2 -translate-x-1/2 text-title-l font-satoshi text-center py-2 smDown:py-0 xs:text-title-s dark:text-white smDown:text-black text-white w-full smDown:p-2';
 
   onMount(async () => {
     await tick();
-    const result = await tick();
     checkSingleLine();
   });
 
