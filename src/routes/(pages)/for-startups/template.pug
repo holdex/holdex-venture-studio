@@ -1,21 +1,28 @@
 include ../common-mixins
 include ../c/mixins
-include ../index-mixins
 
 +main-section
-  +header-wrapper
-    +nav-crumbs
-      +crumbItemLink("/", "Holdex")
-      +crumbDelimiter
-      +crumbItemText("For Startups")
-    +if("!isV2")
+  +if("!isV2")
+    +header-wrapper
+      +nav-crumbs
+        +crumbItemLink("/", "Holdex")
+        +crumbDelimiter
+        +crumbItemText("For Startups")
       PageTitle(id="{message.id}") {message.title}
-      +else
-        +section-hero-pages("/headerPages/for-startups.png", "/headerPages/effect.png")
+    +content-wrapper
+      BodyRenderer(blocks="{message.blocks}")
+    +else
+      +header-wrapper-v2
+        +nav-crumbs
+          +crumbItemLink("/", "Holdex")
+          +crumbDelimiter
+          +crumbItemText("For Startups")
+        +section-hero-image("/headerPages/for-startups.png", "/headerPages/effect.png")
           ArticleHeaderImage(id="{message.id}") 
             | {message.title}
             div(
               class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
             ) We give startups a builder’s edge with hands-on expertise and founder-level
-  +content-wrapper
-    BodyRenderer(blocks="{message.blocks}")
+      +line-break
+      +content-wrapper
+        BodyRenderer(blocks="{message.blocks}")
