@@ -133,6 +133,11 @@
     'marketing',
     'KOLs',
     'influencers',
+    'backtesting',
+    'algorithmic',
+    'fintech',
+    'explorer',
+    'privacy',
   ];
 </script>
 
