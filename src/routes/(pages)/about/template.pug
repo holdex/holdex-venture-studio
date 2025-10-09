@@ -8,30 +8,19 @@ include ../c/mixins
         +crumbItemLink("/", "Holdex")
         +crumbDelimiter
         +crumbItemText("About")
-      +if("!isV2")
-        PageTitle(id="{message.id}") About Holdex
-        +else
-          +section-hero-image("/headerPages/about.png", "/headerPages/effect.png")
-            ArticleHeaderImage(id="{message.id}")
-              | {message.title}
-              div(
-                class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
-              ) We partner with startups and growth-stage companies to design, build and ship in Web3
+      PageTitle(id="{message.id}") About Holdex
     +else
       +header-wrapper-v2
         +nav-crumbs
           +crumbItemLink("/", "Holdex")
           +crumbDelimiter
           +crumbItemText("About")
-        +if("!isV2")
-          PageTitle(id="{message.id}") About Holdex
-          +else
-            +section-hero-image("/headerPages/about.png", "/headerPages/effect.png")
-              ArticleHeaderImage(id="{message.id}")
-                | {message.title}
-                div(
-                  class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
-                ) We partner with startups and growth-stage companies to design, build and ship in Web3
+        +section-hero-image("/headerPages/about.png", "/headerPages/effect.png")
+          ArticleHeaderImage(id="{message.id}")
+            | {message.title}
+            div(
+              class="smDown:text-paragraph-l smDown:p-1 text-h4-l font-normal text-center mx-auto px-[120px] smDown:px-0"
+            ) We partner with startups and growth-stage companies to design, build and ship in Web3
   +if("isV2")
     +line-break
   +content-wrapper
