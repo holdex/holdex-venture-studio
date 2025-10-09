@@ -138,6 +138,9 @@
     'fintech',
     'explorer',
     'privacy',
+    'governance',
+    'asset-management',
+    'retail',
   ];
 </script>
 
