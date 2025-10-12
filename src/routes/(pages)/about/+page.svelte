@@ -7,6 +7,7 @@
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
   import { page } from '$app/stores';
+  import ArticleHeaderImage from '$components/ArticleHeaderImage/index.svelte';
 
   export let data: PageData;
 
