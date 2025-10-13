@@ -1,11 +1,27 @@
 include ../common-mixins
 include ../c/mixins
 +main-section
-  +header-wrapper
-    +nav-crumbs
-      +crumbItemLink("/", "Holdex")
-      +crumbDelimiter
-      +crumbItemText("About")
-    PageTitle(id="{message.id}") About Holdex
+  +if("!isV2")
+    +header-wrapper
+      +nav-crumbs
+        +crumbItemLink("/", "Holdex")
+        +crumbDelimiter
+        +crumbItemText("About")
+      PageTitle(id="{message.id}") About Holdex
+    +else
+      +header-wrapper-v2
+        +nav-crumbs
+          +crumbItemLink("/", "Holdex")
+          +crumbDelimiter
+          +crumbItemText("About")
+        +section-hero-image("/header/about.png", "/header/effect.png")
+          div(
+            class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-wrap justify-center text-center dark:text-white smDown:text-black text-white"
+          )
+            ArticleHeaderImage(id="{message.id}")
+              | {message.title}
+            div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] max-w-[720px]") We partner with startups and growth-stage companies to design, build and ship in Web3
+  +if("isV2")
+    +line-break
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
