@@ -35,3 +35,28 @@ mixin guideCard(href, title, subtitle, className = "")
   )
     h2(class="relative inline-block text-t1 group-hover:text-accent1-default") #{title}
     p(class="group-hover:text-accent1-default w-full" textColor="text-t2") #{subtitle}
+
+mixin header-wrapper-v2
+  .header-wrapper(
+    class="flex flex-col gap-7.25 xs:gap-4 items-center justify-center smDown:justify-start max-w-[1028px] tb:max-w-[794px] smDown:max-w-[604px] xs:px-4 w-full"
+  )&attributes(attributes)
+    block
+
+mixin line-break
+  hr(class="w-[604px] h-0.5 border-t border-solid border-l4 smDown:my-4 my-7.25")&attributes(attributes)
+
+mixin section-hero-image(imageUrl, effectUrl)
+  div(class="relative w-full tb:min-h-auto tb:aspect-[1028/544]")
+    div(class="relative w-full h-full") 
+      div(class="absolute inset-0") 
+        img(
+          src=effectUrl
+          alt="hero effect"
+          class="rounded-2xl w-full max-h-[544px] h-full tb:min-h-auto tb:aspect-[1028/544]"
+        )
+      img(
+        src=imageUrl
+        alt="hero image"
+        class="rounded-2xl w-full max-h-[544px] tb:min-h-auto tb:aspect-[1028/544]"
+      )
+    block

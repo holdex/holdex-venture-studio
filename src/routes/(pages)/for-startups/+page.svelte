@@ -6,19 +6,23 @@
   import PageTitle from '$components/PageTitle/index.svelte';
   import { routes } from '$lib/config';
   import type { PageData } from './$types';
+  import { page } from '$app/stores';
 
   export let data: PageData;
 
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
   $: message = Parser.parse(storeData?.message as Message);
+
+  // detect version from url query parameter
+  $: isV2 = $page.url.searchParams.get('v2') === 'true';
 </script>
 
 <MetaTags
   title="For Startups"
   description="Learn about our partnership recipe that empowers the company success"
   path={routes.forStartups}
-  imagePath="/og/for-startups.png"
+  imagePath={isV2 ? '/og/v2/for-startups.png' : '/og/for-startups.png'}
 />
 
 <template lang="pug" src="./template.pug">
