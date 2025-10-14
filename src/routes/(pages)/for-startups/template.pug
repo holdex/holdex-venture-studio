@@ -15,12 +15,7 @@ include ../c/mixins
           +crumbDelimiter
           +crumbItemText("For Startups")
         +section-hero-image("/header/for-startups.png", "/header/effect.png")
-          div(
-            class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-wrap justify-center text-center dark:text-white smDown:text-black text-white"
-          )
-            ArticleHeaderImage(id="{message.id}") 
-              | {message.title}
-            div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] max-w-[720px]") We give startups a builder’s edge with hands-on expertise and founder-level support to accelerate your journey.
+          +title-subtitle-hero-image("{message.title}", "We give startups a builder’s edge with hands-on expertise and founder-level support to accelerate your journey.", "{message.id}")
   +if("isV2")
     +line-break
   +content-wrapper

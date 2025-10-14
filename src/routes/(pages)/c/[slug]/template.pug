@@ -42,12 +42,7 @@ include ../mixins
             +crumbDelimiter
             +crumbItemText("{community.name}")
           +section-hero-image("/header/jobs.png", "/header/effect.png")
-            div(
-              class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-wrap justify-center text-center dark:text-white smDown:text-black text-white"
-            )
-              ArticleHeaderImage(id="{community.id}") 
-                | {community.name}
-              div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] w-full") For passionate enthusiasts who are eager to build our decentralized future!
+            +title-subtitle-hero-image("{community.name}", "For passionate enthusiasts who are eager to build our decentralized future!", "{community.id}")
         +line-break
         +content-wrapper(class="xs:!px-4")
           +if("community.hashtags && community.hashtags.totalCount > 0")
