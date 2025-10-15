@@ -83,12 +83,7 @@ mixin author
           +crumbItemLink("/c/{storeData.community.slug}", "{storeData.community.name}")
         +if("message.cover")
           +section-hero-image("{message.cover}", "/header/effect.png")
-            div(
-              class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-wrap justify-center text-center dark:text-white smDown:text-black text-white"
-            )
-              ArticleHeaderImage(id="{message.id}") 
-                | {message.title}
-              div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] w-full") {message.subtitle}
+            +article-title-subtitle("{message.title}", "{message.subtitle}", "{message.id}")
           +else
             +messageHeader("{message.title}", "{message.subtitle}")
         .text-container(
