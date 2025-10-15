@@ -15,12 +15,7 @@ include ../c/mixins
           +crumbDelimiter
           +crumbItemText("About")
         +section-hero-image("/header/about.png", "/header/effect.png")
-          div(
-            class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-wrap justify-center text-center dark:text-white smDown:text-black text-white"
-          )
-            ArticleHeaderImage(id="{message.id}")
-              | {message.title}
-            div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] max-w-[720px]") We partner with startups and growth-stage companies to design, build and ship in Web3
+          +article-title-subtitle("{message.title}", "We partner with startups and growth-stage companies to design, build and ship in Web3", "{message.id}")
   +if("isV2")
     +line-break
   +content-wrapper
