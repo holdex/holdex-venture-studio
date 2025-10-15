@@ -60,3 +60,10 @@ mixin section-hero-image(imageUrl, effectUrl)
         class="rounded-2xl w-full max-h-[544px] tb:min-h-auto tb:aspect-[1028/544]"
       )
     block
+
+mixin article-title-subtitle(title, subtitle, id)
+  div(
+    class="smDown:relative absolute inset-x-0 bottom-0 mx-auto flex flex-col items-center justify-center text-center dark:text-white smDown:text-black text-white"
+  )
+    ArticleHeaderImage(id=id)= title
+    div(class="smDown:text-subtitle-s text-subtitle-xl leading-[29px] max-w-[720px]")= subtitle
