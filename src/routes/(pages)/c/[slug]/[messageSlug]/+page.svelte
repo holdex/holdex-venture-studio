@@ -10,6 +10,7 @@
   import PageTitle from '$components/PageTitle/index.svelte';
   import TextParagraph from '$components/TextParagraph/index.svelte';
   import Button from '$components/Button/index.svelte';
+  import ArticleHeaderImage from '$components/ArticleHeaderImage/index.svelte';
 
   import { timeFormat, extendedTimeFormat } from '$components/DateManager';
   import { formatNumber } from '$components/NumbersManager';
@@ -20,6 +21,9 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
+
+  // detect version from url query parameter
+  $: isV2 = $page.url.searchParams.get('v2') === 'true';
 
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
