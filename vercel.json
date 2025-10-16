@@ -490,6 +490,10 @@
       "destination": "/c/announcements/for-startups"
     },
     {
+      "source": "/c/announcements/holdex-is-heading-to-consensus-in-hong-kong-meet-us-there",
+      "destination": "/c/announcements/holdex-is-heading-to-crypto-blockchain-events"
+    },
+    {
       "source": "/x/holdex",
       "destination": "/c/announcements"
     },
