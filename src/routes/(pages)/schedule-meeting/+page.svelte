@@ -61,6 +61,7 @@
   title="Schedule Meeting"
   description="Schedule a meeting with us to discuss your startup's needs"
   path={routes.scheduleMeeting}
+  imagePath="/og/schedule-meeting.png"
 />
 
 <template lang="pug" src="./template.pug"></template>
