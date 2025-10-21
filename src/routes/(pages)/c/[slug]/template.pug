@@ -3,19 +3,27 @@ include ../mixins
 
 +if("storeData")
   +main-section
-    +header-wrapper-v2
-      +nav-crumbs
-        +crumbItemLink("/", "Holdex")
-        +crumbDelimiter
-        +crumbItemLink("/c", "Studio")
-        +crumbDelimiter
-        +crumbItemText("{community.name}")
-      +if("community.slug !== 'jobs'")
+    +if("community.slug !== 'jobs'")
+      +header-wrapper
+        +nav-crumbs
+          +crumbItemLink("/", "Holdex")
+          +crumbDelimiter
+          +crumbItemLink("/c", "Studio")
+          +crumbDelimiter
+          +crumbItemText("{community.name}")
         +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
-        +else
-          +section-hero-image("/header/jobs.png", "/header/effect.png")
-            +article-title-subtitle("{community.name}", "For passionate enthusiasts who are eager to build our decentralized future!", "{community.id}")
-    +line-break
+    +if("community.slug === 'jobs'")
+      +header-wrapper-v2
+        +nav-crumbs
+          +crumbItemLink("/", "Holdex")
+          +crumbDelimiter
+          +crumbItemLink("/c", "Studio")
+          +crumbDelimiter
+          +crumbItemText("{community.name}")
+        +section-hero-image("/header/jobs.png", "/header/effect.png")
+          +article-title-subtitle("{community.name}", "For passionate enthusiasts who are eager to build our decentralized future!", "{community.id}")
+    +if("community.slug === 'jobs'")
+      +line-break
     +content-wrapper(class="xs:!px-4")
       +if("community.slug !== 'jobs'")
         +filter-options
