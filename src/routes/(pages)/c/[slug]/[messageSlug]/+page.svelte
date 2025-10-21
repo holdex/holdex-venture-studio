@@ -22,9 +22,6 @@
 
   export let data: PageData;
 
-  // detect version from url query parameter
-  $: isV2 = $page.url.searchParams.get('v2') === 'true';
-
   $: ({ store } = data);
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
