@@ -13,6 +13,28 @@ mixin author
       )
     +else {message._author.name}
 
+mixin author-v2
+  +if("message.docAuthors.length > 0")
+    +each("message.docAuthors as author, i")
+      +if("i !== 0")
+        span.mr-2 &amp;
+      div(class="flex gap-2 justify-end smDown:justify-start")
+        +if("getAvatarUrl(author.name) !== undefined")
+          <img src={getAvatarUrl(author.name)} alt={author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
+        +inline-link("{author.url}", "{author.name}")(
+          class="xs:text-paragraph-s bg-transparent"
+          target="_blank"
+          rel="noreferrer"
+        )
+    +else
+      div(class="flex gap-2 justify-end smDown:justify-start")
+        <img src={message._author.avatarUrl} alt={message._author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
+        +inline-link("{message._author.name}", "{message._author.name}")(
+          class="xs:text-paragraph-s bg-transparent"
+          target="_blank"
+          rel="noreferrer"
+        )
+
 +main-section
   +header-wrapper-v2(class="mb-7.25 xs:mb-4")
     +nav-crumbs
@@ -27,24 +49,16 @@ mixin author
       +else
         +messageHeader("{message.title}", "{message.subtitle}")
     .text-container(
-      class="flex flex-row w-full items-center justify-between py-7 border-y border-solid border-l4 smDown:flex-col smDown:justify-start smDown:items-start smDown:py-4"
+      class="flex flex-row mobile:w-full w-[604px] items-center justify-between pb-7 border-b border-solid border-l4 mobile:flex-col mobile:justify-start mobile:items-start mobile:pb-4"
     ) 
       .text-content(class!="flex flex-col items-start")
-        TextParagraph(textColor="text-t3")
+        TextParagraph(textColor="text-t3" class="!w-48")
           time(
             datetime="{timeFormat(message.createdAt, 'YYYY-MM-DD')}"
             title="{extendedTimeFormat(message.createdAt)}"
-          ) {timeFormat(message.createdAt)} {message.updatedAt ? '| Updated ' + timeFormat(message.updatedAt) : ''}
+          ) {timeFormat(message.createdAt)}
       .text-content(class!="flex flex-col smDown:gap-4")
-        TextParagraph(class="flex flex-wrap justify-end smDown:justify-start" textColor="text-t3") #[span.mr-1 By] #[+author]
-        +if("message.isGoogleDoc")
-          .edit-wrapper(class="flex gap-2 justify-end smDown:justify-start")
-            TextParagraph(class="flex" textColor="text-t3") Have a suggestion?
-            +inline-link("{message.isGoogleDoc}", "Edit Article")(
-              class="xs:text-paragraph-s"
-              target="_blank"
-              rel="noreferrer"
-            )
+        TextParagraph(class="flex flex-wrap justify-end smDown:justify-start" textColor="text-t3") #[span.mr-2 By] #[+author-v2]
   +content-wrapper
     +if("message.tocs && message.tocs.length > 0")
       details(

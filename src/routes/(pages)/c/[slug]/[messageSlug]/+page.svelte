@@ -27,6 +27,23 @@
   $: community = storeData?.community as Community;
   $: message = Parser.parseFromCategory(community);
 
+  // Helper to get avatarUrl by author name
+  const avatarUrl = [
+    {
+      name: 'Vadim Zolotokrylin',
+      avatarUrl: 'https://storage.googleapis.com/holdex-public/thread/About%20Holdex/Vadim.jpg',
+    },
+    {
+      name: 'Mark Curchin',
+      avatarUrl: 'https://storage.googleapis.com/holdex-public/thread/About%20Holdex/Mark.jpg',
+    },
+  ];
+
+  let getAvatarUrl = (name: string) => {
+    const found = avatarUrl.find((item) => item.name === name);
+    return found ? found.avatarUrl : undefined;
+  };
+
   let renderTocPadding = (level: 'h2' | 'h3' | 'h4') => {
     switch (level) {
       case 'h3':
