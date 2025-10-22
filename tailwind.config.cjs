@@ -288,7 +288,6 @@ module.exports = {
     extend: {
       lineHeight: {
         14.5: '14.5px',
-        29: '29px',
       },
       spacing: {
         0.75: '0.1875rem',
