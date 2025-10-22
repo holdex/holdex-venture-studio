@@ -1,22 +1,13 @@
 include ../common-mixins
 include ../c/mixins
 +main-section
-  +if("!isV2")
-    +header-wrapper
-      +nav-crumbs
-        +crumbItemLink("/", "Holdex")
-        +crumbDelimiter
-        +crumbItemText("About")
-      PageTitle(id="{message.id}") About Holdex
-    +else
-      +header-wrapper-v2
-        +nav-crumbs
-          +crumbItemLink("/", "Holdex")
-          +crumbDelimiter
-          +crumbItemText("About")
-        +section-hero-image("/header/about.png", "/header/effect.png")
-          +article-title-subtitle("{message.title}", "We partner with startups and growth-stage companies to design, build and ship in Web3", "{message.id}")
-  +if("isV2")
-    +line-break
+  +header-wrapper-v2
+    +nav-crumbs
+      +crumbItemLink("/", "Holdex")
+      +crumbDelimiter
+      +crumbItemText("About")
+    +section-hero-image("/header/about.png", "/header/effect.png")
+      +article-title-subtitle("{message.title}", "We partner with startups and growth-stage companies to design, build and ship in Web3", "{message.id}")
+  +line-break
   +content-wrapper
     BodyRenderer(blocks="{message.blocks}")
