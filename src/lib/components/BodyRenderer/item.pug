@@ -1,7 +1,12 @@
 +if("typeof item === 'object'")
   Switch(condition="{item.type}")
     Case(value="heading")
-      svelte:element(this="{item.level}" class="heading pb-3.625" id="{item.id}" bind:this="{headingElement}")
+      svelte:element(
+        this="{item.level}"
+        class="heading pb-3.625 leading-34"
+        id="{item.id}"
+        bind:this="{headingElement}"
+      )
         +each("item.items as hItem")
           InlineBlock(item="{hItem}")
     Case(value="paragraph")
