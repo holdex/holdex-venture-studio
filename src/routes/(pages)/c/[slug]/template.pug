@@ -2,9 +2,9 @@ include ../../common-mixins
 include ../mixins
 
 +if("storeData")
-  +if("!isV2 || (isV2 && community.slug !== 'jobs')")
-    +main-section
-      +header-wrapper(class="!mb-0")
+  +main-section
+    +if("community.slug !== 'jobs'")
+      +header-wrapper
         +nav-crumbs
           +crumbItemLink("/", "Holdex")
           +crumbDelimiter
@@ -12,53 +12,35 @@ include ../mixins
           +crumbDelimiter
           +crumbItemText("{community.name}")
         +messageHeader("{community.name}", "{community.tagline}")(id="{community.id}")
-        +content-wrapper(class="xs:!px-0")
-          +if("community.slug !== 'jobs'")
-            +filter-options
-          +if("community.hashtags && community.hashtags.totalCount > 0")
-            ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
-              +each("sortHashtags(community.hashtags.edges) as tag (tag.node.id)")
-                Hashtag(
-                  tag="{'#'}{tag.node.id}"
-                  class="{isHashtagActive(pageFilter, tag.node.id)}"
-                  onClick!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
-                )
-          +feedRenderer
-            Feed(
-              feedType="{community.slug === 'jobs' ? 'resource' : 'default'}"
-              edges="{edges}"
-              totalCount="{totalCount}"
-              isRefetching="{isRefetching}"
-              pageInfo="{pageInfo}"
-              loadMore="{loadMore}"
+    +if("community.slug === 'jobs'")
+      +header-wrapper-v2
+        +nav-crumbs
+          +crumbItemLink("/", "Holdex")
+          +crumbDelimiter
+          +crumbItemLink("/c", "Studio")
+          +crumbDelimiter
+          +crumbItemText("{community.name}")
+        +section-hero-image("/header/jobs.png", "/header/effect.png")
+          +article-title-subtitle("{community.name}", "For passionate enthusiasts who are eager to build our decentralized future!", "{community.id}")
+    +if("community.slug === 'jobs'")
+      +line-break
+    +content-wrapper(class="xs:!px-4")
+      +if("community.slug !== 'jobs'")
+        +filter-options
+      +if("community.hashtags && community.hashtags.totalCount > 0")
+        ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
+          +each("sortHashtags(community.hashtags.edges) as tag (tag.node.id)")
+            Hashtag(
+              tag="{'#'}{tag.node.id}"
+              class="{isHashtagActive(pageFilter, tag.node.id)}"
+              onClick!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
             )
-    +else
-      +main-section
-        +header-wrapper-v2
-          +nav-crumbs
-            +crumbItemLink("/", "Holdex")
-            +crumbDelimiter
-            +crumbItemLink("/c", "Studio")
-            +crumbDelimiter
-            +crumbItemText("{community.name}")
-          +section-hero-image("/header/jobs.png", "/header/effect.png")
-            +article-title-subtitle("{community.name}", "For passionate enthusiasts who are eager to build our decentralized future!", "{community.id}")
-        +line-break
-        +content-wrapper(class="xs:!px-4")
-          +if("community.hashtags && community.hashtags.totalCount > 0")
-            ul.hashtags-list(class="flex items-start gap-3 flex-wrap w-full")
-              +each("sortHashtags(community.hashtags.edges) as tag (tag.node.id)")
-                Hashtag(
-                  tag="{'#'}{tag.node.id}"
-                  class="{isHashtagActive(pageFilter, tag.node.id)}"
-                  onClick!="{() => handleSort($page.url, tag.node.id.toLowerCase())}"
-                )
-          +feedRenderer
-            Feed(
-              feedType="{community.slug === 'jobs' ? 'resource' : 'default'}"
-              edges="{edges}"
-              totalCount="{totalCount}"
-              isRefetching="{isRefetching}"
-              pageInfo="{pageInfo}"
-              loadMore="{loadMore}"
-            )
+      +feedRenderer
+        Feed(
+          feedType="{community.slug === 'jobs' ? 'resource' : 'default'}"
+          edges="{edges}"
+          totalCount="{totalCount}"
+          isRefetching="{isRefetching}"
+          pageInfo="{pageInfo}"
+          loadMore="{loadMore}"
+        )
