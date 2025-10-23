@@ -190,7 +190,7 @@ module.exports = {
       'h3-s': [
         '24px',
         {
-          lineHeight: '26px',
+          lineHeight: '34px',
           fontWeight: '900',
         },
       ],
@@ -288,7 +288,6 @@ module.exports = {
     extend: {
       lineHeight: {
         14.5: '14.5px',
-        34: '34px',
       },
       spacing: {
         0.75: '0.1875rem',
