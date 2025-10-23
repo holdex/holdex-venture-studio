@@ -38,13 +38,10 @@
 
   export let data: PageData;
 
-  // detect version from url query parameter
-  $: isV2 = $page.url.searchParams.get('v2') === 'true';
-
   $: ({ store, options: queryOptions } = data);
   $: ({ data: storeData } = $store);
   $: community = storeData?.community as Community;
-  $: communityCover = parseCommunityCoverImage(community, isV2);
+  $: communityCover = parseCommunityCoverImage(community);
   $: ({ edges, totalCount, pageInfo } = community?.postedMessages || {
     edges: [],
     totalCount: 0,

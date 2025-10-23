@@ -25,10 +25,10 @@ function findPos(obj: any) {
 
 export const sanitizeHtml = (s: string) => insane(s, {}, true);
 
-export function parseCommunityCoverImage(community: Community, isV2: boolean = false): string {
+export function parseCommunityCoverImage(community: Community): string {
   switch (community.slug) {
     case 'jobs':
-      return isV2 ? `/og/v2/jobs.png` : `/og/jobs.png`;
+      return `/og/v2/jobs.png`;
     case 'announcements':
       return `/og/announcements.png`;
     case 'learn':
