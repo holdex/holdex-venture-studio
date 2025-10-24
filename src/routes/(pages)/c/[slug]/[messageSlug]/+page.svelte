@@ -19,6 +19,7 @@
   import { parseCommunityCoverImage, scrollToElement } from '$lib/utils';
   import type { Community } from '$lib/types/api';
   import type { PageData } from './$types';
+  import { getContext } from 'svelte';
 
   export let data: PageData;
 
@@ -86,6 +87,9 @@
   let handleClick = (url: URL, item: string) => {
     scrollTarget = { url, item };
   };
+
+  // get deployment url
+  let deploymentUrl = getContext<string>('deploymentUrl');
 </script>
 
 <MetaTags
@@ -93,8 +97,12 @@
   description={message.subtitle ? message.subtitle : ''}
   pageType="article"
   path={routes.message(message.communitySlug, message.messageSlug)}
-  imagePath={message.cover ? undefined : '/default-cover.png'}
-  imageUrl={message.cover ? message.cover : undefined}
+  imagePath={message.ogCover ? undefined : '/default-cover.png'}
+  imageUrl={message.ogCover !== ''
+    ? message.ogCover
+    : message.cover !== ''
+      ? message.cover
+      : deploymentUrl + '/default-cover.png'}
 />
 
 <template lang="pug" src="./template.pug">

@@ -30,6 +30,7 @@ type ParsedMessage = Partial<Message> & {
   parsedBody: Record<string, any>;
   tocs: any[] | null;
   cover?: string;
+  ogCover?: string;
   isGoogleDoc: string;
 };
 
@@ -42,6 +43,7 @@ class Parser {
     );
     const blocks = Parser.parseBlocks(parsedBlocks);
     const cover = Parser.parseThreadCover(blocks);
+    const ogCover = Parser.parseThreadOgCover(blocks);
     const tocs = blocks.find((block) => block.type === 'toc');
 
     return {
@@ -53,7 +55,8 @@ class Parser {
       parsedBody,
       tocs: tocs?.data,
       subtitle,
-      cover
+      cover,
+      ogCover,
     };
   }
 
@@ -142,7 +145,13 @@ class Parser {
   }
 
   private static parseThreadCover(blocks: any[]): string | undefined {
-    const found = blocks.find(b => b.type === "cover");
+    const found = blocks.find((b) => b.type === 'cover');
+    if (found) return found.data.text;
+    return undefined;
+  }
+
+  private static parseThreadOgCover(blocks: any[]): string | undefined {
+    const found = blocks.find((b) => b.type === 'ogCover');
     if (found) return found.data.text;
     return undefined;
   }
