@@ -506,6 +506,15 @@ const parseCoverBlock = (block: CoverBlock) => {
   };
 };
 
+const parseOgCoverBlock = (block: CoverBlock) => {
+  return {
+    type: 'ogCover',
+    data: {
+      text: getOptimizedUrl(block.data.text, '_1500x1500'),
+    },
+  };
+};
+
 const parseTable = (block: TableBlock) => {
   if (typeof block.data.content[0][0] === 'string') {
     return {
@@ -602,6 +611,7 @@ const htmlParser = HTMLParser({
   image: parseImage,
   list: parseList,
   cover: parseCoverBlock,
+  ogCover: parseOgCoverBlock,
   nestedList: parseNestedList,
   paragraph: parseParagraph,
   table: parseTable,
