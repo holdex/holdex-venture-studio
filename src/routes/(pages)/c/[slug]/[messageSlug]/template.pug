@@ -28,12 +28,17 @@ mixin author-v2
         )
     +else
       div(class="flex gap-2 justify-end smDown:justify-start")
-        <img src={message._author.avatarUrl} alt={message._author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
-        +inline-link("{message._author.name}", "{message._author.name}")(
-          class="xs:text-paragraph-s bg-transparent"
-          target="_blank"
-          rel="noreferrer"
-        )
+        +if("getAvatarUrl(message._author.name) !== undefined")
+          <img src={getAvatarUrl(message._author.name)} alt={message._author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
+          +elseif("message._author.avatarUrl !== ''")
+            <img src={message._author.avatarUrl} alt={message._author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
+        +if("getAuthorUrl(message._author.name) !== undefined")
+          +inline-link("{getAuthorUrl(message._author.name)}", "{getAuthorData(message._author.name).name}")(
+            class="xs:text-paragraph-s bg-transparent"
+            target="_blank"
+            rel="noreferrer"
+          )
+          +else {message._author.name}
 
 +main-section
   +header-wrapper-v2(class="mb-7.25 xs:mb-4")

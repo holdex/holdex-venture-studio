@@ -28,21 +28,45 @@
   $: community = storeData?.community as Community;
   $: message = Parser.parseFromCategory(community);
 
+  // get deployment url
+  let deploymentUrl = getContext<string>('deploymentUrl');
+
   // Helper to get avatarUrl by author name
-  const avatarUrl = [
+  const author = [
     {
       name: 'Vadim Zolotokrylin',
       avatarUrl: 'https://storage.googleapis.com/holdex-public/thread/About%20Holdex/Vadim.jpg',
+      authorUrl: deploymentUrl + '/c/learn/vadim-zolotokrylin',
     },
     {
       name: 'Mark Curchin',
       avatarUrl: 'https://storage.googleapis.com/holdex-public/thread/About%20Holdex/Mark.jpg',
+      authorUrl: deploymentUrl + '/c/learn/mark-curchin',
     },
   ];
 
   let getAvatarUrl = (name: string) => {
-    const found = avatarUrl.find((item) => item.name === name);
+    const found = author.find((item) => {
+      const nameParts = item.name.split(' ');
+      return item.name === name || nameParts.includes(name);
+    });
     return found ? found.avatarUrl : undefined;
+  };
+
+  let getAuthorUrl = (name: string) => {
+    const found = author.find((item) => {
+      const nameParts = item.name.split(' ');
+      return item.name === name || nameParts.includes(name);
+    });
+    return found ? found.authorUrl : undefined;
+  };
+
+  let getAuthorData = (name: string) => {
+    const found = author.find((item) => {
+      const nameParts = item.name.split(' ');
+      return item.name === name || nameParts.includes(name);
+    });
+    return found ? found : undefined;
   };
 
   let renderTocPadding = (level: 'h2' | 'h3' | 'h4') => {
@@ -84,9 +108,6 @@
   let handleClick = (url: URL, item: string) => {
     scrollTarget = { url, item };
   };
-
-  // get deployment url
-  let deploymentUrl = getContext<string>('deploymentUrl');
 </script>
 
 <MetaTags
