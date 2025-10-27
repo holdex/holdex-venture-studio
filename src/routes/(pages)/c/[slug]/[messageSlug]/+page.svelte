@@ -45,29 +45,16 @@
     },
   ];
 
-  let getAvatarUrl = (name: string) => {
-    const found = author.find((item) => {
+  const findAuthor = (name: string) => {
+    return author.find((item) => {
       const nameParts = item.name.split(' ');
       return item.name === name || nameParts.includes(name);
     });
-    return found ? found.avatarUrl : undefined;
   };
 
-  let getAuthorUrl = (name: string) => {
-    const found = author.find((item) => {
-      const nameParts = item.name.split(' ');
-      return item.name === name || nameParts.includes(name);
-    });
-    return found ? found.authorUrl : undefined;
-  };
-
-  let getAuthorData = (name: string) => {
-    const found = author.find((item) => {
-      const nameParts = item.name.split(' ');
-      return item.name === name || nameParts.includes(name);
-    });
-    return found ? found : undefined;
-  };
+  let getAvatarUrl = (name: string) => findAuthor(name)?.avatarUrl;
+  let getAuthorUrl = (name: string) => findAuthor(name)?.authorUrl;
+  let getAuthorData = (name: string) => findAuthor(name);
 
   let renderTocPadding = (level: 'h2' | 'h3' | 'h4') => {
     switch (level) {
