@@ -7,6 +7,7 @@
   import { writable } from 'svelte/store';
   import { setContext } from 'svelte';
   import { browser } from '$app/environment';
+  import { slide, fade } from 'svelte/transition';
 
   /** internal deps */
   import {
