@@ -240,7 +240,11 @@ mixin header
                 placeholder="What can we help you with?"
               )
           +if("inquiryType && inquiryType === 'job'")
-            .content-wrapper(class="max-w-[604px] w-full relative" transition:slide="{{duration: 250}}")
+            .content-wrapper(
+              class="max-w-[604px] w-full relative"
+              in:slide="{{duration: 250}}"
+              out:slide="{{duration: 150}}"
+            )
               .job-cta(
                 class="min-h-[87px] mb-3.625 w-full flex items-center justify-between gap-4 rounded-xl border border-l4 bg-l1 dark:bg-l2 px-3.625 py-3.625 xs:flex-col xs:items-start"
               )
@@ -250,7 +254,8 @@ mixin header
               +if("inquiryType && (inquiryType === 'partnership' || inquiryType === 'product' || inquiryType === 'tge')")
                 .content-wrapper(
                   class="max-w-[604px] w-full relative flex flex-col items-center mb-3.625"
-                  transition:slide="{{duration: 250}}"
+                  in:slide="{{duration: 250}}"
+                  out:slide="{{duration: 150}}"
                 )
                   div(
                     class="border-decoration w-full flex flex-col items-start sm-up:flex-row sm-up:items-center sm-up:justify-center gap-4 rounded-xl border border-l4 bg-l2 px-3.625 py-7 border-decoration-{$themeContext}"
@@ -300,7 +305,8 @@ mixin header
                       method="POST"
                       action="/"
                       on:submit|preventDefault="{onContactFormSubmit}"
-                      transition:slide="{{duration: 250}}"
+                      in:slide="{{duration: 250}}"
+                      out:slide="{{duration: 150}}"
                     )
                       .input-group(class="mb-4")
                         textarea(
