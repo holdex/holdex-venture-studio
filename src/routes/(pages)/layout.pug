@@ -233,35 +233,65 @@ mixin header
           div(class="max-w-[604px] w-full relative")
             h4(class="text-h4-l xs:text-h4-s py-3.625 xs:pt-0 xs:pb-4") Contact Us
             p(class="xs:text-paragraph-s text-t2 mb-7.25 xs:mb-6") We'd love to hear from you on discussing potential projects, intriguing ideas, and new opportunities.
-            .input-group(class="mb-7.25 xs:mb-6")
-              select(
+            .input-group(class="mb-3.625")
+              InputSelect(
                 bind:value="{inquiryType}"
-                class="h-10.875 relative w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl px-3.625 py-3 text-footnote leading-14.5 text-t1 transition-all hover:border-accent1-default dark:bg-l2 cursor-pointer"
+                options="{inquiryOptions}"
+                placeholder="What can we help you with?"
               )
-                option(value="job") Apply for a job
-                option(value="partnership") Propose partnership
-                option(value="product") Need help with my product
-                option(value="tge") Need help with TGE
-                option(value="other") Other
           +if("inquiryType === 'job'")
-            .content-wrapper(class="max-w-[604px] w-full relative flex flex-col items-center")
-              p(class="text-paragraph-l xs:text-paragraph-s text-t2 mb-6 text-center") Select the job and submit your application.
-              Button(label="View Jobs" href="{routes.jobs}" class="!h-[41px] xs:!h-[37px]")
+            .content-wrapper(class="max-w-[604px] w-full relative")
+              .job-cta(
+                class="min-h-[87px] mb-3.625 w-full flex items-center justify-between gap-4 rounded-xl border border-l4 bg-l1 dark:bg-l2 px-3.625 py-3.625 xs:flex-col xs:items-start"
+              )
+                p(class="text-paragraph-l text-t2 xs:text-paragraph-s") Select the job and submit your application
+                Button(label="View Jobs" href="{routes.jobs}" class="!h-[41px] xs:!h-[37px]")
             +else
               +if("inquiryType === 'partnership' || inquiryType === 'product' || inquiryType === 'tge'")
-                .content-wrapper(class="max-w-[604px] w-full relative flex flex-col items-center")
-                  p(class="text-paragraph-l xs:text-paragraph-s text-t2 mb-4 text-center") Talk to me in
-                  .social-links(class="flex items-center gap-6 justify-center mb-6")
-                    +social-link("https://www.linkedin.com/in/vadim-zolotokrylin/", "{@html socialIcons.linkedin}")(
-                      class="!w-10 !h-10 !m-0"
+                .content-wrapper(
+                  class="max-w-[604px] w-full relative flex flex-col items-center mb-3.625"
+                )
+                  div(
+                    class="border-decoration w-full flex flex-col items-start sm-up:flex-row sm-up:items-center sm-up:justify-center gap-4 rounded-xl border border-l4 bg-l2 px-3.625 py-7 border-decoration-{$themeContext}"
+                  )
+                    div(
+                      class="flex flex-col items-start gap-3.625 sm-up:flex-row sm-up:items-center sm-up:gap-4"
                     )
-                    +social-link("https://t.me/VadimZolotokrylin", "{@html socialIcons.telegram}")(
-                      class="!w-10 !h-10 !m-0"
-                    )
-                    +social-link("https://twitter.com/zolotokrylin", "{@html socialIcons.twitter}")(
-                      class="!w-10 !h-10 !m-0"
-                    )
-                  p(class="text-paragraph-l xs:text-paragraph-s text-t2 text-center") CEO at Holdex, Vadim Zolotokrylin
+                      img(
+                        src="/members/vadim-zolotokrylin.png"
+                        alt="Vadim Zolotokrylin"
+                        class="h-14.5 w-14.5 rounded-xl"
+                      )
+                      div(class="flex flex-col items-start text-left font-satoshi text-h6-l xs:text-h6-s")
+                        Link(
+                          item="{{type: 'link', href: 'https://www.linkedin.com/in/vadim-zolotokrylin/', text: 'Vadim Zolotokrylin', title: 'Vadim Zolotokrylin'}}"
+                        ) Vadim Zolotokrylin
+                        span(class="!text-cta text-t2 w-fit font-inter") CEO at Holdex
+                    div(class="hidden tb-up:block w-px h-[58px] bg-white/10")
+                    div(class="flex flex-col")
+                      p(class="text-cta font-bold text-t2 font-inter") Talk to me on
+                      div(class="flex items-center gap-1.5")
+                        Button(
+                          href="https://www.linkedin.com/in/vadim-zolotokrylin/"
+                          aria-label="LinkedIn"
+                          variant="solo"
+                          size="small"
+                          class="!w-[29px] !h-[29px] !p-[7px] rounded-2sm bg-l3 dark:bg-[#252933] flex items-center justify-center shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_5px_8px_rgba(0,0,0,0.16)]"
+                        ) {@html socialIcons.linkedin}
+                        Button(
+                          href="https://t.me/VadimZolotokrylin"
+                          aria-label="Telegram"
+                          variant="solo"
+                          size="small"
+                          class="!w-[29px] !h-[29px] !p-[7px] rounded-2sm bg-l3 dark:bg-[#252933] flex items-center justify-center shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_5px_8px_rgba(0,0,0,0.16)]"
+                        ) {@html socialIcons.telegram}
+                        Button(
+                          href="https://twitter.com/zolotokrylin"
+                          aria-label="Twitter"
+                          variant="solo"
+                          size="small"
+                          class="!w-[29px] !h-[29px] !p-[7px] rounded-2sm bg-l3 dark:bg-[#252933] flex items-center justify-center shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_5px_8px_rgba(0,0,0,0.16)]"
+                        ) {@html socialIcons.twitter}
                 +else
                   form(
                     class="max-w-[604px] w-full relative"

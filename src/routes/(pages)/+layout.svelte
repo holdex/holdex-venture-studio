@@ -26,6 +26,7 @@
   import Button from '$components/Button/index.svelte';
   import type { SVGIconName } from '$components/Icons/types';
   import Link from '$components/BodyRenderer/Blocks/link.svelte';
+  import InputSelect from '$components/InputSelect/index.svelte';
 
   export let data;
 
@@ -39,6 +40,14 @@
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
   let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
   let inquiryType: 'job' | 'partnership' | 'product' | 'tge' | 'other' = 'other' as const;
+
+  const inquiryOptions = [
+    { value: 'job', label: 'Apply for a job' },
+    { value: 'partnership', label: 'Propose partnership' },
+    { value: 'product', label: 'Need help with my product' },
+    { value: 'tge', label: 'Need help with TGE' },
+    { value: 'other', label: 'Other' },
+  ];
 
   let themeContext = writable(themeIconName === 'sun' ? 'dark' : 'light');
   setContext('theme', themeContext);
@@ -234,4 +243,37 @@
     
     :global(header)
       display: block !important
+
+  .border-decoration
+    &:before
+      content: ""
+      position: absolute
+      top: -1px
+      left: 10%
+      width: 200px
+      height: 1px
+      background-repeat: no-repeat
+      @media screen and (max-width: 450px)
+        left: 5%
+    &:after
+      content: ""
+      position: absolute
+      bottom: -1px
+      right: 10%
+      width: 200px
+      height: 1px
+      background-repeat: no-repeat
+      @media screen and (max-width: 450px)
+        right: 5%
+        
+  .border-decoration-dark
+    &:before
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, rgba(0, 204, 255, 0.25) 25.56%, #0CF 50.63%, rgba(0, 204, 255, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%) 
+    &:after
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0.00) 0.5%, rgba(0, 204, 255, 0.25) 25.56%, #0CF 50.63%, rgba(0, 204, 255, 0.25) 75.69%, rgba(47, 50, 61, 0.00) 100.75%) 
+  .border-decoration-light
+    &:before
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0) 0.5%, rgba(46, 131, 229, 0.25) 25.56%, #2E83E5 50.63%, rgba(46, 131, 229, 0.25) 75.69%, rgba(47, 50, 61, 0) 100.75%)      
+    &:after
+      background: linear-gradient(90deg, rgba(47, 50, 61, 0) 0.5%, rgba(46, 131, 229, 0.25) 25.56%, #2E83E5 50.63%, rgba(46, 131, 229, 0.25) 75.69%, rgba(47, 50, 61, 0) 100.75%)
 </style>
