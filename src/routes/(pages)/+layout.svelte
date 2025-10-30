@@ -39,7 +39,7 @@
   let isBurgerDropdownShown = false;
   let theme = globalThis.localStorage?.getItem('theme') as 'dark' | 'light' | undefined | null;
   let themeIconName: SVGIconName = theme ? (theme === 'dark' ? 'sun' : 'moon') : 'sun';
-  let inquiryType: 'job' | 'partnership' | 'product' | 'tge' | 'other' = 'other' as const;
+  let inquiryType: 'job' | 'partnership' | 'product' | 'tge' | 'other' | undefined = undefined;
 
   const inquiryOptions = [
     { value: 'job', label: 'Apply for a job' },

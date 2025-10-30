@@ -239,7 +239,7 @@ mixin header
                 options="{inquiryOptions}"
                 placeholder="What can we help you with?"
               )
-          +if("inquiryType === 'job'")
+          +if("inquiryType && inquiryType === 'job'")
             .content-wrapper(class="max-w-[604px] w-full relative")
               .job-cta(
                 class="min-h-[87px] mb-3.625 w-full flex items-center justify-between gap-4 rounded-xl border border-l4 bg-l1 dark:bg-l2 px-3.625 py-3.625 xs:flex-col xs:items-start"
@@ -247,7 +247,7 @@ mixin header
                 p(class="text-paragraph-l text-t2 xs:text-paragraph-s") Select the job and submit your application
                 Button(label="View Jobs" href="{routes.jobs}" class="!h-[41px] xs:!h-[37px]")
             +else
-              +if("inquiryType === 'partnership' || inquiryType === 'product' || inquiryType === 'tge'")
+              +if("inquiryType && (inquiryType === 'partnership' || inquiryType === 'product' || inquiryType === 'tge')")
                 .content-wrapper(
                   class="max-w-[604px] w-full relative flex flex-col items-center mb-3.625"
                 )
@@ -293,12 +293,13 @@ mixin header
                           class="!w-[29px] !h-[29px] !p-[7px] rounded-2sm bg-l3 dark:bg-[#252933] flex items-center justify-center shadow-[0px_0px_0px_1px_rgba(0,0,0,0.2),0px_5px_8px_rgba(0,0,0,0.16)]"
                         ) {@html socialIcons.twitter}
                 +else
-                  form(
-                    class="max-w-[604px] w-full relative"
-                    method="POST"
-                    action="/"
-                    on:submit|preventDefault="{onContactFormSumbit}"
-                  )
+                  +if("inquiryType")
+                    form(
+                      class="max-w-[604px] w-full relative"
+                      method="POST"
+                      action="/"
+                      on:submit|preventDefault="{onContactFormSumbit}"
+                    )
                     .input-group(class="mb-4")
                       textarea(
                         rows="{5}"
