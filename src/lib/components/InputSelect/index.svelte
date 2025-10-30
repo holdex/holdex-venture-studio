@@ -14,6 +14,10 @@
 
   let open = false;
   let rootEl: HTMLDivElement | null = null;
+  let dropdownEl: HTMLDivElement | null = null;
+
+  let dropUp = false;
+  let dropdownMaxHeight = 240;
 
   const toggle = () => {
     if (disabled) return;
@@ -41,10 +45,37 @@
 
   onMount(() => {
     document.addEventListener('click', handleDocumentClick);
-    return () => document.removeEventListener('click', handleDocumentClick);
+    const recalcOnResize = () => {
+      if (!open) return;
+      positionDropdown();
+    };
+    window.addEventListener('resize', recalcOnResize);
+    window.addEventListener('scroll', recalcOnResize, true);
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+      window.removeEventListener('resize', recalcOnResize);
+      window.removeEventListener('scroll', recalcOnResize, true);
+    };
   });
 
   $: selected = options.find((o) => o.value === value);
+
+  import { tick } from 'svelte';
+
+  const positionDropdown = () => {
+    if (!rootEl) return;
+    const rect = rootEl.getBoundingClientRect();
+    const viewportH = window.innerHeight;
+    const spaceBelow = viewportH - rect.bottom - 8;
+    const spaceAbove = rect.top - 8;
+    dropUp = spaceBelow < 180 && spaceAbove > spaceBelow;
+    const available = Math.max(120, Math.floor((dropUp ? spaceAbove : spaceBelow) - 8));
+    dropdownMaxHeight = Math.min(300, available);
+  };
+
+  $: if (open) {
+    tick().then(positionDropdown);
+  }
 </script>
 
 <div bind:this={rootEl} class="relative w-full">
@@ -83,13 +114,17 @@
   {#if open}
     <div
       class="
-        absolute z-50 mt-1 w-full rounded-xl border border-solid border-l4 bg-l2
-        shadow-md overflow-hidden
+        absolute z-50 w-full rounded-xl border border-solid border-l4 bg-l2
+        shadow-md overflow-auto
       "
       role="listbox"
       aria-activedescendant={selected ? `opt-${selected.value}` : undefined}
       tabindex="0"
       transition:fade={{ duration: 200, easing: cubicInOut }}
+      bind:this={dropdownEl}
+      style="max-height: {dropdownMaxHeight}px; {dropUp
+        ? 'bottom: calc(100% + 4px);'
+        : 'top: calc(100% + 4px);'}"
     >
       {#each options as opt}
         <div
