@@ -124,7 +124,7 @@
     }
   });
 
-  const onContactFormSumbit = async (event: Event) => {
+  const onContactFormSubmit = async (event: Event) => {
     const form = event.currentTarget as HTMLFormElement;
     const data = new FormData(form);
 

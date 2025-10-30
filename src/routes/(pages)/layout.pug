@@ -298,65 +298,65 @@ mixin header
                       class="max-w-[604px] w-full relative"
                       method="POST"
                       action="/"
-                      on:submit|preventDefault="{onContactFormSumbit}"
+                      on:submit|preventDefault="{onContactFormSubmit}"
                     )
-                    .input-group(class="mb-4")
-                      textarea(
-                        rows="{5}"
-                        required
-                        maxlength="160"
-                        bind:value="{message}"
-                        class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-3.625 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
-                        name="message"
-                        placeholder="How can we help you?"
+                      .input-group(class="mb-4")
+                        textarea(
+                          rows="{5}"
+                          required
+                          maxlength="160"
+                          bind:value="{message}"
+                          class="relative w-full border border-solid border-l4 block min-h-[116px] h-[116px] bg-l1 shadow-input rounded-xl p-3.625 text-footnote text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                          name="message"
+                          placeholder="How can we help you?"
+                        )
+                      .input-group(class="mb-7.25 xs:mb-4 gap-4 flex xs:flex-col")
+                        input(
+                          type="text"
+                          name="name"
+                          required
+                          maxlength="40"
+                          bind:value="{name}"
+                          class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                          placeholder="Your name and company"
+                        )
+                        input(
+                          type="email"
+                          required
+                          pattern!="{regExp.email.toString().slice(1, -1)}"
+                          bind:value="{email}"
+                          name="email"
+                          on:blur="{displayError(email)}"
+                          class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
+                          placeholder="Your email address"
+                        )
+                      p(
+                        class="text-rating-c text-footnote leading-14.5 font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-3.625  {isError ? 'flex' : 'hidden'}"
                       )
-                    .input-group(class="mb-7.25 xs:mb-4 gap-4 flex xs:flex-col")
-                      input(
-                        type="text"
-                        name="name"
-                        required
-                        maxlength="40"
-                        bind:value="{name}"
-                        class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
-                        placeholder="Your name and company"
+                        Icon(
+                          icon="{ExclamationTriangle}"
+                          width="{17.26}"
+                          height="{15.62}"
+                          colorInherit
+                        )
+                        span() Invalid email address
+                      div(class="py-[8.5px] xs:py-0")
+                        Button(
+                          label="Submit"
+                          class="mobile:!w-full !h-[41px] xs:!h-[37px]"
+                          disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
+                          isSubmitBtn="true"
+                        )
+                      .feedback-toast(
+                        class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'flex' : 'hidden'}"
                       )
-                      input(
-                        type="email"
-                        required
-                        pattern!="{regExp.email.toString().slice(1, -1)}"
-                        bind:value="{email}"
-                        name="email"
-                        on:blur="{displayError(email)}"
-                        class="h-10.875 relative w-1/2 xs:w-full border border-solid border-l4 bg-l1 shadow-input rounded-xl p-3.625 text-footnote leading-14.5 text-t1 transition-all placeholder:text-footnote placeholder:opacity-100 placeholder:text-t3 hover:border-accent1-default autofill:fill-t1 autofill:hover:text-t3 dark:bg-l2"
-                        placeholder="Your email address"
+                        Icon(icon="{CheckCircle}" width="{24}" height="{24}" colorInherit)
+                        span.succ(class="text-t1 text-cta") Message sent!
+                      .feedback-toast(
+                        class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-16 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {failed ? 'flex' : 'hidden'}"
                       )
-                    p(
-                      class="text-rating-c text-footnote leading-14.5 font-inter flex items-center mb-7.25 xs:mb-4 gap-2 py-3.625  {isError ? 'flex' : 'hidden'}"
-                    )
-                      Icon(
-                        icon="{ExclamationTriangle}"
-                        width="{17.26}"
-                        height="{15.62}"
-                        colorInherit
-                      )
-                      span() Invalid email address
-                    div(class="py-[8.5px] xs:py-0")
-                      Button(
-                        label="Submit"
-                        class="mobile:!w-full !h-[41px] xs:!h-[37px]"
-                        disabled="{message == '' || name == '' || email == '' || !validateEmail(email) ? true : false}"
-                        isSubmitBtn="true"
-                      )
-                    .feedback-toast(
-                      class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-12 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {success ? 'flex' : 'hidden'}"
-                    )
-                      Icon(icon="{CheckCircle}" width="{24}" height="{24}" colorInherit)
-                      span.succ(class="text-t1 text-cta") Message sent!
-                    .feedback-toast(
-                      class="absolute z-1 -bottom-4 xs:-bottom-2 left-1/2 -translate-x-1/2 h-16 border border-solid rounded-xl bg-l2 border-l4 px-2.75 py-1.75 justify-center items-center gap-2 shadow-tag text-accent1-default {failed ? 'flex' : 'hidden'}"
-                    )
-                      Icon(icon="{XCircle}" width="{24}" height="{24}" class="text-red-500" colorInherit)
-                      span.fail(class="text-t1 text-cta") Failed to send email.
+                        Icon(icon="{XCircle}" width="{24}" height="{24}" class="text-red-500" colorInherit)
+                        span.fail(class="text-t1 text-cta") Failed to send email.
         .footer-nav(
           class="flex items-center justify-between xs:flex-col xs:items-start xs:py-6 xs:gap-6 sm:flex-col sm:items-start sm:py-6 sm:gap-6 md:py-6 md:gap-6 py-7.25 px-4 max-w-[860px] w-full"
         )
