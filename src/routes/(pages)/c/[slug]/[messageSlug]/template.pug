@@ -17,13 +17,13 @@ mixin author-v2
   +if("message.docAuthors.length > 0")
     +each("message.docAuthors as author, i")
       +if("i !== 0")
-        span.mr-2 &amp;
+        span.mx-2 &amp;
       div(class="flex gap-2 justify-end smDown:justify-start")
         +if("getAvatarUrl(author.name) !== undefined")
           <img src={getAvatarUrl(author.name)} alt={author.name} class="h-7.25 w-7.25 rounded-2sm border border-l6" />
         +inline-link("{author.url}", "{author.name}")(
           class="xs:text-paragraph-s bg-transparent"
-          target="_blank"
+          target="_self"
           rel="noreferrer"
         )
     +else
@@ -35,7 +35,7 @@ mixin author-v2
         +if("getAuthorUrl(message._author.name) !== undefined")
           +inline-link("{getAuthorUrl(message._author.name)}", "{getAuthorData(message._author.name).name}")(
             class="xs:text-paragraph-s bg-transparent"
-            target="_blank"
+            target="_self"
             rel="noreferrer"
           )
           +else {message._author.name}
